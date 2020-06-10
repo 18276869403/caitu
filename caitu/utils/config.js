@@ -6,7 +6,6 @@
  const upload = baseUrl + "sys/common/upload/"
  // 图片预览
  const viewUrl = baseUrl + "sys/common/static/"
-
  module.exports = {
   //  baseUrl:baseUrl,
    upload:upload,

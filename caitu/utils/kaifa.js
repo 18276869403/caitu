@@ -10,7 +10,6 @@ const initGroupBuying = baseUrl + "rabbit/index/initGroupBuying"
 const initInformation = baseUrl + "rabbit/index/initInformation"
 // 首页面-尾货
 const initInventory = baseUrl + "rabbit/index/initInventory"
-
  module.exports = {
   groupByingList:groupByingList,
   calculateList:calculateList,
