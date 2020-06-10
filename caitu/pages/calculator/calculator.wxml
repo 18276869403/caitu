@@ -31,7 +31,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">厚度</view>
       <view class="content-item-content1">
-        <input type="digit" placeholder="请输入厚度" placeholder-class="placeholder" class="shurukuang"></input>
+        <input type="digit" placeholder="请输入厚度" placeholder-class="placeholder" class="shurukuang" value="{{houdu}}" bindinput="houdu"></input>
       </view>
       <!-- <view class="content-item-right">
         <image src="../image/jinru.png" class="enter-img"></image>
@@ -40,7 +40,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">宽度</view>
       <view class="content-item-content1">
-        <input type="digit" placeholder="请输入宽度" placeholder-class="placeholder" class="shurukuang"></input>
+        <input type="digit" placeholder="请输入宽度" placeholder-class="placeholder" value="{{kuandu}}" bindinput="kuandu" class="shurukuang"></input>
       </view>
       <!-- <view class="content-item-right">
         <image src="../image/jinru.png" class="enter-img"></image>
@@ -62,7 +62,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">正面膜厚</view>
       <view class="content-item-content1">
-        <input type="digit" placeholder="请输入正面膜厚" placeholder-class="placeholder" class="shurukuang"></input>
+        <input type="digit" placeholder="请输入正面膜厚" placeholder-class="placeholder" class="shurukuang" value="{{zhengmianChange}}" bindinput="zhengmianChange"></input>
       </view>
       <view class="content-item-right">
         <image src="../image/fuhao.png" class="fuhao-img"></image>
@@ -72,7 +72,7 @@
       <view class="content-item-left">背面膜厚
       </view>
       <view class="content-item-content">
-        <input type="digit" placeholder="请输入背面膜厚" placeholder-class="placeholder" class="shurukuang"></input>
+        <input type="digit" placeholder="请输入背面膜厚" placeholder-class="placeholder" class="shurukuang" value="{{beimianChange}}" bindinput="beimianChange"></input>
       </view>
       <view class="content-item-right">
         <image src="../image/fuhao.png" class="fuhao-img"></image>
@@ -80,8 +80,8 @@
     </view>
     <view class="content-item hengxiang">
       <view class="content-item-left">涂层</view>
-      <view class="content-item-content1">
-     被动涂层
+      <view class="content-item-content1"> 
+      <input type="digit" placeholder="被动涂层" placeholder-class="placeholder" class="shurukuang" value="{{tuceng}}" bindinput="tuceng"></input>
       </view>
       <!-- <view class="content-item-right">
         <image src="../image/jinru.png" class="enter-img"></image>
@@ -129,7 +129,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">需求吨数</view>
       <view class="content-item-content1">
-        <input type="digit" placeholder="请输入吨数" placeholder-class="placeholder" class="shurukuang"></input>
+        <input type="digit" placeholder="请输入吨数" placeholder-class="placeholder" class="shurukuang" value="{{dunwei}}" bindinput="dunwei"></input>
       </view>
       <!-- <view class="content-item-right">
         <image src="../image/jinru.png" class="enter-img"></image>
