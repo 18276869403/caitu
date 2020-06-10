@@ -54,6 +54,20 @@ Page({
       multiIndex: e.detail.value
     })
   },
+  // 厚度
+  houdu: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      houdu: e.detail.value
+    })
+  },
+  // 宽度
+  kuandu: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      kuandu: e.detail.value
+    })
+  },
 
   // 彩涂品名
   caituChange: function(e) {
@@ -83,6 +97,13 @@ Page({
       beimianindex: e.detail.value
     })
   },
+  // 涂层
+  tuceng: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      tuceng: e.detail.value
+    })
+  },
   // 锌层
   xincengChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -102,6 +123,13 @@ Page({
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       qiangduindex: e.detail.value
+    })
+  },
+  // 吨位
+  dunwei: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      dunwei: e.detail.value
     })
   },
 })
