@@ -5,6 +5,7 @@ const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
 Page({
   data: {
+    viewUrl:api.viewUrl,
     msgList: [{
         id: "1",
         title: "编号100*0239发布求购"
@@ -18,81 +19,10 @@ Page({
         title: "编号102*0237发布求购"
       }
     ],
-    bannerImg: [{
-        id: 1,
-        bannerimg: '../image/banner.png'
-      },
-      {
-        id: 2,
-        bannerimg: '../image/banner.png'
-      },
-      {
-        id: 3,
-        bannerimg: '../image/banner.png'
-      }
-    ],
-    // qiugouList: [{
-    //     id: 1,
-    //     weight: '1200',
-    //     name: '镀锌板彩涂卷',
-    //     bianhao: '112hh',
-    //     guige: '厚0.5/宽1000',
-    //     color: '非标'
-    //   },
-    //   {
-    //     id: 2,
-    //     weight: '1200',
-    //     name: '镀锌板彩涂镀锌板彩涂卷镀锌板彩涂卷卷',
-    //     bianhao: '112hh',
-    //     guige: '厚0.5/宽1000',
-    //     color: '非标'
-    //   }
-    // ],
+    bannerImg: [],
+    qiugouList: [],
     pingouList:[],
-    // pingouList: [{
-    //     id: 1,
-    //     weight: '1200',
-    //     name: '镀锌板彩涂镀锌板彩涂卷镀锌板彩涂卷卷',
-    //     bianhao: '112hh',
-    //     guige: '厚0.5/宽1000',
-    //     color: '非标',
-    //     img: '../image/top.png'
-    //   },
-    //   {
-    //     id: 2,
-    //     weight: '1200',
-    //     name: '镀锌板彩涂镀锌板彩涂卷镀锌板彩涂卷卷',
-    //     bianhao: '112hh',
-    //     guige: '厚0.5/宽1000',
-    //     color: '非标',
-    //     img: '../image/top1.png'
-    //   },
-    //   {
-    //     id: 3,
-    //     weight: '1200',
-    //     name: '镀锌板彩涂镀锌板彩涂卷镀锌板彩涂卷卷',
-    //     bianhao: '112hh',
-    //     guige: '厚0.5/宽1000',
-    //     color: '非标',
-    //     img: '../image/top.png'
-    //   }
-    // ],
     weihuolist:[],
-    // zixunList: [{
-    //     id: 1,
-    //     name: '宝山地区致良知学习会',
-    //     content: '聚是一团火，散是满天星，共读一本书，幸福一家人，温暖一座城。',
-    //     date: '2020.03.06',
-    //     img: '../image/zixun.png'
-    //   },
-    //   {
-    //     id: 2,
-    //     name: '宝山地区致良知学习会',
-    //     content: '宝钢中央研究院分析测试研究中心通过了中国合格评定国家认可委员会（CNAS）评审考核。',
-    //     date: '2020.03.06',
-    //     img: '../image/zixun1.png'
-    //   }
-    // ],
     zixunList:[],
     isAuto:0
   },
@@ -100,10 +30,52 @@ Page({
      //获得dialog组件
     this.dialog = this.selectComponent("#dialog");
     this.chushihuashouquan()
-    this.getInfo()
+    this.getqiugou()
+    this.getbanner()
     this.getpingou()
     this.getzixun()
     this.getweihuo()
+  },
+  // 获取广告
+  getbanner(){
+    var that = this
+    qingqiu.get("initBanners",null,function(res){
+      if(res.success == true){
+        for(let obj of res.result.records){
+          obj.upUrl = that.data.viewUrl + obj.upUrl
+        }
+        that.setData({
+          bannerImg:res.result.records
+        })
+      }
+    })
+  },
+  // 求购信息
+  getqiugou(){
+    var that = this
+    qingqiu.get("initAskToBuy",null,function(res){
+      if(res.success == true){
+        for(let obj of res.result.records){
+          var str = obj.id.toString()
+          if(str.length < 10){
+            var str1 = ''
+            for(let i=0;i<10-str.length;i++){
+              str1 += 0
+            }
+            obj.backup1 = str1 + str
+          }
+        }
+        that.setData({
+          qiugouList:res.result.records
+        })
+      }else{
+        wx.showToast({
+          title: res.message,
+          icon:'none',
+          duration:1000
+        })
+      }
+    })
   },
   // 获取拼购信息
   getpingou(){
@@ -145,7 +117,7 @@ Page({
         if (res.result != null) {
           that.data.weihuolist=res.result.records
           for(var i=0;i<res.result.records.length;i++){
-            that.data.weihuolist[i].upUrl=api.baseUrl+api.viewUrl+that.data.weihuolist[i].upUrl
+            that.data.weihuolist[i].upUrl= that.data.viewUrl + that.data.weihuolist[i].upUrl
           }
           console.log(that.data.weihuolist)
           that.setData({
@@ -175,7 +147,7 @@ Page({
           that.data.zixunList=res.result.records
           for(var i=0;i<res.result.records.length;i++){
             that.data.zixunList[i].createTime=that.data.zixunList[i].createTime.split(' ')[0]
-            that.data.zixunList[i].upUrl=api.baseUrl+api.viewUrl+that.data.zixunList[i].upUrl
+            that.data.zixunList[i].upUrl= that.data.viewUrl +that.data.zixunList[i].upUrl
           }
           console.log(that.data.zixunList)
           that.setData({

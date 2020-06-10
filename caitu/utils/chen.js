@@ -12,8 +12,12 @@
 const askToBuyList = baseUrl +  "rabbit/mine/askToBuyList"
 // 我的库存
 const inventoryList = baseUrl + "rabbit/mine/inventoryList"
-// 计算历史
-const calculateList = baseUrl + "rabbit/mine/calculateList"
+// 首页-求购
+const initAskToBuy = baseUrl + "rabbit/index/initAskToBuy"
+// 首页-广告
+const initBanners = baseUrl + "rabbit/index/initBanners"
+// 首页-我的库存
+const clickInitInventory = baseUrl + "rabbit/index/clickInitInventory"
 
  module.exports = {
    baseUrl:baseUrl,
@@ -23,5 +27,7 @@ const calculateList = baseUrl + "rabbit/mine/calculateList"
    init:init,
    askToBuyList:askToBuyList,
    inventoryList:inventoryList,
-   calculateList:calculateList
+   initAskToBuy:initAskToBuy,
+   initBanners:initBanners,
+   clickInitInventory:clickInitInventory
  } 

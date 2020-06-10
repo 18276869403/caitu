@@ -27,7 +27,7 @@
         </view>
         <view>编号</view>
       </view>
-      <view class="gc_name yincang">ye222</view>
+      <view class="gc_name yincang">{{qiugou.id}}</view>
     </view>
     <view class="gangchang hengxiang">
       <view class="gc_sj hengxiang">
@@ -36,7 +36,7 @@
         </view>
         <view>钢厂</view>
       </view>
-      <view class="gc_name yincang">上海宝钢</view>
+      <view class="gc_name yincang">{{qiugou.steelname}}</view>
     </view>
     <view class="gangchang hengxiang">
       <view class="gc_sj hengxiang">
@@ -45,7 +45,7 @@
         </view>
         <view>吨数</view>
       </view>
-      <view class="gc_name yincang">360</view>
+      <view class="gc_name yincang">{{qiugou.tonnage}}</view>
     </view>
     <view class="gangchang hengxiang">
       <view class="gc_sj hengxiang">
@@ -55,7 +55,7 @@
         <view>交货地</view>
       </view>
 
-      <view class="gc_name yincang">浙江/杭州</view>
+      <view class="gc_name yincang">{{qiugou.areaOneid_dictText}}/{{qiugou.areaTwoId_dictText}}</view>
     </view>
 
   </view>
@@ -66,39 +66,39 @@
   <view class="cs">
     <view class="cs_sj hengxiang">
       <view class="sj_h">厚度</view>
-      <view class="sj_s">0.54</view>
+      <view class="sj_s">{{qiugou.thickness}}</view>
     </view>
     <view class="cs_sj hengxiang">
       <view class="sj_h">宽度</view>
-      <view class="sj_s">1000</view>
+      <view class="sj_s">{{qiugou.width}}</view>
     </view>
     <view class="cs_sj hengxiang">
       <view class="sj_h">油漆</view>
-      <view class="sj_s">PE</view>
+      <view class="sj_s">{{qiugou.paint}}</view>
     </view>
     <view class="cs_sj hengxiang">
       <view class="sj_h">正面膜厚</view>
-      <view class="sj_s">正面20μ</view>
+      <view class="sj_s">{{qiugou.front}}μ</view>
     </view>
     <view class="cs_sj hengxiang">
       <view class="sj_h">背面膜厚</view>
-      <view class="sj_s">背面20μ</view>
+      <view class="sj_s">{{qiugou.rear}}μ</view>
     </view>
     <view class="cs_sj hengxiang">
       <view class="sj_h">涂层</view>
-      <view class="sj_s">2/2</view>
+      <view class="sj_s">{{qiugou.coat}}</view>
     </view>
     <view class="cs_sj hengxiang">
       <view class="sj_h">锌层</view>
-      <view class="sj_s">150＜×≤180</view>
+      <view class="sj_s">{{qiugou.zinclayer}}</view>
     </view>
     <view class="cs_sj hengxiang">
       <view class="sj_h">强度</view>
-      <view class="sj_s">TS250GD+AZ</view>
+      <view class="sj_s">{{qiugou.density}}</view>
     </view>
     <view class="cs_sj cs_ys hengxiang">
       <view class="sj_h">颜色</view>
-      <view class="sj_s">非标</view>
+      <view class="sj_s">{{qiugou.color}}</view>
     </view>
   </view>
    <!-- 从我的页面进入时entertype==1，展示查看海报按钮 -->

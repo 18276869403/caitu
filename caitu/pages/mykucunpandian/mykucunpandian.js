@@ -47,6 +47,12 @@ Page({
   onLoad: function(options) {
 
   },
+  // 获取数据
+  getInfo(){
+    qingqiu.get("inventoryList",data,function(res){
+      
+    })
+  },
   // 跳转到库存管理页面
   kucunManage: function () {
     wx.navigateTo({

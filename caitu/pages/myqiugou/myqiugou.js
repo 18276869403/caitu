@@ -7,35 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    qiugou:[
-      {
-        id:1,
-        bianhao:'hz10001',
-        guige:"厚0.5/宽11000000000000",
-        xinceng:"100",
-        didian:"浙江/杭州",
-        shijian:"2020.01.20",
-        type:1
-      },
-      {
-        id:2,
-        bianhao:"hz20002",
-        guige:"厚0.5/宽1100",
-        xinceng:"100",
-        didian:"浙江/杭州",
-        shijian:"2020.01.20",
-        type:2
-      },
-      {
-        id:3,
-        bianhao:"hz20002",
-        guige:"厚0.5/宽1100",
-        xinceng:"100",
-        didian:"浙江/杭州",
-        shijian:"2020.01.20",
-        type:3
-      }
-    ],
+    qiugou:[],
   },
 
   /**
@@ -50,9 +22,7 @@ Page({
     var data = {
       id:app.globalData.wxid
     }
-    console.log(data)
     qingqiu.get("askToBuyList",data,function(res){
-      console.log(res)
       if(res.success == true){
         for(let obj of res.result.records){
           var str = obj.id.toString()
@@ -61,9 +31,10 @@ Page({
             for(let i=0;i<10-str.length;i++){
               str1 += 0
             }
-            obj.id = str1 + str
+            obj.backup1 = str1 + str
           }
         }
+        console.log(res.result.records)
         that.setData({
           qiugou:res.result.records
         })
@@ -77,9 +48,10 @@ Page({
     })
   },
 // 跳转到求购详情页面
-  qiugouDetails:function(){
+  qiugouDetails:function(e){
+    var obj = JSON.stringify(e.currentTarget.dataset.item)
     wx.navigateTo({
-      url: '../qiugouDetails/qiugouDetails',
+      url: '../qiugouDetails/qiugouDetails?obj='+obj,
     })
   }
 })
