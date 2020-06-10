@@ -1,0 +1,53 @@
+<!--pages/renzhengInfo/renzhengInfo.wxml-->
+<view class="container">
+  <view class="huise"></view>
+  <view class="content zongxiang">
+    <view class="content-list hengxiang">
+      <view class="content-list-left">
+        推荐人
+      </view>
+      <view class="content-list-right">
+        <input type="text" placeholder="请输入联系人" class="shurukuang" placeholder-class="placeholder"></input>
+      </view>
+    </view>
+    <view class="content-list hengxiang">
+      <view class="content-list-left">
+        <text style="color:#FF1010">*</text> 姓名
+      </view>
+      <view class="content-list-right">
+        <input type="text" placeholder="请输入姓名" class="shurukuang" placeholder-class="placeholder"></input>
+      </view>
+    </view>
+    <view class="content-list hengxiang">
+      <view class="content-list-left">
+        <text style="color:#FF1010">*</text> 手机号
+      </view>
+      <view class="content-list-right">
+        <input type="number" placeholder="请输入手机号码" class="shurukuang" placeholder-class="placeholder"></input>
+      </view>
+    </view>
+    <view class="content-list hengxiang">
+      <view class="content-list-left">
+        <text style="color:#FF1010">*</text> 公司名称
+      </view>
+      <view class="content-list-right">
+        <input type="text" placeholder="请输入公司名称" class="shurukuang" placeholder-class="placeholder"></input>
+      </view>
+    </view>
+  </view>
+  <view class="bottom">
+    <view class="bottom-title">
+     
+        <text style="color:#FF1010">*</text> 上传营业执照
+      
+    </view>
+    <!-- 上传 -->
+    <view class="bottom-upload">
+    <image src="../image/upload.png" class="upload-img"></image>
+    </view>
+    <!-- 提交 -->
+        <view class="bottom-submit">
+    <image src="../image/submit.png" class="submit-img"></image>
+    </view>
+  </view>
+</view>

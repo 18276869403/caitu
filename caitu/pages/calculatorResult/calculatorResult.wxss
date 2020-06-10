@@ -1,0 +1,114 @@
+/* pages/calculatorResult/calculatorResult.wxss */
+
+.content {
+  width: 94%;
+  margin-left: 3%;
+  margin-right: 3%;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0rpx 4rpx 10rpx 0rpx rgba(4, 40, 100, 0.09);
+  border-radius: 15rpx;
+  margin-top: 40rpx;
+}
+
+.list-title {
+  width: 100%;
+  text-align: center;
+  height: 81rpx;
+  line-height: 81rpx;
+  font-size: 38rpx;
+  font-weight: bold;
+  color: rgba(51, 51, 51, 1);
+  border-bottom: 1rpx solid #f5f7fb;
+}
+
+.list-gangchang {
+  width: 100%;
+  text-align: center;
+  height: 75rpx;
+  line-height: 75rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: rgba(253, 97, 33, 1);
+  border-bottom: 1rpx solid #f5f7fb;
+}
+
+.list-sort {
+  width: 100%;
+  text-align: center;
+  height: 75rpx;
+  line-height: 90rpx;
+  font-size: 35rpx;
+  color: #7f7f7f;
+  border-bottom: 1rpx solid #f5f7fb;
+}
+
+.list-sort-guige {
+  width: 37%;
+  text-align: left;
+  margin-left: 3%;
+}
+
+.list-sort-canshu {
+  width: 40%;
+  text-align: left;
+}
+
+.list-sort-jiajia {
+  width: 17%;
+  text-align: right;
+  margin-right: 3%;
+}
+
+.list-sort-name {
+  width: 100%;
+  text-align: center;
+  height: 84rpx;
+  line-height: 84rpx;
+  font-size: 35rpx;
+  color: #333;
+  border-bottom: 1rpx solid #f5f7fb;
+}
+
+.content-button {
+  width: 100%;
+}
+
+.button {
+  width: 50%;
+  text-align: center;
+  margin-top: 85rpx;
+  margin-bottom: 125rpx;
+}
+
+.qiugou-img {
+  width: 292rpx;
+  height: 78rpx;
+}
+
+.jisuan-img {
+  width: 292rpx;
+  height: 78rpx;
+}
+
+.list-sort-tips {
+  width: 94%;
+  text-align: left;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: rgba(111, 111, 111, 1);
+  margin-top: 25rpx;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.list-sort-price {
+  width: 94%;
+  text-align: right;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: rgba(252, 100, 39, 1);
+  margin-top: 15rpx;
+  padding-bottom: 45rpx;
+    margin-left: 3%;
+  margin-right: 3%;
+}

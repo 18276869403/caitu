@@ -1,0 +1,264 @@
+<!--pages/hall/hall.wxml-->
+<view class="container">
+  <view class="hengxian"></view>
+  <view class="dating">
+    <view class="tab hengxiang">
+      <view class="tab_le {{navid1==item.id ?'dsh':''}}" wx:for="{{nav}}" wx:key="index" bindtap="bindnav" data-id="{{item.id}}">
+        <text class="{{navid1==item.id ?'sh':''}}">{{item.name}}</text>
+      </view>
+    </view>
+    <view class="sousuo hengxiang">
+      <view class="sou_img">
+        <image src="../image/sousuo.png"></image>
+      </view>
+      <input class="sou_input" placeholder="输入搜索内容"></input>
+      <view class="sou_two">
+        <image src="../image/soubut.png"></image>
+      </view>
+    </view>
+    <view class="nav hengxiang">
+      <!-- 品名 -->
+      <view class="nav_lie ">
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" class="pic">
+          <view class="hengxiang lie1">
+            <view class="lie_name1 yincang">{{array[index]}}</view>
+            <view class="lie_img1">
+              <image src="../image/xiajiantou.png" class="lie-image"></image>
+            </view>
+          </view>
+        </picker>
+      </view>
+      <!-- 颜色 -->
+      <view class="nav_lie ">
+        <picker bindchange="bindPickerColour" value="{{colour}}" range="{{yanse}}" class="pic">
+          <view class="hengxiang lie">
+            <view class="lie_name yincang">{{yanse[colour]}}</view>
+            <view class="lie_img">
+              <image src="../image/xiajiantou.png" class="lie-image"></image>
+            </view>
+          </view>
+        </picker>
+      </view>
+      <!-- 厚度 -->
+      <view class="nav_lie ">
+        <picker bindchange="bindPickerThickness" value="{{thickness}}" range="{{houdu}}" class="pic">
+          <view class="hengxiang lie">
+            <view class="lie_name yincang">{{houdu[thickness]}}</view>
+            <view class="lie_img">
+              <image src="../image/xiajiantou.png" class="lie-image"></image>
+            </view>
+          </view>
+        </picker>
+      </view>
+      <!-- 宽度 -->
+      <view class="nav_lie ">
+        <picker bindchange="bindPickerWidth" value="{{width}}" range="{{kuandu}}" class="pic">
+          <view class="hengxiang lie2">
+            <view class="lie_name2 yincang">{{kuandu[width]}}</view>
+            <view class="lie_img2">
+              <image src="../image/xiajiantou.png" class="lie-image"></image>
+            </view>
+          </view>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <!-- 求购 -->
+  <view class="myqg" wx:for="{{qiugou}}" wx:key="index" wx:if="{{navid1==1}}" bindtap="qiugouDetails">
+    <view class="qiugou">
+      <view class="ming hengxiang">
+        <view class="qg_name section yincang">{{item.name}}</view>
+        <view class="daojishi1" wx:if="{{item.type==1}}">
+          <image src="../image/daojishi.png" class="djs_img"></image>
+          进行中
+        </view>
+        <view class="pipeizhong" wx:if="{{item.type==2}}">
+          <image src="../image/shenhe.png" class="djs_img"></image>
+          匹配中
+        </view>
+        <!-- <view class="yiwancheng" wx:if="{{item.type==3}}">
+          <image src="../image/wancheng.png" class="djs_img"></image>
+          已完成
+        </view> -->
+        <image src="../image/lengyuan.png" class="xz"></image>
+        <image src="../image/xingzhuang.png" class="ly"></image>
+      </view>
+      <view class="qg hengxiang">
+        <view class="qg_xq">
+          <view class="bianh hengxiang">
+            <view>
+              <image src="../image/bianhao.png" class="xq_img"></image>
+            </view>
+            <view class="xq_name yincang">编号：{{item.bianhao}}</view>
+          </view>
+          <view class="bianh hengxiang">
+            <view>
+              <image src="../image/guige.png" class="xq_img"></image>
+            </view>
+            <view class="xq_name yincang">规格：{{item.guige}}</view>
+          </view>
+          <view class="bianh hengxiang">
+            <view>
+              <image src="../image/xinceng.png" class="xq_img"></image>
+            </view>
+            <view class="xq_name yincang">锌层：{{item.xinceng}}</view>
+          </view>
+          <view class="bianh hengxiang">
+            <view>
+              <image src="../image/yanse.png" class="xq_img"></image>
+            </view>
+            <view class="xq_name yincang">颜色：{{item.yanse}}</view>
+          </view>
+          <!-- 求购与拼购不同之处 -->
+          <view class="bianh hengxiang" wx:if="{{navid1==3}}">
+            <view>
+              <image src="../image/jiezhi.png" class="xq_img"></image>
+            </view>
+            <view class="xq_name yincang">截止：{{item.jiezhi}}</view>
+          </view>
+          <view class="bianh hengxiang">
+            <view>
+              <image src="../image/didian.png" class="xq_img"></image>
+            </view>
+            <view class="xq_name yincang">地点：{{item.didian}}</view>
+          </view>
+          <view class="bianh hengxiang">
+            <view>
+              <image src="../image/biao.png" class="xq_img"></image>
+            </view>
+            <view class="xq_name yincang">时间：{{item.shijian}}</view>
+          </view>
+        </view>
+        <view class="shu hengxiang"></view>
+        <view class="liang">
+          <view class="liang_b">
+            <text>1200</text>吨</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 尾货 -->
+  <view class="weihuo" wx:if="{{navid1==2}}">
+    <view class="kc_bk" wx:for="{{kucun}}" wx:key="index" bindtap="weihuoDetails">
+      <view class="kc_pm hengxiang">
+        <view class="pm_name yincang">品名：{{item.name}}</view>
+        <view class="pm_sl">12吨</view>
+      </view>
+      <image src="../image/lengyuan.png" class="bk_img"></image>
+      <view class="kc_bkx hengxiang">
+        <view class="bk_xy">
+          <image src="{{item.url}}" class="bkx_img"></image>
+        </view>
+        <view class="kc_cs">
+          <view class="zcs hengxiang">
+            <view>
+              <image src="../image/bianhao.png" class="cs_img"></image>
+            </view>
+            <view class="yincang">编号：{{item.bianhao}}</view>
+          </view>
+          <view class="zcs hengxiang">
+            <view>
+              <image src="../image/guige.png" class="cs_img"></image>
+            </view>
+            <view class="yincang">规格：{{item.guige}}</view>
+          </view>
+          <view class="zcs hengxiang">
+            <view>
+              <image src="../image/yanse.png" class="cs_img"></image>
+            </view>
+            <view class="yincang">颜色：{{item.yanse}}</view>
+          </view>
+          <view class="zcs hengxiang">
+            <view>
+              <image src="../image/xinceng.png" class="cs_img"></image>
+            </view>
+            <view class="yincang">锌层：{{item.xinceng}}</view>
+          </view>
+          <view class="zcs hengxiang">
+            <view>
+              <image src="../image/cangku.png" class="cs_img"></image>
+            </view>
+            <view class="yincang">仓库：{{item.didian}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 拼购 -->
+
+  <view class="myqg" wx:for="{{qiugou}}" wx:key="index" wx:if="{{navid1==3}}" bindtap="pingouDetails">
+    <view class="qiugou">
+      <view class="ming hengxiang">
+        <view class="qg_name section yincang">{{item.name}}</view>
+        <view class="daojishi1" wx:if="{{item.type==1}}">
+          <image src="../image/daojishi.png" class="djs_img"></image>
+          进行中
+        </view>
+        <view class="pipeizhong" wx:if="{{item.type==2}}">
+          <image src="../image/shenhe.png" class="djs_img"></image>
+          匹配中
+        </view>
+        <!-- <view class="yiwancheng" wx:if="{{item.type==3}}">
+          <image src="../image/wancheng.png" class="djs_img"></image>
+          已完成
+        </view> -->
+        <image src="../image/lengyuan.png" class="xz"></image>
+        <image src="../image/xingzhuang.png" class="ly"></image>
+      </view>
+      <view class="qg hengxiang">
+        <view class="qg_xq">
+          <view class="bianh hengxiang">
+            <view>
+              <image src="../image/bianhao.png" class="xq_img"></image>
+            </view>
+            <view class="xq_name yincang">编号：{{item.bianhao}}</view>
+          </view>
+          <view class="bianh hengxiang">
+            <view>
+              <image src="../image/guige.png" class="xq_img"></image>
+            </view>
+            <view class="xq_name yincang">规格：{{item.guige}}</view>
+          </view>
+          <view class="bianh hengxiang">
+            <view>
+              <image src="../image/xinceng.png" class="xq_img"></image>
+            </view>
+            <view class="xq_name yincang">锌层：{{item.xinceng}}</view>
+          </view>
+          <view class="bianh hengxiang">
+            <view>
+              <image src="../image/yanse.png" class="xq_img"></image>
+            </view>
+            <view class="xq_name yincang">颜色：{{item.yanse}}</view>
+          </view>
+          <!-- 求购与拼购不同之处 -->
+          <view class="bianh hengxiang">
+            <view>
+              <image src="../image/jiezhi.png" class="xq_img"></image>
+            </view>
+            <view class="xq_name yincang">截止：{{item.jiezhi}}</view>
+          </view>
+          <view class="bianh hengxiang">
+            <view>
+              <image src="../image/didian.png" class="xq_img"></image>
+            </view>
+            <view class="xq_name yincang">地点：{{item.didian}}</view>
+          </view>
+          <view class="bianh hengxiang">
+            <view>
+              <image src="../image/biao.png" class="xq_img"></image>
+            </view>
+            <view class="xq_name yincang">时间：{{item.shijian}}</view>
+          </view>
+        </view>
+        <view class="shu hengxiang"></view>
+        <view class="liang">
+          <view class="liang_b">
+            <text>1200</text>吨</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

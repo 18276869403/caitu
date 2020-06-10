@@ -1,0 +1,22 @@
+/* pages/kucunSubmitSuccess/kucunSubmitSuccess.wxss */
+page{
+   background: #f5f7fb;
+}
+.content{
+  width: 100%;
+  text-align: center;
+}
+.top{
+  margin-top: 164rpx;
+}
+.kucun-success{
+  width: 341rpx;
+  height: 463rpx;
+}
+.success-text{
+font-size:48rpx;
+font-weight:500;
+color:rgba(51,51,51,1);
+margin-top: 28rpx;
+margin-bottom: 260rpx;
+}

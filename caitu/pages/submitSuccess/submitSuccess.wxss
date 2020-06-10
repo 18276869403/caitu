@@ -1,0 +1,218 @@
+/* pages/submitSuccess/submitSuccess.wxss */
+
+page {
+  background: #f5f7fb;
+  padding-bottom: 120rpx;
+}
+
+.top {
+  width: 100%;
+}
+
+.top-img {
+  width: 100%;
+  text-align: center;
+  margin-top: 51rpx;
+}
+
+.success-img {
+  width: 335rpx;
+  height: 271rpx;
+}
+
+.top-text {
+  width: 100%;
+  text-align: center;
+  font-size: 34rpx;
+  font-weight: 500;
+  color: rgba(133, 133, 133, 1);
+  margin-top: 29rpx;
+  margin-bottom: 36rpx;
+}
+
+.top-button {
+  width: 194rpx;
+  height: 54rpx;
+  background: rgba(254, 93, 28, 1);
+  border-radius: 10rpx;
+  margin: auto;
+  text-align: center;
+  color: #fff;
+  line-height: 54rpx;
+}
+
+.content {
+  width: 94%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.content-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: rgba(51, 51, 51, 1);
+  margin-top: 51rpx;
+  margin-bottom: 44rpx;
+}
+
+.content-list {
+}
+
+.content-list-item {
+  width: 90%;
+  padding-left: 5%;
+  padding-right: 5%;
+  height: 487rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0rpx 4rpx 10rpx 0rpx rgba(4, 40, 100, 0.09);
+  border-radius: 15rpx;
+  position: relative;
+  margin-bottom: 30rpx;
+}
+
+.jiaobiao-img {
+  width: 41rpx;
+  height: 39rpx;
+  position: absolute;
+  right: 0rpx;
+  top: 0rpx;
+}
+
+.list-item-top {
+  height: 73rpx;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+
+.item-top-left {
+  width: 80%;
+  text-align: left;
+  font-size: 30rpx;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+  height: 73rpx;
+  line-height: 90rpx;
+}
+
+.item-top-right {
+  width: 20%;
+  text-align: right;
+  font-size: 24rpx;
+  font-weight: 500;
+  color: rgba(255, 16, 16, 1);
+  height: 73rpx;
+  line-height: 100rpx;
+}
+
+.list-item-content {
+}
+
+.item-content-left {
+  width: 30%;
+  text-align: left;
+}
+
+.item-content-right {
+  width: 67%;
+  margin-left: 3%;
+  margin-top: 20rpx;
+}
+
+.goods-img {
+  width: 197rpx;
+  height: 260rpx;
+  margin-top: 23rpx;
+  border-radius: 9rpx;
+}
+
+.content-right-list {
+  width: 100%;
+  height: 55rpx;
+  line-height: 55rpx;
+}
+
+.content-right-list-img {
+  width: 10%;
+  text-align: left;
+  margin-right: 10rpx;
+}
+
+.bianhao-img {
+  width: 34rpx;
+  height: 35rpx;
+  margin-top: 10rpx;
+}
+
+
+
+.content-right-list-text {
+  width: 90%;
+  text-align: left;
+  font-size: 26rpx;
+  font-weight: 500;
+  color: rgba(88, 88, 88, 1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list-item-bottom {
+  width: 100%;
+  text-align: right;
+}
+
+.pipei-img {
+  width: 140rpx;
+  height: 54rpx;
+  margin-top: 30rpx;
+}
+
+/* 服务协议 */
+
+.commodity_screen1 {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.34;
+  overflow: hidden;
+  z-index: 1000;
+  color: #fff;
+  text-align: center;
+}
+
+.commodity_attr_box1 {
+  border-radius: 10px;
+  position: fixed;
+  z-index: 20000;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  justify-content: center;
+  top: 30%;
+}
+
+.tanchuang {
+  width: 405rpx;
+  height: 225rpx;
+  background: rgba(0, 0, 0, 1);
+  opacity: 0.7;
+  border-radius: 5rpx;
+  margin: auto;
+  position: relative;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.tanchuang-text{
+  color: #fff;
+  margin-top: 56rpx;
+  margin-bottom: 20rpx;
+}
+.tanchuang-text1{
+  color: #fff;
+}

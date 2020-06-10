@@ -1,0 +1,31 @@
+<!--pages/zixunMore/zixunMore.wxml-->
+<view class="container">
+  <view class="hengxian"></view>
+  <view class="content">
+    <!-- 最新咨询 -->
+    <view class="content-weihuo">
+      <view class="zixun zongxiang">
+        <view class="zixun-item hengxiang" wx:for="{{zixunList}}" wx:for-index="index">
+          <view class="zixun-item-right">
+            <image src="{{item.url}}" class="zixun-img"></image>
+          </view>
+          <view class="zixun-item-left zongxiang">
+            <view class="zixun-left-title">
+              {{item.name}}
+            </view>
+            <view class="zixun-left-content">
+              {{item.content}}
+            </view>
+            <view class="zixun-left-date hengxiang">
+              <view class="left-date-img">
+                <image src="../image/shijian.png" class="shijian-img"></image>
+              </view>
+              <view class="left-date-text">{{item.date}}</view>
+            </view>
+          </view>
+
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

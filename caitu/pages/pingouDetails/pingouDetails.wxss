@@ -1,0 +1,150 @@
+/* pages/pingouDetails/pingouDetails.wxss */
+page{
+  background:rgba(245,247,251,1);
+  padding-bottom: 70rpx;
+}
+.qgxiangqing{
+ width: 100%;
+ height: 100%;
+ padding: 0 3%;
+ box-sizing: border-box;
+}
+.xqbiaoti{
+ width: 100%;
+ margin-top: 33rpx;
+ margin-bottom: 15rpx;
+}
+.xqbiaoti text{
+ font-size:36rpx;
+ font-weight:bold;
+ color:rgba(51,51,51,1);
+}
+.xq{
+ width: 100%;
+ background:rgba(255,255,255,1);
+ box-shadow:0rpx 4rpx 10rpx 0rpx rgba(4,40,100,0.09);
+ border-radius:15rpx;
+ margin-bottom: 11rpx;
+}
+.xqxinxi{
+ width: 100%;
+ height: 72rpx;
+ line-height: 72rpx;
+ padding: 0rpx 3%;
+ box-sizing: border-box;
+ border-bottom: 2rpx solid rgba(4,40,100,0.09);
+}
+.xq_name{
+ width: 50%;
+ font-size:32rpx;
+ font-weight:500;
+ color:rgba(51,51,51,1);
+ text-align: left;
+}
+.xq_zt{
+ width: 50%;
+ font-size:24rpx;
+ font-weight:500;
+ color:rgba(255,16,16,1);
+ text-align: right;
+}
+.xq_sh{
+ width: 50%;
+ font-size:24rpx;
+ font-weight:500;
+ text-align: right;
+}
+.xq_wc{
+ width: 50%;
+ font-size:24rpx;
+ font-weight:500;
+ color:rgba(153,153,153,1);
+ text-align: right;
+}
+.zt_jxz{
+ width: 19rpx;
+ height: 20rpx;
+}
+.zt_sh{
+ width: 100rpx;
+ height: 24rpx;
+}
+.zt_wc{
+ width: 21rpx;
+ height: 22rpx;
+}
+.gangchang{
+ width: 100%;
+ height: 80rpx;
+ line-height: 80rpx;
+ padding-left: 3%;
+ padding-right: 3%;
+ box-sizing: border-box;
+ border-bottom: 1rpx solid rgba(4,40,100,0.09);
+}
+.gc_sj{
+ width: 30%;
+ font-size:27rpx;
+ font-weight:500;
+ color:rgba(51,51,51,1);
+ text-align: left;
+}
+.gc_img{
+ width: 33rpx;
+ height: 32rpx;
+ margin-right: 20rpx;
+ margin-top: 24rpx;
+}
+.gc_name{
+ width: 70%;
+ font-size:27rpx;
+ font-weight:500;
+ color:rgba(51,51,51,1);
+ text-align: right;
+ word-break: break-all;
+}
+
+.cs{
+ width: 100%;
+ background:rgba(255,255,255,1);
+ box-shadow:0rpx 4rpx 10rpx 0rpx rgba(4,40,100,0.09);
+ border-radius:15rpx;
+ margin-bottom: 16rpx;
+}
+.csb{
+  width: 100%;
+  background:rgba(255,255,255,1);
+  box-shadow:0rpx 4rpx 10rpx 0rpx rgba(4,40,100,0.09);
+  border-radius:15rpx;
+  margin-top: 53rpx;
+}
+.cs_sj{
+ width: 94%;
+ font-size:32rpx;
+ font-weight:500;
+ color:rgba(51,51,51,1);
+ padding: 25rpx 3%;
+ border-bottom:2rpx solid rgba(245,247,251,1);
+}
+.cs_ys{
+ border: none;
+}
+.sj_h{
+ width: 30%;
+ text-align: left;
+}
+.sj_s{
+ width: 70%;
+ text-align: right;
+ word-break: break-all;
+}
+
+.ck{
+ width: 100%;
+ text-align: center;
+ margin-top: 66rpx;
+}
+.ck_img{
+ width: 570rpx;
+ height: 78rpx;
+}

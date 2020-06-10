@@ -1,0 +1,79 @@
+<!--pages/calculatorResult/calculatorResult.wxml-->
+<view class="container">
+  <view class="hengxian"></view>
+  <view class="content zongxiang">
+    <view class="list-title">镀铝锌彩涂卷</view>
+    <view class="list-gangchang">上海宝钢</view>
+    <view class="list-sort hengxiang">
+      <view class="list-sort-guige">规格</view>
+      <view class="list-sort-canshu">参数</view>
+      <view class="list-sort-jiajia">加价</view>
+    </view>
+    <view class="list-sort-name hengxiang">
+      <view class="list-sort-guige">厚度</view>
+      <view class="list-sort-canshu">700</view>
+      <view class="list-sort-jiajia">+200</view>
+    </view>
+    <view class="list-sort-name hengxiang">
+      <view class="list-sort-guige">宽度</view>
+      <view class="list-sort-canshu">0.4</view>
+      <view class="list-sort-jiajia">+0</view>
+    </view>
+    <view class="list-sort-name hengxiang">
+      <view class="list-sort-guige">油漆</view>
+      <view class="list-sort-canshu">PE</view>
+      <view class="list-sort-jiajia">-20</view>
+    </view>
+    <view class="list-sort-name hengxiang">
+      <view class="list-sort-guige">正面膜厚</view>
+      <view class="list-sort-canshu">正面20μ</view>
+      <view class="list-sort-jiajia">+200</view>
+    </view>
+    <view class="list-sort-name hengxiang">
+      <view class="list-sort-guige">背面膜厚</view>
+      <view class="list-sort-canshu">背面20μ</view>
+      <view class="list-sort-jiajia">+200</view>
+    </view>
+    <view class="list-sort-name hengxiang">
+      <view class="list-sort-guige">涂层</view>
+      <view class="list-sort-canshu">2/2</view>
+      <view class="list-sort-jiajia">+200</view>
+    </view>
+    <view class="list-sort-name hengxiang">
+      <view class="list-sort-guige">锌层</view>
+      <view class="list-sort-canshu">100</view>
+      <view class="list-sort-jiajia">+200</view>
+    </view>
+    <view class="list-sort-name hengxiang">
+      <view class="list-sort-guige">颜色</view>
+      <view class="list-sort-canshu">标准</view>
+      <view class="list-sort-jiajia">+0</view>
+    </view>
+    <view class="list-sort-name hengxiang">
+      <view class="list-sort-guige">强度</view>
+      <view class="list-sort-canshu">TS300GD+AZ</view>
+      <view class="list-sort-jiajia">+700</view>
+    </view>
+    <view class="list-sort-name hengxiang">
+      <view class="list-sort-guige">吨位</view>
+      <view class="list-sort-canshu">10</view>
+      <view class="list-sort-jiajia">+0</view>
+    </view>
+    <view class="list-sort-tips">
+      注：该钢厂基价￥1000/吨
+    </view>
+    <view class="list-sort-price">
+      ￥1180/吨
+    </view>
+  </view>
+  <view class="content-button hengxiang">
+    <!-- 发起求购 -->
+    <view class="button">
+      <image src="../image/faqiqiugou.png" class="qiugou-img" bindtap="qiugouSubmit"></image>
+    </view>
+    <!-- 重新计算 -->
+    <view class="button">
+      <image src="../image/chongxinjisuan.png" class="jisuan-img" bindtap="calculator"></image>
+    </view>
+  </view>
+</view>

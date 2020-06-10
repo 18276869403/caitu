@@ -1,0 +1,186 @@
+/* pages/calculator/calculator.wxss */
+
+page {
+  background: #f5f7fb;
+}
+
+.content {
+  width: 100%;
+  margin-top: 30rpx;
+}
+
+.content-item {
+  width: 90%;
+  margin-left: 3%;
+  margin-right: 3%;
+  padding-left: 2%;
+  padding-right: 2%;
+  height: 83rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0rpx 2rpx 9rpx 0rpx rgba(4, 40, 100, 0.06);
+  border-radius: 15rpx;
+  line-height: 83rpx;
+  margin-bottom: 20rpx;
+}
+
+.enter-img {
+  width: 13rpx;
+  height: 23rpx;
+}
+.fuhao-img{
+  width: 14rpx;
+  height: 24rpx;
+}
+
+.content-item-left {
+  width: 25%;
+  text-align: left;
+  font-size: 34rpx;
+  color: rgba(51, 51, 51, 1);
+}
+
+.content-item-content {
+  width: 70%;
+  text-align: right;
+  font-size: 32rpx;
+  color: rgba(140, 140, 140, 1);
+  overflow: hidden;
+text-overflow:ellipsis;
+white-space: nowrap;
+}
+
+.content-item-right {
+  width: 5%;
+  text-align: right;
+}
+
+.content-item-content1 {
+  width: 75%;
+  text-align: right;
+  font-size: 32rpx;
+  color: rgba(140, 140, 140, 1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bottom {
+  width: 570rpx;
+  height: 78rpx;
+  line-height: 78rpx;
+  background: rgba(253, 100, 40, 1);
+  border-radius: 39rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 1);
+  margin: auto;
+  text-align: center;
+  margin-top: 120rpx;
+  margin-bottom: 145rpx;
+}
+
+.shurukuang {
+  width: 100%;
+  height: 83rpx;
+  line-height: 83rpx;
+  font-size: 32rpx;
+  color: rgba(140, 140, 140, 1);
+}
+
+.placeholder {
+  height: 83rpx;
+  line-height: 83rpx;
+  font-size: 32rpx;
+  color: rgba(140, 140, 140, 1);
+}
+
+/* 选择规格弹窗 */
+
+.commodity_screen1 {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.34;
+  overflow: hidden;
+  z-index: 1000;
+  color: #fff;
+  text-align: center;
+}
+
+.commodity_attr_box1 {
+  border-radius: 10px;
+  position: fixed;
+  z-index: 20000;
+  width: 100%;
+  height: 100%;
+}
+
+.tanchuang {
+  width: 750rpx;
+  height: 229rpx;
+  border-radius: 20rpx 20rpx 0rpx 0rpx;
+  background: rgba(255, 255, 255, 1);
+  position: fixed;
+  bottom: 0;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.tanchuang-item {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: -40rpx;
+}
+
+.tanchuang-small {
+  height: 113rpx;
+  line-height: 113rpx;
+  width: 94%;
+  margin-left: 3%;
+  margin-right: 3%;
+  font-size: 38rpx;
+  font-weight: 500;
+  color: rgba(148, 148, 148, 1);
+}
+
+.tanchuang-small-left {
+  width: 50%;
+  text-align: left;
+}
+
+.tanchuang-small-right {
+  width: 50%;
+  text-align: right;
+}
+
+.tanchuang-big {
+  height: 113rpx;
+  line-height: 113rpx;
+  width: 94%;
+  margin-left: 3%;
+  margin-right: 3%;
+  font-size: 42rpx;
+  font-weight: bold;
+  color: rgba(51, 51, 51, 1);
+  border-top: 2rpx solid rgba(240, 240, 240, 1);
+}
+
+.tanchuang-big-left {
+  width: 50%;
+  text-align: left;
+}
+
+.tanchuang-big-right {
+  width: 50%;
+  text-align: right;
+}
+
+

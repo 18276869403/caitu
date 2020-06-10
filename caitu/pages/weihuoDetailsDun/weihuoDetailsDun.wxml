@@ -1,0 +1,87 @@
+<!--pages/weihuoDetails/weihuoDetails.wxml-->
+<!-- 仅吨数可以改动，其余展示 -->
+<view class="container">
+  <view class="hengxian"></view>
+  <view class="content">
+    <view class="content-item hengxiang">
+      <view class="content-item-left">仓库</view>
+      <view class="content-item-content1">
+        浙江省-杭州市
+      </view>
+    </view>
+    <view class="content-item hengxiang">
+      <view class="content-item-left">选择钢厂</view>
+      <view class="content-item-content1">
+        上海宝钢-镀铝锌
+      </view>
+    </view>
+    <view class="content-item hengxiang">
+      <view class="content-item-left">厚度</view>
+      <view class="content-item-content1">0.4</view>
+    </view>
+    <view class="content-item hengxiang">
+      <view class="content-item-left">宽度</view>
+      <view class="content-item-content1">1100</view>
+    </view>
+    <view class="content-item hengxiang">
+      <view class="content-item-left">油漆</view>
+      <view class="content-item-content1">pe</view>
+    </view>
+    <view class="content-item hengxiang">
+      <view class="content-item-left">正面膜厚</view>
+      <view class="content-item-content1">25</view>
+    </view>
+    <view class="content-item hengxiang">
+      <view class="content-item-left">背面膜厚
+      </view>
+      <view class="content-item-content1">36</view>
+    </view>
+    <view class="content-item hengxiang">
+      <view class="content-item-left">涂层</view>
+      <view class="content-item-content1">2/1</view>
+
+    </view>
+    <view class="content-item hengxiang">
+      <view class="content-item-left">锌层</view>
+      <view class="content-item-content1">2</view>
+    </view>
+    <view class="content-item hengxiang">
+      <view class="content-item-left">颜色</view>
+      <view class="content-item-content1">标准</view>
+    </view>
+    <view class="content-item hengxiang">
+      <view class="content-item-left">强度</view>
+      <view class="content-item-content1">1100</view>
+    </view>
+    <view class="content-item hengxiang">
+      <view class="content-item-left">需求吨数</view>
+      <view class="content-item-content1">
+        <input type="text" placeholder="请输入需求吨数" class="shurukuang" placeholder-class="placeholder"></input>
+      </view>
+    </view>
+    <view class="content-item-title">
+      图片
+    </view>
+    <view class="content-item-img">
+      <view class="content-item-img-item">
+        <image src="../image/top.png" class="shanchuan-img"></image>
+      </view>
+      <view class="content-item-img-item">
+        <image src="../image/top.png" class="shanchuan-img"></image>
+      </view>
+      <view class="content-item-img-item">
+        <image src="../image/top.png" class="shanchuan-img"></image>
+      </view>
+    </view>
+  </view>
+  <view class="content-button hengxiang">
+    <!-- 查看海报 -->
+    <view class="button" bindtap="post">
+      <image src="../image/chakanhaibao.png" class="qiugou-img"></image>
+    </view>
+    <!-- 保存 -->
+    <view class="button">
+      <image src="../image/save.png" class="jisuan-img"></image>
+    </view>
+  </view>
+</view>

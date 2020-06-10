@@ -1,0 +1,23 @@
+<!--pages/aboutUs/aboutUs.wxml-->
+<view class="container">
+  <view class="content">
+    <view class="content-list hengxiang">
+      <view class="content-list-left">关于平台</view>
+      <view class="content-list-right">
+        <image src="../image/usenter.png" class="enter-img"></image>
+      </view>
+    </view>
+    <view class="content-list hengxiang">
+      <view class="content-list-left">关于客服</view>
+      <view class="content-list-right">
+        <image src="../image/usenter.png" class="enter-img"></image>
+      </view>
+    </view>
+    <view class="content-list hengxiang">
+      <view class="content-list-left">用户协议</view>
+      <view class="content-list-right">
+        <image src="../image/usenter.png" class="enter-img"></image>
+      </view>
+    </view>
+  </view>
+</view>

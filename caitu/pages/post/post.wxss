@@ -1,0 +1,66 @@
+/* pages/post/post.wxss */
+
+page {
+  background: #f5f7fb;
+}
+
+.content {
+  width: 92%;
+  margin-left: 4%;
+  margin-right: 4%;
+  margin-top: 48rpx;
+  height: 892rpx;
+  position: relative;
+}
+
+.haibao-img {
+  width: 100%;
+  height: 892rpx;
+}
+
+.code-img {
+  position: absolute;
+  bottom: 0rpx;
+  right: 0rpx;
+  width: 116rpx;
+  height: 116rpx;
+}
+
+.content-text {
+  position: absolute;
+  left: 41rpx;
+  top: 66rpx;
+}
+
+.content-text-title {
+  font-size: 60rpx;
+  font-weight: bold;
+  color: rgba(51, 51, 51, 1);
+}
+
+.content-text-text-item {
+  font-size: 34rpx;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 1);
+  margin-top: 20rpx;
+}
+
+.bottom {
+  width: 100%;
+  margin-top: 60rpx;
+}
+
+.bottom-left {
+  width: 50%;
+  text-align: center;
+}
+
+.bottom-right {
+  width: 50%;
+  text-align: center;
+}
+
+.bottom-img {
+  width: 292rpx;
+  height: 78rpx;
+}

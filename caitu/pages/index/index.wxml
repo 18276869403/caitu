@@ -1,0 +1,276 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="hengxian"></view>
+  <view class="top zongxiang">
+    <!-- 滚动图 -->
+    <view class="banner">
+      <swiper indicator-dots="true" indicator-color="rgba(255,255,255,.3)" indicator-active-color="#fff" autoplay="true" class="swiper">
+        <block wx:for="{{bannerImg}}" wx:for-index="index" wx:key="{{item.id}}">
+          <swiper-item>
+            <image src="{{item.bannerimg}}" class="slide-image" />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <!-- 通知模块 -->
+    <view class="tongzhi hengxiang">
+      <view class="tongzhi-img">
+        <image src="../image/laba.png" class="laba-img"></image>
+      </view>
+      <view class="tongzhi-text">
+        <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="2000">
+          <block wx:for="{{msgList}}" wx:key="">
+            <navigator>
+              <swiper-item>
+                <view class="swiper_item" data-name="{{item.title}}">{{item.title}}</view>
+              </swiper-item>
+            </navigator>
+          </block>
+        </swiper>
+      </view>
+    </view>
+    <!-- 四大板块 -->
+    <view class="sort zongxiang">
+      <view class="sort-top hengxiang">
+        <view class="sortImg" bindtap="calculator">
+          <image src="../image/jisuanqi.png" class="sort-img"></image>
+        </view>
+        <view class="sortImg" bindtap="qiugouSubmit">
+          <image src="../image/qiugou.png" class="sort-img"></image>
+        </view>
+        <view class="sortImg" bindtap="pingouSubmit">
+          <image src="../image/pingou.png" class="sort-img"></image>
+        </view>
+        <view class="sortImg" bindtap="kucunManage">
+          <image src="../image/wodekucun.png" class="sort-img"></image>
+        </view>
+      </view>
+      <view class="sort-bottom hengxiang">
+        <view class="sort-text" bindtap="calculator">
+          计算器
+        </view>
+        <view class="sort-text" bindtap="qiugouSubmit">
+          求购
+        </view>
+        <view class="sort-text" bindtap="pingouSubmit">
+          拼购
+        </view>
+        <view class="sort-text" bindtap="kucunManage">
+          我的库存
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <view class="content zongxiang">
+
+    <!-- 求购信息 -->
+    <view class="content-qiugou zongxiang">
+      <view class="qiugou-title hengxiang">
+        <view class="qiugou-left hengxiang">
+          <view class="title-img">
+            <image src="../image/shuxian.png" class="shuxian-img"></image>
+          </view>
+          <view class="title-text">
+            求购信息
+          </view>
+        </view>
+        <view class="qiugou-right hengxiang">
+          <view>
+            <image src="../image/more.png" class="enter-img" bindtap="hall"></image>
+          </view>
+        </view>
+      </view>
+      <view class="qiugou-content zongxiang">
+        <view class="qiugou-list hengxiang" wx:for="{{qiugouList}}" wx:for-index="index" bindtap="qiugouDetails">
+          <view class="list-left">
+            <view class="list-left-banyuan">
+              <image src="../image/tuoyuan.png" class="tuoyuan-img"></image>
+            </view>
+            <view class="list-left-text">
+              <text>{{item.weight}}</text>
+              <text class="tips">吨</text>
+            </view>
+          </view>
+          <view class="list-right">
+            <image src="../image/jinxingzhong.png" class="list-right-jinxingzhong"></image>
+            <view class="list-right-title">
+              品名：{{item.name}}
+            </view>
+            <view class="list-right-item hengxiang">
+              <view class="right-item-img">
+                <image src="../image/bianhao.png" class="bianhao-img"></image>
+              </view>
+              <view class="right-item-text">编号：11111</view>
+            </view>
+            <view class="list-right-item hengxiang">
+              <view class="right-item-img">
+                <image src="../image/guige.png" class="bianhao-img"></image>
+              </view>
+              <view class="right-item-text">规格：{{item.guige}}
+              </view>
+            </view>
+            <view class="list-right-item hengxiang">
+              <view class="right-item-img">
+                <image src="../image/yanse.png" class="bianhao-img"></image>
+              </view>
+              <view class="right-item-text">颜色：{{item.color}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 拼购信息 -->
+    <view class="content-pingou">
+      <view class="qiugou-title hengxiang">
+        <view class="qiugou-left hengxiang">
+          <view class="title-img">
+            <image src="../image/shuxian.png" class="shuxian-img"></image>
+          </view>
+          <view class="title-text">
+            拼购信息
+          </view>
+        </view>
+        <view class="qiugou-right hengxiang">
+          <view>
+            <image src="../image/more.png" class="enter-img" bindtap="hall"></image>
+          </view>
+        </view>
+      </view>
+      <scroll-view class="gundong" scroll-x="true" style='width:100%'>
+        <view class="hengxiang">
+          <view class="pingou-item hengxiang" wx:for="{{pingouList}}" wx:for-index="index" bindtap="pingouDetails">
+            <view class="pingou-item-left zongxiang">
+              <view class="pingou-left-title" style="margin-top:10rpx">
+                品名：{{item.name}}
+              </view>
+              <view class="pingou-left-item">
+                编号：{{item.bianhao}}
+              </view>
+              <view class="pingou-left-item">
+                规格：{{item.guige}}
+              </view>
+              <view class="pingou-left-item">
+                颜色：{{item.color}}
+              </view>
+              <view class="pingou-left-item">
+                吨数：{{item.weight}}
+              </view>
+            </view>
+            <view class="pingou-item-right">
+              <image src="../image/pingouing.png" class="pingou-img"></image>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <!-- 尾货信息 -->
+    <view class="content-weihuo">
+      <view class="qiugou-title hengxiang">
+        <view class="qiugou-left hengxiang">
+          <view class="title-img">
+            <image src="../image/shuxian.png" class="shuxian-img"></image>
+          </view>
+          <view class="title-text">
+            尾货信息
+          </view>
+        </view>
+        <view class="qiugou-right hengxiang">
+          <view>
+            <image src="../image/more.png" class="enter-img" bindtap="hall"></image>
+          </view>
+        </view>
+      </view>
+      <view class="weihuo">
+        <scroll-view class="gundong" scroll-x="true" style='width:100%'>
+          <view class="hengxiang ">
+            <view class="weihuo-item" wx:for="{{pingouList}}" wx:for-index="index" bindtap="weihuoDetails">
+              <view class="zongxiang">
+                <view class="weihuoImg">
+                  <image src="{{item.img}}" class="weihuo-img"></image>
+                </view>
+                <view class="weihuo-text">
+                  <view class="pingou-left-title">
+                    品名：{{item.name}}
+                  </view>
+                  <view class="pingou-left-item">
+                    编号：{{item.bianhao}}
+                  </view>
+                  <view class="pingou-left-item">
+                    规格：{{item.guige}}
+                  </view>
+                  <view class="pingou-left-item">
+                    颜色：{{item.color}}
+                  </view>
+                  <view class="pingou-left-item">
+                    吨数：{{item.weight}}
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+    <!-- 最新资讯 -->
+    <view class="content-weihuo">
+      <view class="qiugou-title hengxiang">
+        <view class="qiugou-left hengxiang">
+          <view class="title-img">
+            <image src="../image/shuxian.png" class="shuxian-img"></image>
+          </view>
+          <view class="title-text">
+            最新资讯
+          </view>
+        </view>
+        <!-- 更多咨询 -->
+        <view class="qiugou-right hengxiang">
+          <view>
+            <image src="../image/more.png" class="enter-img" bindtap="zixunMore"></image>
+          </view>
+        </view>
+      </view>
+      <view class="zixun zongxiang">
+        <view class="zixun-item hengxiang" wx:for="{{zixunList}}" wx:for-index="index">
+          <view class="zixun-item-left zongxiang">
+            <view class="zixun-left-title">
+              {{item.name}}
+            </view>
+            <view class="zixun-left-content">
+              {{item.content}}
+            </view>
+            <view class="zixun-left-date hengxiang">
+              <view class="left-date-img">
+                <image src="../image/shijian.png" class="shijian-img"></image>
+              </view>
+              <view class="left-date-text">{{item.date}}</view>
+            </view>
+          </view>
+          <view class="zixun-item-right">
+            <image src="{{item.img}}" class="zixun-img"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="bottom">
+    <image src="../image/xuanfuqiu.png" class="xuanfu-img" bindtap="calculator"></image>
+  </view>
+</view>
+<!-- 用户未认证弹窗 -->
+<view class="commodity_screen1" wx:if="{{showModalStatus1}}"></view>
+<view animation="{{animationData1}}" class="commodity_attr_box1" wx:if="{{showModalStatus1}}">
+  <view class='tanchuang zongxiang'>
+    <view class="tanchuang-item zongxiang">
+      <view>
+        <image src="../image/renzheng.png" class="tanchuang-img"></image>
+      </view>
+      <view class="tanchuang-text">您还不是认证用户</view>
+      <view class="tanchuang-text">请先认证</view>
+    </view>
+    <view class="tanchuang-bottom hengxiang">
+      <view class="tanchuang-bottom-left" bindtap="hideModal1">取消</view>
+      <view class="tanchuang-bottom-right" bindtap="renzhengInfo">认证</view>
+    </view>
+  </view>
+</view>

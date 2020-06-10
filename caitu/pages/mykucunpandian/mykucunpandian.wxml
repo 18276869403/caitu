@@ -1,0 +1,180 @@
+<!--pages/mykucun/mykucun.wxml-->
+
+<view class="hengxian"></view>
+<view class="tab container hengxiang">
+  <view class="tab_le {{navid1==item.id ?'dsh':''}}" wx:for="{{nav}}" wx:key="index" bindtap="bindnav" data-id="{{item.id}}">
+    <text class="{{navid1==item.id ?'sh':''}}">{{item.name}}</text>
+  </view>
+</view>
+
+
+<!-- 待审核 -->
+<view class="container" wx:if="{{navid1==1}}">
+  <view class="kc_bk" wx:for="{{kucun}}" wx:key="index" bindtap="weihuoDetails">
+    <view class="kc_pm hengxiang">
+      <view class="pm_name yincang">品名：{{item.name}}</view>
+      <view class="pm_sl">{{item.weight}}吨</view>
+    </view>
+    <image src="../image/lengyuan.png" class="bk_img"></image>
+    <view class="kc_bkx hengxiang">
+      <view class="bk_xy">
+        <image src="../image/top.png" class="bkx_img"></image>
+      </view>
+      <view class="kc_cs">
+        <view class="zcs hengxiang">
+          <view>
+            <image src="../image/guige.png" class="cs_img"></image>
+          </view>
+          <view class="yincang">规格：{{item.guige}}</view>
+        </view>
+        <view class="zcs hengxiang">
+          <view>
+            <image src="../image/yanse.png" class="cs_img"></image>
+          </view>
+          <view class="yincang">颜色：{{item.yanse}}</view>
+        </view>
+        <view class="zcs hengxiang">
+          <view>
+            <image src="../image/xinceng.png" class="cs_img"></image>
+          </view>
+          <view class="yincang">锌层：{{item.xinceng}}</view>
+        </view>
+        <view class="zcs hengxiang">
+          <view>
+            <image src="../image/cangku.png" class="cs_img"></image>
+          </view>
+          <view class="yincang">仓库：{{item.cangku}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<!-- 已上架-->
+<view class="container" wx:if="{{navid1==2}}">
+  <view class="kc_bk" wx:for="{{kucun}}" wx:key="index" bindtap="weihuoDetailsDun">
+    <view class="kc_pm hengxiang">
+      <view class="pm_name yincang">品名：{{item.name}}</view>
+      <view class="pm_sl">{{item.weight}}吨</view>
+    </view>
+    <image src="../image/lengyuan.png" class="bk_img"></image>
+    <view class="kc_bkx hengxiang">
+      <view class="bk_xy">
+        <image src="../image/top.png" class="bkx_img"></image>
+      </view>
+      <view class="kc_cs">
+        <view class="zcs hengxiang">
+          <view>
+            <image src="../image/guige.png" class="cs_img"></image>
+          </view>
+          <view class="yincang">规格：{{item.guige}}</view>
+        </view>
+        <view class="zcs hengxiang">
+          <view>
+            <image src="../image/yanse.png" class="cs_img"></image>
+          </view>
+          <view class="yincang">颜色：{{item.yanse}}</view>
+        </view>
+        <view class="zcs hengxiang">
+          <view>
+            <image src="../image/xinceng.png" class="cs_img"></image>
+          </view>
+          <view class="yincang">锌层：{{item.xinceng}}</view>
+        </view>
+        <view class="zcs hengxiang">
+          <view>
+            <image src="../image/cangku.png" class="cs_img"></image>
+          </view>
+          <view class="yincang">仓库：{{item.cangku}}</view>
+        </view>
+        <view class="but hengxiang">
+          <!-- 删除按钮 -->
+          <view>
+            <image src="../image/shanchu.png" class="but_del"></image>
+          </view>
+          <!-- 下架按钮 -->
+          <view catchtap="bindshangjia">
+            <image src="../image/xiajia.png" class="but_xiajia"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="xiajiacg" wx:if="{{navid1==2}}" hidden="{{shang}}">
+    <view class="bj">
+      <view class="bj-text">下架成功</view>
+    </view>
+  </view>
+  <view class="xiajiacg" wx:if="{{navid1==3}}" hidden="{{shang}}">
+    <view class="bj">
+      <view class="bj-text1">请耐心等待后台人员审核</view>
+    </view>
+  </view>
+
+</view>
+
+
+<!-- 未上架 -->
+<view class="container" wx:if="{{navid1==3}}">
+  <view class="kc_bk" wx:for="{{kucun}}" wx:key="index" bindtap="kucunDetails">
+    <view class="kc_pm hengxiang">
+      <view class="pm_name yincang">品名：{{item.name}}</view>
+      <view class="pm_sl">{{item.weight}}吨</view>
+    </view>
+    <image src="../image/lengyuan.png" class="bk_img"></image>
+    <view class="kc_bkx hengxiang">
+      <view class="bk_xy">
+        <image src="../image/top.png" class="bkx_img"></image>
+      </view>
+      <view class="kc_cs">
+        <view class="zcs hengxiang">
+          <view>
+            <image src="../image/guige.png" class="cs_img"></image>
+          </view>
+          <view class="yincang">规格：{{item.guige}}</view>
+        </view>
+        <view class="zcs hengxiang">
+          <view>
+            <image src="../image/yanse.png" class="cs_img"></image>
+          </view>
+          <view class="yincang">颜色：{{item.yanse}}</view>
+        </view>
+        <view class="zcs hengxiang">
+          <view>
+            <image src="../image/xinceng.png" class="cs_img"></image>
+          </view>
+          <view class="yincang">锌层：{{item.xinceng}}</view>
+        </view>
+        <view class="zcs hengxiang">
+          <view>
+            <image src="../image/cangku.png" class="cs_img"></image>
+          </view>
+          <view class="yincang">仓库：{{item.cangku}}</view>
+        </view>
+        <view class="but hengxiang" wx:if="{{navid1!=1}}">
+          <!-- 删除按钮 -->
+          <view>
+            <image src="../image/shanchu.png" class="but_del"></image>
+          </view>
+          <!-- 下架按钮 -->
+          <view catchtap="bindshangjia">
+            <image src="../image/shangjia.png" class="but_xiajia"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="fabu">
+  <image src="../image/fabu.png" class="anniu-img" bindtap="kucunManage"></image>
+</view>
+<view class="xiajiacg" hidden="{{shang}}">
+  <view class="bj bj-text1" wx:if="{{navid1==3}}">
+    请耐心等待后台人员审核
+  </view>
+  <view class="bj bj-text" wx:if="{{navid1==1}}">
+    下架成功
+  </view>
+</view>

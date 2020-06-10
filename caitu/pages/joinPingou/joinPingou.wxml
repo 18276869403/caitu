@@ -1,0 +1,42 @@
+<!--pages/joinPingou/joinPingou.wxml-->
+<view class="container">
+<view class="dingbian"></view>
+  <view class="content">
+    <view class="content-list hengxiang">
+      <view class="content-list-left">
+        <text style="color:#FF1010">*</text>交货地
+      </view>
+      <view class="content-list-right-area">
+         <picker mode="multiSelector" bindchange="regionChange" value="{{multiIndex1}}" range="{{multiArray1}}">
+          <view class="picker">
+            {{multiArray1[0][multiIndex1[0]]}}-{{multiArray1[1][multiIndex1[1]]}}
+          </view>
+        </picker>
+      </view>
+      <view class="enter">
+      <image src="../image/jiantou.png" class="enter-img"></image>
+       </view>
+    </view>
+    <!-- <view class="content-list hengxiang">
+      <view class="content-list-left">
+        <text style="color:#FF1010">*</text>交货地
+      </view>
+      <view class="content-list-right">
+        <input type="text" placeholder="请输入姓名" class="shurukuang" placeholder-class="placeholder"></input>
+      </view>
+    </view> -->
+    <view class="content-list hengxiang">
+      <view class="content-list-left">
+        <text style="color:#FF1010">*</text>需求吨数
+      </view>
+      <view class="content-list-right">
+        <input type="digit" placeholder="输入需求吨数" class="shurukuang" placeholder-class="placeholder"></input>
+      </view>
+    </view>
+
+  </view>
+<view class="juzhong guding">
+<!-- 提交 -->
+<image src="../image/submit.png" class="anniu-img" bindtap="submitSuccess"></image>
+</view>
+</view>

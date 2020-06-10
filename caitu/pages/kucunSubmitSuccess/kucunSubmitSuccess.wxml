@@ -1,0 +1,16 @@
+<!--pages/kucunSubmitSuccess/kucunSubmitSuccess.wxml-->
+<view class="container">
+  <view class="hengxian"></view>
+  <view class="content">
+    <view class="top">
+      <image src="../image/kucunchenggong.png" class="kucun-success"></image>
+    </view>
+    <view class="success-text">
+      等待上架
+    </view>
+    <!-- 去上架 -->
+    <view class="success-button">
+      <image src="../image/qushangjia.png" class="anniu-img"></image>
+    </view>
+  </view>
+</view>

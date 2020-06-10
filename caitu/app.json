@@ -1,0 +1,63 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/joinPingou/joinPingou",
+    "pages/weihuoDetails/weihuoDetails",
+    "pages/qiugouSubmit/qiugouSubmit",
+    "pages/hall/hall",
+    "pages/jisuanHistory/jisuanHistory",
+    "pages/kucunDetails/kucunDetails",
+    "pages/renzhengInfo/renzhengInfo",
+    "pages/calculatorResult/calculatorResult",
+    "pages/myInfo/myInfo",
+    "pages/post/post",
+    "pages/zixunMore/zixunMore",
+    "pages/qiugouDetails/qiugouDetails",
+    "pages/pingouDetails/pingouDetails",
+    "pages/mypingou/mypingou",
+    "pages/calculator/calculator",
+    "pages/aboutUs/aboutUs",
+    "pages/submitSuccess/submitSuccess",
+    "pages/mykucunpandian/mykucunpandian",
+    "pages/weihuoDetailsDun/weihuoDetailsDun",
+    "pages/pingouSubmit/pingouSubmit",
+    "pages/kucunSubmitSuccess/kucunSubmitSuccess",
+    "pages/kucunManage/kucunManage",
+    "pages/myqiugou/myqiugou",
+    "pages/mine/mine"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "哇彩兔",
+    "navigationBarTextStyle": "black",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#6e6d6b",
+    "selectedColor": "#E61A0F",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "pages/image/home.png",
+        "selectedIconPath": "pages/image/home-tive.png"
+      },
+      {
+        "pagePath": "pages/hall/hall",
+        "text": "大厅",
+        "iconPath": "pages/image/dating.png",
+        "selectedIconPath": "pages/image/dating-tive.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "pages/image/mine.png",
+        "selectedIconPath": "pages/image/mine-tive.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

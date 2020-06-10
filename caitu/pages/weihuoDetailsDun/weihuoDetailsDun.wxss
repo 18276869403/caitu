@@ -1,0 +1,144 @@
+/* pages/weihuoDetails/weihuoDetails.wxss */
+
+page {
+  background: #f5f7fb;
+  padding-bottom: 120rpx;
+}
+
+.content {
+  width: 100%;
+  margin-top: 30rpx;
+}
+
+.content-item {
+  width: 90%;
+  margin-left: 3%;
+  margin-right: 3%;
+  padding-left: 2%;
+  padding-right: 2%;
+  height: 83rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0rpx 2rpx 9rpx 0rpx rgba(4, 40, 100, 0.06);
+  border-radius: 15rpx;
+  line-height: 83rpx;
+  margin-bottom: 20rpx;
+}
+
+.enter-img {
+  width: 13rpx;
+  height: 23rpx;
+}
+
+.content-item-left {
+  width: 25%;
+  text-align: left;
+  font-size: 34rpx;
+  color: rgba(51, 51, 51, 1);
+}
+
+.content-item-content {
+  width: 70%;
+  text-align: right;
+  font-size: 32rpx;
+  color: rgba(140, 140, 140, 1);
+}
+
+.content-item-content1 {
+  width: 75%;
+  text-align: right;
+  font-size: 32rpx;
+  color: rgba(140, 140, 140, 1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bottom {
+  width: 570rpx;
+  height: 78rpx;
+  line-height: 78rpx;
+  background: rgba(253, 100, 40, 1);
+  border-radius: 39rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 1);
+  margin: auto;
+  text-align: center;
+  margin-top: 75rpx;
+  margin-bottom: 145rpx;
+}
+
+.content-item-title {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  font-size: 38rpx;
+  font-weight: bold;
+  color: rgba(51, 51, 51, 1);
+  margin-top: 43rpx;
+  margin-bottom: 34rpx;
+}
+
+.content-item-img {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.content-item-img-item {
+  width: 33.3%;
+  text-align: center;
+  position: relative;
+}
+
+.shanchuan-img {
+  width: 207rpx;
+  height: 198rpx;
+  border-radius: 15rpx;
+}
+
+.guanbi-img {
+  width: 25rpx;
+  height: 25rpx;
+  position: absolute;
+  top: 10rpx;
+  right: 15rpx;
+}
+
+.content-button {
+  width: 100%;
+  margin-top: 170rpx;
+  margin-bottom: 125rpx;
+}
+
+.button {
+  width: 50%;
+  text-align: center;
+}
+
+.qiugou-img {
+  width: 292rpx;
+  height: 78rpx;
+}
+
+.jisuan-img {
+  width: 292rpx;
+  height: 78rpx;
+}
+
+.shurukuang {
+  width: 100%;
+  height: 83rpx;
+  line-height: 83rpx;
+  font-size: 32rpx;
+  color: rgba(140, 140, 140, 1);
+}
+
+.placeholder {
+  height: 83rpx;
+  line-height: 83rpx;
+  font-size: 32rpx;
+  color: rgba(140, 140, 140, 1);
+}

@@ -1,0 +1,85 @@
+/* pages/zixunMore/zixunMore.wxss */
+
+page {
+  background: #f5f7fb;
+  padding-bottom: 120rpx;
+}
+
+.content {
+  width: 94%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.content-list {
+}
+
+/* 最新咨询样式开Ï始 */
+
+.zixun {
+  width: 100%;
+}
+
+.zixun-item {
+  width: 96%;
+  padding: 2%;
+  height: 253rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0rpx 0rpx 7rpx 0rpx rgba(0, 41, 110, 0.15);
+  border-radius: 6rpx;
+  margin-top: 29rpx;
+}
+
+.left-date-text {
+  margin-left: 10rpx;
+  font-size: 22rpx;
+  font-weight: 500;
+  color: rgba(163, 163, 163, 1);
+}
+
+.shijian-img {
+  width: 23rpx;
+  height: 23rpx;
+  margin-top: 13.5rpx;
+}
+
+.zixun-item-left {
+  width: 70%;
+  text-align: left;
+  position: relative;
+  height: 253rpx;
+}
+
+.zixun-item-right {
+  width: 30%;
+  text-align: left;
+}
+
+.zixun-img {
+  width: 188rpx;
+  height: 221rpx;
+  border-radius: 13rpx;
+  margin-top: 21rpx;
+}
+
+.zixun-left-title {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+  margin-top: 21rpx;
+}
+
+.zixun-left-content {
+  font-size: 22rpx;
+  font-weight: 400;
+  color: rgba(80, 80, 80, 1);
+  margin-top: 20rpx;
+}
+
+.zixun-left-date {
+  position: absolute;
+  bottom: 0rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  right: 20rpx;
+}

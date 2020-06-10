@@ -1,0 +1,29 @@
+<!--pages/qqq/qqq.wxml-->
+<view class="black"></view>
+<view class="bag">
+  <view class="bag_input1 hengxiang">
+    <view class="name">姓名</view>
+    <input class="user" placeholder="请输入姓名" type="text"></input>
+  </view>
+  <view class="bag_input1 hengxiang">
+    <view class="name">手机号</view>
+    <input class="user" placeholder="请输入手机号" type="number"></input>
+  </view>
+  <view class="bag_input1 hengxiang">
+    <view class="name">推荐人</view>
+    <input class="user" placeholder="请输入推荐人" type="text"></input>
+  </view>
+  <view class="bag_input1 hengxiang">
+    <view class="name">公司名称</view>
+    <input class="user" placeholder="请输入公司名称" type="text"></input>
+  </view>
+
+  <view class="yingye">
+    <text>营业执照</text>
+  </view>
+  <image src="../image/upload.png" class="y_img"></image>
+  <!-- 保存按钮 -->
+  <view class="bc">
+    <image src="../image/baocunanniu.png" class="bc_img"></image>
+  </view>
+</view>
