@@ -1,34 +1,53 @@
 // pages/zixunMore/zixunMore.js
+//获取应用实例
+const app = getApp()
+const qingqiu = require('../../utils/request.js')
+const api = require('../../utils/config.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    zixunList: [{
-      id: 1,
-      name: '宝山地区致良知学习会',
-      content: '聚是一团火，散是满天星，共读一本书，幸福一家人，温暖一座城。',
-      date: '2020.03.06',
-      url:'../image/zixun.png'
-    },
-    {
-      id: 2,
-      name: '宝山地区致良知学习会',
-      content: '宝钢中央研究院分析测试研究中心通过了中国合格评定国家认可委员会（CNAS）评审考核。',
-      date: '2020.03.06',
-      url: '../image/zixun1.png'
-    }
-    ]
+    zixunList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getzixun()
   },
-
+// 获取最新资讯
+getzixun(){
+  var that = this
+  var data = {
+    pageNo:1,
+    pageSize:10
+  }
+  qingqiu.get('initInformation',data,function(res){
+    console.log(res)
+    if(res.success == true){
+      if (res.result != null) {
+        that.data.zixunList=res.result.records
+        for(var i=0;i<res.result.records.length;i++){
+          that.data.zixunList[i].createTime=that.data.zixunList[i].createTime.split(' ')[0]
+          that.data.zixunList[i].upUrl=api.baseUrl+api.viewUrl+that.data.zixunList[i].upUrl
+        }
+        console.log(that.data.zixunList)
+        that.setData({
+          zixunList:that.data.zixunList
+        })
+      }else {
+        wx.showToast({
+          title: '暂无数据！',
+          icon:'none',
+          duration:2000
+        })
+      }
+    }
+  })
+},
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
