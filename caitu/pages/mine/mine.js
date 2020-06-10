@@ -18,15 +18,31 @@ Page({
   },
   // 跳转到我的求购页面
   myqiugou: function() {
-    wx.navigateTo({
-      url: '../myqiugou/myqiugou',
-    })
+    if(app.globalData.wxState == 0){
+      wx.showToast({
+        title: '认证审核中...',
+        icon:'none',
+        duration:2000
+      })
+    }else{
+      wx.navigateTo({
+        url: '../myqiugou/myqiugou',
+      })
+    }
   },
   // 跳转到我的拼购页面
   mypingou: function() {
-    wx.navigateTo({
-      url: '../mypingou/mypingou',
-    })
+    if(app.globalData.wxState == 0){
+      wx.showToast({
+        title: '认证审核中...',
+        icon:'none',
+        duration:2000
+      })
+    }else{
+      wx.navigateTo({
+        url: '../mypingou/mypingou',
+      })
+    }
   },
   // 弹窗显示
   showModal1: function() {
@@ -142,9 +158,17 @@ Page({
   },
   // 跳转到我的库存盘点页面
   mykucunpandian: function() {
-    wx.navigateTo({
-      url: '../mykucunpandian/mykucunpandian',
-    })
+    if(app.globalData.wxState == 0){
+      wx.showToast({
+        title: '认证审核中...',
+        icon:'none',
+        duration:2000
+      })
+    }else{
+      wx.navigateTo({
+        url: '../mykucunpandian/mykucunpandian',
+      })
+    }
   },
   // 跳转到联系我们页面
   aboutUs: function() {

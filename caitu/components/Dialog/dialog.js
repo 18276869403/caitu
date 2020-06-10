@@ -96,11 +96,8 @@ Component({
                   console.log(re)
                   if (re.success == true) {
                     app.globalData.wxid = re.result.wxUser.id
-                    if (re.result.wxUser.picUrl != null && re.result.wxUser.picUrl.length > 0) {
-                      app.globalData.sqgl = 1
-                    }
                     app.globalData.openid = re.result.openId
-                    app.globalData.wxState = re.result.wxUser.wxState
+                    app.globalData.wxState = re.result.wxUser.autoState
                     app.globalData.gender = re.result.wxUser.sex
                     wx.showToast({
                       title: '授权成功',

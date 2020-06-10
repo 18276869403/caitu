@@ -175,21 +175,81 @@ Page({
   },
   // 跳转到求购发布页面
   qiugouSubmit: function() {
-    wx.navigateTo({
-      url: '../qiugouSubmit/qiugouSubmit',
-    })
+    if(app.globalData.wxState == 0){
+      wx.showModal({
+        title: '提示',
+        content:'您未认证，请前往认证',
+        cancelText:'取消',
+        showCancel:true,
+        confirmText:'确定',
+        success:function(res){
+          if(res.confirm){
+            // 跳转到我的信息页面
+            wx.navigateTo({
+              url: '../myInfo/myInfo',
+            })
+          }else if(res.cancel){
+            return
+          }
+        }
+      })
+    }else{
+      wx.navigateTo({
+        url: '../qiugouSubmit/qiugouSubmit',
+      })
+    }
   },
   // 跳转到拼购发布页面
   pingouSubmit: function() {
-    wx.navigateTo({
-      url: '../pingouSubmit/pingouSubmit',
-    })
+    if(app.globalData.wxState == 0){
+      wx.showModal({
+        title: '提示',
+        content:'您未认证，请前往认证',
+        cancelText:'取消',
+        showCancel:true,
+        confirmText:'确定',
+        success:function(res){
+          if(res.confirm){
+            // 跳转到我的信息页面
+            wx.navigateTo({
+              url: '../myInfo/myInfo',
+            })
+          }else if(res.cancel){
+            return
+          }
+        }
+      })
+    }else{
+      wx.navigateTo({
+        url: '../pingouSubmit/pingouSubmit',
+      })
+    }
   },
   // 跳转到库存管理页面
   kucunManage: function() {
-    wx.navigateTo({
-      url: '../kucunManage/kucunManage',
-    })
+    if(app.globalData.wxState == 0){
+      wx.showModal({
+        title: '提示',
+        content:'您未认证，请前往认证',
+        cancelText:'取消',
+        showCancel:true,
+        confirmText:'确定',
+        success:function(res){
+          if(res.confirm){
+            // 跳转到我的信息页面
+            wx.navigateTo({
+              url: '../myInfo/myInfo',
+            })
+          }else if(res.cancel){
+            return
+          }
+        }
+      })
+    }else{
+      wx.navigateTo({
+        url: '../kucunManage/kucunManage',
+      })
+    }
   },
   // 跳转到求购详情页面
   qiugouDetails: function() {

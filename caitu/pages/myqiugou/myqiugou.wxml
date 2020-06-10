@@ -3,16 +3,16 @@
 <view class="myqg" wx:for="{{qiugou}}" wx:if="{{qiugou.length>0}}">
   <view class="qiugou" bindtap="qiugouDetails">
     <view class="ming hengxiang">
-      <view class="qg_name yincang">镀锌板彩涂卷</view>
-      <view class="daojishi1" wx:if="{{item.type==1}}">
+      <view class="qg_name yincang">{{item.itemvalue_dictText}}</view>
+      <view class="daojishi1" wx:if="{{item.startoks==1}}">
         <image src="../image/daojishi.png" class="djs_img"></image>
         进行中
       </view>
-      <view class="pipeizhong" wx:if="{{item.type==2}}">
+      <view class="pipeizhong" wx:if="{{item.startoks==2}}">
         <image src="../image/shenhe.png" class="djs_img"></image>
         匹配中
       </view>
-      <view class="yiwancheng" wx:if="{{item.type==3}}">
+      <view class="yiwancheng" wx:if="{{item.startoks==3}}">
         <image src="../image/wancheng.png" class="djs_img"></image>
         已完成
       </view>
@@ -25,35 +25,35 @@
           <view>
             <image src="../image/bianhao.png" class="xq_img"></image>
           </view>
-          <view class="xq_name">编号：{{item.bianhao}}</view>
+          <view class="xq_name">编号：{{item.id}}</view>
         </view>
         <view class="bianh hengxiang">
           <view>
             <image src="../image/guige.png" class="xq_img"></image>
           </view>
-          <view class="xq_name">规格：{{item.guige}}</view>
+          <view class="xq_name">规格：厚{{item.thickness}}/宽{{item.width}}</view>
         </view>
         <view class="bianh hengxiang">
           <view>
             <image src="../image/xinceng.png" class="xq_img"></image>
           </view>
-          <view class="xq_name">锌层：{{item.xinceng}}</view>
+          <view class="xq_name">锌层：{{item.zinclayer}}</view>
         </view>
         <view class="bianh hengxiang">
           <image src="../image/didian.png" class="xq_img"></image>
-          <view class="xq_name">地点：{{item.didian}}</view>
+          <view class="xq_name">地点：{{item.areaOneid_dictText}}/{{item.areaTwoId_dictText}}</view>
         </view>
         <view class="bianh hengxiang">
           <view>
             <image src="../image/biao.png" class="xq_img"></image>
           </view>
-          <view class="xq_name">时间：{{item.shijian}}</view>
+          <view class="xq_name">时间：{{item.createtime}}</view>
         </view>
       </view>
       <view class="shu hengxiang"></view>
       <view class="liang">
         <view class="liang_b">
-          <text>1200</text>吨</view>
+          <text>{{item.tonnage}}</text>吨</view>
       </view>
     </view>
   </view>
