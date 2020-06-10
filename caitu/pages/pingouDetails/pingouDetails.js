@@ -18,7 +18,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    var pgxx=JSON.parse(options.obj)
+    this.setData({
+      pgxx:pgxx
+    })
+    console.log(pgxx)
   },
   // 参与拼购
   joinPingou: function() {
