@@ -1,5 +1,11 @@
 <!--index.wxml-->
 <view class="container">
+  <dialog id='dialog'
+          title='微信授权登录' 
+          content='小程序授权获取微信头像'
+          confirmText='发起授权'
+          bind:confirmEvent="bindGetUserInfo"
+  ></dialog>
   <view class="hengxian"></view>
   <view class="top zongxiang">
     <!-- 滚动图 -->

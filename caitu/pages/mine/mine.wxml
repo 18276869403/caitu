@@ -58,7 +58,6 @@
         <image src="../image/kucunpandian.png" class="ziliao-img"></image>
       </view>
       <view class="bottom-list-content">
-      {{item[0].sex_dictText}}
         我的库存盘点
       </view>
       <view class="bottom-list-right">
@@ -114,10 +113,13 @@
       <view>
         <image src="../image/guwen.png" class="tanchuang-img"></image>
       </view>
-      <view class="tanchuang-text">销售经理</view>
-      <view class="tanchuang-name">王大锤</view>
+      <view class="tanchuang-text">{{wxUser.departIds_dictText}}</view>
+      <view class="tanchuang-name">{{wxUser.realname}}</view>
       <view class="tanchuang-button" bindtap="phonecall">
-        400-256799
+        {{wxUser.distrPhone}}
+      </view>
+      <view class="tanchuang-button" bindtap="phonecall" wx:if="{{wxUser.distrPhone == ''&&wxUsesr.distrPhone==null}}">
+        {{wxUser.distrPhone}}
       </view>
     </view>
 

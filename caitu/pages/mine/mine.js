@@ -10,23 +10,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    item : []
+    wxUser:{}
   },
   onLoad: function() {
-    var that = this
-    var data = {
-      wxId:123  
-    }
-    qingqiu.get("my",data,function(re){
-      console.log(re)
-      if(re.success == true){
-        that.setData({
-          item: re.result.records
-        });
-        //设置全局变量
-        app.globalData.id = re.result.records[0].id
-      }
-    })
+    this.getMyInfo()
+    
   },
   // 跳转到我的求购页面
   myqiugou: function() {
@@ -87,6 +75,27 @@ Page({
     }.bind(this), 200)
   },
 
+  // 获取个人信息
+  getMyInfo:function(){
+    var that = this
+    var data = {
+      id:app.globalData.wxid
+    }
+    qingqiu.get('my',data,function(res){
+      console.log(res)
+      if(res.success == true){
+        if(app.globalData.wxState == 0 && res.result.records[0].name == null){
+          wx.navigateTo({
+            url: '../myInfo/myInfo',
+          })
+        }else{
+          that.setData({
+            wxUser:res.result.records[0]
+          })
+        }
+      }
+    })
+  },
 
   // 跳转到我的
   myEmploy: function() {
@@ -156,5 +165,4 @@ Page({
       phoneNumber: '17656453456' //仅为示例，并非真实的电话号码
     })
   }
-
 })

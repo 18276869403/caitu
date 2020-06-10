@@ -40,7 +40,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
+  },
+  getpingou:function(){
+    var that = this
+    var data = {
+    }
+    
   },
   // 跳转到拼购详情页面
   pingouDetails: function () {

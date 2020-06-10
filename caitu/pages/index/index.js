@@ -89,17 +89,71 @@ Page({
         date: '2020.03.06',
         img: '../image/zixun1.png'
       }
-    ]
-
+    ],
+    isAuto:0
   },
-
   onLoad: function() {
-    wx.login({
-      success:function(res){
-
+     //获得dialog组件
+    this.dialog = this.selectComponent("#dialog");
+    this.chushihuashouquan()
+    this.getInfo()
+  },
+  // 初始化数据
+  getInfo(){
+    var that = this
+    qingqiu.get("init",null,function(res){
+      console.log(res)
+    })
+  },
+  // 初始化授权
+  chushihuashouquan:function(){
+    var that = this
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.userInfo']) {
+          console.log(that.dialog)
+          if(that.data.isAuto==0){
+            that.dialog.showDialog();
+          }
+          that.setData({
+            isAuto:1
+          })
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.login({
+            success: function(res) {
+              var code = res.code
+              wx.getUserInfo({
+                lang: 'zh_CN',
+                success(res) {
+                  // debugger
+                  const userInfo = res.userInfo
+                  var data = {
+                    code: code,
+                    picUrl: userInfo.avatarUrl,
+                    sex: userInfo.gender,
+                    wxNc: userInfo.nickName,
+                  }
+                  qingqiu.get("getKeyInfo", data, function(re) {
+                    console.log(re)
+                    app.globalData.wxid = re.result.wxUser.id
+                    app.globalData.openid = re.result.openId
+                    app.globalData.wxState = re.result.wxUser.autoState
+                    app.globalData.gender = re.result.wxUser.sex
+                  }, 'post')
+                }
+              })
+            }
+          })
+        } else {
+          wx.showToast({
+            title: '未授权',
+            icon:'none',
+            duration:1000
+          })
+          return
+        }
       }
     })
-    // this.showModal1()
   },
   hall: function() {
     wx.switchTab({
