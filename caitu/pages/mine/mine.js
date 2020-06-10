@@ -24,9 +24,17 @@ Page({
   },
   // 跳转到我的拼购页面
   mypingou: function() {
-    wx.navigateTo({
-      url: '../mypingou/mypingou',
-    })
+    if(app.globalData.wxState == 0){
+      wx.showToast({
+        title: '认证审核中...',
+        icon:'none',
+        duration:2000
+      })
+    }else{
+      wx.navigateTo({
+        url: '../mypingou/mypingou',
+      })
+    }
   },
   // 弹窗显示
   showModal1: function() {
