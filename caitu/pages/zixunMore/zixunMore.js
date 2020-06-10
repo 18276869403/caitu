@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    viewUrl:api.viewUrl,
     zixunList: []
   },
 
@@ -32,7 +33,7 @@ getzixun(){
         that.data.zixunList=res.result.records
         for(var i=0;i<res.result.records.length;i++){
           that.data.zixunList[i].createTime=that.data.zixunList[i].createTime.split(' ')[0]
-          that.data.zixunList[i].upUrl=api.baseUrl+api.viewUrl+that.data.zixunList[i].upUrl
+          that.data.zixunList[i].upUrl=that.data.viewUrl+that.data.zixunList[i].upUrl
         }
         console.log(that.data.zixunList)
         that.setData({
