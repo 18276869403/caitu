@@ -1,6 +1,8 @@
 // pages/mypingou/mypingou.js
+//获取应用实例
 const app = getApp()
-const qingqiu = require('../../utils/request.js')
+var qingqiu = require('../../utils/request.js')
+var api = require('../../utils/config.js')
 Page({
 
   /**
@@ -36,19 +38,53 @@ Page({
         type: 3
       }
     ],
+    piugou:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.getpingou()
   },
-  
+  // 获取拼购信息
+  getpingou(){
+    var that = this
+    var data = {
+      // id:app.globalData.wxid,
+      id:1,
+      pageNo:1,
+      pageSize:10
+    }
+    qingqiu.get('groupByingList',data,function(res){
+      console.log(res)
+      if(res.success == true){
+        if (res.result != null) {
+          that.data.piugou=res.result.records
+          for(var i=0;i<res.result.records.length;i++){
+            that.data.piugou[i].createtime=that.data.piugou[i].createtime.split(' ')[0]
+            that.data.piugou[i].deadline=that.data.piugou[i].deadline.split(' ')[0]
+          }
+          console.log(that.data.piugou)
+          that.setData({
+            piugou:that.data.piugou
+          })
+        }else {
+          wx.showToast({
+            title: '暂无数据！',
+            icon:'none',
+            duration:2000
+          })
+        }
+      }
+    })
+  },
   // 跳转到拼购详情页面
-  pingouDetails: function () {
+  pingouDetails: function (e) {
+    var obj =e.currentTarget.dataset.pgxx;
+    var pgxx = JSON.stringify(obj);
     wx.navigateTo({
-      url: '../pingouDetails/pingouDetails',
+      url: '../pingouDetails/pingouDetails?obj='+pgxx,
     })
   }
 })
