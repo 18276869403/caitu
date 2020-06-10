@@ -148,19 +148,19 @@
           <view class="pingou-item hengxiang" wx:for="{{pingouList}}" wx:for-index="index" bindtap="pingouDetails">
             <view class="pingou-item-left zongxiang">
               <view class="pingou-left-title" style="margin-top:10rpx">
-                品名：{{item.name}}
+                品名：{{item.steelname}}
               </view>
               <view class="pingou-left-item">
                 编号：{{item.bianhao}}
               </view>
               <view class="pingou-left-item">
-                规格：{{item.guige}}
+                规格：厚{{item.thickness}}/宽{{item.width}}
               </view>
               <view class="pingou-left-item">
                 颜色：{{item.color}}
               </view>
               <view class="pingou-left-item">
-                吨数：{{item.weight}}
+                吨数：{{item.tonnage}}
               </view>
             </view>
             <view class="pingou-item-right">
@@ -190,26 +190,26 @@
       <view class="weihuo">
         <scroll-view class="gundong" scroll-x="true" style='width:100%'>
           <view class="hengxiang ">
-            <view class="weihuo-item" wx:for="{{pingouList}}" wx:for-index="index" bindtap="weihuoDetails">
+            <view class="weihuo-item" wx:for="{{weihuolist}}" wx:for-index="index" bindtap="weihuoDetails">
               <view class="zongxiang">
                 <view class="weihuoImg">
-                  <image src="{{item.img}}" class="weihuo-img"></image>
+                  <image src="{{item.upUrl}}" class="weihuo-img"></image>
                 </view>
                 <view class="weihuo-text">
                   <view class="pingou-left-title">
-                    品名：{{item.name}}
+                    品名：{{item.theNameId_dictText}}
                   </view>
                   <view class="pingou-left-item">
                     编号：{{item.bianhao}}
                   </view>
                   <view class="pingou-left-item">
-                    规格：{{item.guige}}
+                    规格：厚{{item.thickness}}/宽{{item.width}}
                   </view>
                   <view class="pingou-left-item">
                     颜色：{{item.color}}
                   </view>
                   <view class="pingou-left-item">
-                    吨数：{{item.weight}}
+                    吨数：{{item.tonnage}}
                   </view>
                 </view>
               </view>
@@ -240,20 +240,20 @@
         <view class="zixun-item hengxiang" wx:for="{{zixunList}}" wx:for-index="index">
           <view class="zixun-item-left zongxiang">
             <view class="zixun-left-title">
-              {{item.name}}
+              {{item.title}}
             </view>
             <view class="zixun-left-content">
-              {{item.content}}
+              {{item.context}}
             </view>
             <view class="zixun-left-date hengxiang">
               <view class="left-date-img">
                 <image src="../image/shijian.png" class="shijian-img"></image>
               </view>
-              <view class="left-date-text">{{item.date}}</view>
+              <view class="left-date-text">{{item.createTime}}</view>
             </view>
           </view>
           <view class="zixun-item-right">
-            <image src="{{item.img}}" class="zixun-img"></image>
+            <image src="{{item.upUrl}}" class="zixun-img"></image>
           </view>
         </view>
       </view>

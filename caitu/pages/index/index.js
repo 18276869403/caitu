@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 const qingqiu = require('../../utils/request.js')
+const api = require('../../utils/config.js')
 Page({
   data: {
     msgList: [{
@@ -30,66 +31,69 @@ Page({
         bannerimg: '../image/banner.png'
       }
     ],
-    qiugouList: [{
-        id: 1,
-        weight: '1200',
-        name: '镀锌板彩涂卷',
-        bianhao: '112hh',
-        guige: '厚0.5/宽1000',
-        color: '非标'
-      },
-      {
-        id: 2,
-        weight: '1200',
-        name: '镀锌板彩涂镀锌板彩涂卷镀锌板彩涂卷卷',
-        bianhao: '112hh',
-        guige: '厚0.5/宽1000',
-        color: '非标'
-      }
-    ],
-    pingouList: [{
-        id: 1,
-        weight: '1200',
-        name: '镀锌板彩涂镀锌板彩涂卷镀锌板彩涂卷卷',
-        bianhao: '112hh',
-        guige: '厚0.5/宽1000',
-        color: '非标',
-        img: '../image/top.png'
-      },
-      {
-        id: 2,
-        weight: '1200',
-        name: '镀锌板彩涂镀锌板彩涂卷镀锌板彩涂卷卷',
-        bianhao: '112hh',
-        guige: '厚0.5/宽1000',
-        color: '非标',
-        img: '../image/top1.png'
-      },
-      {
-        id: 3,
-        weight: '1200',
-        name: '镀锌板彩涂镀锌板彩涂卷镀锌板彩涂卷卷',
-        bianhao: '112hh',
-        guige: '厚0.5/宽1000',
-        color: '非标',
-        img: '../image/top.png'
-      }
-    ],
-    zixunList: [{
-        id: 1,
-        name: '宝山地区致良知学习会',
-        content: '聚是一团火，散是满天星，共读一本书，幸福一家人，温暖一座城。',
-        date: '2020.03.06',
-        img: '../image/zixun.png'
-      },
-      {
-        id: 2,
-        name: '宝山地区致良知学习会',
-        content: '宝钢中央研究院分析测试研究中心通过了中国合格评定国家认可委员会（CNAS）评审考核。',
-        date: '2020.03.06',
-        img: '../image/zixun1.png'
-      }
-    ],
+    // qiugouList: [{
+    //     id: 1,
+    //     weight: '1200',
+    //     name: '镀锌板彩涂卷',
+    //     bianhao: '112hh',
+    //     guige: '厚0.5/宽1000',
+    //     color: '非标'
+    //   },
+    //   {
+    //     id: 2,
+    //     weight: '1200',
+    //     name: '镀锌板彩涂镀锌板彩涂卷镀锌板彩涂卷卷',
+    //     bianhao: '112hh',
+    //     guige: '厚0.5/宽1000',
+    //     color: '非标'
+    //   }
+    // ],
+    pingouList:[],
+    // pingouList: [{
+    //     id: 1,
+    //     weight: '1200',
+    //     name: '镀锌板彩涂镀锌板彩涂卷镀锌板彩涂卷卷',
+    //     bianhao: '112hh',
+    //     guige: '厚0.5/宽1000',
+    //     color: '非标',
+    //     img: '../image/top.png'
+    //   },
+    //   {
+    //     id: 2,
+    //     weight: '1200',
+    //     name: '镀锌板彩涂镀锌板彩涂卷镀锌板彩涂卷卷',
+    //     bianhao: '112hh',
+    //     guige: '厚0.5/宽1000',
+    //     color: '非标',
+    //     img: '../image/top1.png'
+    //   },
+    //   {
+    //     id: 3,
+    //     weight: '1200',
+    //     name: '镀锌板彩涂镀锌板彩涂卷镀锌板彩涂卷卷',
+    //     bianhao: '112hh',
+    //     guige: '厚0.5/宽1000',
+    //     color: '非标',
+    //     img: '../image/top.png'
+    //   }
+    // ],
+    weihuolist:[],
+    // zixunList: [{
+    //     id: 1,
+    //     name: '宝山地区致良知学习会',
+    //     content: '聚是一团火，散是满天星，共读一本书，幸福一家人，温暖一座城。',
+    //     date: '2020.03.06',
+    //     img: '../image/zixun.png'
+    //   },
+    //   {
+    //     id: 2,
+    //     name: '宝山地区致良知学习会',
+    //     content: '宝钢中央研究院分析测试研究中心通过了中国合格评定国家认可委员会（CNAS）评审考核。',
+    //     date: '2020.03.06',
+    //     img: '../image/zixun1.png'
+    //   }
+    // ],
+    zixunList:[],
     isAuto:0
   },
   onLoad: function() {
@@ -97,6 +101,95 @@ Page({
     this.dialog = this.selectComponent("#dialog");
     this.chushihuashouquan()
     this.getInfo()
+    this.getpingou()
+    this.getzixun()
+    this.getweihuo()
+  },
+  // 获取拼购信息
+  getpingou(){
+    var that = this
+    var data = {
+      pageNo:1,
+      pageSize:3
+    }
+    qingqiu.get('initGroupBuying',data,function(res){
+      if(res.success == true){
+        if (res.result != null) {
+          that.data.pingouList=res.result.records
+          // for(var i=0;i<res.result.records.length;i++){
+          //   that.data.weihuolist[i].upUrl=api.baseUrl+api.viewUrl+that.data.weihuolist[i].upUrl
+          // }
+          console.log(that.data.pingouList)
+          that.setData({
+            pingouList:that.data.pingouList
+          })
+        }else {
+          wx.showToast({
+            title: '暂无数据！',
+            icon:'none',
+            duration:2000
+          })
+        }
+      }
+    })
+  },
+  // 获取尾货
+  getweihuo(){
+    var that = this
+    var data = {
+      pageNo:1,
+      pageSize:3
+    }
+    qingqiu.get('initInventory',data,function(res){
+      if(res.success == true){
+        if (res.result != null) {
+          that.data.weihuolist=res.result.records
+          for(var i=0;i<res.result.records.length;i++){
+            that.data.weihuolist[i].upUrl=api.baseUrl+api.viewUrl+that.data.weihuolist[i].upUrl
+          }
+          console.log(that.data.weihuolist)
+          that.setData({
+            weihuolist:that.data.weihuolist
+          })
+        }else {
+          wx.showToast({
+            title: '暂无数据！',
+            icon:'none',
+            duration:2000
+          })
+        }
+      }
+    })
+  },
+  // 获取最新资讯
+  getzixun(){
+    var that = this
+    var data = {
+      pageNo:1,
+      pageSize:3
+    }
+    qingqiu.get('initInformation',data,function(res){
+      console.log(res)
+      if(res.success == true){
+        if (res.result != null) {
+          that.data.zixunList=res.result.records
+          for(var i=0;i<res.result.records.length;i++){
+            that.data.zixunList[i].createTime=that.data.zixunList[i].createTime.split(' ')[0]
+            that.data.zixunList[i].upUrl=api.baseUrl+api.viewUrl+that.data.zixunList[i].upUrl
+          }
+          console.log(that.data.zixunList)
+          that.setData({
+            zixunList:that.data.zixunList
+          })
+        }else {
+          wx.showToast({
+            title: '暂无数据！',
+            icon:'none',
+            duration:2000
+          })
+        }
+      }
+    })
   },
   // 初始化数据
   getInfo(){
