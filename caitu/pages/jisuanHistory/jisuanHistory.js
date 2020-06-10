@@ -1,4 +1,8 @@
 // pages/jisuanHistory/jisuanHistory.js
+//获取应用实例
+const app = getApp()
+var qingqiu = require('../../utils/request.js')
+var api = require('../../utils/config.js')
 Page({
 
   /**
@@ -29,21 +33,52 @@ Page({
         price: '300',
         time: '2020.05.02'
       }
-    ]
+    ],
+    jisuans:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getInfo()
+    this.getjisuanLS()
   },
-  getInfo(){
-    
+  //获取计算历史
+  getjisuanLS(){
+    var that = this
+    var data = {
+      // id:app.globalData.wxid,
+      id:1,
+      pageNo:1,
+      pageSize:10
+    }
+    qingqiu.get('calculateList',data,function(res){
+      console.log(res)
+      if(res.success == true){
+        if (res.result != null) {
+          that.data.jisuans=res.result.records
+          for(var i=0;i<res.result.records.length;i++){
+            that.data.jisuans[i].createTime=that.data.jisuans[i].createTime.split(' ')[0]
+          }
+          that.setData({
+            jisuans:that.data.jisuans
+          })
+        }else {
+          wx.showToast({
+            title: '暂无数据！',
+            icon:'none',
+            duration:2000
+          })
+        }
+      }
+    })
   },
-  calculatorResult: function() {
+  // 跳转到计算结果
+  calculatorResult: function(e) {
+    var obj =e.currentTarget.dataset.gd;
+    var gd = JSON.stringify(obj);
     wx.navigateTo({
-      url: '../calculatorResult/calculatorResult',
+      url: '../calculatorResult/calculatorResult?obj='+gd,
     })
   }
 

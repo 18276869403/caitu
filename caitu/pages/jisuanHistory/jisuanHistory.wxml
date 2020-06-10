@@ -2,10 +2,10 @@
 <view class="container">
   <view class="hengxian"></view>
   <view class="history">
-    <view class="xq" wx:for="{{jisuan}}" wx:key="{{index}}" bindtap="calculatorResult">
+    <view class="xq" wx:for="{{jisuans}}" wx:key="{{index}}" bindtap="calculatorResult" data-gd="{{item}}">
       <view class="xqxinxi hengxiang">
-        <view class="xq_name yincang">{{item.user}}
-          <text class="xq_erji">{{item.users}}</text>
+        <view class="xq_name yincang">
+          <text class="xq_erji">{{item.theNameId_dictText}}</text>
         </view>
         <view class="xq_sh hengxiang">
           <view class="shx">查看</view>
@@ -21,7 +21,7 @@
           </view>
           钢厂
         </view>
-        <view class="gc_name yincang">{{item.name}}</view>
+        <view class="gc_name yincang">{{item.steelName}}</view>
       </view>
 
       <view class="gangchang hengxiang">
@@ -31,7 +31,7 @@
           </view>
           价格
         </view>
-        <view class="gc_name yincang">{{item.price}}</view>
+        <view class="gc_name yincang">{{item.monovalent}}</view>
       </view>
       <view class="gangchang hengxiang cs_ys">
         <view class="gc_sj hengxiang">
@@ -40,7 +40,7 @@
           </view>
           时间
         </view>
-        <view class="gc_name yincang">{{item.time}}</view>
+        <view class="gc_name yincang">{{item.createTime}}</view>
       </view>
     </view>
   </view>
