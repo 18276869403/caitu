@@ -1,12 +1,15 @@
-//  const baseUrl = "http://192.168.1.238:8080/" 
+ // const baseUrl = "http://192.168.1.238:8080/" 
  const chen = require('../utils/chen.js')
-//  const baseUrl = "http://192.168.1.238:8080/jeecg-boot/" 
-//  // 我的页面-个人信息查询
-//  const queryPageList = baseUrl + "rabbit/mine/my"
+ const baseUrl = "http://192.168.1.238:8080/jeecg-boot/" 
+ // 图片上传
+ const upload = baseUrl + "sys/common/upload/"
+ // 图片预览
+ const viewUrl = baseUrl + "sys/common/static/"
 
  module.exports = {
   //  baseUrl:baseUrl,
-  //  queryPageList:queryPageList,
-   chen:chen
+   upload:upload,
+   chen:chen,
+   viewUrl:viewUrl
  } 
 

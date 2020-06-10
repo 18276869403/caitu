@@ -14,6 +14,19 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+// 我的信息验证
+const yanzheng = function(str){
+  var strlist = str.split('|')
+	for(let obj of strlist){
+		var list = obj.split(',')
+		if(list[0] == ""||list[0]==0||list[0]==undefined||list[0]==null){
+			return list[1]
+		}
+  }
+  return 0
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  yanzheng:yanzheng
 }
