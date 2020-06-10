@@ -12,6 +12,8 @@
 const askToBuyList = baseUrl +  "rabbit/mine/askToBuyList"
 // 我的库存
 const inventoryList = baseUrl + "rabbit/mine/inventoryList"
+// 计算历史
+const calculateList = baseUrl + "rabbit/mine/calculateList"
 
  module.exports = {
    baseUrl:baseUrl,
@@ -20,5 +22,6 @@ const inventoryList = baseUrl + "rabbit/mine/inventoryList"
    modifyMy:modifyMy,
    init:init,
    askToBuyList:askToBuyList,
-   inventoryList:inventoryList
+   inventoryList:inventoryList,
+   calculateList:calculateList
  } 
