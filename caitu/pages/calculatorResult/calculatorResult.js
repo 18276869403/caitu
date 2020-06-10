@@ -5,14 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    jisuanDetails:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    var xiangqing=JSON.parse(options.obj)
+    this.setData({
+      jisuanDetails:xiangqing
+    })
+    console.log(xiangqing)
   },
   // 跳转到计算器页面
   calculator: function() {
