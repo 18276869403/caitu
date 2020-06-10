@@ -8,12 +8,11 @@ const Get = function(url, data, huidiao, method = 'GET') {
 		var geturl = ""
 	if (api[url] != null) {
 		geturl = api[url]
-	}	else{
+	}	else if(api.chen[url] != null) {
 		geturl = api.chen[url]
-	}
-	//  else if (api.zhu[url] != null) {
-	// 	geturl = api.zhu[url]
-	// } 
+	}else if (api.kaifa[url] != null) {
+		geturl = api.kaifa[url]
+	} 
 	wx.request({
 		url: geturl,
 		method: method,
