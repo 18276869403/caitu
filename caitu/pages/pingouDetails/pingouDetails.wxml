@@ -127,18 +127,18 @@
       <view class="sj_s">{{pgxx.areaOneid_dictText}}/{{pgxx.areaTwoId_dictText}}</view>
     </view>
   </view>
-  <view class="csb container">
+  <view class="csb container" wx:for="{{pgxxlist}}">
     <view class="cs_sj hengxiang">
       <view class="sj_h">参与时间</view>
-      <view class="sj_s">{{pgxx.createtime}}</view>
+      <view class="sj_s">{{item.createtime}}</view>
     </view>
     <view class="cs_sj hengxiang">
       <view class="sj_h">需求吨数</view>
-      <view class="sj_s">{{pgxx.tonnage}}吨</view>
+      <view class="sj_s">{{item.sumsn}}吨</view>
     </view>
     <view class="cs_sj cs_ys hengxiang">
       <view class="sj_h">交货地</view>
-      <view class="sj_s">{{pgxx.areaOneid_dictText}}/{{pgxx.areaTwoId_dictText}}</view>
+      <view class="sj_s">{{item.areaOneid_dictText}}/{{item.areaTwoId_dictText}}</view>
     </view>
   </view>
    <!-- entertype==1,为从我的页面进入 -->
