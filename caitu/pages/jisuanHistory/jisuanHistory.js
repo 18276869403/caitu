@@ -39,7 +39,7 @@ Page({
     this.getInfo()
   },
   getInfo(){
-
+    
   },
   calculatorResult: function() {
     wx.navigateTo({
