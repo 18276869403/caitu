@@ -1,4 +1,6 @@
 // pages/mypingou/mypingou.js
+const app = getApp()
+const qingqiu = require('../../utils/request.js')
 Page({
 
   /**
@@ -42,12 +44,7 @@ Page({
   onLoad: function (options) {
     
   },
-  getpingou:function(){
-    var that = this
-    var data = {
-    }
-    
-  },
+  
   // 跳转到拼购详情页面
   pingouDetails: function () {
     wx.navigateTo({

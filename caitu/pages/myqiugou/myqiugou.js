@@ -1,4 +1,6 @@
 // pages/qiugou/qiugou.js
+const app = getApp()
+const qingqiu = require('../../utils/request.js')
 Page({
 
   /**
@@ -40,7 +42,39 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getpingou()
+  },
+  // 我的求购
+  getpingou:function(){
+    var that = this
+    var data = {
+      id:app.globalData.wxid
+    }
+    console.log(data)
+    qingqiu.get("askToBuyList",data,function(res){
+      console.log(res)
+      if(res.success == true){
+        for(let obj of res.result.records){
+          var str = obj.id.toString()
+          if(str.length < 10){
+            var str1 = ''
+            for(let i=0;i<10-str.length;i++){
+              str1 += 0
+            }
+            obj.id = str1 + str
+          }
+        }
+        that.setData({
+          qiugou:res.result.records
+        })
+      }else{
+        wx.showToast({
+          title: res.message,
+          icon:'none',
+          duration:1000
+        })
+      }
+    })
   },
 // 跳转到求购详情页面
   qiugouDetails:function(){
