@@ -27,7 +27,7 @@
         </view>
         编号
       </view>
-      <view class="gc_name yincang">uu11</view>
+      <view class="gc_name yincang">{{pgxx.backup1}}</view>
     </view>
     <view class="gangchang hengxiang">
       <view class="gc_sj hengxiang">
@@ -152,7 +152,7 @@
   </view>
   <!-- entertype==0,为从首页进入 -->
   <!-- 我要参与 -->
-  <view class="ck"  wx:if="{{entertype==0&&type!=2}}">
+  <view class="ck"  wx:if="{{pgxx.wxUserId!=wxID}}">
     <image src="../image/woyaocanyu.png" class="ck_img" bindtap="joinPingou"></image>
   </view>
 </view>

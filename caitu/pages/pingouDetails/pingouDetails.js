@@ -26,7 +26,8 @@ Page({
     var pgxx=JSON.parse(options.obj)
     this.data.pgid=pgxx.id
     this.setData({
-      pgxx:pgxx
+      pgxx:pgxx,
+      wxID:app.globalData.wxid
     })
     this.selectpingouxx()
     console.log(pgxx)
