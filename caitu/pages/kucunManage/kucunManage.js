@@ -14,6 +14,7 @@ Page({
     index:{gangchang:0,pingming:0},
     // multiArray: [['钢厂', '广州宝钢', '上海宝钢', '浙江宝钢'], ['彩涂品名', '镀铝锌卷', '镀铝锌彩涂卷', '镀铝锌']],
     multiArray: [[],[]],
+    multilist:[],
     youqiindex: 0,
     youqiarray: ['选择油漆', 'PE', 'PE1', 'PE2', 'PE3'],
     zhengmianindex: 0,
@@ -26,9 +27,11 @@ Page({
     yansearray: ['选择颜色', '标准', '标准1', '标准2', '标准3'],
     qiangduindex: 0,
     qiangduarray: ['选择强度', 'TS250GD+AZ', 'TS250GD+AZ1', 'TS250GD+AZ11', 'TS250GD+AZ111'],
+    // 省市
     multiArray1: [],
     cityList:[],
-    multiIndex1: [0, 0],
+    city:[],
+    multiIndex1: [0, 0]
   },
 
   /**
@@ -46,35 +49,63 @@ Page({
       console.log(res)
       if(res.success == true){
         var names = []
-        that.data.cityList = res.result
         for(let obj of res.result){
-          names.push(obj.name)
+          names.push(obj.itemText)
         }
         var multiArray1 = [names,[]]
         that.setData({
-          multiArray1:multiArray1
+          multiArray1:multiArray1,
+          cityList:res.result
+        })
+        qingqiu.get("shi",{pid:110000},function(res){
+          if(res.success == true){
+            var cityname = []
+            for(let obj of res.result){
+              cityname.push(obj.itemText)
+            }
+            var multiArray1 = "multiArray1[1]"
+            that.setData({
+              [multiArray1]:cityname,
+              city:res.result
+            })
+          }
         })
       }
     })
   },
-  // 获取市
-  // getCity(pid){
-  //   var that = this
-  //   qingqiu.get("shi",{pid:pid},function(res){
-  //     console.log(res)
-  //     if(res.success == true){
-  //       var multiArray1 = "multiArray1[1]"
-  //       that.setData({
-  //         [multiArray1]:res.result
-  //       })
-  //       console.log(that.data.multiArray1)
-  //     }
-  //   })
-  // },
-  // 省市点击
-  // bindMultiPickerColumnChange:function(){
-
-  // },
+  // 省份触发事件
+  bindMultiPickerColumnChange:function(e){
+    console.log("携带参数",e.detail)
+    var indexs = e.detail.value
+    var column = e.detail.column
+    var that = this
+    if(column == 0){
+      var data = {
+        pid:that.data.cityList[indexs].itemValue
+      }
+      qingqiu.get("shi",data,function(res){
+        console.log(res)
+        if(res.success == true){
+            var cityname = []
+            for(let obj of res.result){
+              cityname.push(obj.itemText)
+            }
+            var multiArray1 = "multiArray1[1]"
+            var multiIndex1 = [indexs,0]
+            that.setData({
+              [multiArray1]:cityname,
+              city:res.result,
+              multiIndex1:multiIndex1
+            })
+        }
+      })
+    }else{
+      var multiIndex1 = "multiIndex1[1]"
+      this.setData({
+        [multiIndex1]: indexs,
+      })
+    }
+  },
   // 钢厂
   getstell(){
     var that = this
@@ -97,6 +128,7 @@ Page({
           var multiArray = "multiArray[1]"
           that.setData({
             [multiArray]:names,
+            multilist:res.result.records
           })
         }
       })
@@ -146,22 +178,18 @@ Page({
             names.push(obj.theNameId_dictText)
           }
           var multiArray = "multiArray[1]"
-          var index = "index.gangchang"
           var multiIndex = [indexs,0]
           console.log(multiIndex)
           that.setData({
             [multiArray]:names,
             multiIndex:multiIndex,
-            [index]:0
           })
         }
       })
     }else{
-      var index = "index.pingming"
-      var multiIndex = [that.data.index.gangchang,indexs]
+      var multiIndex = "multiIndex[1]"
       this.setData({
-        multiIndex: multiIndex,
-        [index]:indexs
+        [multiIndex]: indexs,
       })
       console.log(that.data.multiIndex)
     }
