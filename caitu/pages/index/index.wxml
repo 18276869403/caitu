@@ -83,7 +83,7 @@
         </view>
         <view class="qiugou-right hengxiang">
           <view>
-            <image src="../image/more.png" class="enter-img" bindtap="hall"></image>
+            <image src="../image/more.png" class="enter-img" bindtap="hall" data-id="1"></image>
           </view>
         </view>
       </view>
@@ -140,7 +140,7 @@
         </view>
         <view class="qiugou-right hengxiang">
           <view>
-            <image src="../image/more.png" class="enter-img" bindtap="hall"></image>
+            <image src="../image/more.png" class="enter-img" bindtap="hall"  data-id="3"></image>
           </view>
         </view>
       </view>
@@ -185,7 +185,7 @@
         </view>
         <view class="qiugou-right hengxiang">
           <view>
-            <image src="../image/more.png" class="enter-img" bindtap="hall"></image>
+            <image src="../image/more.png" class="enter-img" bindtap="hall"  data-id="2"></image>
           </view>
         </view>
       </view>

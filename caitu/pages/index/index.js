@@ -237,7 +237,19 @@ Page({
       }
     })
   },
-  hall: function() {
+  hall: function(e) {
+    var id=e.currentTarget.dataset.id
+    getApp().globalData.dtid=id
+    if(id==1){
+      app.globalData.dtid=1
+    }
+    if(id==2){
+      app.globalData.dtid=2
+    }
+    if(id==3){
+      app.globalData.dtid=3
+    }
+    console.log(app.globalData.dtid)
     wx.switchTab({
       url: '../hall/hall'
     })
