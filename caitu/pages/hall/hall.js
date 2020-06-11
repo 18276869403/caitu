@@ -1,4 +1,6 @@
 // pages/hall/hall.js
+//获取应用实例
+const app = getApp()
 Page({
 
   /**
@@ -27,6 +29,8 @@ Page({
         name: '拼购',
       }
     ],
+    kucun:[],
+    qiugou:[],
     kucun: [{
         id: 1,
         name: "镀锌板彩涂卷",
@@ -110,7 +114,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+  },
+  onShow(){
+    this.setData({
+      navid1: app.globalData.dtid
+    })
   },
   // 跳转到求购详情
   qiugouDetails: function() {
