@@ -5,7 +5,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">交货地</view>
       <view class="content-item-content">
-        <picker mode="multiSelector" bindchange="regionChange" value="{{multiIndex1}}" range="{{multiArray1}}">
+        <picker mode="multiSelector" bindcolumnchange="bindMultiPickerColumnsChanges" value="{{multiIndex1}}" range="{{multiArray1}}">
           <view class="picker">
             {{multiArray1[0][multiIndex1[0]]}}-{{multiArray1[1][multiIndex1[1]]}}
           </view>
@@ -18,7 +18,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">选择钢厂</view>
       <view class="content-item-content">
-        <picker mode="multiSelector" bindchange="bindMultiPickerChange" value="{{multiIndex}}" range="{{multiArray}}">
+        <picker mode="multiSelector" bindcolumnchange="bindMultiPickersChanges" value="{{multiIndex}}" range="{{multiArray}}">
           <view class="picker">
             {{multiArray[0][multiIndex[0]]}}-{{multiArray[1][multiIndex[1]]}}
           </view>
