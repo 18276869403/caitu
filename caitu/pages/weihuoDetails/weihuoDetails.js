@@ -1,15 +1,21 @@
 // pages/weihuoDetails/weihuoDetails.js
+//获取应用实例
+const app = getApp()
+const qingqiu = require('../../utils/request.js')
+const api = require('../../utils/config.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    viewUrl:api.viewUrl,
     // entertype为0，从首页进入，为1，从我的页面进入
     entertype:1,
     type: 1, //进行中
     // type: 2, //匹配中
     // type: 3, //已完成
+    whtulist:[]
   },
 
   /**
@@ -17,8 +23,10 @@ Page({
    */
   onLoad: function(options) {
     var whxx=JSON.parse(options.obj)
+    this.data.whtulist=whxx.upUrl
     this.setData({
-      whxx:whxx
+      whxx:whxx,
+      whtulist:this.data.whtulist
     })
   },
 

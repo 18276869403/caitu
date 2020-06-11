@@ -108,15 +108,15 @@
       图片
     </view>
     <view class="content-item-img">
-      <view class="content-item-img-item">
+      <view class="content-item-img-item" wx:for="{{whtulist}}">
+        <image src="{{viewUrl}}{{item}}" class="shanchuan-img"></image>
+      </view>
+      <!-- <view class="content-item-img-item">
         <image src="../image/top.png" class="shanchuan-img"></image>
       </view>
       <view class="content-item-img-item">
         <image src="../image/top.png" class="shanchuan-img"></image>
-      </view>
-      <view class="content-item-img-item">
-        <image src="../image/top.png" class="shanchuan-img"></image>
-      </view>
+      </view> -->
     </view>
 
   </view>
