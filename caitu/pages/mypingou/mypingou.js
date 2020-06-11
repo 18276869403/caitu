@@ -51,8 +51,7 @@ Page({
   getpingou(){
     var that = this
     var data = {
-      // id:app.globalData.wxid,
-      id:1,
+      id:app.globalData.wxid,
       pageNo:1,
       pageSize:10
     }
@@ -72,8 +71,12 @@ Page({
             }
           }
           for(var i=0;i<res.result.records.length;i++){
-            that.data.piugou[i].createtime=that.data.piugou[i].createtime.split(' ')[0]
-            that.data.piugou[i].deadline=that.data.piugou[i].deadline.split(' ')[0]
+            if(that.data.piugou[i].createtime!=''&&that.data.piugou[i].createtime!=null){
+              that.data.piugou[i].createtime=that.data.piugou[i].createtime.split(' ')[0]
+            }
+            if(that.data.piugou[i].deadline!=''&&that.data.piugou[i].deadline!=null){
+              that.data.piugou[i].deadline=that.data.piugou[i].deadline.split(' ')[0]
+            }
           }
           console.log(that.data.piugou)
           that.setData({
