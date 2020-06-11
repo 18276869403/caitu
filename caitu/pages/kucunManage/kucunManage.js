@@ -170,14 +170,21 @@ Page({
     console.log("携带参数",e.detail.value)
     var that = this
     var multiName = that.data.multiArray[e.detail.value[0]]
-    console.log(multiName)
     var data = {
       steelName:multiName[that.data.multiIndex[0]],
       theNameId:that.data.multilist[e.detail.value[1]].theNameId
     }
     console.log(data)
+    this.getWidth(data)
+  },
+  // 宽度
+  getWidth(data){
+    var that = this
     qingqiu.get("common",data,function(res){
       console.log(res)
+      if(res.success == true){
+
+      }
     })
   },
   // 选择钢厂
