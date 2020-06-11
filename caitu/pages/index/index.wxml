@@ -146,7 +146,7 @@
       </view>
       <scroll-view class="gundong" scroll-x="true" style='width:100%'>
         <view class="hengxiang">
-          <view class="pingou-item hengxiang" wx:for="{{pingouList}}" wx:for-index="index" bindtap="pingouDetails">
+          <view class="pingou-item hengxiang" wx:for="{{pingouList}}" wx:for-index="index" bindtap="pingouDetails" data-pingou="{{item}}">
             <view class="pingou-item-left zongxiang">
               <view class="pingou-left-title" style="margin-top:10rpx">
                 品名：{{item.steelname}}
@@ -191,7 +191,7 @@
       <view class="weihuo">
         <scroll-view class="gundong" scroll-x="true" style='width:100%'>
           <view class="hengxiang ">
-            <view class="weihuo-item" wx:for="{{weihuolist}}" wx:for-index="index" bindtap="weihuoDetails">
+            <view class="weihuo-item" wx:for="{{weihuolist}}" wx:for-index="index" bindtap="weihuoDetails" data-weihuo="{{item}}">
               <view class="zongxiang">
                 <view class="weihuoImg">
                   <image src="{{item.upUrl}}" class="weihuo-img"></image>

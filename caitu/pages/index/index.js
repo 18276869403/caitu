@@ -323,15 +323,19 @@ Page({
     })
   },
   //跳转到拼购详情页面
-  pingouDetails: function() {
+  pingouDetails: function(e) {
+    var obj =e.currentTarget.dataset.pingou;
+    var pgxx = JSON.stringify(obj);
     wx.navigateTo({
-      url: '../pingouDetails/pingouDetails',
+      url: '../pingouDetails/pingouDetails?obj='+pgxx,
     })
   },
   //跳转到尾货信息页面
-  weihuoDetails: function() {
+  weihuoDetails: function(e) {
+    var obj =e.currentTarget.dataset.weihuo;
+    var whxx = JSON.stringify(obj);
     wx.navigateTo({
-      url: '../weihuoDetails/weihuoDetails',
+      url: '../weihuoDetails/weihuoDetails?obj='+whxx,
     })
   },
   // 跳转到更多咨询页面
