@@ -18,7 +18,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">选择钢厂</view>
       <view class="content-item-content">
-        <picker mode="multiSelector" bindcolumnchange="bindMultiPickerChanges" value="{{multiIndex}}" range="{{multiArray}}">
+        <picker mode="multiSelector" bindchange="bindMultiPickerChangeone" bindcolumnchange="bindMultiPickerChanges" value="{{multiIndex}}" range="{{multiArray}}">
           <view class="picker">
             {{multiArray[0][multiIndex[0]]}}-{{multiArray[1][multiIndex[1]]}}
           </view>
@@ -49,9 +49,10 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">油漆</view>
       <view class="content-item-content">
-        <picker bindchange="youqiChange" value="{{youqiindex}}" range="{{youqiarray}}">
+        <!-- <picker bindchange="youqiChange" value="{{youqiindex}}" range="{{youqi}}" bindchange="bindMultiPickerChangetwo"> -->
+        <picker bindchange="youqiChange" value="{{youqiindex}}" range="{{youqi}}" >
           <view class="picker">
-            {{youqiarray[youqiindex]}}
+            {{youqi[youqiindex]}}
           </view>
         </picker>
       </view>
@@ -90,9 +91,9 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">锌层</view>
       <view class="content-item-content">
-        <picker bindchange="xincengChange" value="{{xincengindex}}" range="{{xincengarray}}">
+        <picker bindchange="xincengChange" value="{{xincengindex}}" range="{{xinceng}}">
           <view class="picker">
-            {{xincengarray[xincengindex]}}
+            {{xinceng[xincengindex]}}
           </view>
         </picker>
       </view>
@@ -103,9 +104,9 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">颜色</view>
       <view class="content-item-content">
-        <picker bindchange="yanseChange" value="{{yanseindex}}" range="{{yansearray}}">
+        <picker bindchange="yanseChange" value="{{yanseindex}}" range="{{yanse}}">
           <view class="picker">
-            {{yansearray[yanseindex]}}
+            {{yanse[yanseindex]}}
           </view>
         </picker>
       </view>
@@ -116,9 +117,9 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">强度</view>
       <view class="content-item-content">
-        <picker bindchange="qiangduChange" value="{{qiangduindex}}" range="{{qiangduarray}}">
+        <picker bindchange="qiangduChange" value="{{qiangduindex}}" range="{{qiangdu}}">
           <view class="picker">
-            {{qiangduarray[qiangduindex]}}
+            {{qiangdu[qiangduindex]}}
           </view>
         </picker>
       </view>
@@ -136,7 +137,7 @@
       </view> -->
     </view>
   </view>
-  <view class="tips">所选钢厂最低起批量：100吨</view>
+  <view class="tips">所选钢厂最低起批量：{{pricingPrice}}吨</view>
   <!-- 提交 -->
   <view class="bottom">
     <image src="../image/fabu.png" class="fabu-img" bindtap="submitSuccess"></image>

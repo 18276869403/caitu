@@ -12,7 +12,7 @@ Page({
     jiaohuoindex: 0,
     region: ['省', '市', '区'],
     youqiindex: 0,
-    youqiarray: ['选择油漆', 'PE', 'PE1', 'PE2', 'PE3'],
+    // youqiarray: ['选择油漆', 'PE', 'PE1', 'PE2', 'PE3'],
     zhengmianindex: 0,
     zhengmianarray: ['选择正面膜厚', '正面25μ', '正面25μ1', '正面25μ2', '正面25μ3'],
     beimianindex: 0,
@@ -31,6 +31,27 @@ Page({
     multiArray1: [],
     multiIndex1: [0, 0],
 
+    qiangdu:['选择强度'],
+    youqi:['选择油漆'],
+    xinceng:['选择锌层'],
+    yanse:['选择颜色'],
+    subentryId:[],
+    pricingPrice:'',
+    zid:'',
+    bid:'',
+    youqiname:'',
+    youqiid:'',
+    fabulist:[],
+    multiName:'',
+    thenameid:'',
+    houdu:'',
+    width:'',
+    kuandu:'',
+    yqid:'',
+    tuceng:'',
+    dunwei:'',
+    indexs:'',
+    shiid:''
   },
 
   /**
@@ -78,6 +99,8 @@ Page({
     var column = e.detail.column
     var that = this
     if(column == 0){
+      that.data.indexs=that.data.cityList[indexs].itemValue
+      // that.data.shiid=indexs
       var data = {
         pid:that.data.cityList[indexs].itemValue
       }
@@ -85,8 +108,10 @@ Page({
         console.log(res)
         if(res.success == true){
             var cityname = []
+            var cityid = []
             for(let obj of res.result){
               cityname.push(obj.itemText)
+              cityid.push(obj.itemValue)
             }
             var multiArray1 = "multiArray1[1]"
             var multiIndex1 = [indexs,0]
@@ -95,6 +120,7 @@ Page({
               city:res.result,
               multiIndex1:multiIndex1
             })
+            that.data.shiid=cityid[multiIndex1[1]]
         }
       })
     }else{
@@ -103,6 +129,118 @@ Page({
         [multiIndex1]: indexs,
       })
     }
+  },
+  bindMultiPickerChangeone(e){
+    console.log("携带参数",e.detail.value)
+    var that = this
+    that.data.multiName = that.data.multiArray[e.detail.value[0]]
+    that.data.thenameid = that.data.multilist[e.detail.value[1]].theNameId
+    var data = {
+      steelName:that.data.multiName[that.data.multiIndex[0]],
+      theNameId:that.data.thenameid
+    }
+    console.log(data)
+    this.getWidth(data)
+  },
+  // 通过信息
+  getWidth(data){
+    var that = this
+    qingqiu.get("common",data,function(res){
+      console.log(res)
+      if(res.success == true){
+        var qiangdu = that.data.qiangdu
+        var youqi = that.data.youqi
+        var xinceng = that.data.xinceng
+        var yanse = that.data.yanse
+        that.data.pricingPrice=res.result.steel.pricingPrice
+        for(let obj of res.result.densityList){
+          that.data.qiangdu.push(obj.context)
+        }
+        for(let obj of res.result.printList){
+          youqi.push(obj.context)
+          that.data.subentryId.push(obj.subentryId)
+        }
+        for(let obj of res.result.zinclayerList){
+          that.data.xinceng.push(obj.context)
+        }
+        for(let obj of res.result.colorList){
+          yanse.push(obj.context)
+        }
+        that.setData({
+          getWidth:res.result.width,
+          qiangdu:qiangdu,
+          youqi:youqi,
+          xinceng:xinceng,
+          yanse:yanse,
+          pricingPrice:that.data.pricingPrice
+        })
+        console.log(qiangdu)
+        console.log(youqi)
+        console.log(xinceng)
+        console.log(yanse)
+      }
+    })
+  },
+  // 油漆点击获取
+  // bindMultiPickerChangetwo(e){
+  //   console.log("携带参数",e.detail.value)
+  //   var that = this
+  //   var youqiname = that.data.youqi[e.detail.value]
+  //   var youqiid =that.data.subentryId[e.detail.value]
+  //   this.setData({
+  //     youqi:youqiname
+  //   })
+  //   console.log(youqiname)
+  //   var data = {
+  //     text:youqiname,
+  //     subentryId:youqiid
+  //   }
+  //   console.log(data)
+  //   that.gethuodu(data)
+  // },
+// 正背面厚度
+  gethuodu(){
+    var that = this
+    var data = {
+      text:that.data.youqiname,
+      subentryId:that.data.youqiid
+    }
+    console.log(data)
+    qingqiu.get("commonPrint",data,function(res){
+      if(res.success == true){
+        var zhou=res.result.zheng
+        var bhou=res.result.bei
+        that.data.zid=res.result.zhengId
+        that.data.bid=res.result.beiId
+        that.setData({
+          zhou:zhou,
+          bhou:bhou,
+        })
+        console.log(zhou)
+        console.log(bhou)
+        var data = {
+          zheng:that.data.zhengmianindex,
+          bei:that.data.beimianindex,
+          zhengId:that.data.zid,
+          beiId:that.data.bid
+        }
+        console.log(data)
+        that.getmohou(data)
+      }
+    })
+  },
+  // 膜厚
+  getmohou(data){
+    var that = this
+    qingqiu.get("commonMoHou",data,function(res){
+      if(res.success == true){
+        that.data.tuceng=res.message
+        that.setData({
+          tuceng:that.data.tuceng
+        })
+        console.log(that.data.tuceng)
+      }
+    })
   },
   // 钢厂
   getstell(){
@@ -126,6 +264,7 @@ Page({
           var multiArray = "multiArray[1]"
           that.setData({
             [multiArray]:names,
+            multilist:res.result.records
           })
         }
       })
@@ -133,9 +272,34 @@ Page({
   },
   // 跳转到发布成功页面
   submitSuccess: function() {
-    wx.navigateTo({
-      url: '../submitSuccess/submitSuccess',
-    })
+    var that = this
+    var data={
+      wxUserId:app.globalData.wxid,
+      areaOneId:that.data.indexs,
+      areaTwoId:that.data.shiid,
+      steelName:that.data.multiName[that.data.multiIndex[0]],
+      theNameId:that.data.thenameid,
+      thickness:that.data.houdu,
+      width:that.data.kuandu,
+      paint:that.data.youqi[that.data.youqiindex],
+      front:that.data.zhengmianindex,
+      rear:that.data.beimianindex,
+      coat:that.data.tuceng,
+      zincLayer:that.data.xinceng[that.data.xincengindex],
+      color:that.data.yanse[that.data.yanseindex],
+      density:that.data.qiangdu[that.data.qiangduindex],
+      tonnage:that.data.dunwei,
+    }
+    console.log(data)
+    qingqiu.get("faBuPinGou",data,function(res){
+      if(res.success == true){
+        wx.navigateTo({
+          url: '../submitSuccess/submitSuccess',
+        })
+      }else{
+
+      }
+    },'post')
   },
   // 交货地
   regionChange: function (e) {
@@ -207,23 +371,50 @@ Page({
   // 油漆
   youqiChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      youqiindex: e.detail.value
+    var that=this
+    // this.setData({
+    //   youqi: e.detail.value
+    // })
+    that.data.yqid=e.detail.valu
+    that.data.youqiname = that.data.youqi[e.detail.value]
+    that.data.youqiid =that.data.subentryId[e.detail.value]
+    that.setData({
+      youqi:that.data.youqi,
+      youqiindex:e.detail.value
     })
+    that.gethuodu()
   },
   // 正面
   zhengmianChange: function(e) {
+    var that=this
     console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
+    that.setData({
       zhengmianindex: e.detail.value
     })
+    var data = {
+      zheng:that.data.zhengmianindex,
+      bei:that.data.beimianindex,
+      zhengId:that.data.zid,
+      beiId:that.data.bid
+    }
+    console.log(data)
+    that.getmohou(data)
   },
   // 背面
   beimianChange: function(e) {
+    var that=this
     console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
+    that.setData({
       beimianindex: e.detail.value
     })
+    var data = {
+      zheng:that.data.zhengmianindex,
+      bei:that.data.beimianindex,
+      zhengId:that.data.zid,
+      beiId:that.data.bid
+    }
+    console.log(data)
+    that.getmohou(data)
   },
   // 涂层
   tuceng: function(e) {
