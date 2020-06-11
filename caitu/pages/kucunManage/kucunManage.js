@@ -74,7 +74,7 @@ Page({
     })
   },
   // 省份触发事件
-  bindMultiPickerColumnChange:function(e){
+  bindMultiPickerColumnChangeCity:function(e){
     console.log("携带参数",e.detail)
     var indexs = e.detail.value
     var column = e.detail.column
@@ -113,6 +113,9 @@ Page({
       var list = res.result;
       var names = [];
       for(let obj of list){
+        if(names.length<0){
+          // names.push("钢厂")
+        }
         names.push(obj.name);
       }
       var multiArray=[names,[]];
@@ -123,6 +126,7 @@ Page({
         if(res.success == true){
           var names = []
           for(let obj of res.result.records){
+            // if
             names.push(obj.theNameId_dictText)
           }
           var multiArray = "multiArray[1]"
@@ -159,8 +163,25 @@ Page({
       multiIndex1: e.detail.value
     })
   },
+  bindMultiPickerChangeCity:function(e){
+    console.log("携带参数",e.detail)
+  },
+  bindMultiPickerChange:function(e){
+    console.log("携带参数",e.detail.value)
+    var that = this
+    var multiName = that.data.multiArray[e.detail.value[0]]
+    console.log(multiName)
+    var data = {
+      steelName:multiName[that.data.multiIndex[0]],
+      theNameId:that.data.multilist[e.detail.value[1]].theNameId
+    }
+    console.log(data)
+    qingqiu.get("common",data,function(res){
+      console.log(res)
+    })
+  },
   // 选择钢厂
-  bindMultiPickerChange: function(e) {
+  bindMultiPickerColumnChange: function(e) {
     var that = this
     console.log('picker发送选择改变，携带值为', e.detail)
     var column = e.detail.column
@@ -183,6 +204,7 @@ Page({
           that.setData({
             [multiArray]:names,
             multiIndex:multiIndex,
+            multilist:res.result.records
           })
         }
       })
