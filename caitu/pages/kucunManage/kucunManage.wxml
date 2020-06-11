@@ -44,7 +44,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">厚度</view>
       <view class="content-item-content1">
-        <input type="digit" placeholder="请输入厚度" placeholder-class="placeholder" class="shurukuang" value="{{houdu}}" bindinput="houdu"></input>
+        <input type="digit" placeholder="请输入厚度" placeholder-class="placeholder" class="shurukuang" value="{{houdu}}" bindinput="houdu" bindblur="retReg"></input>
       </view>
       <!-- <view class="content-item-right">
         <image src="../image/jinru.png" class="enter-img"></image>

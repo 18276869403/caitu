@@ -36,7 +36,9 @@ Page({
     qiangdu:['选择强度'],
     youqi:['选择油漆'],
     xinceng:['选择锌层'],
-    yanse:['选择颜色']
+    yanse:['选择颜色'],
+    zheng:[],
+    fan:[]
   },
 
   /**
@@ -193,11 +195,16 @@ Page({
           yanse.push(obj.context)
         }
         that.setData({
-          getWidth:res.result.width,
+          setwidth:res.result.width,
+          sethoudu:res.result.thickness,
           qiangdu:qiangdu,
           youqi:youqi,
           xinceng:xinceng,
-          yanse:yanse
+          yanse:yanse,
+          qiangduarray:res.result.densityList,
+          youqiarray:res.result.printList,
+          xincengarray:res.result.zinclayerList,
+          yansearray:res.result.colorList
         })
         console.log(qiangdu)
         console.log(youqi)
@@ -244,23 +251,72 @@ Page({
   },
   // 厚度
   houdu: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       houdu: e.detail.value
     })
   },
+  retReg:function(e){
+    if(!this.data.sethoudu.length>0){
+      wx.showToast({
+        title: '请选择钢厂',
+        icon:'none',
+        duration:2000
+      })
+      this.setData({
+        houdu:''
+      })
+      return
+    }
+    var minhoudu = this.data.sethoudu[0]
+    var maxhoudu = this.data.sethoudu[1]
+    if(e.detail.value>minhoudu&&e.detail.value<maxhoudu){
+      this.setData({
+        houdu:e.detail.value
+      })
+    }else{
+      wx.showToast({
+        title: '数值范围在'+minhoudu+'~'+maxhoudu,
+        icon:'none',
+        duration:2000
+      })
+      this.setData({
+        houdu:''
+      })
+    }
+  },
   // 宽度
   kuandu: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       kuandu: e.detail.value
     })
   },
   // 宽度最小值限制
   minReg:function(e){
-    if(e.detail.value<this.data.width[0]&&e.detail.value>this.data.width[1]){
+    if(!this.data.setwidth.length>0){
       wx.showToast({
-        title: '宽度在'+this.data.width[0] + "~" + this.data.width[1],
+        title: '请选择钢厂',
+        icon:'none',
+        duration:2000
+      })
+      this.setData({
+        kuandu:''
+      })
+      return
+    }
+    debugger
+    var width = Number(e.detail.value) 
+    var minwidth = Number(this.data.setwidth[0])
+    var maxwidth = Number(this.data.setwidth[1])
+    if(width > minwidth && width < maxwidth){
+      this.setData({
+        kuandu: e.detail.value
+      })
+    }else{
+      this.setData({
+        kuandu: ''
+      })
+      wx.showToast({
+        title: '宽度在'+minwidth + "~" + maxwidth+'之间',
         icon:'none',
         duration:2000
       })
@@ -277,6 +333,27 @@ Page({
   // 油漆
   youqiChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
+    var that = this
+    if(e.detail.value == 0){
+      wx.showToast({
+        title: '请选择油漆',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    var data = {
+      subentryId:that.data.youqiarray[e.detail.value-1].subentryId,
+      text:that.data.youqi[e.detail.value]
+    }
+    qingqiu.get("commonPrint",data,function(res){
+      if(res.success == true){
+        that.setData({
+          zheng:res.result.zheng,
+          bei:res.result.bei
+        })
+      }
+    })
     this.setData({
       youqiindex: e.detail.value
     })
