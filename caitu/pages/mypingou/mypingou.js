@@ -51,8 +51,7 @@ Page({
   getpingou(){
     var that = this
     var data = {
-      // id:app.globalData.wxid,
-      id:1,
+      id:app.globalData.wxid,
       pageNo:1,
       pageSize:10
     }
