@@ -26,10 +26,8 @@ Page({
     yansearray: ['选择颜色', '标准', '标准1', '标准2', '标准3'],
     qiangduindex: 0,
     qiangduarray: ['选择强度', 'TS250GD+AZ', 'TS250GD+AZ1', 'TS250GD+AZ11', 'TS250GD+AZ111'],
-    multiArray1: [
-      ['省', '上海', '浙江省'],
-      ['市', '宝山区', '静安区', '浦东新区', '杨浦区', '虹口区']
-    ],
+    multiArray1: [],
+    cityList:[],
     multiIndex1: [0, 0],
   },
 
@@ -38,23 +36,27 @@ Page({
    */
   onLoad: function(options) {
     this.getstell()
-    // this.getAddress()
+    this.getAddress()
     // this.getCity()
   },
   // 获取省
-  // getAddress(){
-  //   var that = this
-  //   qingqiu.get("shengFen",null,function(res){
-  //     console.log(res)
-  //     if(res.success == true){
-  //       var multiArray1 = "multiArray1[0]"
-  //       that.setData({
-  //         [multiArray1]:res.result
-  //       })
-  //       that.getCity(1)
-  //     }
-  //   })
-  // },
+  getAddress(){
+    var that = this
+    qingqiu.get("shengFen",null,function(res){
+      console.log(res)
+      if(res.success == true){
+        var names = []
+        that.data.cityList = res.result
+        for(let obj of res.result){
+          names.push(obj.name)
+        }
+        var multiArray1 = [names,[]]
+        that.setData({
+          multiArray1:multiArray1
+        })
+      }
+    })
+  },
   // 获取市
   // getCity(pid){
   //   var that = this
@@ -101,6 +103,17 @@ Page({
     })
   },
 
+  // 宽度最小值限制
+  minReg:function(e){
+    if(e.detail.value<400){
+      wx.showToast({
+        title: '宽度不能低于400',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+  },
   // 跳转到成功页面
   kucunSubmitSuccess: function() {
     wx.navigateTo({
@@ -134,11 +147,12 @@ Page({
           }
           var multiArray = "multiArray[1]"
           var index = "index.gangchang"
-          var multiIndex = [indexs,that.data.index.pingming]
+          var multiIndex = [indexs,0]
+          console.log(multiIndex)
           that.setData({
             [multiArray]:names,
             multiIndex:multiIndex,
-            [index]:indexs
+            [index]:0
           })
         }
       })
