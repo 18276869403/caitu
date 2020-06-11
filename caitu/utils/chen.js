@@ -16,8 +16,14 @@ const inventoryList = baseUrl + "rabbit/mine/inventoryList"
 const initAskToBuy = baseUrl + "rabbit/index/initAskToBuy"
 // 首页-广告
 const initBanners = baseUrl + "rabbit/index/initBanners"
-// 首页-我的库存
-const clickInitInventory = baseUrl + "rabbit/index/clickInitInventory"
+// 省份
+const shengFen = baseUrl + "rabbit/index/shengFen"
+// 市
+const shi = baseUrl + "rabbit/index/shi"
+// 钢厂
+const stell = baseUrl + "rabbit/index/stell"
+// 品名
+const theName = baseUrl + "rabbit/index/theName"
 
  module.exports = {
    baseUrl:baseUrl,
@@ -29,5 +35,8 @@ const clickInitInventory = baseUrl + "rabbit/index/clickInitInventory"
    inventoryList:inventoryList,
    initAskToBuy:initAskToBuy,
    initBanners:initBanners,
-   clickInitInventory:clickInitInventory
+   shengFen:shengFen,
+   shi:shi,
+   stell:stell,
+   theName:theName
  } 
