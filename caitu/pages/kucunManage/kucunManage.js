@@ -1,4 +1,7 @@
 // pages/kucunManage/kucunManage.js
+const app = getApp()
+const qingqiu = require('../../utils/request.js')
+const api = require('../../utils/config.js')
 Page({
 
   /**
@@ -6,9 +9,11 @@ Page({
    */
   data: {
     cangkuindex: 0,
-    multiIndex: [0, 0, 0],
+    multiIndex: [0, 0],
     region: ['省', '市', '区'],
-    multiArray: [['钢厂', '广州宝钢', '上海宝钢', '浙江宝钢'], ['彩涂品名', '镀铝锌卷', '镀铝锌彩涂卷', '镀铝锌']],
+    index:{gangchang:0,pingming:0},
+    // multiArray: [['钢厂', '广州宝钢', '上海宝钢', '浙江宝钢'], ['彩涂品名', '镀铝锌卷', '镀铝锌彩涂卷', '镀铝锌']],
+    multiArray: [[],[]],
     youqiindex: 0,
     youqiarray: ['选择油漆', 'PE', 'PE1', 'PE2', 'PE3'],
     zhengmianindex: 0,
@@ -32,8 +37,70 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.getstell()
+    // this.getAddress()
+    // this.getCity()
   },
+  // 获取省
+  // getAddress(){
+  //   var that = this
+  //   qingqiu.get("shengFen",null,function(res){
+  //     console.log(res)
+  //     if(res.success == true){
+  //       var multiArray1 = "multiArray1[0]"
+  //       that.setData({
+  //         [multiArray1]:res.result
+  //       })
+  //       that.getCity(1)
+  //     }
+  //   })
+  // },
+  // 获取市
+  // getCity(pid){
+  //   var that = this
+  //   qingqiu.get("shi",{pid:pid},function(res){
+  //     console.log(res)
+  //     if(res.success == true){
+  //       var multiArray1 = "multiArray1[1]"
+  //       that.setData({
+  //         [multiArray1]:res.result
+  //       })
+  //       console.log(that.data.multiArray1)
+  //     }
+  //   })
+  // },
+  // 省市点击
+  // bindMultiPickerColumnChange:function(){
+
+  // },
+  // 钢厂
+  getstell(){
+    var that = this
+    qingqiu.get("stell",null,function(res){
+      var list = res.result;
+      var names = [];
+      for(let obj of list){
+        names.push(obj.name);
+      }
+      var multiArray=[names,[]];
+      that.setData({
+        multiArray:multiArray
+      })
+      qingqiu.get("theName",{name:'宝山钢铁'},function(res){
+        if(res.success == true){
+          var names = []
+          for(let obj of res.result.records){
+            names.push(obj.theNameId_dictText)
+          }
+          var multiArray = "multiArray[1]"
+          that.setData({
+            [multiArray]:names,
+          })
+        }
+      })
+    })
+  },
+
   // 跳转到成功页面
   kucunSubmitSuccess: function() {
     wx.navigateTo({
@@ -49,10 +116,41 @@ Page({
   },
   // 选择钢厂
   bindMultiPickerChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      multiIndex: e.detail.value
-    })
+    var that = this
+    console.log('picker发送选择改变，携带值为', e.detail)
+    var column = e.detail.column
+    var indexs = e.detail.value;
+    //picker发送选择改变，携带值为 (2) [1, 0]
+    if(column == 0){
+      var data = {
+        name:that.data.multiArray[0][indexs]
+      }
+      qingqiu.get("theName",data,function(res){
+        console.log(res)
+        if(res.success == true){
+          var names = []
+          for(let obj of res.result.records){
+            names.push(obj.theNameId_dictText)
+          }
+          var multiArray = "multiArray[1]"
+          var index = "index.gangchang"
+          var multiIndex = [indexs,that.data.index.pingming]
+          that.setData({
+            [multiArray]:names,
+            multiIndex:multiIndex,
+            [index]:indexs
+          })
+        }
+      })
+    }else{
+      var index = "index.pingming"
+      var multiIndex = [that.data.index.gangchang,indexs]
+      this.setData({
+        multiIndex: multiIndex,
+        [index]:indexs
+      })
+      console.log(that.data.multiIndex)
+    }
   },
   // 厚度
   houdu: function(e) {
