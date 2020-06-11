@@ -53,7 +53,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">宽度</view>
       <view class="content-item-content1">
-        <input type="digit" placeholder="请输入宽度" placeholder-class="placeholder" class="shurukuang" value="{{kuandu}}" bindinput="kuandu"></input>
+        <input type="digit" placeholder="请输入宽度" placeholder-class="placeholder" class="shurukuang" value="{{kuandu}}" bindinput="kuandu" bindblur="minReg"></input>
       </view>
       <!-- <view class="content-item-right">
         <image src="../image/jinru.png" class="enter-img"></image>
