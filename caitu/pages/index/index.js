@@ -348,7 +348,7 @@ Page({
   // 跳转到求购详情页面
   qiugouDetails: function(e) {
     var obj=e.currentTarget.dataset.item
-    var qiugou = JSON.stringify(obj);
+    var qiugou = JSON.stringify(obj); 
     wx.navigateTo({
       url: '../qiugouDetails/qiugouDetails?obj='+qiugou,
     })
