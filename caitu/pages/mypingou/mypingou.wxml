@@ -25,7 +25,7 @@
           <view>
             <image src="../image/bianhao.png" class="xq_img"></image>
           </view>
-          <view class="xq_name">编号：{{item.id}}</view>
+          <view class="xq_name">编号：{{item.backup1}}</view>
         </view>
         <view class="bianh hengxiang">
           <view>

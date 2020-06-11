@@ -51,7 +51,8 @@ Page({
   getpingou(){
     var that = this
     var data = {
-      id:app.globalData.wxid,
+      // id:app.globalData.wxid,
+      id:1,
       pageNo:1,
       pageSize:10
     }
@@ -60,6 +61,16 @@ Page({
       if(res.success == true){
         if (res.result != null) {
           that.data.piugou=res.result.records
+          for(let obj of res.result.records){
+            var str = obj.id.toString()
+            if(str.length < 10){
+              var str1 = ''
+              for(let i=0;i<10-str.length;i++){
+                str1 += 0
+              }
+              obj.backup1 = str1 + str
+            }
+          }
           for(var i=0;i<res.result.records.length;i++){
             that.data.piugou[i].createtime=that.data.piugou[i].createtime.split(' ')[0]
             that.data.piugou[i].deadline=that.data.piugou[i].deadline.split(' ')[0]
