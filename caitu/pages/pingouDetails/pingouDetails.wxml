@@ -113,7 +113,7 @@
   <view class="xqbiaoti" style="margin-top:80rpx">
     <text>拼购信息</text>
   </view>
-  <view class="cs">
+  <!-- <view class="cs">
     <view class="cs_sj hengxiang">
       <view class="sj_h">参与时间</view>
       <view class="sj_s">{{pgxx.createtime}}</view>
@@ -126,7 +126,7 @@
       <view class="sj_h">交货地</view>
       <view class="sj_s">{{pgxx.areaOneid_dictText}}/{{pgxx.areaTwoId_dictText}}</view>
     </view>
-  </view>
+  </view> -->
   <view class="csb container" wx:for="{{pgxxlist}}">
     <view class="cs_sj hengxiang">
       <view class="sj_h">参与时间</view>

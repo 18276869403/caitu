@@ -1,4 +1,8 @@
 // pages/pingouDetails/pingouDetails.js
+//获取应用实例
+const app = getApp()
+const qingqiu = require('../../utils/request.js')
+const api = require('../../utils/config.js')
 Page({
 
   /**
@@ -38,9 +42,9 @@ Page({
     if(res.success == true){
       if (res.result != null) {
         that.data.pgxxlist=res.result.records
-        for(var i=0;i<res.result.records.length;i++){
-          that.data.pgxxlist[i].createTime=that.data.pgxxlist[i].createtime.split(' ')[0]
-        }
+        // for(var i=0;i<res.result.records.length;i++){
+        //   that.data.pgxxlist[i].createtime=that.data.pgxxlist[i].createtime.split(' ')[0]
+        // }
         console.log(that.data.pgxxlist)
         that.setData({
           pgxxlist:that.data.pgxxlist
