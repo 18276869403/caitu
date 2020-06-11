@@ -88,9 +88,16 @@ Page({
       if(res.success == true){
         if (res.result != null) {
           that.data.pingouList=res.result.records
-          // for(var i=0;i<res.result.records.length;i++){
-          //   that.data.weihuolist[i].upUrl=api.baseUrl+api.viewUrl+that.data.weihuolist[i].upUrl
-          // }
+          for(let obj of res.result.records){
+            var str = obj.id.toString()
+            if(str.length < 10){
+              var str1 = ''
+              for(let i=0;i<10-str.length;i++){
+                str1 += 0
+              }
+              obj.backup1 = str1 + str
+            }
+          }
           console.log(that.data.pingouList)
           that.setData({
             pingouList:that.data.pingouList
@@ -116,8 +123,18 @@ Page({
       if(res.success == true){
         if (res.result != null) {
           that.data.weihuolist=res.result.records
+          for(let obj of res.result.records){
+            var str = obj.id.toString()
+            if(str.length < 10){
+              var str1 = ''
+              for(let i=0;i<10-str.length;i++){
+                str1 += 0
+              }
+              obj.backup1 = str1 + str
+            }
+          }
           for(var i=0;i<res.result.records.length;i++){
-            that.data.weihuolist[i].upUrl= that.data.weihuolist[i].upUrl.split(',')
+            that.data.weihuolist[i].upUrl=that.data.weihuolist[i].upUrl.split(',')
           }
           console.log(that.data.weihuolist)
           that.setData({
@@ -317,9 +334,11 @@ Page({
     }
   },
   // 跳转到求购详情页面
-  qiugouDetails: function() {
+  qiugouDetails: function(e) {
+    var obj=e.currentTarget.dataset.item
+    var qiugou = JSON.stringify(obj);
     wx.navigateTo({
-      url: '../qiugouDetails/qiugouDetails',
+      url: '../qiugouDetails/qiugouDetails?obj='+qiugou,
     })
   },
   //跳转到拼购详情页面

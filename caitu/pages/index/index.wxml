@@ -152,7 +152,7 @@
                 品名：{{item.steelname}}
               </view>
               <view class="pingou-left-item">
-                编号：{{item.bianhao}}
+                编号：{{item.backup1}}
               </view>
               <view class="pingou-left-item">
                 规格：厚{{item.thickness}}/宽{{item.width}}
@@ -166,6 +166,7 @@
             </view>
             <view class="pingou-item-right">
               <image src="../image/pingouing.png" class="pingou-img"></image>
+              <!-- <image src="../image/pingouing.png" class="pingou-img"></image> -->
             </view>
           </view>
         </view>
@@ -201,7 +202,7 @@
                     品名：{{item.theNameId_dictText}}
                   </view>
                   <view class="pingou-left-item">
-                    编号：{{item.bianhao}}
+                    编号：{{item.backup1}}
                   </view>
                   <view class="pingou-left-item">
                     规格：厚{{item.thickness}}/宽{{item.width}}
