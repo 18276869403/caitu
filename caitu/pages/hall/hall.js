@@ -1,12 +1,15 @@
 // pages/hall/hall.js
 //获取应用实例
 const app = getApp()
+const qingqiu = require('../../utils/request.js')
+const api = require('../../utils/config.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    viewUrl:api.viewUrl,
     navid1: 2,
     index: 0,
     colour: 0,
@@ -30,53 +33,8 @@ Page({
       }
     ],
     kucun:[],
-    qiugou:[],
-    kucun: [{
-        id: 1,
-        name: "镀锌板彩涂卷",
-        bianhao: 'hz10001',
-        guige: "厚0.5/宽1100",
-        yanse: "非标",
-        xinceng: "10000000000000000000000000000000",
-        didian: "浙江/杭州",
-        url: '../image/top.png'
-      },
-      {
-        id: 2,
-        name: "镀锌板彩涂卷",
-        bianhao: 'hz10001',
-        guige: "厚0.5/宽1100",
-        yanse: "非标",
-        xinceng: "1000",
-        didian: "浙江/杭州",
-        url: '../image/top.png'
-      }
-    ],
-    qiugou: [{
-        id: 1,
-        name: "镀锌板彩涂卷",
-        bianhao: 'hz10001',
-        guige: "厚0.5/宽1100",
-        xinceng: "10000000000000000000000000000000",
-        yanse: "非标",
-        jiezhi: "2020.5.21",
-        didian: "浙江/杭州",
-        shijian: "2020.01.20",
-        type: 1
-      },
-      {
-        id: 2,
-        name: "镀锌板彩涂卷",
-        bianhao: "hz20002",
-        guige: "厚0.5/宽1100",
-        xinceng: "100",
-        yanse: "非标",
-        jiezhi: "2020.5.21",
-        didian: "浙江/杭州",
-        shijian: "2020.01.20",
-        type: 2
-      }
-    ],
+    pingou:[],
+    qiugou:[]
   },
   bindnav: function(e) {
     // debugger
@@ -114,6 +72,133 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.selectqiugou()
+    this.selectweihuo()
+    this.selectpingou()
+  },
+  // 获取求购
+  selectqiugou(){
+    var that = this
+    var data = {
+      pageNo:1,
+      pageSize:10
+    }
+    qingqiu.get('askToBuyLists',data,function(res){
+      if(res.success == true){
+        if (res.result != null) {
+          that.data.qiugou=res.result.records
+          for(let obj of res.result.records){
+            var str = obj.id.toString()
+            if(str.length < 10){
+              var str1 = ''
+              for(let i=0;i<10-str.length;i++){
+                str1 += 0
+              }
+              obj.backup1 = str1 + str
+            }
+          }
+          for(var i=0;i<res.result.records.length;i++){
+            if(that.data.qiugou[i].createtime!=''&&that.data.qiugou[i].createtime!=null ){
+              that.data.qiugou[i].createtime=that.data.qiugou[i].createtime.split(' ')[0]
+            }
+          }
+          console.log(that.data.qiugou)
+          that.setData({
+            qiugou:that.data.qiugou
+          })
+        }else {
+          wx.showToast({
+            title: '暂无数据！',
+            icon:'none',
+            duration:2000
+          })
+        }
+      }
+    })
+  },
+  // 获取尾货
+  selectweihuo(){
+    var that = this
+    var data = {
+      pageNo:1,
+      pageSize:10
+    }
+    qingqiu.get('inventoryLists',data,function(res){
+      if(res.success == true){
+        if (res.result != null) {
+          that.data.kucun=res.result.records
+          for(let obj of res.result.records){
+            var str = obj.id.toString()
+            if(str.length < 10){
+              var str1 = ''
+              for(let i=0;i<10-str.length;i++){
+                str1 += 0
+              }
+              obj.backup1 = str1 + str
+            }
+          }
+          for(var i=0;i<res.result.records.length;i++){
+            that.data.kucun[i].upUrl=that.data.kucun[i].upUrl.split(',')
+          }
+          console.log(that.data.kucun)
+          that.setData({
+            kucun:that.data.kucun
+          })
+        }else {
+          wx.showToast({
+            title: '暂无数据！',
+            icon:'none',
+            duration:2000
+          })
+        }
+      }
+    })
+  },
+  // 获取拼购
+  selectpingou(){
+    var that = this
+    var data = {
+      pageNo:1,
+      pageSize:10
+    }
+    qingqiu.get('groupByingLists',data,function(res){
+      if(res.success == true){
+        if (res.result != null) {
+          that.data.pingou=res.result.records
+          for(let obj of res.result.records){
+            var str = obj.id.toString()
+            if(str.length < 10){
+              var str1 = ''
+              for(let i=0;i<10-str.length;i++){
+                str1 += 0
+              }
+              obj.backup1 = str1 + str
+            }
+          }
+          for(var i=0;i<res.result.records.length;i++){
+            if(that.data.pingou[i].createtime!=''&& that.data.pingou[i].createtime!=null ){
+              that.data.pingou[i].createtime=that.data.pingou[i].createtime.split(' ')[0]
+            }
+            if(that.data.pingou[i].deadline!=''&& that.data.pingou[i].deadline!=null ){
+              that.data.pingou[i].deadline=that.data.pingou[i].deadline.split(' ')[0]
+            }
+            if(that.data.pingou[i].upUrl!=''&& that.data.pingou[i].upUrl!=null ){
+              that.data.pingou[i].upUrl=that.data.pingou[i].upUrl.split(',')
+            }
+          }
+          console.log(that.data.pingou)
+          that.setData({
+            pingou:that.data.pingou
+          })
+        }else {
+          wx.showToast({
+            title: '暂无数据！',
+            icon:'none',
+            duration:2000
+          })
+        }
+      }
+    })
   },
   onShow(){
     this.setData({
@@ -121,21 +206,27 @@ Page({
     })
   },
   // 跳转到求购详情
-  qiugouDetails: function() {
+  qiugouDetails: function(e) {
+    var obj=e.currentTarget.dataset.item
+    var qiugou = JSON.stringify(obj);
     wx.navigateTo({
-      url: '../qiugouDetails/qiugouDetails',
+      url: '../qiugouDetails/qiugouDetails?obj='+qiugou,
     })
   },
   // 跳转到拼购详情页面
-  pingouDetails: function() {
+  pingouDetails: function(e) {
+    var obj=e.currentTarget.dataset.item
+    var pingou = JSON.stringify(obj);
     wx.navigateTo({
-      url: '../pingouDetails/pingouDetails',
+      url: '../pingouDetails/pingouDetails?obj='+pingou,
     })
   },
   // 跳转到尾货详情页面
-  weihuoDetails: function () {
+  weihuoDetails: function (e) {
+    var obj=e.currentTarget.dataset.item
+    var weihuo = JSON.stringify(obj);
     wx.navigateTo({
-      url: '../weihuoDetails/weihuoDetails',
+      url: '../weihuoDetails/weihuoDetails?obj='+weihuo,
     })
   }
 

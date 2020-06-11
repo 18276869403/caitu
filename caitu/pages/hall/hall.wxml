@@ -65,22 +65,22 @@
   </view>
 
   <!-- 求购 -->
-  <view class="myqg" wx:for="{{qiugou}}" wx:key="index" wx:if="{{navid1==1}}" bindtap="qiugouDetails">
+  <view class="myqg" wx:for="{{qiugou}}" wx:key="index" wx:if="{{navid1==1}}" bindtap="qiugouDetails" data-item="{{item}}">
     <view class="qiugou">
       <view class="ming hengxiang">
-        <view class="qg_name section yincang">{{item.name}}</view>
-        <view class="daojishi1" wx:if="{{item.type==1}}">
+        <view class="qg_name section yincang">{{item.itemvalue_dictText}}</view>
+        <view class="daojishi1" wx:if="{{item.startoks_dictText=='进行中'}}">
           <image src="../image/daojishi.png" class="djs_img"></image>
           进行中
         </view>
-        <view class="pipeizhong" wx:if="{{item.type==2}}">
+        <view class="pipeizhong" wx:if="{{item.startoks_dictText=='匹配中'}}">
           <image src="../image/shenhe.png" class="djs_img"></image>
           匹配中
         </view>
-        <!-- <view class="yiwancheng" wx:if="{{item.type==3}}">
+        <view class="yiwancheng" wx:if="{{item.startoks_dictText=='已完成'}}">
           <image src="../image/wancheng.png" class="djs_img"></image>
           已完成
-        </view> -->
+        </view>
         <image src="../image/lengyuan.png" class="xz"></image>
         <image src="../image/xingzhuang.png" class="ly"></image>
       </view>
@@ -90,50 +90,50 @@
             <view>
               <image src="../image/bianhao.png" class="xq_img"></image>
             </view>
-            <view class="xq_name yincang">编号：{{item.bianhao}}</view>
+            <view class="xq_name yincang">编号：{{item.backup1}}</view>
           </view>
           <view class="bianh hengxiang">
             <view>
               <image src="../image/guige.png" class="xq_img"></image>
             </view>
-            <view class="xq_name yincang">规格：{{item.guige}}</view>
+            <view class="xq_name yincang">规格：厚{{item.thickness}}/宽{{item.width}}</view>
           </view>
           <view class="bianh hengxiang">
             <view>
               <image src="../image/xinceng.png" class="xq_img"></image>
             </view>
-            <view class="xq_name yincang">锌层：{{item.xinceng}}</view>
+            <view class="xq_name yincang">锌层：{{item.zinclayer}}</view>
           </view>
           <view class="bianh hengxiang">
             <view>
               <image src="../image/yanse.png" class="xq_img"></image>
             </view>
-            <view class="xq_name yincang">颜色：{{item.yanse}}</view>
+            <view class="xq_name yincang">颜色：{{item.color}}</view>
           </view>
           <!-- 求购与拼购不同之处 -->
           <view class="bianh hengxiang" wx:if="{{navid1==3}}">
             <view>
               <image src="../image/jiezhi.png" class="xq_img"></image>
             </view>
-            <view class="xq_name yincang">截止：{{item.jiezhi}}</view>
+            <view class="xq_name yincang">截止：{{item.deadline}}</view>
           </view>
           <view class="bianh hengxiang">
             <view>
               <image src="../image/didian.png" class="xq_img"></image>
             </view>
-            <view class="xq_name yincang">地点：{{item.didian}}</view>
+            <view class="xq_name yincang">地点：{{item.areaOneid_dictText}}/{{item.areaTwoId_dictText}}</view>
           </view>
           <view class="bianh hengxiang">
             <view>
               <image src="../image/biao.png" class="xq_img"></image>
             </view>
-            <view class="xq_name yincang">时间：{{item.shijian}}</view>
+            <view class="xq_name yincang">时间：{{item.createtime}}</view>
           </view>
         </view>
         <view class="shu hengxiang"></view>
         <view class="liang">
           <view class="liang_b">
-            <text>1200</text>吨</view>
+            <text>{{item.tonnage}}</text>吨</view>
         </view>
       </view>
     </view>
@@ -141,46 +141,46 @@
 
   <!-- 尾货 -->
   <view class="weihuo" wx:if="{{navid1==2}}">
-    <view class="kc_bk" wx:for="{{kucun}}" wx:key="index" bindtap="weihuoDetails">
+    <view class="kc_bk" wx:for="{{kucun}}" wx:key="index" bindtap="weihuoDetails" data-item="{{item}}">
       <view class="kc_pm hengxiang">
-        <view class="pm_name yincang">品名：{{item.name}}</view>
-        <view class="pm_sl">12吨</view>
+        <view class="pm_name yincang">品名：{{item.theNameId_dictText}}</view>
+        <view class="pm_sl">{{item.tonnage}}吨</view>
       </view>
       <image src="../image/lengyuan.png" class="bk_img"></image>
       <view class="kc_bkx hengxiang">
         <view class="bk_xy">
-          <image src="{{item.url}}" class="bkx_img"></image>
+          <image src="{{viewUrl}}{{item.upUrl[0]}}" class="bkx_img"></image>
         </view>
         <view class="kc_cs">
           <view class="zcs hengxiang">
             <view>
               <image src="../image/bianhao.png" class="cs_img"></image>
             </view>
-            <view class="yincang">编号：{{item.bianhao}}</view>
+            <view class="yincang">编号：{{item.backup1}}</view>
           </view>
           <view class="zcs hengxiang">
             <view>
               <image src="../image/guige.png" class="cs_img"></image>
             </view>
-            <view class="yincang">规格：{{item.guige}}</view>
+            <view class="yincang">规格：厚{{item.thickness}}/宽{{item.width}}</view>
           </view>
           <view class="zcs hengxiang">
             <view>
               <image src="../image/yanse.png" class="cs_img"></image>
             </view>
-            <view class="yincang">颜色：{{item.yanse}}</view>
+            <view class="yincang">颜色：{{item.color}}</view>
           </view>
           <view class="zcs hengxiang">
             <view>
               <image src="../image/xinceng.png" class="cs_img"></image>
             </view>
-            <view class="yincang">锌层：{{item.xinceng}}</view>
+            <view class="yincang">锌层：{{item.zincLayer}}</view>
           </view>
           <view class="zcs hengxiang">
             <view>
               <image src="../image/cangku.png" class="cs_img"></image>
             </view>
-            <view class="yincang">仓库：{{item.didian}}</view>
+            <view class="yincang">仓库：{{item.areaOneId_dictText}}/{{item.areaTwoId_dictText}}</view>
           </view>
         </view>
       </view>
@@ -188,22 +188,22 @@
   </view>
   <!-- 拼购 -->
 
-  <view class="myqg" wx:for="{{qiugou}}" wx:key="index" wx:if="{{navid1==3}}" bindtap="pingouDetails">
+  <view class="myqg" wx:for="{{pingou}}" wx:key="index" wx:if="{{navid1==3}}" bindtap="pingouDetails" data-item="{{item}}">
     <view class="qiugou">
       <view class="ming hengxiang">
-        <view class="qg_name section yincang">{{item.name}}</view>
-        <view class="daojishi1" wx:if="{{item.type==1}}">
+        <view class="qg_name section yincang">{{item.itemvalue_dictText}}</view>
+        <view class="daojishi1" wx:if="{{item.startoks_dictText=='进行中'}}">
           <image src="../image/daojishi.png" class="djs_img"></image>
           进行中
         </view>
-        <view class="pipeizhong" wx:if="{{item.type==2}}">
+        <view class="pipeizhong" wx:if="{{item.startoks_dictText=='匹配中'}}">
           <image src="../image/shenhe.png" class="djs_img"></image>
           匹配中
         </view>
-        <!-- <view class="yiwancheng" wx:if="{{item.type==3}}">
+        <view class="yiwancheng" wx:if="{{item.startoks_dictText=='已完成'}}">
           <image src="../image/wancheng.png" class="djs_img"></image>
           已完成
-        </view> -->
+        </view>
         <image src="../image/lengyuan.png" class="xz"></image>
         <image src="../image/xingzhuang.png" class="ly"></image>
       </view>
@@ -213,50 +213,50 @@
             <view>
               <image src="../image/bianhao.png" class="xq_img"></image>
             </view>
-            <view class="xq_name yincang">编号：{{item.bianhao}}</view>
+            <view class="xq_name yincang">编号：{{item.backup1}}</view>
           </view>
           <view class="bianh hengxiang">
             <view>
               <image src="../image/guige.png" class="xq_img"></image>
             </view>
-            <view class="xq_name yincang">规格：{{item.guige}}</view>
+            <view class="xq_name yincang">规格：厚{{item.thickness}}/宽{{item.width}}</view>
           </view>
           <view class="bianh hengxiang">
             <view>
               <image src="../image/xinceng.png" class="xq_img"></image>
             </view>
-            <view class="xq_name yincang">锌层：{{item.xinceng}}</view>
+            <view class="xq_name yincang">锌层：{{item.zinclayer}}</view>
           </view>
           <view class="bianh hengxiang">
             <view>
               <image src="../image/yanse.png" class="xq_img"></image>
             </view>
-            <view class="xq_name yincang">颜色：{{item.yanse}}</view>
+            <view class="xq_name yincang">颜色：{{item.color}}</view>
           </view>
           <!-- 求购与拼购不同之处 -->
           <view class="bianh hengxiang">
             <view>
               <image src="../image/jiezhi.png" class="xq_img"></image>
             </view>
-            <view class="xq_name yincang">截止：{{item.jiezhi}}</view>
+            <view class="xq_name yincang">截止：{{item.deadline}}</view>
           </view>
           <view class="bianh hengxiang">
             <view>
               <image src="../image/didian.png" class="xq_img"></image>
             </view>
-            <view class="xq_name yincang">地点：{{item.didian}}</view>
+            <view class="xq_name yincang">地点：{{item.areaOneid_dictText}}/{{item.areaTwoId_dictText}}</view>
           </view>
           <view class="bianh hengxiang">
             <view>
               <image src="../image/biao.png" class="xq_img"></image>
             </view>
-            <view class="xq_name yincang">时间：{{item.shijian}}</view>
+            <view class="xq_name yincang">时间：{{item.createtime}}</view>
           </view>
         </view>
         <view class="shu hengxiang"></view>
         <view class="liang">
           <view class="liang_b">
-            <text>1200</text>吨</view>
+            <text>{{item.tonnage}}</text>吨</view>
         </view>
       </view>
     </view>
