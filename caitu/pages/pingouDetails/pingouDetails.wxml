@@ -143,7 +143,7 @@
   </view>
    <!-- entertype==1,为从我的页面进入 -->
    <!-- 生成海报 -->
-  <view class="ck" wx:if="{{entertype==1&&type!=2}}">
+  <view class="ck" wx:if="{{pgxx.startoks_dictText=='已完成'}}">
     <image src="../image/haibao.png" class="ck_img" bindtap="post"></image>
   </view>
    <!-- 选择匹配 -->
@@ -152,7 +152,7 @@
   </view>
   <!-- entertype==0,为从首页进入 -->
   <!-- 我要参与 -->
-  <view class="ck"  wx:if="{{pgxx.wxUserId!=wxID}}">
+  <view class="ck"  wx:if="{{pgxx.wxUserId!=wxID&&pgxx.startoks_dictText!='已完成'}}">
     <image src="../image/woyaocanyu.png" class="ck_img" bindtap="joinPingou"></image>
   </view>
 </view>
