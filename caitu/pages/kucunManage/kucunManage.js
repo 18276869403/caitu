@@ -147,7 +147,7 @@ Page({
           }
           var multiArray = "multiArray[1]"
           var index = "index.gangchang"
-          var multiIndex = [indexs,that.data.index.pingming]
+          var multiIndex = [indexs,0]
           console.log(multiIndex)
           that.setData({
             [multiArray]:names,
