@@ -117,7 +117,7 @@ Page({
         if (res.result != null) {
           that.data.weihuolist=res.result.records
           for(var i=0;i<res.result.records.length;i++){
-            that.data.weihuolist[i].upUrl= that.data.viewUrl + that.data.weihuolist[i].upUrl
+            that.data.weihuolist[i].upUrl= that.data.weihuolist[i].upUrl.split(',')
           }
           console.log(that.data.weihuolist)
           that.setData({
