@@ -24,6 +24,8 @@ const shi = baseUrl + "rabbit/index/shi"
 const stell = baseUrl + "rabbit/index/stell"
 // 品名
 const theName = baseUrl + "rabbit/index/theName"
+// 库存管理
+const common = baseUrl + "rabbit/lobby/common"
 
  module.exports = {
    baseUrl:baseUrl,
@@ -38,5 +40,6 @@ const theName = baseUrl + "rabbit/index/theName"
    shengFen:shengFen,
    shi:shi,
    stell:stell,
-   theName:theName
+   theName:theName,
+   common:common
  } 
