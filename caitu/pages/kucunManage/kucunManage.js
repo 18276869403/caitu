@@ -11,7 +11,8 @@ Page({
     cangkuindex: 0,
     multiIndex: [0, 0],
     region: ['省', '市', '区'],
-    index:{gangchang:0,pingming:0},
+    setwidth:[],
+    sethoudu:[],
     // multiArray: [['钢厂', '广州宝钢', '上海宝钢', '浙江宝钢'], ['彩涂品名', '镀铝锌卷', '镀铝锌彩涂卷', '镀铝锌']],
     multiArray: [[],[]],
     multilist:[],
@@ -31,7 +32,11 @@ Page({
     multiArray1: [],
     cityList:[],
     city:[],
-    multiIndex1: [0, 0]
+    multiIndex1: [0, 0],
+    qiangdu:['选择强度'],
+    youqi:['选择油漆'],
+    xinceng:['选择锌层'],
+    yanse:['选择颜色']
   },
 
   /**
@@ -139,17 +144,6 @@ Page({
     })
   },
 
-  // 宽度最小值限制
-  minReg:function(e){
-    if(e.detail.value<400){
-      wx.showToast({
-        title: '宽度不能低于400',
-        icon:'none',
-        duration:2000
-      })
-      return
-    }
-  },
   // 跳转到成功页面
   kucunSubmitSuccess: function() {
     wx.navigateTo({
@@ -169,13 +163,12 @@ Page({
   bindMultiPickerChange:function(e){
     console.log("携带参数",e.detail.value)
     var that = this
-    var multiName = that.data.multiArray[e.detail.value[0]]
+    var multiName = that.data.multiArray[that.data.multiIndex[0]]
     var data = {
-      steelName:multiName[that.data.multiIndex[0]],
+      steelName:multiName[e.detail.value[0]],
       theNameId:that.data.multilist[e.detail.value[1]].theNameId
     }
-    console.log(data)
-    this.getWidth(data)
+    that.getWidth(data)
   },
   // 宽度
   getWidth(data){
@@ -183,7 +176,33 @@ Page({
     qingqiu.get("common",data,function(res){
       console.log(res)
       if(res.success == true){
-
+        var qiangdu = that.data.qiangdu
+        var youqi = that.data.youqi
+        var xinceng = that.data.xinceng
+        var yanse = that.data.yanse
+        for(let obj of res.result.densityList){
+          qiangdu.push(obj.context)
+        }
+        for(let obj of res.result.printList){
+          youqi.push(obj.context)
+        }
+        for(let obj of res.result.zinclayerList){
+          xinceng.push(obj.context)
+        }
+        for(let obj of res.result.colorList){
+          yanse.push(obj.context)
+        }
+        that.setData({
+          getWidth:res.result.width,
+          qiangdu:qiangdu,
+          youqi:youqi,
+          xinceng:xinceng,
+          yanse:yanse
+        })
+        console.log(qiangdu)
+        console.log(youqi)
+        console.log(xinceng)
+        console.log(yanse)
       }
     })
   },
@@ -237,7 +256,17 @@ Page({
       kuandu: e.detail.value
     })
   },
-
+  // 宽度最小值限制
+  minReg:function(e){
+    if(e.detail.value<this.data.width[0]&&e.detail.value>this.data.width[1]){
+      wx.showToast({
+        title: '宽度在'+this.data.width[0] + "~" + this.data.width[1],
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+  },
   // 彩涂品名
   caituChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
