@@ -8,19 +8,24 @@ Page({
    * 页面的初始数据
    */
   data: {
+    zheng:[],
+    mohou:[],
+    bei:[],
+    qiangduarray:[],
+    youqiarray:[],
+    xincengarray:[],
+    yansearray:[],
+    setwidth:[],
+    sethoudu:[],
     multiIndex: [0, 0],
-    youqiindex: 0,
-    youqiarray: ['选择油漆', 'PE', 'PE1', 'PE2', 'PE3'],
-    zhengmianindex: 0,
-    zhengmianarray: ['选择正面膜厚', '正面25μ', '正面25μ1', '正面25μ2', '正面25μ3'],
-    beimianindex: 0,
-    beimianarray: ['选择背面膜厚', '选择膜厚', '选择膜厚1', '选择膜厚2', '选择膜厚3'],
-    xincengindex: 0,
-    xincengarray: ['选择锌层', '100', '1001', '1002', '1003'],
-    yanseindex: 0,
-    yansearray: ['选择颜色', '标准', '标准1', '标准2', '标准3'],
-    qiangduindex: 0,
-    qiangduarray: ['选择强度', 'TS250GD+AZ', 'TS250GD+AZ1', 'TS250GD+AZ11', 'TS250GD+AZ111'],
+    qiangdu:['选择强度'],
+    qiangduindex:0,
+    youqi:['选择油漆'],
+    youqiindex:0,
+    xinceng:['选择锌层'],
+    xincengindex:0,
+    yanse:['选择颜色'],
+    yanseindex:0,
     multiArray: [],
     multilist:[],
     setwidth:[],
@@ -39,8 +44,8 @@ Page({
       var list = res.result;
       var names = [];
       for(let obj of list){
-        if(names.length<0){
-          // names.push("钢厂")
+        if(names.length == 0){
+          names.push("选择钢厂")
         }
         names.push(obj.name);
       }
@@ -52,6 +57,9 @@ Page({
         if(res.success == true){
           var names = []
           for(let obj of res.result.records){
+            if(names.length == 0){
+              names.push("选择品名")
+            }
             names.push(obj.theNameId_dictText)
           }
           var multiArray = "multiArray[1]"
@@ -66,12 +74,15 @@ Page({
   bindMultiPickerChange:function(e){
     console.log("携带参数",e.detail.value)
     var that = this
-    var multiName = that.data.multiArray[e.detail.value[0]]
+    var multiName = that.data.multiArray[[0]]
     var data = {
-      steelName:multiName[that.data.multiIndex[0]],
-      theNameId:that.data.multilist[e.detail.value[1]].theNameId
+      steelName:multiName[e.detail.value[0]],
+      theNameId:that.data.multilist[e.detail.value[1]-1].theNameId
     }
-    console.log(data)
+    that.setData({
+      gangchangname:data.steelName,
+      pinmingid:data.theNameId
+    })
     that.getWidth(data)
   },
   // 宽度
@@ -80,8 +91,33 @@ Page({
     qingqiu.get("common",data,function(res){
       console.log(res)
       if(res.success == true){
+        var qiangdu = that.data.qiangdu
+        var youqi = that.data.youqi
+        var xinceng = that.data.xinceng
+        var yanse = that.data.yanse
+        for(let obj of res.result.densityList){
+          qiangdu.push(obj.context)
+        }
+        for(let obj of res.result.printList){
+          youqi.push(obj.context)
+        }
+        for(let obj of res.result.zinclayerList){
+          xinceng.push(obj.context)
+        }
+        for(let obj of res.result.colorList){
+          yanse.push(obj.context)
+        }
         that.setData({
-          getWidth:res.result.width
+          setwidth:res.result.width,
+          sethoudu:res.result.thickness,
+          qiangdu:qiangdu,
+          youqi:youqi,
+          xinceng:xinceng,
+          yanse:yanse,
+          qiangduarray:res.result.densityList,
+          youqiarray:res.result.printList,
+          xincengarray:res.result.zinclayerList,
+          yansearray:res.result.colorList
         })
       }
     })
@@ -89,11 +125,11 @@ Page({
   // 选择钢厂
   bindMultiPickerColumnChange: function(e) {
     var that = this
-    console.log('picker发送选择改变，携带值为', e.detail)
     var column = e.detail.column
     var indexs = e.detail.value;
     //picker发送选择改变，携带值为 (2) [1, 0]
     if(column == 0){
+      console.log(that.data.multiArray[0][indexs])
       var data = {
         name:that.data.multiArray[0][indexs]
       }
@@ -102,11 +138,13 @@ Page({
         if(res.success == true){
           var names = []
           for(let obj of res.result.records){
+            if(names.length == 0){
+              names.push('选择品名')
+            }
             names.push(obj.theNameId_dictText)
           }
           var multiArray = "multiArray[1]"
           var multiIndex = [indexs,0]
-          console.log(multiIndex)
           that.setData({
             [multiArray]:names,
             multiIndex:multiIndex,
@@ -149,9 +187,48 @@ Page({
   },
   // 油漆
   youqiChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      youqiindex: e.detail.value
+    var that = this
+    if(!that.data.youqi.length>0){
+      wx.showToast({
+        title: '请选择钢厂',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(e.detail.value == 0){
+      wx.showToast({
+        title: '请选择油漆',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    var data = {
+      subentryId:that.data.youqiarray[e.detail.value-1].subentryId,
+      text:that.data.youqi[e.detail.value]
+    }
+    qingqiu.get("commonPrint",data,function(res){
+      console.log(res)
+      if(res.success == true){
+        var mohou = [res.result.zhengId]
+        mohou.push(res.result.beiId)
+        console.log(mohou)
+        that.setData({
+          mohou:mohou,
+          zheng:res.result.zheng,
+          bei:res.result.bei
+        })
+        this.setData({
+          youqiindex: e.detail.value
+        })
+      }else{
+        wx.showToast({
+          title: res.message,
+          icon:'none',
+          duration:2000
+        })
+      }
     })
   },
   // 正面

@@ -1,4 +1,7 @@
 // pages/mykucun/mykucun.js
+const app = getApp()
+const qingqiu = require('../../utils/request.js')
+
 Page({
 
   /**
@@ -10,49 +13,59 @@ Page({
     nav: [{
         id: 1,
         name: '待审核',
+        type:[0,0]
       },
       {
         id: 2,
         name: '已上架',
+        type:[0,1]
       },
       {
         id: 3,
         name: '未上架',
+        type:[1,0]
       }
     ],
-    kucun: [{
-        id: 1,
-        weight: '12',
-        yanse: '标准',
-        name: '镀锌板彩涂卷',
-        guige: '厚0.6/宽100',
-        xinceng: '100',
-        cangku: '浙江/杭州'
-      },
-      {
-        id: 2,
-        yanse: '标准',
-        weight: '12',
-        name: '镀锌板彩涂卷',
-        guige: '厚0.6/宽100',
-        xinceng: '100',
-        cangku: '浙江/杭州'
-      }
-    ]
+    kucun: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.mykucun()
   },
-  // 获取数据
-  getInfo(){
+
+  // 我的库存判断
+  mykucun(){
+    var that = this
+    var data = {
+      id:app.globalData.wxid
+      // putaway
+    }
     qingqiu.get("inventoryList",data,function(res){
-      
+      console.log(res)
+      if(res.success == true){
+        that.setData({
+          kucun:res.result.records
+        })
+      }else{
+        wx.showToast({
+          title: res.message,
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
     })
   },
+
+  // // 获取数据
+  // getInfo(){
+  //   qingqiu.get("inventoryList",data,function(res){
+      
+  //   })
+  // },
   // 跳转到库存管理页面
   kucunManage: function () {
     wx.navigateTo({
