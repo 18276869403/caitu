@@ -151,39 +151,39 @@ Page({
     qingqiu.get("common",data,function(res){
       console.log(res)
       if(res.success == true){
-        var qiangdu = that.data.qiangdu
-        var youqi = that.data.youqi
-        var xinceng = that.data.xinceng
-        var yanse = that.data.yanse
+        that.data.qiangdu=['选择强度']
+        that.data.youqi=['选择油漆']
+        that.data.xinceng=['选择锌层']
+        that.data.yanse=['选择颜色']
         that.data.pricingPrice=res.result.steel.pricingPrice
         for(let obj of res.result.densityList){
           that.data.qiangdu.push(obj.context)
         }
         for(let obj of res.result.printList){
-          youqi.push(obj.context)
+          that.data.youqi.push(obj.context)
           that.data.subentryId.push(obj.subentryId)
         }
         for(let obj of res.result.zinclayerList){
           that.data.xinceng.push(obj.context)
         }
         for(let obj of res.result.colorList){
-          yanse.push(obj.context)
+          that.data.yanse.push(obj.context)
         }
         that.setData({
           getWidth:res.result.width,
           setwidth:res.result.width,
           sethoudu:res.result.thickness,
-          qiangdu:qiangdu,
-          youqi:youqi,
-          xinceng:xinceng,
-          yanse:yanse,
+          qiangdu:that.data.qiangdu,
+          youqi:that.data.youqi,
+          xinceng:that.data.xinceng,
+          yanse:that.data.yanse,
           pricingPrice:that.data.pricingPrice
         })
         console.log(res.result.width)
-        console.log(qiangdu)
-        console.log(youqi)
-        console.log(xinceng)
-        console.log(yanse)
+        console.log(that.data.qiangdu)
+        console.log(that.data.youqi)
+        console.log(that.data.xinceng)
+        console.log(that.data.yanse)
       }
     })
   },
@@ -279,6 +279,14 @@ Page({
   // 跳转到发布成功页面
   submitSuccess: function() {
     var that = this
+    if(that.data.indexs==''||that.data.shiid==''||that.data.multiName[that.data.multiIndex[0]]==''||that.data.thenameid==''||that.data.houdu==''||that.data.kuandu==''||that.data.youqi[that.data.youqiindex]==''||that.data.zhengmianindex==''||that.data.beimianindex==''||that.data.tuceng==''||that.data.xinceng[that.data.xincengindex]==''||that.data.yanse[that.data.yanseindex]==''||that.data.qiangdu[that.data.qiangduindex]==''||that.data.dunwei==''){
+      wx.showToast({
+        title: '有未填写项！',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     var data={
       wxUserId:app.globalData.wxid,
       areaOneId:that.data.indexs,
