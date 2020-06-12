@@ -3,7 +3,7 @@ const baseUrl = "http://111.231.51.198:9045/jeecg-boot/"
  // 我的页面-我的拼购
  const groupByingList = baseUrl + "rabbit/mine/groupByingList"
  // 我的页面-我的计算历史
- const calculateList = baseUrl + "rabbit/mine/calculateList"
+ const calculateList = baseUrl + "rabbit/mine/calculateList" 
 // 首页面-拼购
 const initGroupBuying = baseUrl + "rabbit/index/initGroupBuying"
 // 首页面-资讯

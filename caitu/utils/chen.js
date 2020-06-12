@@ -1,7 +1,7 @@
  // const api = require('../utils/config.js')
  const baseUrl = "http://111.231.51.198:9045/jeecg-boot/" 
  // 我的页面-个人信息查询
- const my = baseUrl + "rabbit/mine/my"
+ const my = baseUrl + "rabbit/mine/my" 
  // 登陆
  const getKeyInfo = baseUrl + "rabbit/wxLogin/getKeyInfo"
  // 我的页面-个人信息修改
