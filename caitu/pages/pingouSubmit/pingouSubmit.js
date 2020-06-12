@@ -30,6 +30,8 @@ Page({
     city:[],
     multiArray1: [],
     multiIndex1: [0, 0],
+    setwidth:[],
+    sethoudu:[],
 
     qiangdu:['选择强度'],
     youqi:['选择油漆'],
@@ -169,12 +171,15 @@ Page({
         }
         that.setData({
           getWidth:res.result.width,
+          setwidth:res.result.width,
+          sethoudu:res.result.thickness,
           qiangdu:qiangdu,
           youqi:youqi,
           xinceng:xinceng,
           yanse:yanse,
           pricingPrice:that.data.pricingPrice
         })
+        console.log(res.result.width)
         console.log(qiangdu)
         console.log(youqi)
         console.log(xinceng)
@@ -292,7 +297,6 @@ Page({
       tonnage:that.data.dunwei,
     }
     console.log(data)
-    debugger
     qingqiu.get("faBuPinGou",data,function(res){
       if(res.success == true){
         console.log(res)
@@ -366,12 +370,73 @@ Page({
       houdu: e.detail.value
     })
   },
+  retReg:function(e){
+    if(!this.data.sethoudu.length>0){
+      wx.showToast({
+        title: '请选择钢厂',
+        icon:'none',
+        duration:2000
+      })
+      this.setData({
+        houdu:''
+      })
+      return
+    }
+    var minhoudu = this.data.sethoudu[0]
+    var maxhoudu = this.data.sethoudu[1]
+    if(e.detail.value>minhoudu&&e.detail.value<maxhoudu){
+      this.setData({
+        houdu:e.detail.value
+      })
+    }else{
+      wx.showToast({
+        title: '数值范围在'+minhoudu+'~'+maxhoudu,
+        icon:'none',
+        duration:2000
+      })
+      this.setData({
+        houdu:''
+      })
+    }
+  },
   // 宽度
   kuandu: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       kuandu: e.detail.value
     })
+  },
+  // 宽度最小值限制
+  minReg:function(e){
+    if(!this.data.setwidth.length>0){
+      wx.showToast({
+        title: '请选择钢厂',
+        icon:'none',
+        duration:2000
+      })
+      this.setData({
+        kuandu:''
+      })
+      return
+    }
+    var width = Number(e.detail.value) 
+    var minwidth = Number(this.data.setwidth[0])
+    var maxwidth = Number(this.data.setwidth[1])
+    if(width > minwidth && width < maxwidth){
+      this.setData({
+        kuandu: e.detail.value
+      })
+    }else{
+      this.setData({
+        kuandu: ''
+      })
+      wx.showToast({
+        title: '宽度在'+minwidth + "~" + maxwidth+'之间',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
   },
   // 油漆
   youqiChange: function(e) {
