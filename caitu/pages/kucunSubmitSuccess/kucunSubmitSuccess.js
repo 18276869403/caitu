@@ -15,6 +15,13 @@ Page({
 
   },
 
+  // 去上架
+  gokuncun:function(){
+    wx.navigateTo({
+      url: '../mykucunpandian/mykucunpandian',
+    })
+  }
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
