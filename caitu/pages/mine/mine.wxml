@@ -113,7 +113,7 @@
       <view>
         <image src="../image/guwen.png" class="tanchuang-img"></image>
       </view>
-      <view class="tanchuang-text">{{wxUser.departIds_dictText}}</view>
+      <view class="tanchuang-text">{{wxUser.departName}}</view>
       <view class="tanchuang-name">{{wxUser.realname}}</view>
       <view class="tanchuang-button" bindtap="phonecall">
         {{wxUser.distrPhone}}
