@@ -299,14 +299,14 @@ Page({
   // 跳转到发布成功页面
   submitSuccess: function() {
     var that = this
-    if(that.data.indexs==''||that.data.shiid==''||that.data.multiName[that.data.multiIndex[0]]==''||that.data.thenameid==''||that.data.houdu==''||that.data.kuandu==''||that.data.youqi[that.data.youqiindex]==''||that.data.zhengmianindex==''||that.data.beimianindex==''||that.data.tuceng==''||that.data.xinceng[that.data.xincengindex]==''||that.data.yanse[that.data.yanseindex]==''||that.data.qiangdu[that.data.qiangduindex]==''||that.data.dunwei==''||that.data.date==''){
-      wx.showToast({
-        title: '有未填写项！',
-        icon:'none',
-        duration:2000
-      })
-      return
-    }
+    // if(that.data.indexs==''||that.data.shiid==''||that.data.multiName[that.data.multiIndex[0]]==''||that.data.thenameid==''||that.data.houdu==''||that.data.kuandu==''||that.data.youqi[that.data.youqiindex]==''||that.data.zhengmianindex==''||that.data.beimianindex==''||that.data.tuceng==''||that.data.xinceng[that.data.xincengindex]==''||that.data.yanse[that.data.yanseindex]==''||that.data.qiangdu[that.data.qiangduindex]==''||that.data.dunwei==''||that.data.date==''){
+    //   wx.showToast({
+    //     title: '有未填写项！',
+    //     icon:'none',
+    //     duration:2000
+    //   })
+    //   return
+    // }
     var data={
       wxUserId:app.globalData.wxid,
       areaOneId:that.data.indexs,
@@ -414,7 +414,7 @@ Page({
     }
     var minhoudu = this.data.sethoudu[0]
     var maxhoudu = this.data.sethoudu[1]
-    if(e.detail.value>minhoudu&&e.detail.value<maxhoudu){
+    if(e.detail.value>minhoudu&&e.detail.value<maxhoudu||e.detail.value<minhoudu&&e.detail.value>maxhoudu){
       this.setData({
         houdu:e.detail.value
       })
@@ -452,7 +452,7 @@ Page({
     var width = Number(e.detail.value) 
     var minwidth = Number(this.data.setwidth[0])
     var maxwidth = Number(this.data.setwidth[1])
-    if(width > minwidth && width < maxwidth){
+    if(width > minwidth && width < maxwidth||width < minwidth && width > maxwidth){
       this.setData({
         kuandu: e.detail.value
       })
