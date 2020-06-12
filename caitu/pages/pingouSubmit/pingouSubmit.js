@@ -303,7 +303,7 @@ Page({
   // 跳转到发布成功页面
   submitSuccess: function() {
     var that = this
-    if(that.data.indexs==''||that.data.shiid==''||that.data.multiNames[that.data.shid]==''||that.data.thenameid==''||that.data.houdu==''||that.data.kuandu==''||that.data.youqi[that.data.youqiindex]==''||that.data.zhengmianindex==''||that.data.beimianindex==''||that.data.tuceng==''||that.data.xinceng[that.data.xincengindex]==''||that.data.yanse[that.data.yanseindex]==''||that.data.qiangdu[that.data.qiangduindex]==''||that.data.dunwei==''||that.data.date==''){
+    if(that.data.indexs==''||that.data.shiid==''||that.data.multiName==''||that.data.thenameid==''||that.data.houdu==''||that.data.kuandu==''||that.data.youqi[that.data.youqiindex]==''||that.data.zhengmianindex==''||that.data.beimianindex==''||that.data.tuceng==''||that.data.xinceng[that.data.xincengindex]==''||that.data.yanse[that.data.yanseindex]==''||that.data.qiangdu[that.data.qiangduindex]==''||that.data.dunwei==''||that.data.date==''){
       wx.showToast({
         title: '有未填写项！',
         icon:'none',
@@ -315,7 +315,7 @@ Page({
       wxUserId:app.globalData.wxid,
       areaOneId:that.data.indexs,
       areaTwoId:that.data.shiid,
-      steelName:that.data.multiNames[that.data.shid],
+      steelName:that.data.multiName,
       theNameId:that.data.thenameid,
       thickness:that.data.houdu,
       width:that.data.kuandu,
