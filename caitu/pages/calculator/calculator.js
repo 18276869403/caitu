@@ -1,11 +1,14 @@
 // pages/calculator/calculator.js
+const app = getApp()
+const qingqiu = require('../../utils/request.js')
+const api = require('../../utils/config.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    multiIndex: [0, 0, 0],
+    multiIndex: [0, 0],
     youqiindex: 0,
     youqiarray: ['选择油漆', 'PE', 'PE1', 'PE2', 'PE3'],
     zhengmianindex: 0,
@@ -18,25 +21,106 @@ Page({
     yansearray: ['选择颜色', '标准', '标准1', '标准2', '标准3'],
     qiangduindex: 0,
     qiangduarray: ['选择强度', 'TS250GD+AZ', 'TS250GD+AZ1', 'TS250GD+AZ11', 'TS250GD+AZ111'],
-    multiArray: [['钢厂', '广州宝钢', '上海宝钢', '浙江宝钢'], ['彩涂品名','镀铝锌卷', '镀铝锌彩涂卷', '镀铝锌']],
-   
+    multiArray: [],
+    multilist:[],
+    setwidth:[],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
- 
+    this.getstell()
   },
-
-
-
   // 钢厂
-  bindMultiPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      multiIndex: e.detail.value
+  getstell(){
+    var that = this
+    qingqiu.get("stell",null,function(res){
+      var list = res.result;
+      var names = [];
+      for(let obj of list){
+        if(names.length<0){
+          // names.push("钢厂")
+        }
+        names.push(obj.name);
+      }
+      var multiArray=[names,[]];
+      that.setData({
+        multiArray:multiArray
+      })
+      qingqiu.get("theName",{name:'宝山钢铁'},function(res){
+        if(res.success == true){
+          var names = []
+          for(let obj of res.result.records){
+            names.push(obj.theNameId_dictText)
+          }
+          var multiArray = "multiArray[1]"
+          that.setData({
+            [multiArray]:names,
+            multilist:res.result.records
+          })
+        }
+      })
     })
+  },
+  bindMultiPickerChange:function(e){
+    console.log("携带参数",e.detail.value)
+    var that = this
+    var multiName = that.data.multiArray[e.detail.value[0]]
+    var data = {
+      steelName:multiName[that.data.multiIndex[0]],
+      theNameId:that.data.multilist[e.detail.value[1]].theNameId
+    }
+    console.log(data)
+    that.getWidth(data)
+  },
+  // 宽度
+  getWidth(data){
+    var that = this
+    qingqiu.get("common",data,function(res){
+      console.log(res)
+      if(res.success == true){
+        that.setData({
+          getWidth:res.result.width
+        })
+      }
+    })
+  },
+  // 选择钢厂
+  bindMultiPickerColumnChange: function(e) {
+    var that = this
+    console.log('picker发送选择改变，携带值为', e.detail)
+    var column = e.detail.column
+    var indexs = e.detail.value;
+    //picker发送选择改变，携带值为 (2) [1, 0]
+    if(column == 0){
+      var data = {
+        name:that.data.multiArray[0][indexs]
+      }
+      qingqiu.get("theName",data,function(res){
+        console.log(res)
+        if(res.success == true){
+          var names = []
+          for(let obj of res.result.records){
+            names.push(obj.theNameId_dictText)
+          }
+          var multiArray = "multiArray[1]"
+          var multiIndex = [indexs,0]
+          console.log(multiIndex)
+          that.setData({
+            [multiArray]:names,
+            multiIndex:multiIndex,
+            multilist:res.result.records
+          })
+        }
+      })
+    }else{
+      var multiIndex = "multiIndex[1]"
+      this.setData({
+        [multiIndex]: indexs,
+      })
+      console.log(that.data.multiIndex)
+    }
   },
   // 厚度
   houdu: function (e) {
@@ -52,7 +136,17 @@ Page({
       kuandu: e.detail.value
     })
   },
-
+  // 宽度最小值限制
+  minReg:function(e){
+    if(e.detail.value<this.data.width[0]&&e.detail.value>this.data.width[1]){
+      wx.showToast({
+        title: '宽度在'+this.data.width[0] + "~" + this.data.width[1],
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+  },
   // 油漆
   youqiChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)

@@ -112,6 +112,19 @@ Page({
     console.log(data)
     qingqiu.get("modifyMy",data,function(res){
       console.log(res)
+      if(res.success == true){
+        wx.showToast({
+          title: '操作成功',
+          icon:'none',
+          duration:2000
+        })
+      }else{
+        wx.showToast({
+          title: res.message,
+          icon:'none',
+          duration:2000
+        })
+      }
     },'put')
   },
 

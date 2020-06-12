@@ -9,7 +9,7 @@
       等待上架
     </view>
     <!-- 去上架 -->
-    <view class="success-button">
+    <view class="success-button" bindtap="gokuncun"> 
       <image src="../image/qushangjia.png" class="anniu-img"></image>
     </view>
   </view>

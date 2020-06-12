@@ -100,7 +100,7 @@
           </view>
           <view class="list-right">
             <image src="../image/jinxingzhong.png" class="list-right-jinxingzhong" wx:if="{{item.startoks===0}}"></image>
-            <image src="../image/jinxingzhong.png" class="list-right-jinxingzhong" wx:if="{{item.startoks===1}}"></image>
+            <image src="../image/shouyepipeizhong.png" class="list-right-jinxingzhong" wx:if="{{item.startoks===1}}"></image>
             <view class="list-right-title">
               品名：{{item.itemvalue_dictText}}
             </view>

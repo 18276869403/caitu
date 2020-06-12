@@ -26,6 +26,12 @@ const stell = baseUrl + "rabbit/index/stell"
 const theName = baseUrl + "rabbit/index/theName"
 // 库存管理
 const common = baseUrl + "rabbit/lobby/common"
+// 油漆
+const commonPrint = baseUrl + "rabbit/lobby/commonPrint"
+// 膜厚
+const commonMoHou = baseUrl + "rabbit/lobby/commonMoHou"
+// 发布尾货
+const faBuWeiHuo = baseUrl + "rabbit/lobby/faBuWeiHuo"
 
  module.exports = {
    baseUrl:baseUrl,
@@ -41,5 +47,8 @@ const common = baseUrl + "rabbit/lobby/common"
    shi:shi,
    stell:stell,
    theName:theName,
-   common:common
+   common:common,
+   commonPrint:commonPrint,
+   commonMoHou:commonMoHou,
+   faBuWeiHuo:faBuWeiHuo
  } 
