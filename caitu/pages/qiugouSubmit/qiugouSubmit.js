@@ -56,7 +56,9 @@ Page({
     shiid:'',
     pipeilist:[],
     zheng:'',
-    mohou:''
+    mohou:'',
+    multiNames:[],
+    shid:''
   },
 
   /**
@@ -146,7 +148,9 @@ Page({
   bindMultiPickersChangetwos(e){
     console.log("携带参数",e.detail.value)
     var that = this
+    that.data.shid=e.detail.value[1]
     that.data.multiName = that.data.multiArray[0][e.detail.value[0]]
+    that.data.multiNames = that.data.multiArray[e.detail.value[1]]
     that.data.thenameid = that.data.multilist[e.detail.value[1]-1].theNameId
     var data = {
       steelName:that.data.multiName,
@@ -334,19 +338,19 @@ Page({
   // 跳转到发布成功页面
   submitSuccess: function() {
     var that = this
-    // if(that.data.indexs==''||that.data.shiid==''||that.data.multiName[that.data.multiIndex[0]]==''||that.data.thenameid==''||that.data.houdu==''||that.data.kuandu==''||that.data.youqi[that.data.youqiindex]==''||that.data.zhengmianindex==''||that.data.beimianindex==''||that.data.tuceng==''||that.data.xinceng[that.data.xincengindex]==''||that.data.yanse[that.data.yanseindex]==''||that.data.qiangdu[that.data.qiangduindex]==''||that.data.dunwei==''){
-    //   wx.showToast({
-    //     title: '有未填写项！',
-    //     icon:'none',
-    //     duration:2000
-    //   })
-    //   return
-    // }
+    if(that.data.indexs==''||that.data.shiid==''||that.data.multiNames[that.data.shid]==''||that.data.thenameid==''||that.data.houdu==''||that.data.kuandu==''||that.data.youqi[that.data.youqiindex]==''||that.data.zhengmianindex==''||that.data.beimianindex==''||that.data.tuceng==''||that.data.xinceng[that.data.xincengindex]==''||that.data.yanse[that.data.yanseindex]==''||that.data.qiangdu[that.data.qiangduindex]==''||that.data.dunwei==''){
+      wx.showToast({
+        title: '有未填写项！',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     var data={
       wxUserId:app.globalData.wxid,
       areaOneId:that.data.indexs,
       areaTwoId:that.data.shiid,
-      steelName:that.data.multiName,
+      steelName:that.data.multiNames[that.data.shid],
       theNameId:that.data.thenameid,
       thickness:that.data.houdu,
       width:that.data.kuandu,
