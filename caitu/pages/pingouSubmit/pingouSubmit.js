@@ -60,7 +60,9 @@ Page({
     bei:'',
     multiNames:[],
     zheng:'',
-    shid:''
+    shid:'',
+    zhou:'',
+    bhou:''
   },
 
   /**
@@ -232,16 +234,16 @@ Page({
     console.log(data)
     qingqiu.get("commonPrint",data,function(res){
       if(res.success == true){
-        var zhou=res.result.zheng
-        var bhou=res.result.bei
+        that.data.zhou=res.result.zheng
+        that.data.bhou=res.result.bei
         that.data.zid=res.result.zhengId
         that.data.bid=res.result.beiId
         that.setData({
-          zhou:zhou,
-          bhou:bhou,
+          zhou:that.data.zhou,
+          bhou:that.data.bhou,
         })
-        console.log(zhou)
-        console.log(bhou)
+        console.log(that.data.zhou)
+        console.log(that.data.bhou)
         var data = {
           zheng:that.data.zhengmianindex,
           bei:that.data.beimianindex,
@@ -508,7 +510,7 @@ Page({
   // 正面焦点
   zhengfocus:function(){
     var that = this
-    if(!that.data.youqi.length>0){
+    if(!that.data.setwidth.length>0){
       wx.showToast({
         title: '请选择钢厂',
         icon:'none',
@@ -516,17 +518,17 @@ Page({
       })
       return
     }
-    // if(!that.data.mohou.length > 0){
-    //   wx.showToast({
-    //     title: '请选择油漆',
-    //     icon:'none',
-    //     duration:2000
-    //   })
-    //   that.setData({
-    //     zhengvalue:''
-    //   })
-    //   return
-    // }
+    if(!that.data.youqi.length > 0){
+      wx.showToast({
+        title: '请选择油漆',
+        icon:'none',
+        duration:2000
+      })
+      that.setData({
+        zhengmianChange:''
+      })
+      return
+    }
   },
   // 正面
   zhengmianChange: function(e) {
@@ -549,22 +551,11 @@ Page({
     var that = this
     var value = e.detail.value
     console.log(that.data.zheng)
-    var minvalue = that.data.zheng[0]
-    var maxvalue = that.data.zheng[1]
-    if(value>=minvalue&&value<=maxvalue){
-      var index = 0
-      var data = {
-        zheng:value,
-        zhengId:that.data.mohou[index],
-        bei:that.data.beivalue==''?0:that.data.zhengvalue
-      }
-      qingqiu.get("commonMoHou",data,function(res){
-        if(res.success == true){
-          that.setData({
-            zhengvalue:value,
-            tuceng:res.message
-          })
-        }
+    var minvalue = that.data.zhou[0]
+    var maxvalue = that.data.zhou[1]
+    if(value>minvalue&&value<maxvalue||value<minvalue&&value>maxvalue){
+      that.setData({
+        zhengmianChange: e.detail.value
       })
     }else{
       wx.showToast({
@@ -573,7 +564,7 @@ Page({
         duration:2000
       })
       that.setData({
-        zhengvalue:''
+        zhengmianChange:''
       })
       return
     }
@@ -581,7 +572,7 @@ Page({
   // 背面焦点
   beifocus:function(){
     var that = this
-    if(!that.data.youqi.length>0){
+    if(!that.data.setwidth.length>0){
       wx.showToast({
         title: '请选择钢厂',
         icon:'none',
@@ -589,17 +580,17 @@ Page({
       })
       return
     }
-    // if(!that.data.mohou.length > 0){
-    //   wx.showToast({
-    //     title: '请选择油漆',
-    //     icon:'none',
-    //     duration:2000
-    //   })
-    //   that.setData({
-    //     zhengvalue:''
-    //   })
-    //   return
-    // }
+    if(!that.data.youqi.length > 0){
+      wx.showToast({
+        title: '请选择油漆',
+        icon:'none',
+        duration:2000
+      })
+      that.setData({
+        beimianChange:''
+      })
+      return
+    }
   },
   // 背面
   beimianChange: function(e) {
@@ -621,23 +612,12 @@ Page({
   beimian:function(e){
     var that = this
     var value = e.detail.value
-    var minvalue = that.data.bei[0]
-    var maxvalue = that.data.bei[1]
+    var minvalue = that.data.bhou[0]
+    var maxvalue = that.data.bhou[1]
     console.log(that.data.bei)
-    if(value>=minvalue&&value<=maxvalue){
-      var index = 1
-      var data = {
-        zheng:that.data.zhengvalue==''?0:that.data.zhengvalue,
-        beiId:that.data.mohou[index],
-        bei:value
-      }
-      qingqiu.get("commonMoHou",data,function(res){
-        if(res.success == true){
-          that.setData({
-            beivalue:value,
-            tuceng:res.message
-          })
-        }
+    if(value>minvalue&&value<maxvalue||value<minvalue&&value>maxvalue){
+      that.setData({
+        beimianChange:e.detail.value
       })
     }else{
       wx.showToast({
@@ -646,7 +626,7 @@ Page({
         duration:2000
       })
       that.setData({
-        zhengvalue:''
+        beimianChange:''
       })
       return
     }
