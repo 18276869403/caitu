@@ -118,11 +118,13 @@ Page({
         console.log(res)
         if(res.success == true){
             var cityname = []
+            var cityid = []
             for(let obj of res.result){
               if(cityname.length==0){
                 cityname.push("选择市")
               }
               cityname.push(obj.itemText)
+              cityid.push(obj.itemValue)
             }
             var multiArray1 = "multiArray1[1]"
             var multiIndex1 = [indexs,0]
@@ -144,10 +146,10 @@ Page({
   bindMultiPickersChangetwos(e){
     console.log("携带参数",e.detail.value)
     var that = this
-    that.data.multiName = that.data.multiArray[e.detail.value[0]]
+    that.data.multiName = that.data.multiArray[0][e.detail.value[0]]
     that.data.thenameid = that.data.multilist[e.detail.value[1]-1].theNameId
     var data = {
-      steelName:that.data.multiName[that.data.multiIndex[0]],
+      steelName:that.data.multiName,
       theNameId:that.data.thenameid
     }
     console.log(data)
@@ -167,7 +169,7 @@ Page({
         // var youqi = that.data.youqi
         // var xinceng = that.data.xinceng
         // var yanse = that.data.yanse
-        that.data.pricingPrice=res.result.steel==null?'':res.result.steel.pricingPrice
+       that.data.pricingPrice=res.result.steel==null?'':res.result.steel.pricingPrice
         for(let obj of res.result.densityList){
           that.data.qiangdu.push(obj.context)
         }
@@ -332,19 +334,19 @@ Page({
   // 跳转到发布成功页面
   submitSuccess: function() {
     var that = this
-    if(that.data.indexs==''||that.data.shiid==''||that.data.multiName[that.data.multiIndex[0]]==''||that.data.thenameid==''||that.data.houdu==''||that.data.kuandu==''||that.data.youqi[that.data.youqiindex]==''||that.data.zhengmianindex==''||that.data.beimianindex==''||that.data.tuceng==''||that.data.xinceng[that.data.xincengindex]==''||that.data.yanse[that.data.yanseindex]==''||that.data.qiangdu[that.data.qiangduindex]==''||that.data.dunwei==''){
-      wx.showToast({
-        title: '有未填写项！',
-        icon:'none',
-        duration:2000
-      })
-      return
-    }
+    // if(that.data.indexs==''||that.data.shiid==''||that.data.multiName[that.data.multiIndex[0]]==''||that.data.thenameid==''||that.data.houdu==''||that.data.kuandu==''||that.data.youqi[that.data.youqiindex]==''||that.data.zhengmianindex==''||that.data.beimianindex==''||that.data.tuceng==''||that.data.xinceng[that.data.xincengindex]==''||that.data.yanse[that.data.yanseindex]==''||that.data.qiangdu[that.data.qiangduindex]==''||that.data.dunwei==''){
+    //   wx.showToast({
+    //     title: '有未填写项！',
+    //     icon:'none',
+    //     duration:2000
+    //   })
+    //   return
+    // }
     var data={
       wxUserId:app.globalData.wxid,
       areaOneId:that.data.indexs,
       areaTwoId:that.data.shiid,
-      steelName:that.data.multiName[that.data.multiIndex[0]],
+      steelName:that.data.multiName,
       theNameId:that.data.thenameid,
       thickness:that.data.houdu,
       width:that.data.kuandu,
@@ -392,7 +394,7 @@ Page({
     }
     var minhoudu = this.data.sethoudu[0]
     var maxhoudu = this.data.sethoudu[1]
-    if(e.detail.value>minhoudu&&e.detail.value<maxhoudu){
+    if(e.detail.value>minhoudu&&e.detail.value<maxhoudu||e.detail.value<minhoudu&&e.detail.value>maxhoudu){
       this.setData({
         houdu:e.detail.value
       })
@@ -430,7 +432,7 @@ minReg:function(e){
   var width = Number(e.detail.value) 
   var minwidth = Number(this.data.setwidth[0])
   var maxwidth = Number(this.data.setwidth[1])
-  if(width > minwidth && width < maxwidth){
+  if(width > minwidth && width < maxwidth||width < minwidth && width > maxwidth){
     this.setData({
       kuandu: e.detail.value
     })
