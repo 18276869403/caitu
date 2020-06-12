@@ -112,7 +112,7 @@ Page({
     var column = e.detail.column
     var that = this
     if(column == 0){
-      that.data.indexs=that.data.cityList[indexs].itemValue
+      that.data.indexs=that.data.cityList[indexs-1].itemValue
       var data = {
         pid:that.data.cityList[indexs-1].itemValue
       }

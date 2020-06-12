@@ -114,7 +114,7 @@ Page({
     var column = e.detail.column
     var that = this
     if(column == 0){
-      that.data.indexs=that.data.cityList[indexs].itemValue
+      that.data.indexs=that.data.cityList[indexs-1].itemValue
       // that.data.shiid=indexs
       var data = {
         pid:that.data.cityList[indexs-1].itemValue
@@ -620,7 +620,6 @@ Page({
   // 背面失去焦点
   beimian:function(e){
     var that = this
-    debugger
     var value = e.detail.value
     var minvalue = that.data.bei[0]
     var maxvalue = that.data.bei[1]
