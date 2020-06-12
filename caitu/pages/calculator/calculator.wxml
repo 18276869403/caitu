@@ -81,7 +81,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">涂层</view>
       <view class="content-item-content1"> 
-      <input type="digit" placeholder="被动涂层" placeholder-class="placeholder" class="shurukuang" value="{{tuceng}}" bindinput="tuceng"></input>
+      <input type="digit" placeholder="被动涂层" placeholder-class="placeholder" class="shurukuang" value="{{tuceng}}" disabled bindinput="tuceng"></input>
       </view>
       <!-- <view class="content-item-right">
         <image src="../image/jinru.png" class="enter-img"></image>

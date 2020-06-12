@@ -157,7 +157,8 @@ Page({
     })
   },
   // 跳转到我的库存盘点页面
-  mykucunpandian: function() {
+  mykucunpandian: function(e) {
+    var type = e.currentTarget.type
     if(app.globalData.wxState == 0){
       wx.showToast({
         title: '认证审核中...',
@@ -166,7 +167,7 @@ Page({
       })
     }else{
       wx.navigateTo({
-        url: '../mykucunpandian/mykucunpandian',
+        url: '../mykucunpandian/mykucunpandian?type='+type,
       })
     }
   },

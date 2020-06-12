@@ -43,9 +43,13 @@ Page({
     qingqiu.get("stell",null,function(res){
       var list = res.result;
       var names = [];
+      var pnames = [];
       for(let obj of list){
         if(names.length == 0){
           names.push("选择钢厂")
+        }
+        if(pnames.length == 0){
+          pnames.push("选择品名")
         }
         names.push(obj.name);
       }
@@ -55,16 +59,12 @@ Page({
       })
       qingqiu.get("theName",{name:'宝山钢铁'},function(res){
         if(res.success == true){
-          var names = []
           for(let obj of res.result.records){
-            if(names.length == 0){
-              names.push("选择品名")
-            }
-            names.push(obj.theNameId_dictText)
+            pnames.push(obj.theNameId_dictText)
           }
           var multiArray = "multiArray[1]"
           that.setData({
-            [multiArray]:names,
+            [multiArray]:pnames,
             multilist:res.result.records
           })
         }
@@ -125,10 +125,9 @@ Page({
   // 选择钢厂
   bindMultiPickerColumnChange: function(e) {
     var that = this
-    var column = e.detail.column
     var indexs = e.detail.value;
     //picker发送选择改变，携带值为 (2) [1, 0]
-    if(column == 0){
+    if(e.detail.column == 0){
       console.log(that.data.multiArray[0][indexs])
       var data = {
         name:that.data.multiArray[0][indexs]
@@ -176,34 +175,34 @@ Page({
   },
   // 宽度最小值限制
   minReg:function(e){
-    if(e.detail.value<this.data.width[0]&&e.detail.value>this.data.width[1]){
-      wx.showToast({
-        title: '宽度在'+this.data.width[0] + "~" + this.data.width[1],
-        icon:'none',
-        duration:2000
-      })
-      return
-    }
+    // if(e.detail.value<this.data.width[0]&&e.detail.value>this.data.width[1]){
+    //   wx.showToast({
+    //     title: '宽度在'+this.data.width[0] + "~" + this.data.width[1],
+    //     icon:'none',
+    //     duration:2000
+    //   })
+    //   return
+    // }
   },
   // 油漆
   youqiChange: function(e) {
     var that = this
-    if(!that.data.youqi.length>0){
-      wx.showToast({
-        title: '请选择钢厂',
-        icon:'none',
-        duration:2000
-      })
-      return
-    }
-    if(e.detail.value == 0){
-      wx.showToast({
-        title: '请选择油漆',
-        icon:'none',
-        duration:2000
-      })
-      return
-    }
+    // if(!that.data.youqi.length>0){
+    //   wx.showToast({
+    //     title: '请选择钢厂',
+    //     icon:'none',
+    //     duration:2000
+    //   })
+    //   return
+    // }
+    // if(e.detail.value == 0){
+    //   wx.showToast({
+    //     title: '请选择油漆',
+    //     icon:'none',
+    //     duration:2000
+    //   })
+    //   return
+    // }
     var data = {
       subentryId:that.data.youqiarray[e.detail.value-1].subentryId,
       text:that.data.youqi[e.detail.value]
@@ -223,12 +222,15 @@ Page({
           youqiindex: e.detail.value
         })
       }else{
-        wx.showToast({
-          title: res.message,
-          icon:'none',
-          duration:2000
-        })
+        // wx.showToast({
+        //   title: res.message,
+        //   icon:'none',
+        //   duration:2000
+        // })
       }
+    })
+    this.setData({
+      youqiindex: e.detail.value
     })
   },
   // 正面

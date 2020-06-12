@@ -16,9 +16,10 @@ Page({
   },
 
   // 去上架
-  gokuncun:function(){
+  gokuncun:function(e){
+    var type = e.currentTarget.dataset.type
     wx.navigateTo({
-      url: '../mykucunpandian/mykucunpandian',
+      url: '../mykucunpandian/mykucunpandian?type='+type,
     })
   },
 

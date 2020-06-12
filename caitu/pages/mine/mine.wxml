@@ -53,7 +53,7 @@
         <image src="../image/myenter.png" class="enter-img"></image>
       </view>
     </view>
-    <view class="bottom-list hengxiang" bindtap="mykucunpandian">
+    <view class="bottom-list hengxiang" bindtap="mykucunpandian" data-type="0">
       <view class="bottom-list-left">
         <image src="../image/kucunpandian.png" class="ziliao-img"></image>
       </view>
