@@ -44,7 +44,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">厚度</view>
       <view class="content-item-content1">
-        <input type="digit" placeholder="请输入厚度" placeholder-class="placeholder" class="shurukuang" value="{{houdu}}" bindinput="houdu" bindblur="retReg"></input>
+        <input type="digit" placeholder="请输入厚度" placeholder-class="placeholder" class="shurukuang" bindfocus="houdufocus" value="{{houdu}}" bindinput="houdu" bindblur="retReg"></input>
       </view>
       <!-- <view class="content-item-right">
         <image src="../image/jinru.png" class="enter-img"></image>
@@ -53,7 +53,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">宽度</view>
       <view class="content-item-content1">
-        <input type="digit" placeholder="请输入宽度" placeholder-class="placeholder" class="shurukuang" value="{{kuandu}}" bindinput="kuandu" bindblur="minReg"></input>
+        <input type="digit" placeholder="请输入宽度" placeholder-class="placeholder" class="shurukuang" bindfocus="widthfocus" value="{{kuandu}}" bindinput="kuandu" bindblur="minReg"></input>
       </view>
       <!-- <view class="content-item-right">
         <image src="../image/jinru.png" class="enter-img"></image>
@@ -75,7 +75,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">正面膜厚</view>
       <view class="content-item-content1">
-        <input type="digit" placeholder="请输入正面膜厚" placeholder-class="placeholder" class="shurukuang" value="{{zhengmianChange}}" bindinput="zhengmianChange"></input>
+        <input type="digit" placeholder="请输入正面膜厚" placeholder-class="placeholder" class="shurukuang" value="{{zhengvalue}}" bindinput="zhengmianChange" bindfocus="zhengfocus" bindblur="zhengmian"></input>
       </view>
       <view class="content-item-right">
         <image src="../image/fuhao.png" class="fuhao-img"></image>
@@ -85,7 +85,7 @@
       <view class="content-item-left">背面膜厚
       </view>
       <view class="content-item-content">
-        <input type="digit" placeholder="请输入背面膜厚" placeholder-class="placeholder" class="shurukuang" value="{{beimianChange}}" bindinput="beimianChange"></input>
+        <input type="digit" placeholder="请输入背面膜厚" placeholder-class="placeholder" class="shurukuang" value="{{beivalue}}" bindinput="beimianChange" bindfocus="beifocus" bindblur="beimian"></input>
       </view>
       <view class="content-item-right">
         <image src="../image/fuhao.png" class="fuhao-img"></image>
@@ -94,7 +94,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">涂层</view>
       <view class="content-item-content1">
-        <input type="digit" placeholder="被动涂层" placeholder-class="placeholder" class="shurukuang" value="{{tuceng}}" bindinput="tuceng"></input>
+        <input type="digit" placeholder="被动涂层" placeholder-class="placeholder" class="shurukuang" value="{{tuceng}}" disabled bindinput="tuceng"></input>
       </view>
       <!-- <view class="content-item-right">
         <image src="../image/jinru.png" class="enter-img"></image>
@@ -152,11 +152,11 @@
       上传图片
     </view>
     <view class="content-item-img">
-      <view class="content-item-img-item">
-        <image src="../image/top.png" class="shanchuan-img"></image>
-        <image src="../image/guwenguanbi.png" class="guanbi-img"></image>
+      <view class="content-item-img-item" wx:for="{{bindimg}}">
+        <image src="{{item}}" class="shanchuan-img"></image>
+        <image src="../image/guwenguanbi.png" class="guanbi-img" data-index="{{index}}" bindtap="delimg"></image>
       </view>
-      <view class="content-item-img-item">
+      <view class="content-item-img-item" bindtap="imgUpload" wx:if="{{bindimg.length<3}}">
         <image src="../image/shangchuan.png" class="shanchuan-img"></image>
       </view>
     </view>

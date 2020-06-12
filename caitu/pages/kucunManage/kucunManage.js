@@ -2,43 +2,44 @@
 const app = getApp()
 const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
+const utils = require('../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    viewUrl:api.viewUrl,
+    gangchangname:'',
+    pinmingid:'',
     cangkuindex: 0,
     multiIndex: [0, 0],
-    region: ['省', '市', '区'],
+    yanseindex:0,
     setwidth:[],
     sethoudu:[],
-    // multiArray: [['钢厂', '广州宝钢', '上海宝钢', '浙江宝钢'], ['彩涂品名', '镀铝锌卷', '镀铝锌彩涂卷', '镀铝锌']],
     multiArray: [[],[]],
     multilist:[],
-    youqiindex: 0,
-    youqiarray: ['选择油漆', 'PE', 'PE1', 'PE2', 'PE3'],
-    zhengmianindex: 0,
-    zhengmianarray: ['选择正面膜厚', '正面25μ', '正面25μ1', '正面25μ2', '正面25μ3'],
-    beimianindex: 0,
-    beimianarray: ['选择背面膜厚', '选择膜厚', '选择膜厚1', '选择膜厚2', '选择膜厚3'],
-    xincengindex: 0,
-    xincengarray: ['选择锌层', '100', '1001', '1002', '1003'],
-    yanseindex: 0,
-    yansearray: ['选择颜色', '标准', '标准1', '标准2', '标准3'],
-    qiangduindex: 0,
-    qiangduarray: ['选择强度', 'TS250GD+AZ', 'TS250GD+AZ1', 'TS250GD+AZ11', 'TS250GD+AZ111'],
     // 省市
     multiArray1: [],
     cityList:[],
     city:[],
     multiIndex1: [0, 0],
     qiangdu:['选择强度'],
+    qiangduindex:0,
     youqi:['选择油漆'],
+    youqiindex:0,
     xinceng:['选择锌层'],
+    xincengindex:0,
     yanse:['选择颜色'],
+    yanseindex:0,
     zheng:[],
-    fan:[]
+    fan:[],
+    mohou:[],
+    zhengvalue:'',
+    beivalue:'',
+    tuceng:'',
+    imglist:[],
+    bindimg:[],
   },
 
   /**
@@ -57,6 +58,9 @@ Page({
       if(res.success == true){
         var names = []
         for(let obj of res.result){
+          if(names.length==0){
+            names.push("选择省")
+          }
           names.push(obj.itemText)
         }
         var multiArray1 = [names,[]]
@@ -68,6 +72,9 @@ Page({
           if(res.success == true){
             var cityname = []
             for(let obj of res.result){
+              if(cityname.length==0){
+                cityname.push("选择市")
+              }
               cityname.push(obj.itemText)
             }
             var multiArray1 = "multiArray1[1]"
@@ -88,13 +95,16 @@ Page({
     var that = this
     if(column == 0){
       var data = {
-        pid:that.data.cityList[indexs].itemValue
+        pid:that.data.cityList[indexs-1].itemValue
       }
       qingqiu.get("shi",data,function(res){
         console.log(res)
         if(res.success == true){
             var cityname = []
             for(let obj of res.result){
+              if(cityname.length==0){
+                cityname.push("选择市")
+              }
               cityname.push(obj.itemText)
             }
             var multiArray1 = "multiArray1[1]"
@@ -120,8 +130,8 @@ Page({
       var list = res.result;
       var names = [];
       for(let obj of list){
-        if(names.length<0){
-          // names.push("钢厂")
+        if(names.length==0){
+          names.push("选择钢厂")
         }
         names.push(obj.name);
       }
@@ -133,7 +143,9 @@ Page({
         if(res.success == true){
           var names = []
           for(let obj of res.result.records){
-            // if
+            if(names.length==0){
+              names.push("选择品名")
+            }
             names.push(obj.theNameId_dictText)
           }
           var multiArray = "multiArray[1]"
@@ -148,9 +160,72 @@ Page({
 
   // 跳转到成功页面
   kucunSubmitSuccess: function() {
-    wx.navigateTo({
-      url: '../kucunSubmitSuccess/kucunSubmitSuccess',
-    })
+    var that = this
+    var cityindex = that.data.multiIndex1
+    var citylist = that.data.cityList
+    var city = that.data.city
+    console.log(cityindex)
+    console.log(citylist[cityindex[0]-1].itemValue)
+    console.log(city[cityindex[1]-1].itemValue)
+    var youqi = that.data.youqi[that.data.youqiindex]
+    var imgurl = ''
+    for (let obj of that.data.imglist){
+      if(imgurl == ''){
+        imgurl = obj
+      }else{
+        imgurl = imgurl + ',' + obj
+      }
+    }
+    var data = {
+      wxUserId:app.globalData.wxid,
+      areaOneId:citylist[cityindex[0]-1].itemValue,
+      areaTwoId:city[cityindex[1]-1].itemValue,
+      steelName:that.data.gangchangname,
+      theNameId:that.data.pinmingid,
+      thickness:that.data.houdu,
+      width:that.data.kuandu,
+      paint:youqi,
+      front:that.data.zhengvalue,
+      rear:that.data.beivalue,
+      coat:that.data.tuceng,
+      zincLayer:that.data.xinceng[that.data.xincengindex],
+      color:that.data.yanse[that.data.yanseindex],
+      density:that.data.qiangdu[that.data.qiangduindex],
+      tonnage:that.data.dunwei,
+      upUrl:imgurl
+    }
+    console.log(data)
+    var s = utils.yanzheng(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.thickness + ',请输入厚度|'+data.width+',请输入宽度|'+data.paint+',请选择油漆|'+data.front+',请输入正面膜厚|'+data.rear+',请输入背面膜厚|' + data.coat+',请输入涂层|' + data.zincLayer + ',请选择锌层|' + data.color +',请选择强度|'+data.tonnage+',请选择吨数|'+data.upUrl + ',请上传图片')
+    if(s!=0){
+      wx.showToast({
+        title:s,
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    qingqiu.get("faBuWeiHuo",data,function(res){
+      if(res.success == true){
+        wx.showToast({
+          title: '发布成功',
+          icon:'success',
+          duration:2000
+        })
+        setTimeout(function(){
+          wx.navigateTo({
+            url: '../kucunSubmitSuccess/kucunSubmitSuccess',
+          })
+        },1000)
+      }else{
+        wx.showToast({
+          title: res.message,
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
+    },'post')
+    
   },
   // 选择仓库
   regionChange: function (e) {
@@ -163,13 +238,16 @@ Page({
     console.log("携带参数",e.detail)
   },
   bindMultiPickerChange:function(e){
-    console.log("携带参数",e.detail.value)
     var that = this
-    var multiName = that.data.multiArray[that.data.multiIndex[0]]
+    var multiName = that.data.multiArray[[0]]
     var data = {
       steelName:multiName[e.detail.value[0]],
-      theNameId:that.data.multilist[e.detail.value[1]].theNameId
+      theNameId:that.data.multilist[e.detail.value[1]-1].theNameId
     }
+    that.setData({
+      gangchangname:data.steelName,
+      pinmingid:data.theNameId
+    })
     that.getWidth(data)
   },
   // 宽度
@@ -206,10 +284,6 @@ Page({
           xincengarray:res.result.zinclayerList,
           yansearray:res.result.colorList
         })
-        console.log(qiangdu)
-        console.log(youqi)
-        console.log(xinceng)
-        console.log(yanse)
       }
     })
   },
@@ -221,6 +295,7 @@ Page({
     var indexs = e.detail.value;
     //picker发送选择改变，携带值为 (2) [1, 0]
     if(column == 0){
+      console.log(that.data.multiArray[0][indexs])
       var data = {
         name:that.data.multiArray[0][indexs]
       }
@@ -229,11 +304,13 @@ Page({
         if(res.success == true){
           var names = []
           for(let obj of res.result.records){
+            if(names.length == 0){
+              names.push('选择品名')
+            }
             names.push(obj.theNameId_dictText)
           }
           var multiArray = "multiArray[1]"
           var multiIndex = [indexs,0]
-          console.log(multiIndex)
           that.setData({
             [multiArray]:names,
             multiIndex:multiIndex,
@@ -249,13 +326,8 @@ Page({
       console.log(that.data.multiIndex)
     }
   },
-  // 厚度
-  houdu: function(e) {
-    this.setData({
-      houdu: e.detail.value
-    })
-  },
-  retReg:function(e){
+  // 厚度焦点
+  houdufocus:function(){
     if(!this.data.sethoudu.length>0){
       wx.showToast({
         title: '请选择钢厂',
@@ -267,9 +339,17 @@ Page({
       })
       return
     }
+  },
+  // 厚度
+  houdu: function(e) {
+    this.setData({
+      houdu: e.detail.value
+    })
+  },
+  retReg:function(e){
     var minhoudu = this.data.sethoudu[0]
     var maxhoudu = this.data.sethoudu[1]
-    if(e.detail.value>minhoudu&&e.detail.value<maxhoudu){
+    if(e.detail.value>=minhoudu&&e.detail.value<=maxhoudu){
       this.setData({
         houdu:e.detail.value
       })
@@ -284,14 +364,8 @@ Page({
       })
     }
   },
-  // 宽度
-  kuandu: function(e) {
-    this.setData({
-      kuandu: e.detail.value
-    })
-  },
-  // 宽度最小值限制
-  minReg:function(e){
+  // 宽度焦点
+  widthfocus:function(){
     if(!this.data.setwidth.length>0){
       wx.showToast({
         title: '请选择钢厂',
@@ -303,11 +377,19 @@ Page({
       })
       return
     }
-    debugger
+  },
+  // 宽度
+  kuandu: function(e) {
+    this.setData({
+      kuandu: e.detail.value
+    })
+  },
+  // 宽度最小值限制
+  minReg:function(e){
     var width = Number(e.detail.value) 
     var minwidth = Number(this.data.setwidth[0])
     var maxwidth = Number(this.data.setwidth[1])
-    if(width > minwidth && width < maxwidth){
+    if(width >= minwidth && width <= maxwidth){
       this.setData({
         kuandu: e.detail.value
       })
@@ -332,8 +414,15 @@ Page({
   },
   // 油漆
   youqiChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     var that = this
+    if(!that.data.youqi.length>0){
+      wx.showToast({
+        title: '请选择钢厂',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     if(e.detail.value == 0){
       wx.showToast({
         title: '请选择油漆',
@@ -347,8 +436,13 @@ Page({
       text:that.data.youqi[e.detail.value]
     }
     qingqiu.get("commonPrint",data,function(res){
+      console.log(res)
       if(res.success == true){
+        var mohou = [res.result.zhengId]
+        mohou.push(res.result.beiId)
+        console.log(mohou)
         that.setData({
+          mohou:mohou,
           zheng:res.result.zheng,
           bei:res.result.bei
         })
@@ -358,23 +452,135 @@ Page({
       youqiindex: e.detail.value
     })
   },
+  // 正面焦点
+  zhengfocus:function(){
+    var that = this
+    if(!that.data.youqi.length>0){
+      wx.showToast({
+        title: '请选择钢厂',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(!that.data.mohou.length > 0){
+      wx.showToast({
+        title: '请选择油漆',
+        icon:'none',
+        duration:2000
+      })
+      that.setData({
+        zhengvalue:''
+      })
+      return
+    }
+  },
   // 正面
   zhengmianChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      zhengmianindex: e.detail.value
+      zhengvalue: e.detail.value
     })
+  },
+  // 正面失去焦点
+  zhengmian:function(e){
+    var that = this
+    var value = e.detail.value
+    console.log(that.data.zheng)
+    var minvalue = that.data.zheng[0]
+    var maxvalue = that.data.zheng[1]
+    if(value>=minvalue&&value<=maxvalue){
+      var index = 0
+      var data = {
+        zheng:value,
+        zhengId:that.data.mohou[index],
+        bei:that.data.beivalue==''?0:that.data.zhengvalue
+      }
+      qingqiu.get("commonMoHou",data,function(res){
+        if(res.success == true){
+          that.setData({
+            zhengvalue:value,
+            tuceng:res.message
+          })
+        }
+      })
+    }else{
+      wx.showToast({
+        title: '数值在'+minvalue+"~"+maxvalue,
+        icon:'none',
+        duration:2000
+      })
+      that.setData({
+        zhengvalue:''
+      })
+      return
+    }
+  },
+  // 背面焦点
+  beifocus:function(){
+    var that = this
+    if(!that.data.youqi.length>0){
+      wx.showToast({
+        title: '请选择钢厂',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(!that.data.mohou.length > 0){
+      wx.showToast({
+        title: '请选择油漆',
+        icon:'none',
+        duration:2000
+      })
+      that.setData({
+        zhengvalue:''
+      })
+      return
+    }
   },
   // 背面
   beimianChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      beimianindex: e.detail.value
+      beivalue: e.detail.value
     })
+  },
+  // 背面失去焦点
+  beimian:function(e){
+    var that = this
+    var value = e.detail.value
+    var minvalue = that.data.bei[0]
+    var maxvalue = that.data.bei[1]
+    console.log(that.data.bei)
+    if(value>=minvalue&&value<=maxvalue){
+      var index = 1
+      var data = {
+        zheng:that.data.zhengvalue==''?0:that.data.zhengvalue,
+        beiId:that.data.mohou[index],
+        bei:value
+      }
+      qingqiu.get("commonMoHou",data,function(res){
+        if(res.success == true){
+          that.setData({
+            beivalue:value,
+            tuceng:res.message
+          })
+        }
+      })
+    }else{
+      wx.showToast({
+        title: '数值在'+minvalue+"~"+maxvalue,
+        icon:'none',
+        duration:2000
+      })
+      that.setData({
+        zhengvalue:''
+      })
+      return
+    }
   },
   // 涂层
   tuceng: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       tuceng: e.detail.value
     })
@@ -407,4 +613,61 @@ Page({
       dunwei: e.detail.value
     })
   },
+  // 图片上传
+  imgUpload:function(){
+    var that = this
+    var bindimg = []
+    wx.chooseImage({
+      sizeType:3,
+      sourceType:['compressed'],
+      sourceType:['album', 'camera'],
+      success:function(res){
+        console.log(res)
+        var tempFilePaths = res.tempFilePaths
+        for(let i=0;i<tempFilePaths.length;i++){
+          that.setData({
+            bindimg:tempFilePaths
+          })
+          wx.uploadFile({
+            url: api.upload,
+            filePath: tempFilePaths[i],
+            header: {
+              "Content-Type": "multipart/form-data"
+            },
+            formData: {
+              method: 'POST' //请求方式
+            },
+            name: 'file',
+            success:function(re){
+              if(re.statusCode == 200){
+                console.log(re)
+                var data = JSON.parse(re.data)
+                var imglist = that.data.imglist
+                imglist.push(data.message)
+                that.setData({
+                  imglist:imglist
+                })
+                console.log(that.data.imglist)
+              }else{
+                wx.showToast({
+                  title: re.errMsg,
+                  icon:'none',
+                  duration:1000
+                })
+              }
+            }
+          })
+        }
+      }
+    })
+  },
+  // 删除图片
+  delimg:function(e){
+    var imgs = this.data.bindimg
+    var index = e.currentTarget.dataset.index
+    imgs.splice(index,1)
+    this.setData({
+      bindimg:imgs
+    })
+  }
 })
