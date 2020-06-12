@@ -185,6 +185,7 @@ Page({
         console.log(that.data.xinceng)
         console.log(that.data.yanse)
       }
+      
     })
   },
   // 油漆点击获取
