@@ -149,10 +149,10 @@ Page({
   bindMultiPickerChangeone(e){
     console.log("携带参数",e.detail.value)
     var that = this
-    that.data.multiName = that.data.multiArray[e.detail.value[0]]
+    that.data.multiName = that.data.multiArray[0][e.detail.value[0]]
     that.data.thenameid = that.data.multilist[e.detail.value[1]-1].theNameId
     var data = {
-      steelName:that.data.multiName[that.data.multiIndex[0]],
+      steelName:that.data.multiName,
       theNameId:that.data.thenameid
     }
     console.log(data)
@@ -311,7 +311,7 @@ Page({
       wxUserId:app.globalData.wxid,
       areaOneId:that.data.indexs,
       areaTwoId:that.data.shiid,
-      steelName:that.data.multiName[that.data.multiIndex[0]],
+      steelName:that.data.multiName,
       theNameId:that.data.thenameid,
       thickness:that.data.houdu,
       width:that.data.kuandu,
@@ -326,7 +326,6 @@ Page({
       tonnage:that.data.dunwei,
     }
     console.log(data)
-    debugger
     qingqiu.get("faBuPinGou",data,function(res){
       if(res.success == true){
         console.log(res)
@@ -479,7 +478,7 @@ Page({
     that.data.youqiname = that.data.youqi[e.detail.value]
     that.data.youqiid =that.data.subentryId[e.detail.value]
     var data = {
-      subentryId:that.data.youqiarray[e.detail.value-1].subentryId,
+      subentryId:that.data.youqiid,
       text:that.data.youqi[e.detail.value]
     }
     qingqiu.get("commonPrint",data,function(res){
