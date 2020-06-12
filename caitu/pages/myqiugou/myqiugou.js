@@ -24,6 +24,7 @@ Page({
     }
     qingqiu.get("askToBuyList",data,function(res){
       if(res.success == true){
+        that.data.qiugou=res.result.records
         for(let obj of res.result.records){
           var str = obj.id.toString()
           if(str.length < 10){
@@ -33,10 +34,15 @@ Page({
             }
             obj.backup1 = str1 + str
           }
+          for(var i=0;i<res.result.records.length;i++){
+            if(that.data.qiugou[i].createtime!=''&&that.data.qiugou[i].createtime!=null){
+              that.data.qiugou[i].createtime=that.data.qiugou[i].createtime.split(' ')[0]
+            }
+          }
         }
-        console.log(res.result.records)
+        console.log(that.data.qiugou)
         that.setData({
-          qiugou:res.result.records
+          qiugou:that.data.qiugou
         })
       }else{
         wx.showToast({

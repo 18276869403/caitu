@@ -54,6 +54,7 @@ Page({
   getqiugou(){
     var that = this
     qingqiu.get("initAskToBuy",null,function(res){
+      console.log(res)
       if(res.success == true){
         for(let obj of res.result.records){
           var str = obj.id.toString()
