@@ -5,7 +5,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">选择钢厂</view>
       <view class="content-item-content">
-        <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+       <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
           <view class="picker">
             {{multiArray[0][multiIndex[0]]}}-{{multiArray[1][multiIndex[1]]}}
           </view>
@@ -40,7 +40,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">宽度</view>
       <view class="content-item-content1">
-        <input type="digit" placeholder="请输入宽度" placeholder-class="placeholder" value="{{kuandu}}" bindinput="kuandu" class="shurukuang"></input>
+        <input type="digit" placeholder="请输入宽度" placeholder-class="placeholder" value="{{kuandu}}" bindinput="kuandu" class="shurukuang" bindblur="minReg"></input>
       </view>
       <!-- <view class="content-item-right">
         <image src="../image/jinru.png" class="enter-img"></image>
