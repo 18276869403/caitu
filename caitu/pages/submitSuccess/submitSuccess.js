@@ -1,10 +1,13 @@
 // pages/submitSuccess/submitSuccess.js
+
+const api = require('../../utils/config.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    viewUrl:api.viewUrl,
     // 求购发布成功
     type: 0,
     // 拼购发布成功
@@ -32,13 +35,32 @@ Page({
         weight: '120',
         cangku: '浙江'
       }
-    ]
+    ],
+    pipeilist:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {},
+  onLoad: function(options) {
+    this.data.pipeilist=JSON.parse(options.obj)
+    for(let obj of this.data.pipeilist){
+      var str = obj.id.toString()
+      if(str.length < 10){
+        var str1 = ''
+        for(let i=0;i<10-str.length;i++){
+          str1 += 0
+        }
+        obj.backup1 = str1 + str
+      }
+    }
+    for(var i=0;i<this.data.pipeilist.length;i++){
+      this.data.pipeilist[i].upUrl=this.data.pipeilist[i].upUrl.split(',')[0]
+    }
+    this.setData({
+      pipeilist:this.data.pipeilist
+    })
+  },
   // 海报页面
   post: function() {
     wx.navigateTo({

@@ -18,7 +18,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">选择钢厂</view>
       <view class="content-item-content">
-        <picker mode="multiSelector" bindcolumnchange="bindMultiPickersChanges" value="{{multiIndex}}" range="{{multiArray}}">
+        <picker mode="multiSelector" bindchange="bindMultiPickersChangetwos" bindcolumnchange="bindMultiPickersChanges" value="{{multiIndex}}" range="{{multiArray}}">
           <view class="picker">
             {{multiArray[0][multiIndex[0]]}}-{{multiArray[1][multiIndex[1]]}}
           </view>
@@ -31,7 +31,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">厚度</view>
       <view class="content-item-content1">
-        <input type="digit" placeholder="请输入厚度" placeholder-class="placeholder" class="shurukuang" value="{{houdu}}" bindinput="houdu"></input>
+        <input type="digit" placeholder="请输入厚度" placeholder-class="placeholder" class="shurukuang" value="{{houdu}}" bindinput="houdu" bindblur="retReg"></input>
       </view>
       <!-- <view class="content-item-right">
         <image src="../image/jinru.png" class="enter-img"></image>
@@ -40,7 +40,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">宽度</view>
       <view class="content-item-content1">
-        <input type="digit" placeholder="请输入宽度" placeholder-class="placeholder" class="shurukuang" value="{{kuandu}}" bindinput="kuandu"></input>
+        <input type="digit" placeholder="请输入宽度" placeholder-class="placeholder" class="shurukuang" value="{{kuandu}}" bindinput="kuandu" bindblur="minReg"></input>
       </view>
       <!-- <view class="content-item-right">
         <image src="../image/jinru.png" class="enter-img"></image>
@@ -49,9 +49,9 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">油漆</view>
       <view class="content-item-content">
-        <picker bindchange="youqiChange" value="{{youqiindex}}" range="{{youqiarray}}">
+        <picker bindchange="youqiChange" value="{{youqiindex}}" range="{{youqi}}">
           <view class="picker">
-            {{youqiarray[youqiindex]}}
+            {{youqi[youqiindex]}}
           </view>
         </picker>
       </view>
@@ -90,9 +90,9 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">锌层</view>
       <view class="content-item-content">
-        <picker bindchange="xincengChange" value="{{xincengindex}}" range="{{xincengarray}}">
+        <picker bindchange="xincengChange" value="{{xincengindex}}" range="{{xinceng}}">
           <view class="picker">
-            {{xincengarray[xincengindex]}}
+            {{xinceng[xincengindex]}}
           </view>
         </picker>
       </view>
@@ -103,9 +103,9 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">颜色</view>
       <view class="content-item-content">
-        <picker bindchange="yanseChange" value="{{yanseindex}}" range="{{yansearray}}">
+        <picker bindchange="yanseChange" value="{{yanseindex}}" range="{{yanse}}">
           <view class="picker">
-            {{yansearray[yanseindex]}}
+            {{yanse[yanseindex]}}
           </view>
         </picker>
       </view>
@@ -116,9 +116,9 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">强度</view>
       <view class="content-item-content">
-        <picker bindchange="qiangduChange" value="{{qiangduindex}}" range="{{qiangduarray}}">
+        <picker bindchange="qiangduChange" value="{{qiangduindex}}" range="{{qiangdu}}">
           <view class="picker">
-            {{qiangduarray[qiangduindex]}}
+            {{qiangdu[qiangduindex]}}
           </view>
         </picker>
       </view>
