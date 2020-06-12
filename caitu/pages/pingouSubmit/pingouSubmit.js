@@ -560,10 +560,10 @@ Page({
     }else{
       if(minvalue!=undefined&&maxvalue!=undefined){
         wx.showToast({
-        title: '数值在'+minvalue+"~"+maxvalue,
-        icon:'none',
-        duration:2000
-      })
+          title: '数值在'+minvalue+"~"+maxvalue,
+          icon:'none',
+          duration:2000
+        })
       }
       
       that.setData({

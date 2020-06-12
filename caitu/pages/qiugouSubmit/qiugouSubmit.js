@@ -525,7 +525,7 @@ minReg:function(e){
       that.setData({
         zhengmianChange:''
       })
-      if(minvalue!=undefined&&maxvalue!=undefined){
+      if(minvalue!=undefined && maxvalue!=undefined){
         wx.showToast({
           title: '数值在'+minvalue+"~"+maxvalue,
           icon:'none',
