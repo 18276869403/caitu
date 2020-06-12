@@ -133,9 +133,13 @@ Page({
     qingqiu.get("stell",null,function(res){
       var list = res.result;
       var names = [];
+      var pnames = []
       for(let obj of list){
         if(names.length==0){
           names.push("选择钢厂")
+        }
+        if(pnames.length==0){
+          pnames.push("选择品名")
         }
         names.push(obj.name);
       }
@@ -145,16 +149,12 @@ Page({
       })
       qingqiu.get("theName",{name:'宝山钢铁'},function(res){
         if(res.success == true){
-          var names = []
           for(let obj of res.result.records){
-            if(names.length==0){
-              names.push("选择品名")
-            }
-            names.push(obj.theNameId_dictText)
+            pnames.push(obj.theNameId_dictText)
           }
           var multiArray = "multiArray[1]"
           that.setData({
-            [multiArray]:names,
+            [multiArray]:pnames,
             multilist:res.result.records
           })
         }
