@@ -7,7 +7,7 @@
  // 我的页面-个人信息修改
  const modifyMy = baseUrl + "rabbit/mine/modifyMy"
  // 获取首页信息
- const init = baseUrl + "rabbit/index/init"
+ const init = baseUrl + "rabbit/index/init" 
  // 我的求购
 const askToBuyList = baseUrl +  "rabbit/mine/askToBuyList"
 // 我的库存

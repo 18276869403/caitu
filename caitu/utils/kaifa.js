@@ -30,7 +30,7 @@ const faBuQiuGou = baseUrl + "rabbit/lobby/faBuQiuGou"
  module.exports = {
   groupByingList:groupByingList,
   calculateList:calculateList,
-  initGroupBuying:initGroupBuying,
+  initGroupBuying:initGroupBuying, 
   initInformation:initInformation,
   initInventory:initInventory,
   groupBuyingCanYuZhu:groupBuyingCanYuZhu,

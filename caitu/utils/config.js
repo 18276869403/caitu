@@ -9,7 +9,7 @@
  module.exports = {
   //  baseUrl:baseUrl,
    upload:upload,
-   chen:chen,
+   chen:chen,  
    viewUrl:viewUrl,
    kaifa:kaifa
  } 
