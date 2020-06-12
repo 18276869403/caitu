@@ -18,7 +18,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">选择钢厂</view>
       <view class="content-item-content">
-        <picker mode="multiSelector" bindcolumnchange="bindMultiPickersChangetwos" bindchange="bindMultiPickersChanges" value="{{multiIndex}}" range="{{multiArray}}">
+        <picker mode="multiSelector" bindchange="bindMultiPickersChangetwos" bindcolumnchange="bindMultiPickersChanges" value="{{multiIndex}}" range="{{multiArray}}">
           <view class="picker">
             {{multiArray[0][multiIndex[0]]}}-{{multiArray[1][multiIndex[1]]}}
           </view>

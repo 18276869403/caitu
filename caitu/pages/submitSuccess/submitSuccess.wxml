@@ -19,37 +19,37 @@
   <view class="content">
     <view class="content-title">为您匹配以下尾货</view>
     <view class="content-list zongxiang">
-      <view class="content-list-item zongxiang" wx:for="{{weihuoList}}" wx:for-index="index" wx:key="{{item.id}}">
+      <view class="content-list-item zongxiang" wx:for="{{pipeilist}}" wx:for-index="index" wx:key="{{item.id}}">
         <image src="../image/jiaobiao.png" class="jiaobiao-img"></image>
         <view class="list-item-top hengxiang">
-          <view class="item-top-left">{{item.name}}</view>
+          <view class="item-top-left">{{item.theNameId_dictText}}</view>
           <view class="item-top-right">
-            {{item.weight}}吨
+            {{item.tonnage}}吨
           </view>
         </view>
         <view class="list-item-content hengxiang">
           <view class="item-content-left">
-            <image src="../image/top.png" class="goods-img"></image>
+            <image src="{{viewUrl}}{{item.upUrl}}" class="goods-img"></image>
           </view>
           <view class="item-content-right zongxiang">
             <view class="hengxiang content-right-list">
               <view class="content-right-list-img">
                 <image src="../image/bianhao.png" class="bianhao-img"></image>
               </view>
-              <view class="content-right-list-text">编号：{{item.number}}</view>
+              <view class="content-right-list-text">编号：{{item.backup1}}</view>
             </view>
             <view class="hengxiang content-right-list">
               <view class="content-right-list-img">
                 <image src="../image/guige.png" class="bianhao-img"></image>
               </view>
-              <view class="content-right-list-text">规格：{{item.guige}}
+              <view class="content-right-list-text">规格：厚{{item.thickness}}/宽{{item.width}}
               </view>
             </view>
             <view class="hengxiang content-right-list">
               <view class="content-right-list-img">
                 <image src="../image/yanse.png" class="bianhao-img"></image>
               </view>
-              <view class="content-right-list-text">颜色：{{item.yanse}}</view>
+              <view class="content-right-list-text">颜色：{{item.color}}</view>
             </view>
             <view class="hengxiang content-right-list">
               <view class="content-right-list-img">
@@ -61,7 +61,7 @@
               <view class="content-right-list-img">
                 <image src="../image/cangku.png" class="bianhao-img"></image>
               </view>
-              <view class="content-right-list-text">仓库：{{item.cangku}}</view>
+              <view class="content-right-list-text">仓库：{{item.areaOneId_dictText}}/{{item.areaTwoId_dictText}}</view>
             </view>
           </view>
         </view>

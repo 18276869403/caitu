@@ -50,8 +50,9 @@ Page({
     yqid:'',
     tuceng:'',
     dunwei:'',
-    indexs:'',
-    shiid:''
+    indexs:'110000',
+    shiid:'112900',
+    pipeilist:[]
   },
 
   /**
@@ -100,7 +101,6 @@ Page({
     var that = this
     if(column == 0){
       that.data.indexs=that.data.cityList[indexs].itemValue
-      // that.data.shiid=indexs
       var data = {
         pid:that.data.cityList[indexs].itemValue
       }
@@ -108,10 +108,8 @@ Page({
         console.log(res)
         if(res.success == true){
             var cityname = []
-            var cityid = []
             for(let obj of res.result){
               cityname.push(obj.itemText)
-              cityid.push(obj.itemValue)
             }
             var multiArray1 = "multiArray1[1]"
             var multiIndex1 = [indexs,0]
@@ -133,8 +131,8 @@ Page({
   bindMultiPickersChangetwos(e){
     console.log("携带参数",e.detail.value)
     var that = this
-    that.data.multiName = that.data.multiArray[e.detail.value]
-    that.data.thenameid = that.data.multilist[e.detail.value].theNameId
+    that.data.multiName = that.data.multiArray[e.detail.value[0]]
+    that.data.thenameid = that.data.multilist[e.detail.value[1]].theNameId
     var data = {
       steelName:that.data.multiName[that.data.multiIndex[0]],
       theNameId:that.data.thenameid
@@ -327,12 +325,14 @@ Page({
       tonnage:that.data.dunwei,
     }
     console.log(data)
+    debugger
     qingqiu.get("faBuQiuGou",data,function(res){
-      debugger
       if(res.success == true){
         console.log(res)
+        that.data.pipeilist=res.result.records
+        var ppsj = JSON.stringify(that.data.pipeilist)
         wx.navigateTo({
-          url: '../submitSuccess/submitSuccess',
+          url: '../submitSuccess/submitSuccess?obj='+ppsj,
         })
       }else{
 

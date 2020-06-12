@@ -50,8 +50,9 @@ Page({
     yqid:'',
     tuceng:'',
     dunwei:'',
-    indexs:'',
-    shiid:''
+    indexs:'110000',
+    shiid:'112900',
+    pipeilist:[]
   },
 
   /**
@@ -291,10 +292,14 @@ Page({
       tonnage:that.data.dunwei,
     }
     console.log(data)
+    debugger
     qingqiu.get("faBuPinGou",data,function(res){
       if(res.success == true){
+        console.log(res)
+        that.data.pipeilist=res.result.records
+        var ppsj = JSON.stringify(that.data.pipeilist)
         wx.navigateTo({
-          url: '../submitSuccess/submitSuccess',
+          url: '../submitSuccess/submitSuccess?obj='+ppsj,
         })
       }else{
 
