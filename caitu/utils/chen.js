@@ -1,5 +1,5 @@
  // const api = require('../utils/config.js')
- const baseUrl = "http://192.168.1.238:8080/jeecg-boot/" 
+ const baseUrl = "http://111.231.51.198:92/jeecg-boot/" 
  // 我的页面-个人信息查询
  const my = baseUrl + "rabbit/mine/my"
  // 登陆
