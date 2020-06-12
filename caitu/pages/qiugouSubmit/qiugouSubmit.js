@@ -461,7 +461,7 @@ minReg:function(e){
     // this.setData({
     //   youqi: e.detail.value
     // })
-    that.data.yqid=e.detail.valu
+    that.data.yqid=e.detail.value
     that.data.youqiname = that.data.youqi[e.detail.value]
     that.data.youqiid =that.data.subentryId[e.detail.value]
     that.setData({
@@ -481,7 +481,8 @@ minReg:function(e){
       })
       return
     }
-    if(!that.data.youqi.length > 0){
+    console.log(that.data.yqid)
+    if(!that.data.yqid > 0){
       wx.showToast({
         title: '请选择油漆',
         icon:'none',
@@ -524,11 +525,13 @@ minReg:function(e){
       that.setData({
         zhengmianChange:''
       })
-      wx.showToast({
-        title: '数值在'+minvalue+"~"+maxvalue,
-        icon:'none',
-        duration:2000
-      })
+      if(minvalue!=undefined&&maxvalue!=undefined){
+        wx.showToast({
+          title: '数值在'+minvalue+"~"+maxvalue,
+          icon:'none',
+          duration:2000
+        })
+      }
       return
     }
   },
@@ -543,7 +546,7 @@ minReg:function(e){
       })
       return
     }
-    if(!that.data.youqi.length > 0){
+    if(!that.data.yqid > 0){
       wx.showToast({
         title: '请选择油漆',
         icon:'none',
@@ -586,11 +589,13 @@ minReg:function(e){
       that.setData({
         beimianChange:''
       })
-      wx.showToast({
-        title: '数值在'+minvalue+"~"+maxvalue,
-        icon:'none',
-        duration:2000
-      })
+      if(minvalue!=undefined&&maxvalue!=undefined){
+        wx.showToast({
+          title: '数值在'+minvalue+"~"+maxvalue,
+          icon:'none',
+          duration:2000
+        })
+      }
       return
     }
   },
