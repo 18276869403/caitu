@@ -10,13 +10,17 @@ Page({
    */
   data: {
     viewUrl:api.viewUrl,
+    qiangduarray:[],
+    youqiarray:[],
+    xincengarray:[],
+    yansearray:[],
+    setwidth:[],
+    sethoudu:[],
     gangchangname:'',
     pinmingid:'',
     cangkuindex: 0,
     multiIndex: [0, 0],
     yanseindex:0,
-    setwidth:[],
-    sethoudu:[],
     multiArray: [[],[]],
     multilist:[],
     // 省市
