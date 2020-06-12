@@ -18,6 +18,14 @@ const groupByingLists = baseUrl + "rabbit/lobby/groupByingList"
 const askToBuyLists = baseUrl + "rabbit/lobby/askToBuyList"
 // 大厅-尾货
 const inventoryLists = baseUrl + "rabbit/lobby/inventoryList"
+// 大厅-油漆
+const commonPrint = baseUrl + "rabbit/lobby/commonPrint"
+// 大厅-膜厚
+const commonMoHou = baseUrl + "rabbit/lobby/commonMoHou"
+// 大厅-拼购发布
+const faBuPinGou = baseUrl + "rabbit/lobby/faBuPinGou"
+// 大厅-求购发布
+const faBuQiuGou = baseUrl + "rabbit/lobby/faBuQiuGou"
 
  module.exports = {
   groupByingList:groupByingList,
@@ -28,5 +36,9 @@ const inventoryLists = baseUrl + "rabbit/lobby/inventoryList"
   groupBuyingCanYuZhu:groupBuyingCanYuZhu,
   groupByingLists:groupByingLists,
   askToBuyLists:askToBuyLists,
-  inventoryLists:inventoryLists
+  inventoryLists:inventoryLists,
+  commonPrint:commonPrint,
+  commonMoHou:commonMoHou,
+  faBuPinGou:faBuPinGou,
+  faBuQiuGou:faBuQiuGou
  } 
