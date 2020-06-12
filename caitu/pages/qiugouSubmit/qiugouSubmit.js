@@ -145,7 +145,7 @@ Page({
     console.log("携带参数",e.detail.value)
     var that = this
     that.data.multiName = that.data.multiArray[e.detail.value[0]]
-    that.data.thenameid = that.data.multilist[e.detail.value[1]].theNameId
+    that.data.thenameid = that.data.multilist[e.detail.value[1]-1].theNameId
     var data = {
       steelName:that.data.multiName[that.data.multiIndex[0]],
       theNameId:that.data.thenameid
@@ -167,7 +167,7 @@ Page({
         // var youqi = that.data.youqi
         // var xinceng = that.data.xinceng
         // var yanse = that.data.yanse
-        that.data.pricingPrice=res.result.steel.pricingPrice
+        that.data.pricingPrice=res.result.steel==null?'':res.result.steel.pricingPrice
         for(let obj of res.result.densityList){
           that.data.qiangdu.push(obj.context)
         }
@@ -248,28 +248,29 @@ Page({
     qingqiu.get("stell",null,function(res){
       var list = res.result;
       var names = [];
+      var pnames = []
       for(let obj of list){
         if(names.length==0){
           names.push("选择钢厂")
         }
+        if(pnames.length==0){
+          pnames.push("选择品名")
+        }
         names.push(obj.name);
       }
+      
       var multiArray=[names,[]];
       that.setData({
         multiArray:multiArray
       })
       qingqiu.get("theName",{name:'宝山钢铁'},function(res){
         if(res.success == true){
-          var names = []
           for(let obj of res.result.records){
-            if(names.length==0){
-              names.push("选择品名")
-            }
-            names.push(obj.theNameId_dictText)
+            pnames.push(obj.theNameId_dictText)
           }
           var multiArray = "multiArray[1]"
           that.setData({
-            [multiArray]:names,
+            [multiArray]:pnames,
             multilist:res.result.records
           })
         }
@@ -312,22 +313,18 @@ Page({
             names.push(obj.theNameId_dictText)
           }
           var multiArray = "multiArray[1]"
-          var index = "index.gangchang"
           var multiIndex = [indexs,0]
-          console.log(multiIndex)
           that.setData({
             [multiArray]:names,
             multiIndex:multiIndex,
-            [index]:0
+            multilist:res.result.records
           })
         }
       })
     }else{
-      var index = "index.pingming"
-      var multiIndex = [that.data.index.gangchang,indexs]
+      var multiIndex = "multiIndex[1]"
       this.setData({
-        multiIndex: multiIndex,
-        [index]:indexs
+        [multiIndex]: indexs,
       })
       console.log(that.data.multiIndex)
     }
@@ -361,7 +358,6 @@ Page({
       tonnage:that.data.dunwei,
     }
     console.log(data)
-    debugger
     qingqiu.get("faBuQiuGou",data,function(res){
       if(res.success == true){
         console.log(res)
