@@ -144,7 +144,7 @@
           </view>
         </view>
       </view>
-      <scroll-view class="gundong" scroll-x="true" style='width:100%'>
+      <scroll-view class="gundong" scroll-x="true">
         <view class="hengxiang">
           <view class="pingou-item hengxiang" wx:for="{{pingouList}}" wx:for-index="index" bindtap="pingouDetails" data-pingou="{{item}}">
             <view class="pingou-item-left zongxiang">

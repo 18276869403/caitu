@@ -280,7 +280,9 @@ page {
 }
 
 .pingou-item {
-  width: 426rpx;
+  flex-shrink: 0;
+/* width: 100%; */
+  width: 430rpx;
   height: 246rpx;
   background: rgba(255, 255, 255, 1);
   box-shadow: 0rpx 4rpx 10rpx 0rpx rgba(4, 40, 100, 0.09);
