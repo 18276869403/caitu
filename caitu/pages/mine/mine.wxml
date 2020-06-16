@@ -108,7 +108,6 @@
 <view class="commodity_screen1" wx:if="{{showModalStatus1}}"></view>
 <view animation="{{animationData1}}" class="commodity_attr_box1" wx:if="{{showModalStatus1}}">
   <view class='tanchuang zongxiang'>
-    <image src="../image/guwenguanbi.png" class="guanbi-img" bindtap="hideModal1"></image>
     <view class="tanchuang-item zongxiang">
       <view>
         <image src="../image/guwen.png" class="tanchuang-img"></image>
@@ -122,6 +121,8 @@
         {{wxUser.distrPhone}}
       </view>
     </view>
-
+  </view>
+  <view class="close">
+    <image src="../image/tanchuangclose.png" class="close-img" bindtap="hideModal1"></image>
   </view>
 </view>
