@@ -21,7 +21,7 @@
       <view class="nav_lie ">
         <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" class="pic">
           <view class="hengxiang lie1">
-            <view class="lie_name1 yincang">{{array[index]}}</view>
+            <view class="lie_name1 yincang"><text decode="{{true}}" space="{{true}}">{{array[index]}}</text></view>
             <view class="lie_img1">
               <image src="../image/xiajiantou.png" class="lie-image"></image>
             </view>
@@ -29,10 +29,10 @@
         </picker>
       </view>
       <!-- 颜色 -->
-      <view class="nav_lie ">
+      <view class="nav_lie">
         <picker bindchange="bindPickerColour" value="{{colour}}" range="{{yanse}}" class="pic">
           <view class="hengxiang lie">
-            <view class="lie_name yincang">{{yanse[colour]}}</view>
+            <view class="lie_name yincang"><text decode="{{true}}" space="{{true}}">{{yanse[colour]}}</text></view>
             <view class="lie_img">
               <image src="../image/xiajiantou.png" class="lie-image"></image>
             </view>
@@ -40,7 +40,7 @@
         </picker>
       </view>
       <!-- 厚度 -->
-      <view class="nav_lie ">
+      <!-- <view class="nav_lie ">
         <picker bindchange="bindPickerThickness" value="{{thickness}}" range="{{houdu}}" class="pic">
           <view class="hengxiang lie">
             <view class="lie_name yincang">{{houdu[thickness]}}</view>
@@ -49,9 +49,9 @@
             </view>
           </view>
         </picker>
-      </view>
+      </view> -->
       <!-- 宽度 -->
-      <view class="nav_lie ">
+      <!-- <view class="nav_lie ">
         <picker bindchange="bindPickerWidth" value="{{width}}" range="{{kuandu}}" class="pic">
           <view class="hengxiang lie2">
             <view class="lie_name2 yincang">{{kuandu[width]}}</view>
@@ -60,7 +60,7 @@
             </view>
           </view>
         </picker>
-      </view>
+      </view> -->
     </view>
   </view>
 
