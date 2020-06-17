@@ -238,9 +238,9 @@ Page({
       multiIndex1: e.detail.value
     })
   },
-  bindMultiPickerChangeCity:function(e){
-    console.log("携带参数",e.detail)
-  },
+  // bindMultiPickerChangeCity:function(e){
+  //   console.log("携带参数",e.detail)
+  // },
   bindMultiPickerChange:function(e){
     var that = this
     var multiName = that.data.multiArray[[0]]

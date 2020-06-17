@@ -26,9 +26,19 @@ Page({
     zixunList:[],
     isAuto:0
   },
-  onLoad: function() {
+  // 下拉刷新
+  onPullDownRefresh: function () {
+    this.onShow()
+    setTimeout(() => {
+      wx.stopPullDownRefresh()
+    }, 1000);
+  },
+  onShow: function() {
      //获得dialog组件
     this.dialog = this.selectComponent("#dialog");
+    this.setData({
+      userId:app.globalData.wxid
+    })
     this.chushihuashouquan()
     this.getqiugou()
     this.getbanner()

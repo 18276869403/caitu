@@ -12,11 +12,12 @@ Page({
     // entertype为0，从首页进入
     // entertype为1，从我的页面进入
     entertype: 0,
-     type: 1, //进行中
+    type: 1, //进行中
     // type:2,//匹配中
     // type:3,//已完成
     pgid:'',
-    pgxxlist:[]
+    pgxxlist:[],
+    wxid:''
   },
 
   /**
@@ -27,7 +28,7 @@ Page({
     this.data.pgid=pgxx.id
     this.setData({
       pgxx:pgxx,
-      wxID:app.globalData.wxid
+      wxid:app.globalData.wxid
     })
     this.selectpingouxx()
     console.log(pgxx)
@@ -62,6 +63,11 @@ Page({
   },
   // 参与拼购
   joinPingou: function() {
+    // var pgid = this.data.pgid
+    // var pgxxlist = this.data.pgxxlist
+    // console.log(pgxxlist)
+    // // if(pgid)
+    // return
     wx.navigateTo({
       url: '../joinPingou/joinPingou',
     })

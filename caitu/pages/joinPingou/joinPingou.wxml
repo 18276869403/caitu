@@ -7,7 +7,7 @@
         <text style="color:#FF1010">*</text>交货地
       </view>
       <view class="content-list-right-area">
-         <picker mode="multiSelector" bindchange="regionChange" value="{{multiIndex1}}" range="{{multiArray1}}">
+         <picker mode="multiSelector" bindchange="bindMultiPickerChangeCity" bindcolumnchange="bindMultiPickerColumnChangeCity" value="{{multiIndex1}}" range="{{multiArray1}}">
           <view class="picker">
             {{multiArray1[0][multiIndex1[0]]}}-{{multiArray1[1][multiIndex1[1]]}}
           </view>

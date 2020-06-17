@@ -5,7 +5,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">仓库</view>
       <view class="content-item-content">
-        <picker mode="multiSelector" bindchange="bindMultiPickerChangeCity" bindcolumnchange="bindMultiPickerColumnChangeCity" value="{{multiIndex1}}" range="{{multiArray1}}">
+        <picker mode="multiSelector" bindcolumnchange="bindMultiPickerColumnChangeCity" value="{{multiIndex1}}" range="{{multiArray1}}">
           <view class="picker">
             {{multiArray1[0][multiIndex1[0]]}}-{{multiArray1[1][multiIndex1[1]]}}
           </view>
