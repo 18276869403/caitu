@@ -64,7 +64,7 @@ Page({
   getqiugou(){
     var that = this
     qingqiu.get("initAskToBuy",null,function(res){
-      console.log(res)
+      console.log('求购信息',res)
       if(res.success == true){
         for(let obj of res.result.records){
           var str = obj.id.toString()
@@ -96,6 +96,7 @@ Page({
       pageSize:3
     }
     qingqiu.get('initGroupBuying',data,function(res){
+      console.log('获取拼购信息',res)
       if(res.success == true){
         if (res.result != null) {
           that.data.pingouList=res.result.records
@@ -169,7 +170,7 @@ Page({
       pageSize:3
     }
     qingqiu.get('initInformation',data,function(res){
-      console.log(res)
+      console.log('最新资讯信息',res)
       if(res.success == true){
         if (res.result != null) {
           that.data.zixunList=res.result.records
@@ -207,10 +208,10 @@ Page({
           console.log(that.dialog)
           if(that.data.isAuto==0){
             that.dialog.showDialog();
+            that.setData({
+              isAuto:1
+            })
           }
-          that.setData({
-            isAuto:1
-          })
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.login({
             success: function(res) {
@@ -218,7 +219,6 @@ Page({
               wx.getUserInfo({
                 lang: 'zh_CN',
                 success(res) {
-                  // debugger
                   const userInfo = res.userInfo
                   var data = {
                     code: code,
@@ -226,8 +226,9 @@ Page({
                     sex: userInfo.gender,
                     wxNc: userInfo.nickName,
                   }
+                  console.log(data)
                   qingqiu.get("getKeyInfo", data, function(re) {
-                    console.log(re)
+                    console.log('获取个人信息',re)
                     app.globalData.wxid = re.result.wxUser.id
                     app.globalData.openid = re.result.openId
                     app.globalData.wxState = re.result.wxUser.autoState

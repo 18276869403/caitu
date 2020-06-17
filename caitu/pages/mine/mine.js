@@ -97,8 +97,9 @@ Page({
     var data = {
       id:app.globalData.wxid
     }
+    console.log(data)
     qingqiu.get('my',data,function(res){
-      console.log(res)
+      console.log('我的信息',res)
       if(res.success == true){
         if(app.globalData.wxState == 0 && res.result.records[0].name == null){
           wx.navigateTo({

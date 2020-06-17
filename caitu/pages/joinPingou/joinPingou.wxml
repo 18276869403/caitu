@@ -30,7 +30,7 @@
         <text style="color:#FF1010">*</text>需求吨数
       </view>
       <view class="content-list-right">
-        <input type="digit" placeholder="输入需求吨数" class="shurukuang" placeholder-class="placeholder"></input>
+        <input type="digit" placeholder="输入需求吨数" class="shurukuang" value="{{dunwei}}"  bindinput="dunwei" placeholder-class="placeholder"></input>
       </view>
     </view>
 

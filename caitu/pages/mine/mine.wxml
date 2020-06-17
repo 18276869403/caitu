@@ -123,6 +123,6 @@
     </view>
   </view>
   <view class="close">
-    <image src="../image/tanchuangclose.png" class="close-img" bindtap="hideModal1"></image>
+    <image src="../image/guwenguanbi.png" class="close-img" bindtap="hideModal1"></image>
   </view>
 </view>

@@ -26,7 +26,19 @@ const yanzheng = function(str){
   return 0
 }
 
+// 获取集合中的下标
+const getArrIndex = function(arr,obj){
+  var i = arr.length
+  while(i--){
+    if(arr[i] == obj){
+      return i;
+    }
+  }
+  return -1;
+}
+
 module.exports = {
   formatTime: formatTime,
-  yanzheng:yanzheng
+  yanzheng:yanzheng,
+  getArrIndex:getArrIndex
 }

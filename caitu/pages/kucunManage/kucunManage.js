@@ -14,6 +14,8 @@ Page({
     youqiarray:[],
     xincengarray:[],
     yansearray:[],
+    kuandu:'',
+    houdu:'',
     setwidth:[],
     sethoudu:[],
     gangchangname:'',

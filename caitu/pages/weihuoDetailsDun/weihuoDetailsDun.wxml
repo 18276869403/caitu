@@ -6,71 +6,65 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">仓库</view>
       <view class="content-item-content1">
-        浙江省-杭州市
+        {{items.areaOneId_dictText}}-{{items.areaTwoId_dictText}}
       </view>
     </view>
     <view class="content-item hengxiang">
       <view class="content-item-left">选择钢厂</view>
       <view class="content-item-content1">
-        上海宝钢-镀铝锌
+        {{items.steelName}}-{{items.theNameId_dictText}}
       </view>
     </view>
     <view class="content-item hengxiang">
       <view class="content-item-left">厚度</view>
-      <view class="content-item-content1">0.4</view>
+      <view class="content-item-content1">{{items.thickness}}</view>
     </view>
     <view class="content-item hengxiang">
       <view class="content-item-left">宽度</view>
-      <view class="content-item-content1">1100</view>
+      <view class="content-item-content1">{{items.width}}</view>
     </view>
     <view class="content-item hengxiang">
       <view class="content-item-left">油漆</view>
-      <view class="content-item-content1">pe</view>
+      <view class="content-item-content1">{{items.paint}}</view>
     </view>
     <view class="content-item hengxiang">
       <view class="content-item-left">正面膜厚</view>
-      <view class="content-item-content1">25</view>
+      <view class="content-item-content1">{{items.front}}</view>
     </view>
     <view class="content-item hengxiang">
       <view class="content-item-left">背面膜厚
       </view>
-      <view class="content-item-content1">36</view>
+      <view class="content-item-content1">{{items.rear}}</view>
     </view>
     <view class="content-item hengxiang">
       <view class="content-item-left">涂层</view>
-      <view class="content-item-content1">2/1</view>
+      <view class="content-item-content1">{{items.coat}}</view>
 
     </view>
     <view class="content-item hengxiang">
       <view class="content-item-left">锌层</view>
-      <view class="content-item-content1">2</view>
+      <view class="content-item-content1">{{items.zincLayer}}</view>
     </view>
     <view class="content-item hengxiang">
       <view class="content-item-left">颜色</view>
-      <view class="content-item-content1">标准</view>
+      <view class="content-item-content1">{{items.color}}</view>
     </view>
     <view class="content-item hengxiang">
       <view class="content-item-left">强度</view>
-      <view class="content-item-content1">1100</view>
+      <view class="content-item-content1">{{items.density}}</view>
     </view>
     <view class="content-item hengxiang">
       <view class="content-item-left">需求吨数</view>
       <view class="content-item-content1">
-        <input type="text" placeholder="请输入需求吨数" class="shurukuang" placeholder-class="placeholder"></input>
+        <input type="text" placeholder="请输入需求吨数" class="shurukuang" placeholder-class="placeholder" disabled value="{{items.tonnage}}"></input>
       </view>
     </view>
     <view class="content-item-title">
       图片
     </view>
-    <view class="content-item-img">
+    <view class="content-item-img" wx:for="{{imglist}}">
       <view class="content-item-img-item">
-        <image src="../image/top.png" class="shanchuan-img"></image>
-      </view>
-      <view class="content-item-img-item">
-        <image src="../image/top.png" class="shanchuan-img"></image>
-      </view>
-      <view class="content-item-img-item">
-        <image src="../image/top.png" class="shanchuan-img"></image>
+        <image src="{{item}}" class="shanchuan-img"></image>
       </view>
     </view>
   </view>

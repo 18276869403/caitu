@@ -1,8 +1,8 @@
  // const baseUrl = "http://192.168.1.238:8080/" 
  const chen = require('../utils/chen.js')
  const kaifa = require('../utils/kaifa.js')
- const baseUrl = "http://111.231.51.198:9045/jeecg-boot/"  
-//  const baseUrl = "http://192.168.1.244:8080/jeecg-boot/" 
+//  const baseUrl = "http://111.231.51.198:9045/jeecg-boot/"  
+ const baseUrl = "http://192.168.1.244:9045/jeecg-boot/" 
 
  // 图片上传
  const upload = baseUrl + "sys/common/upload/"

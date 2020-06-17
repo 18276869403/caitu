@@ -17,7 +17,7 @@
       </view>
     </view>
     <view class="nav hengxiang">
-      <!-- 品名 -->
+      <!-- 钢厂 -->
       <view class="nav_lie ">
         <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" class="pic">
           <view class="hengxiang lie1">
@@ -28,7 +28,7 @@
           </view>
         </picker>
       </view>
-      <!-- 颜色 -->
+      <!-- 品名 -->
       <view class="nav_lie">
         <picker bindchange="bindPickerColour" value="{{colour}}" range="{{yanse}}" class="pic">
           <view class="hengxiang lie">

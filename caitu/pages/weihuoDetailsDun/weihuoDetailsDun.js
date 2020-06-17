@@ -1,4 +1,7 @@
 // pages/weihuoDetails/weihuoDetails.js
+const app = getApp()
+const api = require('../../utils/config.js')
+const qingqiu = require('../../utils/request.js')
 Page({
 
   /**
@@ -23,14 +26,49 @@ Page({
     yansearray: ['标准', '标准1', '标准2', '标准3'],
     qiangduindex: 0,
     qiangduarray: ['TS250GD+AZ', 'TS250GD+AZ1', 'TS250GD+AZ11', 'TS250GD+AZ111'],
+    items:{},
+    imglist:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var id = options.obj
+    this.getweihuo(id)
   },
+  // 根据id获取库存详情
+  getweihuo(id){
+    var that = this
+    var data = {
+      invenId:id
+    }
+    var imglist = []
+    qingqiu.get("selectInventById",data,function(res){
+      console.log(res)
+      if(res.success == true){
+          if(res.result.records[0].upUrl.indexOf(',') !=  -1){
+            res.result.records[0].upUrl = res.result.records[0].upUrl.split(',')
+            for(let obj of res.result.records[0].upUrl){
+              imglist.push(api.viewUrl + obj)
+            }
+          }else{
+            imglist.push(api.viewUrl + res.result.records[0].upUrl)
+          }
+        that.setData({
+          items:res.result.records[0],
+          imglist:imglist
+        })
+      }else{
+        wx.showToast({
+          title: res.message,
+          icon:'none',
+          duration:2000
+        })
+      }
+    })
+  },
+  
   // 跳转到海报页面
   post:function(){
     wx.navigateTo({

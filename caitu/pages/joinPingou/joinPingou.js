@@ -9,6 +9,9 @@ Page({
   data: {
     multiIndex1: [0, 0],
     multiArray1: [],
+    citylist:[],
+    city:[],
+    dunwei:''
   },
 
   /**
@@ -17,7 +20,12 @@ Page({
   onLoad: function (options) {
     this.getAddress()
   },
-
+  dunwei:function(e){
+    console.log('事件携带值:',e.detail.value)
+    this.setData({
+      dunwei:e.detail.value
+    })
+  },
   // 获取省
   getAddress(){
     var that = this
@@ -93,6 +101,12 @@ Page({
     }
   },
   submitSuccess:function(){
+    var that = this
+    var data = {
+      areaOneId:citylist[cityindex[0]-1].itemValue,
+      areaTwoId:city[cityindex[1]-1].itemValue,
+      
+    }
     wx.navigateTo({
       url: '../submitSuccess/submitSuccess',
     })
