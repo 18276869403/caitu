@@ -5,9 +5,9 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">仓库</view>
       <view class="content-item-content">
-        <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <picker mode="multiSelector" bindchange="bindMultiPickerChangeCity" bindcolumnchange="bindMultiPickerColumnChangeCity" value="{{multiIndex1}}" range="{{multiArray1}}">
           <view class="picker">
-            {{region[0]}}-{{region[1]}}-{{region[2]}}
+            {{multiArray1[0][multiIndex1[0]]}}-{{multiArray1[1][multiIndex1[1]]}}
           </view>
         </picker>
       </view>
@@ -44,7 +44,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">厚度</view>
       <view class="content-item-content1">
-        <input type="text" placeholder="请输入厚度" placeholder-class="placeholder" class="shurukuang"></input>
+        <input type="digit" placeholder="请输入厚度" placeholder-class="placeholder" class="shurukuang" bindfocus="houdufocus" value="{{houdu}}" bindinput="houdu" bindblur="retReg"></input>
       </view>
       <!-- <view class="content-item-right">
         <image src="../image/jinru.png" class="enter-img"></image>
@@ -53,7 +53,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">宽度</view>
       <view class="content-item-content1">
-        <input type="text" placeholder="请输入宽度" placeholder-class="placeholder" class="shurukuang"></input>
+        <input type="digit" placeholder="请输入宽度" placeholder-class="placeholder" class="shurukuang" bindfocus="widthfocus" value="{{kuandu}}" bindinput="kuandu" bindblur="minReg"></input>
       </view>
       <!-- <view class="content-item-right">
         <image src="../image/jinru.png" class="enter-img"></image>
@@ -62,9 +62,9 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">油漆</view>
       <view class="content-item-content">
-        <picker bindchange="youqiChange" value="{{youqiindex}}" range="{{youqiarray}}">
+        <picker bindchange="youqiChange" value="{{youqiindex}}" range="{{youqi}}">
           <view class="picker">
-            {{youqiarray[youqiindex]}}
+            {{youqi[youqiindex]}}
           </view>
         </picker>
       </view>
@@ -75,11 +75,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">正面膜厚</view>
       <view class="content-item-content">
-        <picker bindchange="zhengmianChange" value="{{zhengmianindex}}" range="{{zhengmianarray}}">
-          <view class="picker">
-            {{zhengmianarray[zhengmianindex]}}
-          </view>
-        </picker>
+        <input type="digit" placeholder="请输入正面膜厚" placeholder-class="placeholder" class="shurukuang" value="{{zhengvalue}}" bindinput="zhengmianChange" bindfocus="zhengfocus" bindblur="zhengmian"></input>
       </view>
       <view class="content-item-right">
         <image src="../image/jinru.png" class="enter-img"></image>
@@ -89,11 +85,7 @@
       <view class="content-item-left">背面膜厚
       </view>
       <view class="content-item-content">
-        <picker bindchange="beimianChange" value="{{beimianindex}}" range="{{beimianarray}}">
-          <view class="picker">
-            {{beimianarray[beimianindex]}}
-          </view>
-        </picker>
+         <input type="digit" placeholder="请输入背面膜厚" placeholder-class="placeholder" class="shurukuang" value="{{beivalue}}" bindinput="beimianChange" bindfocus="beifocus" bindblur="beimian"></input>
       </view>
       <view class="content-item-right">
         <image src="../image/jinru.png" class="enter-img"></image>
@@ -102,7 +94,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">涂层</view>
       <view class="content-item-content1">
-        <input type="text" placeholder="请输入涂层" placeholder-class="placeholder" class="shurukuang"></input>
+        <input type="text" placeholder="请输入涂层" disabled value="{{tuceng}}" placeholder-class="placeholder" class="shurukuang"></input>
       </view>
       <!-- <view class="content-item-right">
         <image src="../image/jinru.png" class="enter-img"></image>
@@ -111,9 +103,9 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">锌层</view>
       <view class="content-item-content">
-        <picker bindchange="xincengChange" value="{{xincengindex}}" range="{{xincengarray}}">
+        <picker bindchange="xincengChange" value="{{xincengindex}}" range="{{xinceng}}">
           <view class="picker">
-            {{xincengarray[xincengindex]}}
+            {{xinceng[xincengindex]}}
           </view>
         </picker>
       </view>
@@ -124,9 +116,9 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">颜色</view>
       <view class="content-item-content">
-        <picker bindchange="yanseChange" value="{{yanseindex}}" range="{{yansearray}}">
+        <picker bindchange="yanseChange" value="{{yanseindex}}" range="{{yanse}}">
           <view class="picker">
-            {{yansearray[yanseindex]}}
+            {{yanse[yanseindex]}}
           </view>
         </picker>
       </view>
@@ -137,9 +129,9 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">强度</view>
       <view class="content-item-content">
-        <picker bindchange="qiangduChange" value="{{qiangduindex}}" range="{{qiangduarray}}">
+        <picker bindchange="qiangduChange" value="{{qiangduindex}}" range="{{qiangdu}}">
           <view class="picker">
-            {{qiangduarray[qiangduindex]}}
+            {{qiangdu[qiangduindex]}}
           </view>
         </picker>
       </view>
@@ -150,7 +142,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">需求吨数</view>
       <view class="content-item-content1">
-        <input type="text" placeholder="请输入吨数" placeholder-class="placeholder" class="shurukuang"></input>
+        <input type="text" placeholder="请输入吨数" placeholder-class="placeholder" class="shurukuang" value="{{dunwei}}" bindinput="dunwei"></input>
       </view>
       <!-- <view class="content-item-right">
         <image src="../image/jinru.png" class="enter-img"></image>
