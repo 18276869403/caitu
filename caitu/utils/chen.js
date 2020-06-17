@@ -5,7 +5,7 @@
  // 我的页面-个人信息查询
  const my = baseUrl + "rabbit/mine/my" 
  // 登陆
- const getKeyInfo = baseUrl + "rabbit/wxLogin/getKeyInfo"
+ const getKeyInfo = baseUrl + "rabbit/wxLogin/getKeyInfo" 
  // 我的页面-个人信息修改
  const modifyMy = baseUrl + "rabbit/mine/modifyMy"
  // 获取首页信息

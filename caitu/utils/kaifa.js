@@ -11,7 +11,7 @@ const initGroupBuying = baseUrl + "rabbit/index/initGroupBuying"
 const initInformation = baseUrl + "rabbit/index/initInformation"
 // 首页面-尾货
 const initInventory = baseUrl + "rabbit/index/initInventory"
-// 首页面-拼购参与者
+// 首页面-拼购参与者 
 const groupBuyingCanYuZhu = baseUrl + "rabbit/index/groupBuyingCanYuZhu"
 // 大厅-拼购
 const groupByingLists = baseUrl + "rabbit/lobby/groupByingList"
