@@ -5,7 +5,7 @@ var api = require('./config.js')
 const Get = function(url, data, huidiao, method = 'GET') {
 	// console.log('UserAuthorization:' + wx.getStorageSync('yrzuser'))
 	var auth = wx.getStorageSync('yrzuser') != null ? wx.getStorageSync('yrzuser').access_token : ''
-		var geturl = ""
+	var geturl = ""
 	if (api[url] != null) {
 		geturl = api[url]
 	}	else if(api.chen[url] != null) {
@@ -13,6 +13,7 @@ const Get = function(url, data, huidiao, method = 'GET') {
 	}else if (api.kaifa[url] != null) {
 		geturl = api.kaifa[url]
 	} 
+	console.log(geturl)
 	wx.request({
 		url: geturl,
 		method: method,

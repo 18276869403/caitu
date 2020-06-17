@@ -34,6 +34,14 @@ const commonPrint = baseUrl + "rabbit/lobby/commonPrint"
 const commonMoHou = baseUrl + "rabbit/lobby/commonMoHou"
 // 发布尾货
 const faBuWeiHuo = baseUrl + "rabbit/lobby/faBuWeiHuo"
+// 根据id查库存 
+const selectInventById = baseUrl + "rabbit/mine/selectInventById"
+// 删除
+const deleteInvent = baseUrl + "rabbit/mine/deleteInvent"
+// 上架
+const updateShangInvent = baseUrl + "rabbit/mine/updateShangInvent"
+// 下架 
+const updateXiaInvent = baseUrl + "rabbit/mine/updateXiaInvent"
 
  module.exports = {
    baseUrl:baseUrl,
@@ -52,5 +60,9 @@ const faBuWeiHuo = baseUrl + "rabbit/lobby/faBuWeiHuo"
    common:common,
    commonPrint:commonPrint,
    commonMoHou:commonMoHou,
-   faBuWeiHuo:faBuWeiHuo
+   faBuWeiHuo:faBuWeiHuo,
+   selectInventById:selectInventById,
+   deleteInvent:deleteInvent,
+   updateShangInvent:updateShangInvent,
+   updateXiaInvent:updateXiaInvent
  } 

@@ -27,6 +27,8 @@ const commonMoHou = baseUrl + "rabbit/lobby/commonMoHou"
 const faBuPinGou = baseUrl + "rabbit/lobby/faBuPinGou"
 // 大厅-求购发布
 const faBuQiuGou = baseUrl + "rabbit/lobby/faBuQiuGou"
+// 参与拼购-提交
+const canYuGroupBuying = baseUrl + "rabbit/index/canYuGroupBuying"
 
  module.exports = {
   groupByingList:groupByingList,
@@ -41,5 +43,6 @@ const faBuQiuGou = baseUrl + "rabbit/lobby/faBuQiuGou"
   commonPrint:commonPrint,
   commonMoHou:commonMoHou,
   faBuPinGou:faBuPinGou,
-  faBuQiuGou:faBuQiuGou
+  faBuQiuGou:faBuQiuGou,
+  canYuGroupBuying:canYuGroupBuying
  } 
