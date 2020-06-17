@@ -17,6 +17,7 @@ Page({
     // type:3,//已完成
     pgid:'',
     pgxxlist:[],
+    pgxx:{},
     wxid:''
   },
 
@@ -31,7 +32,6 @@ Page({
       wxid:app.globalData.wxid
     })
     this.selectpingouxx()
-    console.log(pgxx)
   },
   // 获取参与拼购信息
   selectpingouxx(){
@@ -43,13 +43,11 @@ Page({
     console.log(res)
     if(res.success == true){
       if (res.result != null) {
-        that.data.pgxxlist=res.result.records
         // for(var i=0;i<res.result.records.length;i++){
         //   that.data.pgxxlist[i].createtime=that.data.pgxxlist[i].createtime.split(' ')[0]
         // }
-        console.log(that.data.pgxxlist)
         that.setData({
-          pgxxlist:that.data.pgxxlist
+          pgxxlist:res.result.records
         })
       }else {
         wx.showToast({
@@ -63,13 +61,20 @@ Page({
   },
   // 参与拼购
   joinPingou: function() {
-    // var pgid = this.data.pgid
-    // var pgxxlist = this.data.pgxxlist
-    // console.log(pgxxlist)
-    // // if(pgid)
-    // return
+    var pgid = this.data.pgid
+    var pgxxlist = this.data.pgxxlist
+    for(let obj of pgxxlist){
+      if(obj.wxUserId == app.globalData.wxid){
+        wx.showToast({
+          title: '你已参入改拼购，不能重复参与',
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
+    }
     wx.navigateTo({
-      url: '../joinPingou/joinPingou',
+      url: '../joinPingou/joinPingou?pgid=' + this.data.pgid,
     })
   },
   // 跳转海报页面

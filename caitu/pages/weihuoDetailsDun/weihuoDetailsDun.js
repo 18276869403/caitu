@@ -44,6 +44,7 @@ Page({
       invenId:id
     }
     var imglist = []
+    console.log(data)
     qingqiu.get("selectInventById",data,function(res){
       console.log(res)
       if(res.success == true){

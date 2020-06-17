@@ -67,6 +67,57 @@ Page({
     this.getkuncun(options.obj)
   },
 
+  // 获取市索引
+  getshiindex(pid,areaTwoId_dictText){
+    var that = this
+    qingqiu.get("shi",{pid:pid},function(res){
+      if(res.success == true){
+        var cityname = []
+        for(let obj of res.result){
+          if(cityname.length==0){
+            cityname.push("选择市")
+          }
+          cityname.push(obj.itemText)
+        }
+        var multiArray1 = "multiArray1[1]"
+        that.setData({
+          [multiArray1]:cityname,
+          city:res.result
+        })
+        var multiIndex1_2 = utils.getArrIndex(cityname,areaTwoId_dictText)
+        if(multiIndex1_2 != -1){
+          var multiIndex1 = "multiIndex1[1]"
+          that.setData({
+            [multiIndex1]:multiIndex1_2
+          })
+        }
+      }
+    })
+  },
+  // 获取品名索引
+  getpmindex(name,data){
+    var that = this
+    var pnames = ['选择品名']
+    qingqiu.get("theName",{name:name},function(res){
+      if(res.success == true){
+        for(let obj of res.result.records){
+          pnames.push(obj.theNameId_dictText)
+        }
+        var multiArray = "multiArray[1]"
+        that.setData({
+          [multiArray]:pnames,
+          multilist:res.result.records
+        })
+        var index = utils.getArrIndex(pnames,data)
+        if(index != -1){
+          var multiIndex = "multiIndex[1]"
+          that.setData({
+            [multiIndex]:index
+          })
+        }
+      }
+    })
+  },
   // 获取库存信息
   getkuncun(id){
     var that = this
@@ -89,24 +140,54 @@ Page({
           bindimg.push(api.viewUrl + data.upUrl)
           imglist.push(data.upUrl)
         }
-        var multiIndex1_1 = that.data.multiArray1[0].utils.getArrIndex(data.areaOneId_dictText)
-        var multiIndex1_2 = that.data.multiArray1[1].utils.getArrIndex(data.areaTwoId_dictText)
+        // 获取省
+        var multiIndex1_1 = utils.getArrIndex(that.data.multiArray1[0],data.areaOneId_dictText)
         if(multiIndex1_1 != -1){
           var multiIndex1 = "multiIndex1[0]"
           that.setData({
             [multiIndex1]:multiIndex1_1
           })
         }
-        if(multiIndex1_2 != -1){
-          var multiIndex1 = "multiIndex1[1]"
+        var pid = that.data.cityList[multiIndex1_1-1].itemValue
+        // 市
+        that.getshiindex(pid,data.areaTwoId_dictText)
+        var multiIndex_1 = utils.getArrIndex(that.data.multiArray[0],data.areaOneId_dictText)
+        if(multiIndex_1 != -1){
+          var multiIndex = "multiIndex[0]"
           that.setData({
-            [multiIndex1]:multiIndex1_2
+            [multiIndex]:multiIndex_1
           })
         }
+        // 钢厂
+        var gcid = utils.getArrIndex(that.data.multiArray[0],data.steelName)
+        if(gcid != -1){
+          var multiIndex = "multiIndex[0]"
+          that.setData({
+            [multiIndex]:gcid
+          })
+        }
+        // 品名
+        that.getpmindex(data.steelName,data.theNameId_dictText)
+        var youqi = that.data.youqi
+        var qiangdu = that.data.qiangdu
+        var xinceng = that.data.xinceng
+        var yanse = that.data.yanse
+        qiangdu.push(data.density)
+        xinceng.push(data.zincLayer)
+        yanse.push(data.color)
+        youqi.push(data.paint)
         that.setData({
           bindimg:bindimg,
           imglist:imglist,
           houdu:data.thickness,
+          youqi:youqi,
+          youqiindex:1,
+          qiangdu:qiangdu,
+          qiangduindex:1,
+          xinceng:xinceng,
+          xincengindex:1,
+          yanse:yanse,
+          yanseindex:1,
           kuandu:data.width,
           zhengvalue:data.front,
           beivalue:data.rear,
@@ -154,6 +235,7 @@ Page({
               [multiArray1]:cityname,
               city:res.result
             })
+            console.log('重组',that.data.multiArray1)
           }
         })
       }

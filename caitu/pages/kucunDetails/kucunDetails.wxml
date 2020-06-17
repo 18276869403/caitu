@@ -152,9 +152,9 @@
       上传图片
     </view>
     <view class="content-item-img">
-      <view class="content-item-img-item">
+      <view class="content-item-img-item" wx:for="{{bindimg}}">
         <image src="../image/top.png" class="shanchuan-img"></image>
-        <image src="../image/guwenguanbi.png" class="guanbi-img"></image>
+        <image src="{{item}}" class="guanbi-img"></image>
       </view>
       <view class="content-item-img-item">
         <image src="../image/shangchuan.png" class="shanchuan-img"></image>

@@ -12,30 +12,7 @@ Page({
     type: 0,
     // 拼购发布成功
     // type: 1,
-    weihuoList: [{
-        id: 1,
-        number: '111',
-        name: '镀锌板彩涂卷',
-        bianhao: 'hz11',
-        guige: '0.5/宽1000',
-        yanse: '非标',
-        xinceng: '100',
-        weight: '120',
-        cangku: '浙江'
-      },
-      {
-        id: 1,
-        number: '111',
-        name: '镀锌板彩涂卷',
-        number: 'hz1111',
-        bianhao: 'hz11',
-        guige: '0.5/宽1000',
-        yanse: '非标',
-        xinceng: '100',
-        weight: '120',
-        cangku: '浙江'
-      }
-    ],
+    weihuoList: [],
     pipeilist:[]
   },
 

@@ -11,13 +11,19 @@ Page({
     multiArray1: [],
     citylist:[],
     city:[],
-    dunwei:''
+    dunwei:'',
+    pgid:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if(options.pgid != undefined){
+      this.setData({
+        pgid:options.pgid
+      })
+    }
     this.getAddress()
   },
   dunwei:function(e){
@@ -42,7 +48,7 @@ Page({
         var multiArray1 = [names,[]]
         that.setData({
           multiArray1:multiArray1,
-          cityList:res.result
+          citylist:res.result
         })
         qingqiu.get("shi",{pid:110000},function(res){
           if(res.success == true){
@@ -72,7 +78,7 @@ Page({
     var that = this
     if(column == 0){
       var data = {
-        pid:that.data.cityList[indexs-1].itemValue
+        pid:that.data.citylist[indexs-1].itemValue
       }
       qingqiu.get("shi",data,function(res){
         console.log(res)
@@ -102,13 +108,39 @@ Page({
   },
   submitSuccess:function(){
     var that = this
+    var cityindex = that.data.multiIndex1
+    var citylist = that.data.citylist
+    var city = that.data.city
+    console.log(citylist)
+    console.log(city)
     var data = {
       areaOneId:citylist[cityindex[0]-1].itemValue,
       areaTwoId:city[cityindex[1]-1].itemValue,
-      
+      groupId:that.data.pgid,
+      wxUserId:app.globalData.wxid,
+      sumsn:that.data.dunwei
     }
-    wx.navigateTo({
-      url: '../submitSuccess/submitSuccess',
-    })
+    qingqiu.get("canYuGroupBuying",data,function(res){
+      console.log(res)
+      if(res.success == true){
+        wx.showToast({
+          title: '提交成功',
+          icon:'none',
+          duration:2000
+        })
+        setTimeout(function(){
+          wx.navigateTo({
+            url: '../submitSuccess/submitSuccess',
+          })
+        },1000)
+      }else{
+        wx.showToast({
+          title: res.message,
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
+    },'post')
   }
 })
