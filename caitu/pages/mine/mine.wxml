@@ -91,7 +91,7 @@
         <image src="../image/lianxiwomen.png" class="ziliao-img"></image>
       </view>
       <view class="bottom-list-content">
-        联系我们
+        关于我们
       </view>
       <view class="bottom-list-right">
         <image src="../image/myenter.png" class="enter-img"></image>
