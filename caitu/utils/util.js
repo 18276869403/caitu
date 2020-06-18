@@ -26,6 +26,18 @@ const yanzheng = function(str){
   return 0
 }
 
+// 下拉列表验证
+const yanzhengVal = function(str){
+  var strlist = str.split('|')
+	for(let obj of strlist){
+		var list = obj.split(',')
+		if(list[0].indexOf('选择') != -1){
+			return list[1]
+		}
+  }
+  return 0
+}
+
 // 获取集合中的下标
 const getArrIndex = function(arr,obj){
   var i = arr.length
@@ -40,5 +52,6 @@ const getArrIndex = function(arr,obj){
 module.exports = {
   formatTime: formatTime,
   yanzheng:yanzheng,
-  getArrIndex:getArrIndex
+  getArrIndex:getArrIndex,
+  yanzhengVal:yanzhengVal 
 }

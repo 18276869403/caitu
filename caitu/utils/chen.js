@@ -1,6 +1,6 @@
  // const api = require('../utils/config.js')
 //  const baseUrl = "http://111.231.51.198:9045/jeecg-boot/" 
- const baseUrl = "http://192.168.1.244:9045/jeecg-boot/" 
+ const baseUrl = "http://192.168.1.243:9045/jeecg-boot/" 
 
  // 我的页面-个人信息查询
  const my = baseUrl + "rabbit/mine/my" 
@@ -34,6 +34,8 @@ const commonPrint = baseUrl + "rabbit/lobby/commonPrint"
 const commonMoHou = baseUrl + "rabbit/lobby/commonMoHou"
 // 发布尾货
 const faBuWeiHuo = baseUrl + "rabbit/lobby/faBuWeiHuo"
+// 修改尾货
+const updateInventById = baseUrl + "rabbit/mine/updateInventById"
 // 根据id查库存 
 const selectInventById = baseUrl + "rabbit/mine/selectInventById"
 // 删除
@@ -64,5 +66,6 @@ const updateXiaInvent = baseUrl + "rabbit/mine/updateXiaInvent"
    selectInventById:selectInventById,
    deleteInvent:deleteInvent,
    updateShangInvent:updateShangInvent,
-   updateXiaInvent:updateXiaInvent
+   updateXiaInvent:updateXiaInvent,
+   updateInventById:updateInventById,
  } 
