@@ -10,15 +10,15 @@ Page({
    */
   data: {
     viewUrl:api.viewUrl,
+    pageNo:1,
     navid1: 2,
     index: 0,
-    colour: 0,
-    thickness: 0,
-    width: 0,
-    array: ['钢&nbsp;&nbsp;厂', '镀锌彩涂卷', '镀锌板彩板彩涂卷', '板彩涂卷'],
-    yanse: ['品&nbsp;&nbsp;名', '阔叶绿','帝王白','乳白','银灰色','白灰','象牙','银色','瓷蓝','雪白','白银灰','骨白','深天蓝','宝钢蓝','深豆绿','砖红','海蓝','其他'],
-    houdu: ['厚度', '100-500', '500-999'],
-    kuandu: ['宽度', '0-100', '100-500'],
+    pmindex: 0,
+    gangchang: [],
+    pinming: ['品 名', '镀锌彩涂卷','镀锌板彩板彩涂卷','板彩涂卷'],
+    pinminglist:['品 名', '镀锌彩涂卷','镀锌板彩板彩涂卷','板彩涂卷'],
+    multilist:[],
+    googleVal:'',
     nav: [{
         id: 1,
         name: '求购',
@@ -36,37 +36,90 @@ Page({
     pingou:[],
     qiugou:[]
   },
+  getgangchang(){
+    var that = this
+    qingqiu.get("stell",null,function(res){
+      var list = res.result;
+      var names = ['钢 厂'];
+      for(let obj of list){
+        names.push(obj.name);
+      }
+      that.setData({
+        gangchang:names
+      })
+    })
+  },
   bindnav: function(e) {
     // debugger
     var navid = e.currentTarget.dataset.id
-    console.log(navid)
     this.setData({
       navid1: navid
     })
   },
+  getpinming(value){
+    var that = this
+    var pnames = ['品 名']
+    qingqiu.get("theName",{name:value},function(res){
+      if(res.success == true){
+        for(let obj of res.result.records){
+          pnames.push(obj.theNameId_dictText)
+        }
+        that.setData({
+          pinming:pnames,
+          multilist:res.result.records
+        })
+      }
+    })
+  },
+  bindgoogle:function(e){
+    this.setData({
+      googleVal:e.detail.value
+    })
+  },
+  // 搜索
+  getGoogle(){
+    debugger
+    console.log(this.data.navid1)
+    if(this.data.navid1 == 1){
+      this.selectqiugou()      
+    }else if(this.data.navid1 == 2){
+      this.selectweihuo()
+    }else{
+      this.selectpingou()
+    }
+  },
+
   bindPickerChange: function(e) {
-    // console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       index: e.detail.value,
     })
+    if(e.detail.value != 0){
+      this.getpinming(this.data.gangchang[e.detail.value])
+    }else{
+      this.setData({
+        pinming:this.data.pinminglist
+      })
+    }
+    if(this.data.navid1 == 1){
+      this.selectqiugou()      
+    }else if(this.data.navid1 == 2){
+      this.selectweihuo()
+    }else{
+      this.selectpingou()
+    }
   },
-  bindPickerColour: function(e) {
+  bindPickerpm: function(e) {
     // console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      colour: e.detail.value,
+      pmindex: e.detail.value,
     })
-  },
-  bindPickerThickness: function(e) {
-    // console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      thickness: e.detail.value,
-    })
-  },
-  bindPickerWidth: function(e) {
-    // console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      width: e.detail.value
-    })
+    if(this.data.navid1 == 1){
+      this.selectqiugou()      
+    }else if(this.data.navid1 == 2){
+      this.selectweihuo()
+    }else{
+      this.selectpingou()
+    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -75,14 +128,16 @@ Page({
     this.selectqiugou()
     this.selectweihuo()
     this.selectpingou()
+    this.getgangchang()
   },
   // 获取求购
   selectqiugou(){
     var that = this
-    var data = {
-      pageNo:1,
-      pageSize:10
-    }
+    var data = {pageNo:that.data.pageNo}
+    if(that.data.googleVal != "") {data.text = that.data.googleVal}
+    if(that.data.index != 0) {data.steelName = that.data.gangchang[that.data.index]}
+    if(that.data.pmindex != 0) {data.theNameId = that.data.multilist[that.data.pmindex-1]}
+    console.log(data)
     qingqiu.get('askToBuyLists',data,function(res){
       if(res.success == true){
         if (res.result != null) {
@@ -119,10 +174,10 @@ Page({
   // 获取尾货
   selectweihuo(){
     var that = this
-    var data = {
-      pageNo:1,
-      pageSize:10
-    }
+    var data = {pageNo:that.data.pageNo}
+    if(that.data.googleVal != "") {data.text = that.data.googleVal}
+    if(that.data.index != 0) {data.steelName = that.data.gangchang[that.data.index]}
+    if(that.data.pmindex != 0) {data.theNameId = that.data.multilist[that.data.pmindex-1]}
     qingqiu.get('inventoryLists',data,function(res){
       if(res.success == true){
         if (res.result != null) {
@@ -157,10 +212,10 @@ Page({
   // 获取拼购
   selectpingou(){
     var that = this
-    var data = {
-      pageNo:1,
-      pageSize:10
-    }
+    var data = {pageNo:that.data.pageNo}
+    if(that.data.googleVal != "") {data.text = that.data.googleVal}
+    if(that.data.index != 0) {data.steelName = that.data.gangchang[that.data.index]}
+    if(that.data.pmindex != 0) {data.theNameId = that.data.multilist[that.data.pmindex-1]}
     qingqiu.get('groupByingLists',data,function(res){
       if(res.success == true){
         if (res.result != null) {
@@ -201,8 +256,9 @@ Page({
     })
   },
   onShow(){
+    console.log(app.globalData.dtid)
     this.setData({
-      navid1: app.globalData.dtid
+      // navid1: app.globalData.dtid
     })
   },
   // 跳转到求购详情

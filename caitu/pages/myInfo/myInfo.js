@@ -138,6 +138,7 @@ Page({
       success:function(res){
         console.log(res)
         var tempFilePaths = res.tempFilePaths
+        console.log(tempFilePaths[0])
         wx.uploadFile({
           url: api.upload,
           filePath: tempFilePaths[0],

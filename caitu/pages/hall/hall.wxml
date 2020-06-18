@@ -11,17 +11,17 @@
       <view class="sou_img">
         <image src="../image/sousuo.png"></image>
       </view>
-      <input class="sou_input" placeholder="输入搜索内容"></input>
+      <input class="sou_input" bindinput="bindgoogle" value="{{googleVal}}" placeholder="输入搜索内容"></input>
       <view class="sou_two">
-        <image src="../image/soubut.png"></image>
+        <image src="../image/soubut.png" bindtap="getGoogle"></image>
       </view>
     </view>
     <view class="nav hengxiang">
       <!-- 钢厂 -->
       <view class="nav_lie ">
-        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" class="pic">
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{gangchang}}" class="pic">
           <view class="hengxiang lie1">
-            <view class="lie_name1 yincang"><text decode="{{true}}" space="{{true}}">{{array[index]}}</text></view>
+            <view class="lie_name1 yincang"><text decode="{{true}}" space="{{true}}">{{gangchang[index]}}</text></view>
             <view class="lie_img1">
               <image src="../image/xiajiantou.png" class="lie-image"></image>
             </view>
@@ -30,9 +30,9 @@
       </view>
       <!-- 品名 -->
       <view class="nav_lie">
-        <picker bindchange="bindPickerColour" value="{{colour}}" range="{{yanse}}" class="pic">
+        <picker bindchange="bindPickerpm" value="{{colour}}" range="{{pinming}}" class="pic">
           <view class="hengxiang lie">
-            <view class="lie_name yincang"><text decode="{{true}}" space="{{true}}">{{yanse[colour]}}</text></view>
+            <view class="lie_name yincang"><text decode="{{true}}" space="{{true}}">{{pinming[pmindex]}}</text></view>
             <view class="lie_img">
               <image src="../image/xiajiantou.png" class="lie-image"></image>
             </view>

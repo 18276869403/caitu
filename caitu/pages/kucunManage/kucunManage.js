@@ -170,9 +170,6 @@ Page({
     var cityindex = that.data.multiIndex1
     var citylist = that.data.cityList
     var city = that.data.city
-    console.log(cityindex)
-    console.log(citylist[cityindex[0]-1].itemValue)
-    console.log(city[cityindex[1]-1].itemValue)
     var youqi = that.data.youqi[that.data.youqiindex]
     var imgurl = ''
     for (let obj of that.data.imglist){
@@ -201,10 +198,19 @@ Page({
       upUrl:imgurl
     }
     console.log(data)
-    var s = utils.yanzheng(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.thickness + ',请输入厚度|'+data.width+',请输入宽度|'+data.paint+',请选择油漆|'+data.front+',请输入正面膜厚|'+data.rear+',请输入背面膜厚|' + data.coat+',请输入涂层|' + data.zincLayer + ',请选择锌层|' + data.color +',请选择强度|'+data.tonnage+',请选择吨数|'+data.upUrl + ',请上传图片')
+    var s = utils.yanzheng(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.thickness + ',请输入厚度|'+data.width+',请输入宽度|'+data.paint+',请选择油漆|'+data.front+',请输入正面膜厚|'+data.rear+',请输入背面膜厚|' + data.coat+',没有匹配涂层|' + data.zincLayer + ',请选择锌层|' + data.color +',请选择颜色|' + data.density + ',请选择强度|' +data.tonnage+',请选择吨数|'+data.upUrl + ',请上传图片')
     if(s!=0){
       wx.showToast({
         title:s,
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    var v = utils.yanzhengVal(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.paint+',请选择油漆|' + data.zincLayer + ',请选择锌层|' + data.color +',请选择颜色|'+ data.density + ',请选择强度')
+    if(v != 0){
+      wx.showToast({
+        title: v,
         icon:'none',
         duration:2000
       })
@@ -231,7 +237,6 @@ Page({
         return
       }
     },'post')
-    
   },
   // 选择仓库
   regionChange: function (e) {
@@ -262,10 +267,10 @@ Page({
     qingqiu.get("common",data,function(res){
       console.log(res)
       if(res.success == true){
-        var qiangdu = that.data.qiangdu
-        var youqi = that.data.youqi
-        var xinceng = that.data.xinceng
-        var yanse = that.data.yanse
+        var qiangdu = ["选择强度"]
+        var youqi = ["选择油漆"]
+        var xinceng = ["选择锌层"]
+        var yanse = ["选择颜色"]
         for(let obj of res.result.densityList){
           qiangdu.push(obj.context)
         }
@@ -442,7 +447,6 @@ Page({
       text:that.data.youqi[e.detail.value]
     }
     qingqiu.get("commonPrint",data,function(res){
-      console.log(res)
       if(res.success == true){
         var mohou = [res.result.zhengId]
         mohou.push(res.result.beiId)
@@ -624,46 +628,45 @@ Page({
     var that = this
     var bindimg = []
     wx.chooseImage({
-      sizeType:3,
-      sourceType:['compressed'],
+      count:1,
+      sizeType:['compressed'],
       sourceType:['album', 'camera'],
       success:function(res){
         console.log(res)
         var tempFilePaths = res.tempFilePaths
-        for(let i=0;i<tempFilePaths.length;i++){
-          that.setData({
-            bindimg:tempFilePaths
-          })
-          wx.uploadFile({
-            url: api.upload,
-            filePath: tempFilePaths[i],
-            header: {
-              "Content-Type": "multipart/form-data"
-            },
-            formData: {
-              method: 'POST' //请求方式
-            },
-            name: 'file',
-            success:function(re){
-              if(re.statusCode == 200){
-                console.log(re)
-                var data = JSON.parse(re.data)
-                var imglist = that.data.imglist
-                imglist.push(data.message)
-                that.setData({
-                  imglist:imglist
-                })
-                console.log(that.data.imglist)
-              }else{
-                wx.showToast({
-                  title: re.errMsg,
-                  icon:'none',
-                  duration:1000
-                })
-              }
+        bindimg.push(tempFilePaths[0])
+        that.setData({
+          bindimg:bindimg
+        })
+        wx.uploadFile({
+          url: api.upload,
+          filePath: tempFilePaths[0],
+          header: {
+            "Content-Type": "multipart/form-data"
+          },
+          formData: {
+            method: 'POST' //请求方式
+          },
+          name: 'file',
+          success:function(re){
+            if(re.statusCode == 200){
+              console.log(re)
+              var data = JSON.parse(re.data)
+              var imglist = that.data.imglist
+              imglist.push(data.message)
+              that.setData({
+                imglist:imglist
+              })
+              console.log(that.data.imglist)
+            }else{
+              wx.showToast({
+                title: re.errMsg,
+                icon:'none',
+                duration:1000
+              })
             }
-          })
-        }
+          }
+        })
       }
     })
   },

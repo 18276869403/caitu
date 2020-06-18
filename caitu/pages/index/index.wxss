@@ -427,7 +427,7 @@ page {
 }
 
 .zixun-left-title {
-  font-size: 28rpx;
+  font-size: 30rpx;
   font-weight: 500;
   color: rgba(51, 51, 51, 1);
   margin-top: 21rpx;
@@ -545,4 +545,21 @@ page {
 .xuanfu-img {
   width: 164rpx;
   height: 164rpx;
+}
+
+.text-class{
+  display: -webkit-box;
+	font-size: 28rpx;
+	color: #999999;
+	line-height: 40rpx;
+	word-break: break-all;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.text-title-class{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }

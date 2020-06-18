@@ -241,11 +241,11 @@
       <view class="zixun zongxiang">
         <view class="zixun-item hengxiang" wx:for="{{zixunList}}" wx:for-index="index">
           <view class="zixun-item-left zongxiang">
-            <view class="zixun-left-title">
+            <view class="zixun-left-title text-title-class">
               {{item.title}}
             </view>
             <view class="zixun-left-content">
-              {{item.context}}
+              <rich-text class="text-class" nodes="{{item.context}}"></rich-text>
             </view>
             <view class="zixun-left-date hengxiang">
               <view class="left-date-img">

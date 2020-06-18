@@ -10,6 +10,7 @@ Page({
    */
   data: {
     viewUrl:api.viewUrl,
+    flag:true,
     qiangduarray:[],
     youqiarray:[],
     xincengarray:[],
@@ -46,6 +47,7 @@ Page({
     tuceng:'',
     imglist:[],
     bindimg:[],
+    kcid:''
     // multiArray: [
     //   ['选择钢厂', '广州宝钢', '上海宝钢', '浙江宝钢'],
     //   ['选择彩涂品', '镀铝锌卷', '镀铝锌彩涂卷', '镀铝锌']
@@ -65,6 +67,9 @@ Page({
     this.getAddress()
     this.getstell()
     this.getkuncun(options.obj)
+    this.setData({
+      kcid:options.obj
+    })
   },
 
   // 获取市索引
@@ -97,8 +102,10 @@ Page({
   // 获取品名索引
   getpmindex(name,data){
     var that = this
+    var theName = data
     var pnames = ['选择品名']
     qingqiu.get("theName",{name:name},function(res){
+      console.log(res)
       if(res.success == true){
         for(let obj of res.result.records){
           pnames.push(obj.theNameId_dictText)
@@ -108,16 +115,46 @@ Page({
           [multiArray]:pnames,
           multilist:res.result.records
         })
-        var index = utils.getArrIndex(pnames,data)
+        var index = utils.getArrIndex(pnames,theName)
+        var theNameId = res.result.records[index-1].theNameId
         if(index != -1){
           var multiIndex = "multiIndex[1]"
           that.setData({
             [multiIndex]:index
           })
         }
+        var data = {
+          steelName:name,
+          theNameId:theNameId
+        }
+        that.setData({
+          gangchangname:name,
+          pinmingid:data.theNameId
+        })
+        that.getWidth(data)
       }
     })
   },
+  // 获取油漆信息
+  getyouqi(name,value){
+    var that = this
+    var data = {
+      subentryId:name,
+      text:value
+    }
+    qingqiu.get("commonPrint",data,function(res){
+      if(res.success == true){
+        var mohou = [res.result.zhengId]
+        mohou.push(res.result.beiId)
+        that.setData({
+          mohou:mohou,
+          zheng:res.result.zheng,
+          bei:res.result.bei
+        })
+      }
+    })
+  },
+
   // 获取库存信息
   getkuncun(id){
     var that = this
@@ -127,7 +164,6 @@ Page({
       invenId:id
     }
     qingqiu.get("selectInventById",data,function(res){
-      console.log(res)
       if(res.success == true){
         var data = res.result.records[0]
         if(data.upUrl.indexOf(',') !=  -1){
@@ -168,26 +204,11 @@ Page({
         }
         // 品名
         that.getpmindex(data.steelName,data.theNameId_dictText)
-        var youqi = that.data.youqi
-        var qiangdu = that.data.qiangdu
-        var xinceng = that.data.xinceng
-        var yanse = that.data.yanse
-        qiangdu.push(data.density)
-        xinceng.push(data.zincLayer)
-        yanse.push(data.color)
-        youqi.push(data.paint)
         that.setData({
+          itemobj:data,
           bindimg:bindimg,
           imglist:imglist,
           houdu:data.thickness,
-          youqi:youqi,
-          youqiindex:1,
-          qiangdu:qiangdu,
-          qiangduindex:1,
-          xinceng:xinceng,
-          xincengindex:1,
-          yanse:yanse,
-          yanseindex:1,
           kuandu:data.width,
           zhengvalue:data.front,
           beivalue:data.rear,
@@ -207,7 +228,6 @@ Page({
   getAddress(){
     var that = this
     qingqiu.get("shengFen",null,function(res){
-      console.log(res)
       if(res.success == true){
         var names = []
         for(let obj of res.result){
@@ -235,7 +255,6 @@ Page({
               [multiArray1]:cityname,
               city:res.result
             })
-            console.log('重组',that.data.multiArray1)
           }
         })
       }
@@ -281,18 +300,86 @@ Page({
 
   // 跳转到成功页面
   kucunSubmitSuccess: function () {
-    wx.navigateTo({
-      url: '../kucunSubmitSuccess/kucunSubmitSuccess',
-    })
+    var that = this
+    var cityindex = that.data.multiIndex1
+    var citylist = that.data.cityList
+    var city = that.data.city
+    var youqi = that.data.youqi[that.data.youqiindex]
+    var imgurl = ''
+    for (let obj of that.data.imglist){
+      if(imgurl == ''){
+        imgurl = obj
+      }else{
+        imgurl = imgurl + ',' + obj
+      }
+    }
+    var data = {
+      id:that.data.kcid,
+      wxUserId:app.globalData.wxid,
+      areaOneId:citylist[cityindex[0]-1].itemValue,
+      areaTwoId:city[cityindex[1]-1].itemValue,
+      steelName:that.data.gangchangname,
+      theNameId:that.data.pinmingid,
+      thickness:that.data.houdu,
+      width:that.data.kuandu,
+      paint:youqi,
+      front:that.data.zhengvalue,
+      rear:that.data.beivalue,
+      coat:that.data.tuceng,
+      zincLayer:that.data.xinceng[that.data.xincengindex],
+      color:that.data.yanse[that.data.yanseindex],
+      density:that.data.qiangdu[that.data.qiangduindex],
+      tonnage:that.data.dunwei,
+      upUrl:imgurl
+    }
+    console.log(data)
+    var s = utils.yanzheng(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.thickness + ',请输入厚度|'+data.width+',请输入宽度|'+data.paint+',请选择油漆|'+data.front+',请输入正面膜厚|'+data.rear+',请输入背面膜厚|' + data.coat+',请输入涂层|' + data.zincLayer + ',请选择锌层|' + data.color +',请选择颜色|' + data.density + ',请选择强度|' +data.tonnage+',请选择吨数|'+data.upUrl + ',请上传图片')
+    if(s!=0){
+      wx.showToast({
+        title:s,
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    var v = utils.yanzhengVal(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.paint+',请选择油漆|' + data.zincLayer + ',请选择锌层|' + data.color +',请选择颜色|'+ data.density + ',请选择强度')
+    if(v != 0){
+      wx.showToast({
+        title: v,
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    qingqiu.get("updateInventById",data,function(res){
+      console.log(res)
+      if(res.success == true){
+        wx.showToast({
+          title: '发布成功',
+          icon:'success',
+          duration:2000
+        })
+        setTimeout(function(){
+          wx.navigateTo({
+            url: '../kucunSubmitSuccess/kucunSubmitSuccess',
+          })
+        },1000)
+      }else{
+        wx.showToast({
+          title: res.message,
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
+    },'put')
   },
 
   bindMultiPickerChangeCity:function(e){
-    console.log("携带参数",e.detail)
   },
 
   // 省份触发事件
   bindMultiPickerColumnChangeCity:function(e){
-    console.log("携带参数",e.detail)
     var indexs = e.detail.value
     var column = e.detail.column
     var that = this
@@ -301,7 +388,6 @@ Page({
         pid:that.data.cityList[indexs-1].itemValue
       }
       qingqiu.get("shi",data,function(res){
-        console.log(res)
         if(res.success == true){
             var cityname = []
             for(let obj of res.result){
@@ -329,24 +415,22 @@ Page({
 
   // 选择仓库
   RegionChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       region: e.detail.value
     })
   },
   // 选择钢厂
   bindMultiPickerChange: function (e) {
-    var that = this
-    var multiName = that.data.multiArray[[0]]
+    var multiName = this.data.multiArray[[0]]
     var data = {
       steelName:multiName[e.detail.value[0]],
-      theNameId:that.data.multilist[e.detail.value[1]-1].theNameId
+      theNameId:this.data.multilist[e.detail.value[1]-1].theNameId
     }
-    that.setData({
+    this.setData({
       gangchangname:data.steelName,
       pinmingid:data.theNameId
     })
-    that.getWidth(data)
+    this.getWidth(data)
   },
   // 宽度
   getWidth(data){
@@ -354,10 +438,15 @@ Page({
     qingqiu.get("common",data,function(res){
       console.log(res)
       if(res.success == true){
-        var qiangdu = that.data.qiangdu
-        var youqi = that.data.youqi
-        var xinceng = that.data.xinceng
-        var yanse = that.data.yanse
+        var qiangduindex = 0
+        var xincengindex = 0
+        var yanseindex = 0
+        var youqiindex = 0
+        var itemdata = that.data.itemobj
+        var qiangdu = ["选择强度"]
+        var youqi = ["选择油漆"]
+        var xinceng = ["选择锌层"]
+        var yanse = ["选择颜色"]
         for(let obj of res.result.densityList){
           qiangdu.push(obj.context)
         }
@@ -370,17 +459,38 @@ Page({
         for(let obj of res.result.colorList){
           yanse.push(obj.context)
         }
+        if(that.data.flag != true){
+          that.setData({
+            kuandu:'',
+            houdu:'',
+            zhengvalue:'',
+            beivalue:'',
+            tuceng:'',
+            dunwei:''
+          })
+        }else{
+          qiangduindex = utils.getArrIndex(qiangdu,itemdata.density)
+          xincengindex = utils.getArrIndex(xinceng,itemdata.zincLayer)
+          yanseindex = utils.getArrIndex(yanse,itemdata.color)
+          youqiindex = utils.getArrIndex(youqi,itemdata.paint)
+          that.getyouqi(res.result.printList[youqiindex].subentryId,itemdata.paint)
+        }
         that.setData({
           setwidth:res.result.width,
           sethoudu:res.result.thickness,
           qiangdu:qiangdu,
+          qiangduindex:qiangduindex==-1?0:qiangduindex,
           youqi:youqi,
+          youqiindex:youqiindex==-1?0:youqiindex,
           xinceng:xinceng,
+          xincengindex:xincengindex==-1?0:xincengindex,
           yanse:yanse,
+          yanseindex:yanseindex==-1?0:xincengindex,
           qiangduarray:res.result.densityList,
           youqiarray:res.result.printList,
           xincengarray:res.result.zinclayerList,
-          yansearray:res.result.colorList
+          yansearray:res.result.colorList,
+          flag:false
         })
       }
     })
@@ -388,17 +498,13 @@ Page({
   // 选择钢厂
   bindMultiPickerColumnChange: function(e) {
     var that = this
-    console.log('picker发送选择改变，携带值为', e.detail)
     var column = e.detail.column
     var indexs = e.detail.value;
-    //picker发送选择改变，携带值为 (2) [1, 0]
     if(column == 0){
-      console.log(that.data.multiArray[0][indexs])
       var data = {
         name:that.data.multiArray[0][indexs]
       }
       qingqiu.get("theName",data,function(res){
-        console.log(res)
         if(res.success == true){
           var names = []
           for(let obj of res.result.records){
@@ -414,6 +520,7 @@ Page({
             multiIndex:multiIndex,
             multilist:res.result.records
           })
+          console.log(that.data.multilist)
         }
       })
     }else{
@@ -421,13 +528,11 @@ Page({
       this.setData({
         [multiIndex]: indexs,
       })
-      console.log(that.data.multiIndex)
     }
   },
 
   // 彩涂品名
   caituChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       caituindex: e.detail.value
     })
@@ -458,6 +563,17 @@ Page({
   retReg:function(e){
     var minhoudu = this.data.sethoudu[0]
     var maxhoudu = this.data.sethoudu[1]
+    if(minhoudu > maxhoudu){
+      wx.showToast({
+        title: '该品名没有厚度，请联系管理员',
+        icon:'none',
+        duration:2000
+      })
+      this.setData({
+        houdu:''
+      })
+      return
+    }
     if(e.detail.value>=minhoudu&&e.detail.value<=maxhoudu){
       this.setData({
         houdu:e.detail.value
@@ -471,6 +587,7 @@ Page({
       this.setData({
         houdu:''
       })
+      return
     }
   },
 
@@ -499,6 +616,17 @@ Page({
     var width = Number(e.detail.value) 
     var minwidth = Number(this.data.setwidth[0])
     var maxwidth = Number(this.data.setwidth[1])
+    if(minwidth > maxwidth){
+      wx.showToast({
+        title: '该品名没有宽度，请联系管理员',
+        icon:'none',
+        duration:2000
+      })
+      this.setData({
+        kuandu:''
+      })
+      return
+    }
     if(width >= minwidth && width <= maxwidth){
       this.setData({
         kuandu: e.detail.value
@@ -540,11 +668,9 @@ Page({
       text:that.data.youqi[e.detail.value]
     }
     qingqiu.get("commonPrint",data,function(res){
-      console.log(res)
       if(res.success == true){
         var mohou = [res.result.zhengId]
         mohou.push(res.result.beiId)
-        console.log(mohou)
         that.setData({
           mohou:mohou,
           zheng:res.result.zheng,
@@ -581,7 +707,6 @@ Page({
   },
   // 正面
   zhengmianChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       zhengvalue: e.detail.value
     })
@@ -590,9 +715,19 @@ Page({
   zhengmian:function(e){
     var that = this
     var value = e.detail.value
-    console.log(that.data.zheng)
     var minvalue = that.data.zheng[0]
     var maxvalue = that.data.zheng[1]
+    if(minvalue > maxvalue){
+      wx.showToast({
+        title: '该油漆下没有正面膜厚，请联系管理员',
+        icon:'none',
+        duration:2000
+      })
+      that.setData({
+        zhengvalue:''
+      })
+      return
+    }
     if(value>=minvalue&&value<=maxvalue){
       var index = 0
       var data = {
@@ -657,7 +792,17 @@ Page({
     var value = e.detail.value
     var minvalue = that.data.bei[0]
     var maxvalue = that.data.bei[1]
-    console.log(that.data.bei)
+    if(minvalue > maxvalue){
+      wx.showToast({
+        title: '该油漆下没有背面膜厚，请联系管理员',
+        icon:'none',
+        duration:2000
+      })
+      that.setData({
+        beivalue:''
+      })
+      return
+    }
     if(value>=minvalue&&value<=maxvalue){
       var index = 1
       var data = {
@@ -680,7 +825,7 @@ Page({
         duration:2000
       })
       that.setData({
-        zhengvalue:''
+        beivalue:''
       })
       return
     }
@@ -688,28 +833,24 @@ Page({
 
   // 锌层
   xincengChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       xincengindex: e.detail.value
     })
   },
   // 颜色
   yanseChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       yanseindex: e.detail.value
     })
   },
   //强度
   qiangduChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       qiangduindex: e.detail.value
     })
   },
    // 吨位
    dunwei: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       dunwei: e.detail.value
     })
@@ -719,56 +860,59 @@ Page({
     var that = this
     var bindimg = []
     wx.chooseImage({
-      sizeType:3,
-      sourceType:['compressed'],
+      count:1,
+      sizeType:['compressed'],
       sourceType:['album', 'camera'],
       success:function(res){
-        console.log(res)
         var tempFilePaths = res.tempFilePaths
-        for(let i=0;i<tempFilePaths.length;i++){
-          that.setData({
-            bindimg:tempFilePaths
-          })
-          wx.uploadFile({
-            url: api.upload,
-            filePath: tempFilePaths[i],
-            header: {
-              "Content-Type": "multipart/form-data"
-            },
-            formData: {
-              method: 'POST' //请求方式
-            },
-            name: 'file',
-            success:function(re){
-              if(re.statusCode == 200){
-                console.log(re)
-                var data = JSON.parse(re.data)
-                var imglist = that.data.imglist
-                imglist.push(data.message)
-                that.setData({
-                  imglist:imglist
-                })
-                console.log(that.data.imglist)
-              }else{
-                wx.showToast({
-                  title: re.errMsg,
-                  icon:'none',
-                  duration:1000
-                })
-              }
+        var bindimg = that.data.bindimg
+        console.log(tempFilePaths[0])
+        bindimg.push(tempFilePaths[0])
+        that.setData({
+          bindimg:bindimg
+        })
+        wx.uploadFile({
+          url: api.upload,
+          filePath: tempFilePaths[0],
+          header: {
+            "Content-Type": "multipart/form-data"
+          },
+          formData: {
+            method: 'POST' //请求方式
+          },
+          name: 'file',
+          success:function(re){
+            console.log(re)
+            if(re.statusCode == 200){
+              var data = JSON.parse(re.data)
+              var imglist = that.data.imglist
+              imglist.push(data.message)
+              console.log(data.message)
+              that.setData({
+                imglist:imglist
+              })
+            }else{
+              wx.showToast({
+                title: re.errMsg,
+                icon:'none',
+                duration:1000
+              })
             }
-          })
-        }
+          }
+        })
       }
     })
   },
   // 删除图片
   delimg:function(e){
     var imgs = this.data.bindimg
+    var imgurl = this.data.imglist
     var index = e.currentTarget.dataset.index
     imgs.splice(index,1)
+    imgurl.splice(index,1)
     this.setData({
-      bindimg:imgs
+      bindimg:imgs,
+      imglist:imgurl
     })
   }
 })
