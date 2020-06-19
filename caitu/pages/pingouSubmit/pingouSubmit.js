@@ -2,6 +2,7 @@
 const app = getApp()
 const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
+const utils = require('../../utils/request.js')
 Page({
 
   /**
@@ -305,14 +306,6 @@ Page({
   // 跳转到发布成功页面
   submitSuccess: function() {
     var that = this
-    if(that.data.indexs==''||that.data.shiid==''||that.data.multiName==''||that.data.thenameid==''||that.data.houdu==''||that.data.kuandu==''||that.data.youqi[that.data.youqiindex]==''||that.data.zhengmianindex==''||that.data.beimianindex==''||that.data.tuceng==''||that.data.xinceng[that.data.xincengindex]==''||that.data.yanse[that.data.yanseindex]==''||that.data.qiangdu[that.data.qiangduindex]==''||that.data.dunwei==''||that.data.date==''){
-      wx.showToast({
-        title: '有未填写项！',
-        icon:'none',
-        duration:2000
-      })
-      return
-    }
     var data={
       wxUserId:app.globalData.wxid,
       areaOneId:that.data.indexs,
@@ -331,7 +324,24 @@ Page({
       deadline:that.data.date,
       tonnage:that.data.dunwei,
     }
-    console.log(data)
+    var s = utils.yanzheng(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|' + data.steelName + ',请选择钢厂|' + data.theNameId + ',请选择品名|' + data.thickness + ',请输入厚度|' + data.width + ',请输入宽度|' + data.paint + ',请选择油漆|' + data.front + ',请输入正面膜厚|' + data.rear + ',请输入背面膜厚|' + data.coat + ',没有涂层参数|' + data.zincLayer + ',请选择锌层|' + data.color + ',请选择颜色|' + data.density + ',请选择强度|' + data.deadline + ',请选择截止时间|' + data.tonnage + ',请选择吨数')
+    if(s != 0){
+      wx.showToast({
+        title: s,
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    var v = utils.yanzhengVal(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.paint+',请选择油漆|' + data.zincLayer + ',请选择锌层|' + data.color +',请选择颜色|'+ data.density + ',请选择强度')
+    if(v != 0){
+      wx.showToast({
+        title: v,
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     qingqiu.get("faBuPinGou",data,function(res){
       if(res.success == true){
         console.log(res)
@@ -341,7 +351,12 @@ Page({
           url: '../submitSuccess/submitSuccess?obj='+ppsj,
         })
       }else{
-
+        wx.showToast({
+          title: res.message,
+          icon:'none',
+          duration:2000
+        })
+        return
       }
     },'post')
   },
@@ -419,6 +434,17 @@ Page({
     }
     var minhoudu = this.data.sethoudu[0]
     var maxhoudu = this.data.sethoudu[1]
+    if(minhoudu > maxhoudu){
+      wx.showToast({
+        title: '该品名没有厚度，请联系管理员',
+        icon:'none',
+        duration:2000
+      })
+      this.setData({
+        houdu:''
+      })
+      return
+    }
     if(e.detail.value>minhoudu&&e.detail.value<maxhoudu||e.detail.value<minhoudu&&e.detail.value>maxhoudu){
       this.setData({
         houdu:e.detail.value
@@ -457,6 +483,17 @@ Page({
     var width = Number(e.detail.value) 
     var minwidth = Number(this.data.setwidth[0])
     var maxwidth = Number(this.data.setwidth[1])
+    if(minwidth > maxwidth){
+      wx.showToast({
+        title: '该品名没有宽度，请联系管理员',
+        icon:'none',
+        duration:2000
+      })
+      this.setData({
+        kuandu:''
+      })
+      return
+    }
     if(width > minwidth && width < maxwidth||width < minwidth && width > maxwidth){
       this.setData({
         kuandu: e.detail.value
@@ -553,6 +590,17 @@ Page({
     console.log(that.data.zheng)
     var minvalue = that.data.zhou[0]
     var maxvalue = that.data.zhou[1]
+    if(minvalue > maxvalue){
+      wx.showToast({
+        title: '该油漆下没有正面膜厚，请联系管理员',
+        icon:'none',
+        duration:2000
+      })
+      that.setData({
+        zhengmianChange:''
+      })
+      return
+    }
     if(value>minvalue&&value<maxvalue||value<minvalue&&value>maxvalue){
       that.setData({
         zhengmianChange: e.detail.value
@@ -617,7 +665,17 @@ Page({
     var value = e.detail.value
     var minvalue = that.data.bhou[0]
     var maxvalue = that.data.bhou[1]
-    console.log(that.data.bei)
+    if(minvalue > maxvalue){
+      wx.showToast({
+        title: '该油漆下没有背面膜厚，请联系管理员',
+        icon:'none',
+        duration:2000
+      })
+      that.setData({
+        beimianChange:''
+      })
+      return
+    }
     if(value>minvalue&&value<maxvalue||value<minvalue&&value>maxvalue){
       that.setData({
         beimianChange:e.detail.value
