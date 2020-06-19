@@ -37,7 +37,7 @@
           </view>
           钢厂
         </view>
-        <view class="gc_name yincang">{{whxx.cname}}</view>
+        <view class="gc_name yincang">{{whxx.steelName}}</view>
       </view>
 
       <view class="gangchang hengxiang">
