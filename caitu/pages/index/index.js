@@ -6,6 +6,7 @@ const api = require('../../utils/config.js')
 Page({
   data: {
     viewUrl:api.viewUrl,
+    showModalStatus1:false,
     msgList: [{
         id: "1",
         title: "编号100*0239发布求购"
@@ -110,7 +111,6 @@ Page({
               obj.backup1 = str1 + str
             }
           }
-          console.log(that.data.pingouList)
           that.setData({
             pingouList:that.data.pingouList
           })
@@ -192,26 +192,20 @@ Page({
       }
     })
   },
-  // 初始化数据
-  getInfo(){
-    var that = this
-    qingqiu.get("init",null,function(res){
-      console.log(res)
-    })
-  },
+  // // 初始化数据
+  // getInfo(){
+  //   var that = this
+  //   qingqiu.get("init",null,function(res){
+  //     console.log(res)
+  //   })
+  // },
   // 初始化授权
   chushihuashouquan:function(){
     var that = this
     wx.getSetting({
       success(res) {
         if (res.authSetting['scope.userInfo']) {
-          console.log(that.dialog)
-          if(that.data.isAuto==0){
-            that.dialog.showDialog();
-            that.setData({
-              isAuto:1
-            })
-          }
+          that.dialog.hideDialog();
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.login({
             success: function(res) {
@@ -228,7 +222,6 @@ Page({
                   }
                   console.log(data)
                   qingqiu.get("getKeyInfo", data, function(re) {
-                    console.log('获取个人信息',re)
                     app.globalData.wxid = re.result.wxUser.id
                     app.globalData.openid = re.result.openId
                     app.globalData.wxState = re.result.wxUser.autoState
@@ -239,11 +232,7 @@ Page({
             }
           })
         } else {
-          wx.showToast({
-            title: '未授权',
-            icon:'none',
-            duration:1000
-          })
+          that.dialog.showDialog();
           return
         }
       }
@@ -282,22 +271,8 @@ Page({
   // 跳转到求购发布页面
   qiugouSubmit: function() {
     if(app.globalData.wxState == 0){
-      wx.showModal({
-        title: '提示',
-        content:'您未认证，请前往认证',
-        cancelText:'取消',
-        showCancel:true,
-        confirmText:'确定',
-        success:function(res){
-          if(res.confirm){
-            // 跳转到我的信息页面
-            wx.navigateTo({
-              url: '../myInfo/myInfo',
-            })
-          }else if(res.cancel){
-            return
-          }
-        }
+      this.setData({
+        showModalStatus1:true
       })
     }else{
       wx.navigateTo({
@@ -308,22 +283,8 @@ Page({
   // 跳转到拼购发布页面
   pingouSubmit: function() {
     if(app.globalData.wxState == 0){
-      wx.showModal({
-        title: '提示',
-        content:'您未认证，请前往认证',
-        cancelText:'取消',
-        showCancel:true,
-        confirmText:'确定',
-        success:function(res){
-          if(res.confirm){
-            // 跳转到我的信息页面
-            wx.navigateTo({
-              url: '../myInfo/myInfo',
-            })
-          }else if(res.cancel){
-            return
-          }
-        }
+      this.setData({
+        showModalStatus1:true
       })
     }else{
       wx.navigateTo({
@@ -334,22 +295,8 @@ Page({
   // 跳转到库存管理页面
   kucunManage: function() {
     if(app.globalData.wxState == 0){
-      wx.showModal({
-        title: '提示',
-        content:'您未认证，请前往认证',
-        cancelText:'取消',
-        showCancel:true,
-        confirmText:'确定',
-        success:function(res){
-          if(res.confirm){
-            // 跳转到我的信息页面
-            wx.navigateTo({
-              url: '../myInfo/myInfo',
-            })
-          }else if(res.cancel){
-            return
-          }
-        }
+      this.setData({
+        showModalStatus1:true
       })
     }else{
       wx.navigateTo({
@@ -385,6 +332,12 @@ Page({
   zixunMore: function() {
     wx.navigateTo({
       url: '../zixunMore/zixunMore',
+    })
+  },
+  // 跳转到咨询详情页面
+  newsDetails:function(){
+    wx.navigateTo({
+      url: '../newsDetails/newsDetails',
     })
   },
   // 弹窗显示

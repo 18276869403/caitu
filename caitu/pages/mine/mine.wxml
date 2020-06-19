@@ -101,9 +101,6 @@
   </view>
 </view>
 
-
-
-<!-- 用户未认证弹窗 -->
 <!-- 注册协议 -->
 <view class="commodity_screen1" wx:if="{{showModalStatus1}}"></view>
 <view animation="{{animationData1}}" class="commodity_attr_box1" wx:if="{{showModalStatus1}}">

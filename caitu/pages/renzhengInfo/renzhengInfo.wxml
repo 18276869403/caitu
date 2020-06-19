@@ -7,7 +7,7 @@
         推荐人
       </view>
       <view class="content-list-right">
-        <input type="text" placeholder="请输入联系人" class="shurukuang" placeholder-class="placeholder"></input>
+        <input type="text" placeholder="请输入推荐人" class="shurukuang" placeholder-class="placeholder" value="{{tjname}}" bindinput="tjname"></input>
       </view>
     </view>
     <view class="content-list hengxiang">
@@ -15,7 +15,7 @@
         <text style="color:#FF1010">*</text> 姓名
       </view>
       <view class="content-list-right">
-        <input type="text" placeholder="请输入姓名" class="shurukuang" placeholder-class="placeholder"></input>
+        <input type="text" placeholder="请输入姓名" class="shurukuang" placeholder-class="placeholder" bindinput="username" value="{{usename}}"></input>
       </view>
     </view>
     <view class="content-list hengxiang">
@@ -23,7 +23,7 @@
         <text style="color:#FF1010">*</text> 手机号
       </view>
       <view class="content-list-right">
-        <input type="number" placeholder="请输入手机号码" class="shurukuang" placeholder-class="placeholder"></input>
+        <input type="number" placeholder="请输入手机号码" class="shurukuang" placeholder-class="placeholder" value="{{phone}}" bindinput="phone"></input>
       </view>
     </view>
     <view class="content-list hengxiang">
@@ -31,19 +31,18 @@
         <text style="color:#FF1010">*</text> 公司名称
       </view>
       <view class="content-list-right">
-        <input type="text" placeholder="请输入公司名称" class="shurukuang" placeholder-class="placeholder"></input>
+        <input type="text" placeholder="请输入公司名称" class="shurukuang" placeholder-class="placeholder" value="{{gongshi}}" bindinput="gongshi"></input>
       </view>
     </view>
   </view>
   <view class="bottom">
     <view class="bottom-title">
-     
         <text style="color:#FF1010">*</text> 上传营业执照
-      
     </view>
     <!-- 上传 -->
-    <view class="bottom-upload">
-    <image src="../image/upload.png" class="upload-img"></image>
+    <view class="bottom-upload" bindtap="tupian">
+    <image src="../image/upload.png" class="y_img" wx:if="{{bindimg==''||bindimg==null}}"></image>
+    <image src="{{bindimg}}" class="y_img" wx:if="{{bindimg!=''&&bindimg!=null}}">></image>
     </view>
     <!-- 提交 -->
         <view class="bottom-submit">

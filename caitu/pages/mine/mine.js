@@ -10,7 +10,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    wxUser:{}
+    wxUser:{},
+    showModalStatus:false
   },
   onLoad: function() {
     this.getMyInfo()
@@ -103,7 +104,7 @@ Page({
       if(res.success == true){
         if(app.globalData.wxState == 0 && res.result.records[0].name == null){
           wx.navigateTo({
-            url: '../myInfo/myInfo',
+            url: '../renzhengInfo/renzhengInfo',
           })
         }else{
           that.setData({
@@ -111,6 +112,14 @@ Page({
           })
         }
       }
+    })
+  },
+
+  // 跳转到认证信息页面
+  renzhengInfo: function() {
+    this.hideModal1()
+    wx.navigateTo({
+      url: '../renzhengInfo/renzhengInfo',
     })
   },
 
