@@ -66,7 +66,7 @@ Page({
       wx.showToast({
         title: '请输入11位手机号',
         icon:'none',
-        duration:1000
+        duration:1000 
       })
       return
     }

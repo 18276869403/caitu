@@ -40,7 +40,7 @@
         <text style="color:#FF1010">*</text> 上传营业执照
     </view>
     <!-- 上传 -->
-    <view class="bottom-upload" bindtap="tupian">
+    <view class="bottom-upload" bindtap="tupian"> 
     <image src="../image/upload.png" class="y_img" wx:if="{{bindimg==''||bindimg==null}}"></image>
     <image src="{{bindimg}}" class="y_img" wx:if="{{bindimg!=''&&bindimg!=null}}">></image>
     </view>
