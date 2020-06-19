@@ -1,5 +1,5 @@
 // pages/newsDetails/newsDetails.js
-var wxParse = require('../../wxParse/wxParse.js')
+// var wxParse = require('../../wxParse/wxParse.js')
 Page({
 
   /**
@@ -19,7 +19,7 @@ Page({
       news:that.data.news
     })
     var shuju = '<img src ="'+'{{that.data.news.upUrl}}'+'"></img><div>'+'{{context}}'+'</div>';
-    wxParse.wxParse('news_Content', 'html', shuju, that, 10);
+    // wxParse.wxParse('news_Content', 'html', shuju, that, 10);
     console.log(this.data.news)
   },
 

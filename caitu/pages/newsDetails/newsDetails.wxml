@@ -1,5 +1,5 @@
 <!--pages/newsDetails/newsDetails.wxml-->
-<import src="../../wxParse/wxParse.wxml" />
+<!-- <import src="../../wxParse/wxParse.wxml" /> -->
 <view class="container">
   <view class="huixian"></view>
   <view class="top">
