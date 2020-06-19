@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    news:[]
   },
 
   /**
@@ -14,8 +14,13 @@ Page({
    */
   onLoad: function(options) {
     var that = this
-    var shuju = '<img src ="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592544985647&di=ff6125d0ccaf74dfd4b6131bfbf42510&imgtype=0&src=http%3A%2F%2Fcdn.qiancipai.com%2F190305170514872174.jpg"></img><div>新华社北京6月18日电 6 月17日晚， 习近平主席在北京主持中非团结抗疫特别峰会并发表题为《 团结抗疫 共克时艰》 的主旨讲话.</div>';
+    that.data.news = JSON.parse(options.obj)
+    that.setData({
+      news:that.data.news
+    })
+    var shuju = '<img src ="'+'{{that.data.news.upUrl}}'+'"></img><div>'+'{{context}}'+'</div>';
     wxParse.wxParse('news_Content', 'html', shuju, that, 10);
+    console.log(this.data.news)
   },
 
   /**

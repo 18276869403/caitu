@@ -3,19 +3,20 @@
 <view class="container">
   <view class="huixian"></view>
   <view class="top">
-    <view class="top-name">第一报道 | 习主席提出的四个“坚定不移”，让世界感受到中国情谊、中国担当</view>
+    <view class="top-name">{{news.title}}</view>
     <view class="top-date hengxiang">
       <view>
         <image src="../image/dshijian.png" class="dshijian-img"></image>
       </view>
       <view>
-        2020.03.06
+        {{news.createTime}}
       </view>
     </view>
   </view>
   <view class="content">
     <view class='wxParse'>
-      <template is="wxParse" data="{{wxParseData:news_Content.nodes}}" />
+      <!-- <template is="wxParse" data="{{wxParseData:news_Content.nodes}}" /> -->
+      <rich-text nodes="<img src ='{{news.upUrl}}'></img>{{news.context}}"></rich-text>
     </view>
   </view>
 </view>
