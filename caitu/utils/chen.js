@@ -1,6 +1,6 @@
  // const api = require('../utils/config.js')
 //  const baseUrl = "http://111.231.51.198:9045/jeecg-boot/" 
- const baseUrl = "http://192.168.1.243:8080/jeecg-boot/" 
+ const baseUrl = "http://192.168.1.233:8080/jeecg-boot/" 
 
  // 我的页面-个人信息查询
  const my = baseUrl + "rabbit/mine/my" 
@@ -44,6 +44,8 @@ const deleteInvent = baseUrl + "rabbit/mine/deleteInvent"
 const updateShangInvent = baseUrl + "rabbit/mine/updateShangInvent"
 // 下架 
 const updateXiaInvent = baseUrl + "rabbit/mine/updateXiaInvent"
+// 发起匹配
+const PinfaQiPiPei = baseUrl + "rabbit/lobby/PinfaQiPiPei"
 
  module.exports = {
    baseUrl:baseUrl,
@@ -68,4 +70,5 @@ const updateXiaInvent = baseUrl + "rabbit/mine/updateXiaInvent"
    updateShangInvent:updateShangInvent,
    updateXiaInvent:updateXiaInvent,
    updateInventById:updateInventById,
+   PinfaQiPiPei:PinfaQiPiPei
  } 
