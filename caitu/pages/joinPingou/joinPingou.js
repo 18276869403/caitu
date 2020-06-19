@@ -12,16 +12,21 @@ Page({
     citylist:[],
     city:[],
     dunwei:'',
-    pgid:''
+    pgid:'',
+    shuju:[],
+    shuju1:[],
+    areaOneId:'',
+    areaTwoId:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(options.pgid != undefined){
+    this.data.shuju=JSON.parse(options.shuju)
+    if(this.data.shuju != undefined){
       this.setData({
-        pgid:options.pgid
+        pgid: this.data.shuju.id
       })
     }
     this.getAddress()
@@ -113,6 +118,8 @@ Page({
     var city = that.data.city
     console.log(citylist)
     console.log(city)
+    that.data.areaOneId=citylist[cityindex[0]-1].itemValue
+    that.data.areaTwoId=city[cityindex[1]-1].itemValue
     var data = {
       areaOneId:citylist[cityindex[0]-1].itemValue,
       areaTwoId:city[cityindex[1]-1].itemValue,
@@ -128,9 +135,10 @@ Page({
           icon:'none',
           duration:2000
         })
+        that.data.shuju1=JSON.stringify(res.result.records)
         setTimeout(function(){
           wx.navigateTo({
-            url: '../submitSuccess/submitSuccess',
+            url: '../submitSuccess/submitSuccess?obj='+that.data.shuju1,
           })
         },1000)
       }else{
