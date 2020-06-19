@@ -674,13 +674,16 @@ Page({
         that.setData({
           mohou:mohou,
           zheng:res.result.zheng,
-          bei:res.result.bei
+          bei:res.result.bei,
+          youqiindex: e.detail.value
+        })
+      }else{
+        that.setData({
+          youqiindex: 0
         })
       }
     })
-    this.setData({
-      youqiindex: e.detail.value
-    })
+    
   },
   // 正面焦点
   zhengfocus:function(){

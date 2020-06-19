@@ -205,13 +205,7 @@ Page({
     wx.getSetting({
       success(res) {
         if (res.authSetting['scope.userInfo']) {
-          console.log(that.dialog)
-          if(that.data.isAuto==0){
-            that.dialog.showDialog();
-            that.setData({
-              isAuto:1
-            })
-          }
+          that.dialog.hideDialog();
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.login({
             success: function(res) {
@@ -239,11 +233,7 @@ Page({
             }
           })
         } else {
-          wx.showToast({
-            title: '未授权',
-            icon:'none',
-            duration:1000
-          })
+          that.dialog.showDialog()
           return
         }
       }
@@ -251,7 +241,7 @@ Page({
   },
   hall: function(e) {
     var id=e.currentTarget.dataset.id
-    getApp().globalData.dtid=id
+    app.globalData.dtid=id
     if(id==1){
       app.globalData.dtid=1
     }

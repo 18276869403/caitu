@@ -20,8 +20,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.data.pipeilist=JSON.parse(options.obj)
-    for(let obj of this.data.pipeilist){
+    var pipeilist = JSON.parse(options.obj)
+    for(let obj of pipeilist){
       var str = obj.id.toString()
       if(str.length < 10){
         var str1 = ''
@@ -31,11 +31,11 @@ Page({
         obj.backup1 = str1 + str
       }
     }
-    for(var i=0;i<this.data.pipeilist.length;i++){
-      this.data.pipeilist[i].upUrl=this.data.pipeilist[i].upUrl.split(',')[0]
+    for(var i=0;i<pipeilist.length;i++){
+      pipeilist[i].upUrl=pipeilist[i].upUrl.split(',')[0]
     }
     this.setData({
-      pipeilist:this.data.pipeilist
+      pipeilist:pipeilist
     })
   },
   // 海报页面
