@@ -3,6 +3,7 @@
 const app = getApp()
 const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
+const utils = require('../../utils/util.js')
 Page({
   data: {
     viewUrl:api.viewUrl,
@@ -227,6 +228,9 @@ Page({
                     app.globalData.openid = re.result.openId
                     app.globalData.wxState = re.result.wxUser.autoState
                     app.globalData.gender = re.result.wxUser.sex
+                    that.setData({
+                      userId:app.globalData.wxid
+                    })
                   }, 'post')
                 }
               })
