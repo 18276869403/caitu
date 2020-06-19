@@ -149,7 +149,7 @@
           <view class="pingou-item hengxiang" wx:for="{{pingouList}}" wx:for-index="index" bindtap="pingouDetails" data-pingou="{{item}}">
             <view class="pingou-item-left zongxiang">
               <view class="pingou-left-title" style="margin-top:10rpx">
-                品名：{{item.steelname}}
+                品名：{{item.itemvalue_dictText}}
               </view>
               <view class="pingou-left-item">
                 编号：{{item.backup1}}

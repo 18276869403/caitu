@@ -35,7 +35,7 @@ Component({
    */
   data: {
     // 弹窗显示控制
-    isShow:false,
+    isShow:true,
   },
 
   /**
@@ -101,7 +101,7 @@ Component({
                       icon:'success',
                       duration:1000
                     })
-                    that.hideDialog();
+                    that.hideDialog(); 
                   }else{
                     wx.showToast({
                       title: re.message,
