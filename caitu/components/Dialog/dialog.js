@@ -35,8 +35,7 @@ Component({
    */
   data: {
     // 弹窗显示控制
-    isShow:true,
-    isAuto:false
+    isShow:false,
   },
 
   /**
@@ -46,13 +45,13 @@ Component({
     //隐藏弹框
     hideDialog(){
       this.setData({
-        isShow: !this.data.isShow
+        isShow: true
       })
     },
     //展示弹框
     showDialog(){
       this.setData({
-        isShow: !this.data.isShow
+        isShow: false
       })
     },
     /**
@@ -74,9 +73,7 @@ Component({
           icon: 'none',
           duration:3000
         })
-        that.setData({
-          isShow: true,
-        })
+        that.showDialog();
       } else {
         wx.login({
           success: function(res) {

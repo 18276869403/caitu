@@ -2,6 +2,7 @@
 const app = getApp()
 const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
+const utils = require('../../utils/util.js')
 Page({
 
   /**
@@ -153,10 +154,18 @@ Page({
     that.data.shid=e.detail.value[1]
     that.data.multiName = that.data.multiArray[0][e.detail.value[0]]
     that.data.multiNames = that.data.multiArray[e.detail.value[1]]
-    that.data.thenameid = that.data.multilist[e.detail.value[1]-1].theNameId
+    var thenameid = that.data.multilist[e.detail.value[1]-1].theNameId
+    if(thenameid == undefined){
+      wx.showToast({
+        title: '请选择品名',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     var data = {
       steelName:that.data.multiName,
-      theNameId:that.data.thenameid
+      theNameId:thenameid
     }
     console.log(data)
     this.getWidth(data)

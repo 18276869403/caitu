@@ -239,7 +239,7 @@
         </view>
       </view>
       <view class="zixun zongxiang">
-        <view class="zixun-item hengxiang" wx:for="{{zixunList}}" wx:for-index="index">
+        <view class="zixun-item hengxiang" wx:for="{{zixunList}}" wx:for-index="index" bindtap="newsDetails">
           <view class="zixun-item-left zongxiang">
             <view class="zixun-left-title text-title-class">
               {{item.title}}
