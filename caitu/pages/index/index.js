@@ -55,6 +55,7 @@ Page({
         for(let obj of res.result.records){
           obj.upUrl = that.data.viewUrl + obj.upUrl
         }
+        console.log('banner',res.result.records)
         that.setData({
           bannerImg:res.result.records
         })
@@ -337,6 +338,11 @@ Page({
   // 跳转到咨询详情页面
   newsDetails:function(){
     wx.navigateTo({ 
+      url: '../newsDetails/newsDetails',
+    })
+  },
+  goNewDetail:function(){
+    wx.navigateTo({
       url: '../newsDetails/newsDetails',
     })
   },

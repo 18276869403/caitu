@@ -15,7 +15,7 @@ Page({
     index: 0,
     pmindex: 0,
     gangchang: [],
-    pinming: ['品 名', '镀锌彩涂卷','镀锌板彩板彩涂卷','板彩涂卷'],
+    pinming: ['品 名'],
     pinminglist:['品 名', '镀锌彩涂卷','镀锌板彩板彩涂卷','板彩涂卷'],
     multilist:[],
     googleVal:'',
@@ -144,7 +144,7 @@ Page({
     var data = {pageNo:that.data.pageNo}
     if(that.data.googleVal != "") {data.text = that.data.googleVal}
     if(that.data.index != 0) {data.steelName = that.data.gangchang[that.data.index]}
-    if(that.data.pmindex != 0) {data.theNameId = that.data.multilist[that.data.pmindex-1]}
+    if(that.data.pmindex != 0) {data.theNameId = that.data.multilist[that.data.pmindex-1].theNameId}
     console.log(data)
     qingqiu.get('askToBuyLists',data,function(res){
       if(res.success == true){
@@ -185,7 +185,8 @@ Page({
     var data = {pageNo:that.data.pageNo}
     if(that.data.googleVal != "") {data.text = that.data.googleVal}
     if(that.data.index != 0) {data.steelName = that.data.gangchang[that.data.index]}
-    if(that.data.pmindex != 0) {data.theNameId = that.data.multilist[that.data.pmindex-1]}
+    if(that.data.pmindex != 0) {data.theNameId = that.data.multilist[that.data.pmindex-1].theNameId}
+    console.log(data)
     qingqiu.get('inventoryLists',data,function(res){
       if(res.success == true){
         if (res.result != null) {
@@ -223,7 +224,7 @@ Page({
     var data = {pageNo:that.data.pageNo}
     if(that.data.googleVal != "") {data.text = that.data.googleVal}
     if(that.data.index != 0) {data.steelName = that.data.gangchang[that.data.index]}
-    if(that.data.pmindex != 0) {data.theNameId = that.data.multilist[that.data.pmindex-1]}
+    if(that.data.pmindex != 0) {data.theNameId = that.data.multilist[that.data.pmindex-1].theNameId}
     qingqiu.get('groupByingLists',data,function(res){
       if(res.success == true){
         if (res.result != null) {

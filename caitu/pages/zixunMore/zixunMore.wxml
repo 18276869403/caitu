@@ -14,7 +14,7 @@
               {{item.title}}
             </view>
             <view class="zixun-left-content">
-              {{item.context}}
+               <rich-text class="text-class" nodes="{{item.context}}"></rich-text>
             </view>
             <view class="zixun-left-date hengxiang">
               <view class="left-date-img">

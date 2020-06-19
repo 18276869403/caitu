@@ -84,3 +84,14 @@ page {
   line-height: 50rpx;
   right: 20rpx;
 }
+.text-class{
+  display: -webkit-box;
+	font-size: 28rpx;
+	color: #999999;
+	line-height: 40rpx;
+	word-break: break-all;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

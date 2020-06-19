@@ -13,7 +13,7 @@
       <swiper indicator-dots="true" indicator-color="rgba(255,255,255,.3)" indicator-active-color="#fff" autoplay="true" class="swiper">
         <block wx:for="{{bannerImg}}" wx:for-index="index" wx:key="{{item.id}}">
           <swiper-item>
-            <image src="{{item.upUrl}}" class="slide-image" />
+            <image src="{{item.upUrl}}" class="slide-image" bindtap="goNewDetail" />
           </swiper-item>
         </block>
       </swiper>

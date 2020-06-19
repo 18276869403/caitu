@@ -24,7 +24,8 @@
     "pages/kucunSubmitSuccess/kucunSubmitSuccess",
     "pages/kucunManage/kucunManage",
     "pages/myqiugou/myqiugou",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/newsDetails/newsDetails"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
