@@ -72,7 +72,7 @@
       <image src="../image/faqiqiugou.png" class="qiugou-img" bindtap="qiugouSubmit"></image>
     </view>
     <!-- 重新计算 -->
-    <view class="button">
+    <view class="button"> 
       <image src="../image/chongxinjisuan.png" class="jisuan-img" bindtap="calculator"></image>
     </view>
   </view>

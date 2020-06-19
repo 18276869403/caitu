@@ -24,7 +24,7 @@ Page({
   },
   // 跳转到计算器页面
   calculator: function() {
-    wx.redirectTo({
+    wx.redirectTo({ 
       url: '../calculator/calculator',
     })
   },

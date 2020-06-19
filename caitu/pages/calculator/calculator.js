@@ -541,7 +541,7 @@ Page({
       if(res.success == true){
         var obj = JSON.stringify(res.result)
         objval.theNameId_dictText = that.data.multiArray[1][that.data.multiIndex[1]],
-        objval = JSON.stringify(objval)
+        objval = JSON.stringify(objval) 
         wx.navigateTo({
           url: '../calculatorResult/calculatorResult?obj=' + obj + '&objval='+ objval,
         })

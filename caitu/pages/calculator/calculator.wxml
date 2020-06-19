@@ -1,6 +1,6 @@
 <!--pages/calculator/calculator.wxml-->
 <view class="container">
-  <view class="hengxian"></view>
+  <view class="hengxian"></view> 
   <view class="content">
     <view class="content-item hengxiang">
       <view class="content-item-left">选择钢厂</view>
