@@ -336,7 +336,7 @@ Page({
   },
   // 跳转到咨询详情页面
   newsDetails:function(){
-    wx.navigateTo({
+    wx.navigateTo({ 
       url: '../newsDetails/newsDetails',
     })
   },
