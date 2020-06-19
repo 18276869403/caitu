@@ -60,7 +60,9 @@ Page({
   })
   },
   // 参与拼购
-  joinPingou: function() {
+  joinPingou: function(e) {
+    var shuju=e.currentTarget.dataset.shuju
+    var shuju1 = JSON.stringify(shuju);
     var pgid = this.data.pgid
     var pgxxlist = this.data.pgxxlist
     for(let obj of pgxxlist){
@@ -74,7 +76,7 @@ Page({
       }
     }
     wx.navigateTo({
-      url: '../joinPingou/joinPingou?pgid=' + this.data.pgid,
+      url: '../joinPingou/joinPingou?shuju=' + shuju1,
     })
   },
   // 跳转海报页面
