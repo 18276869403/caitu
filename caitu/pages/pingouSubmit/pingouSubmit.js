@@ -2,7 +2,7 @@
 const app = getApp()
 const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
-const utils = require('../../utils/request.js')
+const utils = require('../../utils/util.js')
 Page({
 
   /**
@@ -342,6 +342,7 @@ Page({
       })
       return
     }
+    console.log(data)
     qingqiu.get("faBuPinGou",data,function(res){
       if(res.success == true){
         console.log(res)
