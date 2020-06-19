@@ -336,9 +336,11 @@ Page({
     })
   },
   // 跳转到咨询详情页面
-  newsDetails:function(){
+  newsDetails:function(e){
+    var obj =e.currentTarget.dataset.news;
+    var zxzx = JSON.stringify(obj);
     wx.navigateTo({ 
-      url: '../newsDetails/newsDetails',
+      url: '../newsDetails/newsDetails?obj='+zxzx,
     })
   },
   goNewDetail:function(){
