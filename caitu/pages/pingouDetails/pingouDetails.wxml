@@ -139,6 +139,6 @@
   <!-- entertype==0,为从首页进入 -->
   <!-- 我要参与 -->
   <view class="ck"  wx:if="{{pgxx.wxUserId!=wxid&&pgxx.startoks_dictText!='已完成'}}">
-    <image src="../image/woyaocanyu.png" class="ck_img" bindtap="joinPingou"></image>
+    <image src="../image/woyaocanyu.png" class="ck_img" bindtap="joinPingou" data-shuju="{{pgxx}}"></image>
   </view>
 </view>

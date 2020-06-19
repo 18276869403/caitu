@@ -49,6 +49,14 @@ getzixun(){
     }
   })
 },
+// 跳转到咨询详情页面
+newsDetails:function(e){
+  var obj =e.currentTarget.dataset.news;
+  var zxzx = JSON.stringify(obj);
+  wx.navigateTo({ 
+    url: '../newsDetails/newsDetails?obj='+zxzx,
+  })
+},
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

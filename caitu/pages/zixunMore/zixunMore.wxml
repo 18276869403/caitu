@@ -5,7 +5,7 @@
     <!-- 最新咨询 -->
     <view class="content-weihuo">
       <view class="zixun zongxiang">
-        <view class="zixun-item hengxiang" wx:for="{{zixunList}}" wx:for-index="index">
+        <view class="zixun-item hengxiang" wx:for="{{zixunList}}" wx:for-index="index" bindtap="newsDetails" data-news="{{item}}">
           <view class="zixun-item-right">
             <image src="{{item.upUrl}}" class="zixun-img"></image>
           </view>

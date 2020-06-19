@@ -1,5 +1,6 @@
 // pages/submitSuccess/submitSuccess.js
-
+const app = getApp()
+const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
 Page({
 
@@ -12,6 +13,7 @@ Page({
     type: 0,
     // 拼购发布成功
     // type: 1,
+    weihouid:'',
     weihuoList: [],
     pipeilist:[]
   },
@@ -21,6 +23,8 @@ Page({
    */
   onLoad: function(options) {
     var pipeilist = JSON.parse(options.obj)
+    this.data.weihuoList=pipeilist
+    this.data.weihouid=pipeilist.id
     for(let obj of pipeilist){
       var str = obj.id.toString()
       if(str.length < 10){
@@ -44,8 +48,27 @@ Page({
       url: '../post/post',
     })
   },
+  // 发起匹配
+  faqipipei(e){
+    var weihuoid=e.currentTarget.dataset.weihouid
+    var data={
+      inventId:weihuoid,
+      wxId:app.globalData.wxid
+    }
+    qingqiu.get('PinfaQiPiPei',data,function(res){
+      console.log(res)
+      if(res.success == true){
+        
+      }else
+      {
+        return
+      }
+    },'post') 
+    this.showModel()
+  },
   // 服务规则页面显示
-  showModal1: function() {
+  showModel(){
+    debugger
     this.setData({
       hasMask: true
     })
