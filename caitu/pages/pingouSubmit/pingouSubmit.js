@@ -539,7 +539,7 @@ Page({
     })
     that.setData({
       youqiindex: e.detail.value,
-      youqi:that.data.youqi,
+      youqi:that.data.youqi, 
       youqiindex:e.detail.value
     })
     that.gethuodu()
