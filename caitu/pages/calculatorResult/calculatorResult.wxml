@@ -12,58 +12,58 @@
     <view class="list-sort-name hengxiang">
       <view class="list-sort-guige">厚度</view>
       <view class="list-sort-canshu">{{jisuanDetails.thickness}}</view>
-      <view class="list-sort-jiajia">+200</view>
+      <view class="list-sort-jiajia">{{objValue.thicknessPrice}}</view>
     </view>
     <view class="list-sort-name hengxiang">
       <view class="list-sort-guige">宽度</view>
       <view class="list-sort-canshu">{{jisuanDetails.width}}</view>
-      <view class="list-sort-jiajia">+0</view>
+      <view class="list-sort-jiajia">{{objValue.widthPrice}}</view>
     </view>
     <view class="list-sort-name hengxiang">
       <view class="list-sort-guige">油漆</view>
       <view class="list-sort-canshu">{{jisuanDetails.paint}}</view>
-      <view class="list-sort-jiajia">-20</view>
+      <view class="list-sort-jiajia">{{objValue.printPrice}}</view>
     </view>
     <view class="list-sort-name hengxiang">
       <view class="list-sort-guige">正面膜厚</view>
       <view class="list-sort-canshu">{{jisuanDetails.front}}μ</view>
-      <view class="list-sort-jiajia">+200</view>
+      <view class="list-sort-jiajia">{{objValue.frontPrice}}</view>
     </view>
     <view class="list-sort-name hengxiang">
       <view class="list-sort-guige">背面膜厚</view>
       <view class="list-sort-canshu">{{jisuanDetails.rear}}μ</view>
-      <view class="list-sort-jiajia">+200</view>
+      <view class="list-sort-jiajia">{{objValue.rearPrice}}</view>
     </view>
     <view class="list-sort-name hengxiang">
       <view class="list-sort-guige">涂层</view>
       <view class="list-sort-canshu">{{jisuanDetails.coat}}</view>
-      <view class="list-sort-jiajia">+200</view>
+      <view class="list-sort-jiajia">{{objValue.coatPrice}}</view>
     </view>
     <view class="list-sort-name hengxiang">
       <view class="list-sort-guige">锌层</view>
       <view class="list-sort-canshu">{{jisuanDetails.zincLayer}}</view>
-      <view class="list-sort-jiajia">+200</view>
+      <view class="list-sort-jiajia">{{objValue.zinclayerPrice}}</view>
     </view>
     <view class="list-sort-name hengxiang">
       <view class="list-sort-guige">颜色</view>
       <view class="list-sort-canshu">{{jisuanDetails.color}}</view>
-      <view class="list-sort-jiajia">+0</view>
+      <view class="list-sort-jiajia">{{objValue.colorPrice}}</view>
     </view>
     <view class="list-sort-name hengxiang">
       <view class="list-sort-guige">强度</view>
       <view class="list-sort-canshu">{{jisuanDetails.density}}</view>
-      <view class="list-sort-jiajia">+700</view>
+      <view class="list-sort-jiajia">{{objValue.densityPrice}}</view>
     </view>
     <view class="list-sort-name hengxiang">
       <view class="list-sort-guige">吨位</view>
       <view class="list-sort-canshu">{{jisuanDetails.tonnage}}</view>
-      <view class="list-sort-jiajia">+0</view>
+      <view class="list-sort-jiajia">{{objValue.tonnagePrice}}</view>
     </view>
     <view class="list-sort-tips">
       注：该钢厂基价￥1000/吨
     </view>
     <view class="list-sort-price">
-      ￥{{jisuanDetails.monovalent}}/吨
+      ￥{{objValue.zongPrice}}/吨
     </view>
   </view>
   <view class="content-button hengxiang">

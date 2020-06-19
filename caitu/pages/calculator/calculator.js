@@ -2,6 +2,7 @@
 const app = getApp()
 const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
+const utils = require('../../utils/util.js')
 Page({
 
   /**
@@ -16,7 +17,8 @@ Page({
     xincengarray: [],
     yansearray: [],
     setwidth: [],
-    zhengvalue: [],
+    zhengvalue: '',
+    beivalue:'',
     sethoudu: [],
     multiIndex: [0, 0],
     qiangdu: ['选择强度'],
@@ -30,6 +32,7 @@ Page({
     multiArray: [],
     multilist: [],
     setwidth: [],
+    front:''
   },
 
   /**
@@ -335,9 +338,8 @@ Page({
   },
   // 正面
   zhengmianChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      zhengmianindex: e.detail.value
+      zhengvalue: e.detail.value
     })
   },
 
@@ -412,7 +414,7 @@ Page({
   beimianChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      beimianindex: e.detail.value
+      beivalue: e.detail.value
     })
   },
   // 背面失去焦点
@@ -497,9 +499,61 @@ Page({
   },
   // 跳转到计算结果页面
   calculatorResult: function () {
-    wx.navigateTo({
-      url: '../calculatorResult/calculatorResult',
-    })
+    var that = this
+    var youqi = that.data.youqi[that.data.youqiindex]
+    var data = {
+      wxUserId:app.globalData.wxid,
+      steelName:that.data.gangchangname,
+      theNameId:that.data.pinmingid,
+      thickness:that.data.houdu,
+      width:that.data.kuandu,
+      paint:youqi,
+      front:that.data.zhengvalue,
+      rear:that.data.beivalue,
+      coat:that.data.tuceng,
+      zincLayer:that.data.xinceng[that.data.xincengindex],
+      color:that.data.yanse[that.data.yanseindex],
+      density:that.data.qiangdu[that.data.qiangduindex],
+      tonnage:that.data.dunwei,
+    }
+    console.log(data)
+    var s = utils.yanzheng(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.thickness + ',请输入厚度|'+data.width+',请输入宽度|'+data.paint+',请选择油漆|'+data.front+',请输入正面膜厚|'+data.rear+',请输入背面膜厚|' + data.coat+',请输入涂层|' + data.zincLayer + ',请选择锌层|' + data.color +',请选择颜色|' + data.density + ',请选择强度|' +data.tonnage+',请选择吨数')
+    if(s!=0){
+      wx.showToast({
+        title:s,
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    var v = utils.yanzhengVal(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.paint+',请选择油漆|' + data.zincLayer + ',请选择锌层|' + data.color +',请选择颜色|'+ data.density + ',请选择强度')
+    if(v != 0){
+      wx.showToast({
+        title: v,
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    var objval = data
+    qingqiu.get("faBuJiSuan",data,function(res){
+      console.log(res)
+      if(res.success == true){
+        var obj = JSON.stringify(res.result)
+        objval.theNameId_dictText = that.data.multiArray[1][that.data.multiIndex[1]],
+        objval = JSON.stringify(objval)
+        wx.navigateTo({
+          url: '../calculatorResult/calculatorResult?obj=' + obj + '&objval='+ objval,
+        })
+      }else{
+        wx.showToast({
+          title: res.message,
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
+    },'post')
   },
   // 选择规格 弹窗显示
   showModal1: function () {

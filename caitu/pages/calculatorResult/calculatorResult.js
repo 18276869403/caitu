@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    jisuanDetails:[]
+    jisuanDetails:{},
+    objValue:{}
   },
 
   /**
@@ -13,10 +14,13 @@ Page({
    */
   onLoad: function(options) {
     var xiangqing=JSON.parse(options.obj)
-    this.setData({
-      jisuanDetails:xiangqing
-    })
+    var value = JSON.parse(options.objval)
     console.log(xiangqing)
+    console.log(value)
+    this.setData({
+      jisuanDetails:value,
+      objValue:xiangqing
+    })
   },
   // 跳转到计算器页面
   calculator: function() {
