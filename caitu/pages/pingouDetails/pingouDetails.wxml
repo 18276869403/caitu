@@ -11,8 +11,8 @@
         <image src="../image/daojishi.png" class="zt_jxz"></image>
         进行中
       </view>
-      <view class="xq_sh" wx:if="{{type==2&&entertype==1}}">
-        <image src="../image/pipeizhong.png" class="zt_sh"></image>
+      <view class="xq_sh" wx:if="{{pgxx.startoks_dictText=='匹配中'}}">
+        <image src="../image/pipeizhong.png" class="zt_sh"></image>匹配中
       </view>
       <view class="xq_wc" wx:if="{{pgxx.startoks_dictText=='已完成'}}">
         <image src="../image/wancheng.png" class="zt_wc"></image>
@@ -133,7 +133,7 @@
     <image src="../image/haibao.png" class="ck_img" bindtap="post"></image>
   </view>
    <!-- 选择匹配 -->
-  <view class="ck" wx:if="{{type==2&&entertype==1}}">
+  <view class="ck" wx:if="{{pgxx.startoks_dictText=='匹配中'&&pgxx.wxUserId==wxid}}">
     <image src="../image/xuanzepipei.png" class="ck_img" bindtap="submitSuccess"></image>
   </view>
   <!-- entertype==0,为从首页进入 -->
