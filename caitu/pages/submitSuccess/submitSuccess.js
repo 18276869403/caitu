@@ -24,8 +24,9 @@ Page({
    */
   onLoad: function(options) {
     console.log(options.obj)
-    if(pipeilist != undefined){
+    if(options.obj != undefined){
       var pipeilist = JSON.parse(options.obj)
+      console.log(pipeilist)
       this.data.weihuoList=pipeilist
       this.data.weihouid=pipeilist.id
       for(let obj of pipeilist){
@@ -60,6 +61,7 @@ Page({
   },
   // 发起匹配
   faqipipei(e){
+    var that = this
     var weihuoid=e.currentTarget.dataset.weihouid
     var data={
       inventId:weihuoid,
@@ -68,13 +70,12 @@ Page({
     qingqiu.get('PinfaQiPiPei',data,function(res){
       console.log(res)
       if(res.success == true){
-        
+        that.showModel()
       }else
       {
         return
       }
     },'post') 
-    this.showModel()
   },
   // 服务规则页面显示
   showModel(){
