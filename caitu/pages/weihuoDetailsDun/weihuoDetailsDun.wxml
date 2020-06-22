@@ -6,13 +6,13 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">仓库</view>
       <view class="content-item-content1">
-        {{items.areaOneId_dictText}}-{{items.areaTwoId_dictText}}
+        {{items.areaOneName}}-{{items.areaTwoName}}
       </view>
     </view>
     <view class="content-item hengxiang">
       <view class="content-item-left">选择钢厂</view>
       <view class="content-item-content1">
-        {{items.steelName}}-{{items.theNameId_dictText}}
+        {{items.steelName}}-{{items.theNameValue}}
       </view>
     </view>
     <view class="content-item hengxiang">
