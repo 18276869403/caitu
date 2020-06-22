@@ -75,10 +75,40 @@ Page({
   // 跳转到计算结果
   calculatorResult: function(e) {
     var obj =e.currentTarget.dataset.gd;
-    var gd = JSON.stringify(obj);
-    wx.navigateTo({
-      url: '../calculatorResult/calculatorResult?obj='+gd,
-    })
+    var data = {
+      id:obj.id,
+      steelName:obj.steelName,
+      color:obj.color,
+      density:obj.density,
+      wxUserId:app.globalData.wxid,
+      theNameId:obj.theNameId,
+      thickness:obj.thickness,
+      width:obj.width,
+      paint:obj.paint,
+      front:obj.front,
+      rear:obj.rear,
+      coat:obj.coat,
+      zincLayer:obj.zincLayer,
+      density:obj.density,
+      tonnage:obj.tonnage,
+    }
+    var objval = data
+    qingqiu.get("faBuJiSuan",data,function(res){
+      if(res.success == true){
+        var res = JSON.stringify(res.result) // 获取参数价格
+        objval.theNameId_dictText = obj.theNameId_dictText,
+        objval = JSON.stringify(objval) // 参数值
+        wx.navigateTo({
+          url: '../calculatorResult/calculatorResult?obj=' + res + '&objval='+ objval,
+        })
+      }else{
+        wx.showToast({
+          title: res.message,
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
+    },'post')
   }
-
 })

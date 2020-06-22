@@ -263,7 +263,7 @@ Page({
   // 跳转到计算器页面
   calculator: function() {
     wx.navigateTo({
-      url: '../calculator/calculator',
+      url: '../calculator/calculator?obj=null',
     })
   },
   // 跳转到认证信息页面

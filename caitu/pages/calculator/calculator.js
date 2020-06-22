@@ -32,15 +32,25 @@ Page({
     multiArray: [],
     multilist: [],
     setwidth: [],
-    front:''
+    front:'',
+    gangchanglist:[],
+    gangchangname:'宝山钢铁'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getstell()
+    console.log(options.obj)
+    if(options.obj != "null"){
+      var data = JSON.parse(options.obj)
+      this.getstell(data.steelName)
+    }else{
+      this.getstell(this.data.gangchangname)
+    }
   },
+  // 绑定初始值
+
   // 钢厂
   getstell() {
     var that = this
@@ -59,7 +69,7 @@ Page({
       }
       var multiArray = [names, []];
       that.setData({
-        multiArray: multiArray
+        multiArray: multiArray,
       })
       qingqiu.get("theName", {
         name: '宝山钢铁'
@@ -368,6 +378,7 @@ Page({
         bei: that.data.beivalue == '' ? 0 : that.data.zhengvalue
       }
       qingqiu.get("commonMoHou", data, function (res) {
+        console.log(res)
         if (res.success == true) {
           that.setData({
             zhengvalue: value,
@@ -502,7 +513,7 @@ Page({
     var that = this
     var youqi = that.data.youqi[that.data.youqiindex]
     var data = {
-      wxUserId:app.globalData.wxid,
+      wxId:app.globalData.wxid,
       steelName:that.data.gangchangname,
       theNameId:that.data.pinmingid,
       thickness:that.data.houdu,
@@ -516,7 +527,6 @@ Page({
       density:that.data.qiangdu[that.data.qiangduindex],
       tonnage:that.data.dunwei,
     }
-    console.log(data)
     var s = utils.yanzheng(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.thickness + ',请输入厚度|'+data.width+',请输入宽度|'+data.paint+',请选择油漆|'+data.front+',请输入正面膜厚|'+data.rear+',请输入背面膜厚|' + data.coat+',请输入涂层|' + data.zincLayer + ',请选择锌层|' + data.color +',请选择颜色|' + data.density + ',请选择强度|' +data.tonnage+',请选择吨数')
     if(s!=0){
       wx.showToast({

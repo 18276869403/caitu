@@ -15,8 +15,6 @@ Page({
   onLoad: function(options) {
     var xiangqing=JSON.parse(options.obj)
     var value = JSON.parse(options.objval)
-    console.log(xiangqing)
-    console.log(value)
     this.setData({
       jisuanDetails:value,
       objValue:xiangqing
@@ -24,14 +22,16 @@ Page({
   },
   // 跳转到计算器页面
   calculator: function() {
+    var obj = JSON.stringify(this.data.jisuanDetails)
     wx.redirectTo({ 
-      url: '../calculator/calculator',
+      url: '../calculator/calculator?obj=' + obj,
     })
   },
   // 跳转到发起求购页面
   qiugouSubmit: function() {
+    var obj = JSON.stringify(this.data.jisuanDetails)
     wx.navigateTo({
-      url: '../qiugouSubmit/qiugouSubmit',
+      url: '../qiugouSubmit/qiugouSubmit?obj=' + obj,
     })
   }
 })
