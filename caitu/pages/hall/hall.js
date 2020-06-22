@@ -14,9 +14,13 @@ Page({
     navid1: 2,
     index: 0,
     pmindex: 0,
+    color:0,
+    thickness:0,
     gangchang: [],
-    pinming: ['品 名'],
-    pinminglist:['品 名', '镀锌彩涂卷','镀锌板彩板彩涂卷','板彩涂卷'],
+    pinming: ['品名'],
+    pinminglist:['品名', '镀锌彩涂卷','镀锌板彩板彩涂卷','板彩涂卷'],
+    colorlist:['颜色'],
+    houdu:['厚度'],
     multilist:[],
     googleVal:'',
     nav: [{
@@ -34,13 +38,15 @@ Page({
     ],
     kucun:[],
     pingou:[],
-    qiugou:[]
+    qiugou:[],
+    theNameId:'',
+    steelName:''
   },
   getgangchang(){
     var that = this
     qingqiu.get("stell",null,function(res){
       var list = res.result;
-      var names = ['钢 厂'];
+      var names = ['钢厂'];
       for(let obj of list){
         names.push(obj.name);
       }
@@ -56,9 +62,10 @@ Page({
       navid1: navid
     })
   },
+  // 品名
   getpinming(value){
     var that = this
-    var pnames = ['品 名']
+    var pnames = ['品名']
     qingqiu.get("theName",{name:value},function(res){
       if(res.success == true){
         for(let obj of res.result.records){
@@ -67,6 +74,51 @@ Page({
         that.setData({
           pinming:pnames,
           multilist:res.result.records
+        })
+      }
+    })
+  },
+  // 颜色
+  getColor(){
+    var that = this
+    var data={
+      steelName:that.data.steelName,
+      theNameId:that.data.theNameId
+    }
+    that.data.colorlist = ['颜色']
+    qingqiu.get("common",data,function(res){
+      if(res.success == true){
+        for(let obj of res.result.colorList){
+          that.data.colorlist.push(obj.context)
+        }
+        that.setData({
+          colorlist:that.data.colorlist
+          // multilist:res.result.records
+        })
+      }
+    })
+  },
+  // 厚度
+  getHou(value){
+    var that = this
+    var data={
+      steelName:that.data.steelName,
+      theNameId:that.data.theNameId
+    }
+    var houdu = ['厚度']
+    var hd1=''
+    var hd2=''
+    qingqiu.get("common",data,function(res){
+      if(res.success == true){
+        // for(let obj of res.result.thickness){
+        //   houdu.push(obj)
+        // }
+        hd1=res.result.thickness[0]
+        hd2=res.result.thickness[1]
+        houdu.push(hd1+'-'+hd2)
+        that.setData({
+          houdu:houdu
+          // multilist:res.result.records
         })
       }
     })
@@ -90,8 +142,13 @@ Page({
   },
 
   bindPickerChange: function(e) {
+    this.data.steelName=this.data.gangchang[e.detail.value]
+    console.log(this.data.steelName)
     this.setData({
       index: e.detail.value,
+      pmindex: 0,
+      color:0,
+      thickness:0
     })
     if(e.detail.value != 0){
       this.getpinming(this.data.gangchang[e.detail.value])
@@ -110,8 +167,52 @@ Page({
   },
   bindPickerpm: function(e) {
     // console.log('picker发送选择改变，携带值为', e.detail.value)
+    if(this.data.steelName=='钢厂'){
+      wx.showToast({
+        title: '请先选择钢厂',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    this.data.theNameId=e.detail.value
+    console.log(this.data.theNameId)
     this.setData({
       pmindex: e.detail.value,
+      color:0,
+      thickness:0
+    })
+    this.getColor()
+    this.getHou()
+    if(this.data.navid1 == 1){
+      this.selectqiugou()      
+    }else if(this.data.navid1 == 2){
+      this.selectweihuo()
+    }else{
+      this.selectpingou()
+    }
+  },
+  // 选择颜色
+  bindPickerColor: function(e) {
+    if(this.data.steelName=='钢厂'||this.data.steelName==''){
+      wx.showToast({
+        title: '请先选择钢厂',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(this.data.theNameId=='0'||this.data.theNameId==''){
+      wx.showToast({
+        title: '请先选择品名',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      color: e.detail.value,
     })
     if(this.data.navid1 == 1){
       this.selectqiugou()      
@@ -121,7 +222,20 @@ Page({
       this.selectpingou()
     }
   },
-  
+  // 选择厚度
+  bindPickerThickness: function(e) {
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      thickness: e.detail.value,
+    })
+    if(this.data.navid1 == 1){
+      this.selectqiugou()      
+    }else if(this.data.navid1 == 2){
+      this.selectweihuo()
+    }else{
+      this.selectpingou()
+    }
+  },
   // 下拉刷新
   onPullDownRefresh: function () {
     this.onLoad()
@@ -267,7 +381,7 @@ Page({
   onShow(){
     console.log(app.globalData.dtid)
     this.setData({
-      // navid1: app.globalData.dtid
+      navid1: app.globalData.dtid
     })
   },
   // 跳转到求购详情
