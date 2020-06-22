@@ -47,7 +47,13 @@ Page({
     if(options.obj != "null"){
       var data = JSON.parse(options.obj)
       this.setData({
-        itemobj:data
+        itemobj:data,
+        houdu:data.thickness,
+        kuandu:data.width,
+        zhengvalue:data.front,
+        beivalue:data.rear,
+        tuceng:data.coat,
+        dunwei:data.tonnage
       })
       this.bindchushihua(data.steelName,data.theNameId_dictText)
       this.getWidth({steelName:data.steelName,theNameId:data.theNameId})
