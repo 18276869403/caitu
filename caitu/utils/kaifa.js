@@ -31,7 +31,7 @@ const faBuQiuGou = baseUrl + "rabbit/lobby/faBuQiuGou"
 const canYuGroupBuying = baseUrl + "rabbit/lobby/canYuGroupBuying"
 // 计算器
 const faBuJiSuan = baseUrl + "rabbit/lobby/faBuJiSuan"
-
+ 
  module.exports = {
   groupByingList:groupByingList,
   calculateList:calculateList,
