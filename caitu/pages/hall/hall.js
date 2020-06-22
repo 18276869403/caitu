@@ -12,9 +12,12 @@ Page({
     viewUrl:api.viewUrl,
     pageNo:1,
     navid1: 2,
+    navid: 2,
     index: 0,
     pmindex: 0,
     color:0,
+    colorid:'',
+    hdid:'',
     thickness:0,
     gangchang: [],
     pinming: ['品名'],
@@ -58,8 +61,9 @@ Page({
   bindnav: function(e) {
     // debugger
     var navid = e.currentTarget.dataset.id
+    this.data.navid=navid
     this.setData({
-      navid1: navid
+      navid1: this.data.navid
     })
   },
   // 品名
@@ -105,7 +109,7 @@ Page({
       steelName:that.data.steelName,
       theNameId:that.data.theNameId
     }
-    var houdu = ['厚度']
+    that.data.houdu = ['厚度']
     var hd1=''
     var hd2=''
     qingqiu.get("common",data,function(res){
@@ -115,9 +119,9 @@ Page({
         // }
         hd1=res.result.thickness[0]
         hd2=res.result.thickness[1]
-        houdu.push(hd1+'-'+hd2)
+        that.data.houdu.push(hd1+'~'+hd2)
         that.setData({
-          houdu:houdu
+          houdu:that.data.houdu
           // multilist:res.result.records
         })
       }
@@ -131,10 +135,10 @@ Page({
   // 搜索
   getGoogle(){
     debugger
-    console.log(this.data.navid1)
-    if(this.data.navid1 == 1){
+    console.log(this.data.navid)
+    if(this.data.navid == 1){
       this.selectqiugou()      
-    }else if(this.data.navid1 == 2){
+    }else if(this.data.navid == 2){
       this.selectweihuo()
     }else{
       this.selectpingou()
@@ -157,9 +161,9 @@ Page({
         pinming:this.data.pinminglist
       })
     }
-    if(this.data.navid1 == 1){
+    if(this.data.navid == 1){
       this.selectqiugou()      
-    }else if(this.data.navid1 == 2){
+    }else if(this.data.navid == 2){
       this.selectweihuo()
     }else{
       this.selectpingou()
@@ -184,9 +188,9 @@ Page({
     })
     this.getColor()
     this.getHou()
-    if(this.data.navid1 == 1){
+    if(this.data.navid == 1){
       this.selectqiugou()      
-    }else if(this.data.navid1 == 2){
+    }else if(this.data.navid == 2){
       this.selectweihuo()
     }else{
       this.selectpingou()
@@ -211,12 +215,13 @@ Page({
       return
     }
     // console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.data.colorid=e.detail.value
     this.setData({
       color: e.detail.value,
     })
-    if(this.data.navid1 == 1){
+    if(this.data.navid == 1){
       this.selectqiugou()      
-    }else if(this.data.navid1 == 2){
+    }else if(this.data.navid == 2){
       this.selectweihuo()
     }else{
       this.selectpingou()
@@ -225,12 +230,13 @@ Page({
   // 选择厚度
   bindPickerThickness: function(e) {
     // console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.data.hdid=e.detail.value
     this.setData({
       thickness: e.detail.value,
     })
-    if(this.data.navid1 == 1){
+    if(this.data.navid == 1){
       this.selectqiugou()      
-    }else if(this.data.navid1 == 2){
+    }else if(this.data.navid == 2){
       this.selectweihuo()
     }else{
       this.selectpingou()
@@ -238,6 +244,7 @@ Page({
   },
   // 下拉刷新
   onPullDownRefresh: function () {
+    app.globalData.dtid=this.data.navid
     this.onLoad()
     setTimeout(() => {
       wx.stopPullDownRefresh()
@@ -247,6 +254,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.data.navid=app.globalData.dtid
     this.selectqiugou()
     this.selectweihuo()
     this.selectpingou()
@@ -255,7 +263,14 @@ Page({
   // 获取求购
   selectqiugou(){
     var that = this
-    var data = {pageNo:that.data.pageNo}
+    var data = {
+      pageNo:that.data.pageNo,
+      pageSize:10,
+      steelName:that.data.steelName,
+      theNameId:that.data.theNameId,
+      color:that.data.colorlist[that.data.colorid]==undefined?'':that.data.colorlist[that.data.colorid],
+      thickness:that.data.houdu[that.data.hdid]==undefined?'':that.data.houdu[that.data.hdid]
+    }
     if(that.data.googleVal != "") {data.text = that.data.googleVal}
     if(that.data.index != 0) {data.steelName = that.data.gangchang[that.data.index]}
     if(that.data.pmindex != 0) {data.theNameId = that.data.multilist[that.data.pmindex-1].theNameId}
@@ -296,7 +311,14 @@ Page({
   // 获取尾货
   selectweihuo(){
     var that = this
-    var data = {pageNo:that.data.pageNo}
+    var data = {
+      pageNo:that.data.pageNo,
+      pageSize:10,
+      steelName:this.data.steelName,
+      theNameId:this.data.theNameId,
+      color:that.data.colorlist[that.data.colorid]==undefined?'':that.data.colorlist[that.data.colorid],
+      thickness:that.data.houdu[that.data.hdid]==undefined?'':that.data.houdu[that.data.hdid]
+    }
     if(that.data.googleVal != "") {data.text = that.data.googleVal}
     if(that.data.index != 0) {data.steelName = that.data.gangchang[that.data.index]}
     if(that.data.pmindex != 0) {data.theNameId = that.data.multilist[that.data.pmindex-1].theNameId}
@@ -335,7 +357,14 @@ Page({
   // 获取拼购
   selectpingou(){
     var that = this
-    var data = {pageNo:that.data.pageNo}
+    var data = {
+      pageNo:that.data.pageNo,
+      pageSize:10,
+      steelName:this.data.steelName,
+      theNameId:this.data.theNameId,
+      color:that.data.colorlist[that.data.colorid]==undefined?'':that.data.colorlist[that.data.colorid],
+      thickness:that.data.houdu[that.data.hdid]==undefined?'':that.data.houdu[that.data.hdid]
+    }
     if(that.data.googleVal != "") {data.text = that.data.googleVal}
     if(that.data.index != 0) {data.steelName = that.data.gangchang[that.data.index]}
     if(that.data.pmindex != 0) {data.theNameId = that.data.multilist[that.data.pmindex-1].theNameId}
