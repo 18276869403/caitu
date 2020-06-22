@@ -671,7 +671,7 @@ Page({
   // 图片上传
   imgUpload:function(){
     var that = this
-    var bindimg = []
+    var bindimg = that.data.bindimg
     wx.chooseImage({
       count:1,
       sizeType:['compressed'],
