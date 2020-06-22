@@ -348,6 +348,7 @@ Page({
         console.log(res)
         that.data.pipeilist=res.result.records
         var ppsj = JSON.stringify(that.data.pipeilist)
+        app.globalData.haibaitype = 1
         wx.navigateTo({
           url: '../submitSuccess/submitSuccess?obj='+ppsj,
         })
