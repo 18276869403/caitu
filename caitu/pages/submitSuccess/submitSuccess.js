@@ -15,32 +15,42 @@ Page({
     // type: 1,
     weihouid:'',
     weihuoList: [],
-    pipeilist:[]
+    pipeilist:[],
+    haibaotype:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var pipeilist = JSON.parse(options.obj)
-    this.data.weihuoList=pipeilist
-    this.data.weihouid=pipeilist.id
-    for(let obj of pipeilist){
-      var str = obj.id.toString()
-      if(str.length < 10){
-        var str1 = ''
-        for(let i=0;i<10-str.length;i++){
-          str1 += 0
+    console.log(options.obj)
+    if(pipeilist != undefined){
+      var pipeilist = JSON.parse(options.obj)
+      this.data.weihuoList=pipeilist
+      this.data.weihouid=pipeilist.id
+      for(let obj of pipeilist){
+        var str = obj.id.toString()
+        if(str.length < 10){
+          var str1 = ''
+          for(let i=0;i<10-str.length;i++){
+            str1 += 0
+          }
+          obj.backup1 = str1 + str
         }
-        obj.backup1 = str1 + str
       }
+      for(var i=0;i<pipeilist.length;i++){
+        pipeilist[i].upUrl=pipeilist[i].upUrl.split(',')[0]
+      }
+      this.setData({
+        pipeilist:pipeilist,
+        haibaitype:app.globalData.haibaitype
+      })
+    }else{
+      console.log(app.globalData.haibaitype)
+      this.setData({
+        haibaitype:app.globalData.haibaitype
+      })
     }
-    for(var i=0;i<pipeilist.length;i++){
-      pipeilist[i].upUrl=pipeilist[i].upUrl.split(',')[0]
-    }
-    this.setData({
-      pipeilist:pipeilist
-    })
   },
   // 海报页面
   post: function() {

@@ -12,7 +12,7 @@
         进行中
       </view>
       <view class="xq_sh" wx:if="{{pgxx.startoks_dictText=='匹配中'}}">
-        <image src="../image/pipeizhong.png" class="zt_sh"></image>匹配中
+        <image src="../image/pipeizhong.png" class="zt_sh"></image>
       </view>
       <view class="xq_wc" wx:if="{{pgxx.startoks_dictText=='已完成'}}">
         <image src="../image/wancheng.png" class="zt_wc"></image>

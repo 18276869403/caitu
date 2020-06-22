@@ -37,6 +37,7 @@ Page({
     var id = options.obj
     this.getweihuo(id)
   },
+
   // 根据id获取库存详情
   getweihuo(id){
     var that = this
@@ -48,16 +49,16 @@ Page({
     qingqiu.get("selectInventById",data,function(res){
       console.log(res)
       if(res.success == true){
-          if(res.result.records[0].upUrl.indexOf(',') !=  -1){
-            res.result.records[0].upUrl = res.result.records[0].upUrl.split(',')
-            for(let obj of res.result.records[0].upUrl){
+          if(res.result[0].upUrl.indexOf(',') !=  -1){
+            res.result[0].upUrl = res.result[0].upUrl.split(',')
+            for(let obj of res.result[0].upUrl){
               imglist.push(api.viewUrl + obj)
             }
           }else{
-            imglist.push(api.viewUrl + res.result.records[0].upUrl)
+            imglist.push(api.viewUrl + res.result[0].upUrl)
           }
         that.setData({
-          items:res.result.records[0],
+          items:res.result[0],
           imglist:imglist
         })
       }else{

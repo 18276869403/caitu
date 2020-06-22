@@ -137,6 +137,7 @@ Page({
         })
         that.data.shuju1=JSON.stringify(res.result.records)
         setTimeout(function(){
+          app.globalData.haibaitype = 1
           wx.navigateTo({
             url: '../submitSuccess/submitSuccess?obj='+that.data.shuju1,
           })

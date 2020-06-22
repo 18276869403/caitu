@@ -87,6 +87,7 @@ Page({
   },
   // 跳转到成功页面
   submitSuccess:function(){
+    app.globalData.haibaitype = 0
     wx.navigateTo({
       url: '../submitSuccess/submitSuccess',
     })
