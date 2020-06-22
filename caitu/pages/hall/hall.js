@@ -254,7 +254,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.data.navid=app.globalData.dtid
+    this.data.navid=app.globalData.dtid==undefined?2:app.globalData.dtid
     this.selectqiugou()
     this.selectweihuo()
     this.selectpingou()
@@ -266,8 +266,8 @@ Page({
     var data = {
       pageNo:that.data.pageNo,
       pageSize:10,
-      steelName:that.data.steelName,
-      theNameId:that.data.theNameId,
+      steelName:that.data.steelName=='钢厂'?'':that.data.steelName,
+      theNameId:that.data.theNameId=='0'?'':that.data.theNameId,
       color:that.data.colorlist[that.data.colorid]==undefined?'':that.data.colorlist[that.data.colorid],
       thickness:that.data.houdu[that.data.hdid]==undefined?'':that.data.houdu[that.data.hdid]
     }
@@ -314,8 +314,8 @@ Page({
     var data = {
       pageNo:that.data.pageNo,
       pageSize:10,
-      steelName:this.data.steelName,
-      theNameId:this.data.theNameId,
+      steelName:that.data.steelName=='钢厂'?'':that.data.steelName,
+      theNameId:that.data.theNameId=='0'?'':that.data.theNameId,
       color:that.data.colorlist[that.data.colorid]==undefined?'':that.data.colorlist[that.data.colorid],
       thickness:that.data.houdu[that.data.hdid]==undefined?'':that.data.houdu[that.data.hdid]
     }
@@ -360,8 +360,8 @@ Page({
     var data = {
       pageNo:that.data.pageNo,
       pageSize:10,
-      steelName:this.data.steelName,
-      theNameId:this.data.theNameId,
+      steelName:that.data.steelName=='钢厂'?'':that.data.steelName,
+      theNameId:that.data.theNameId=='0'?'':that.data.theNameId,
       color:that.data.colorlist[that.data.colorid]==undefined?'':that.data.colorlist[that.data.colorid],
       thickness:that.data.houdu[that.data.hdid]==undefined?'':that.data.houdu[that.data.hdid]
     }
