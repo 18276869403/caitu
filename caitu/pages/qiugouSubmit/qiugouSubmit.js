@@ -114,6 +114,7 @@ Page({
       var multiArray = [names, []];
       var multiIndex0 = "multiIndex[0]"
       var mulIndex1 = utils.getArrIndex(names,steetName)
+      that.data.multiName=multiArray[0][mulIndex1]
       that.setData({
         multiArray: multiArray,
         [multiIndex0]:mulIndex1
@@ -122,12 +123,15 @@ Page({
         name: steetName
       }, function (res) {
         if (res.success == true) {
+          var pnamesid=[]
           for (let obj of res.result.records) {
             pnames.push(obj.theNameId_dictText)
+            pnamesid.push(obj.theNameId)
           }
           var multiArray = "multiArray[1]"
           var multiIndex1 = "multiIndex[1]"
           var muIndex1 = utils.getArrIndex(pnames,theNameId_dictText)
+          that.data.thenameid=pnamesid[muIndex1-1]
           that.setData({
             [multiArray]: pnames,
             multilist: res.result.records,
@@ -298,6 +302,8 @@ Page({
             dunwei:''
           })
         }else{
+          that.data.zhengmianindex=itemdata.front
+          that.data.beimianindex=itemdata.rear
           qiangduindex = utils.getArrIndex(that.data.qiangdu,itemdata.density)
           xincengindex = utils.getArrIndex(that.data.xinceng,itemdata.zincLayer)
           yanseindex = utils.getArrIndex(that.data.yanse,itemdata.color)
