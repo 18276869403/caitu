@@ -1,6 +1,6 @@
 // const api = require('../utils/config.js')
 // const baseUrl = "http://111.231.51.198:9045/jeecg-boot/" 
-const baseUrl = "http://192.168.1.243:8080/jeecg-boot/" 
+const baseUrl = "http://192.168.1.241:8080/jeecg-boot/" 
  // 我的页面-我的拼购
  const groupByingList = baseUrl + "rabbit/mine/groupByingList"
  // 我的页面-我的计算历史
@@ -28,7 +28,9 @@ const faBuPinGou = baseUrl + "rabbit/lobby/faBuPinGou"
 // 大厅-求购发布
 const faBuQiuGou = baseUrl + "rabbit/lobby/faBuQiuGou"
 // 参与拼购-提交
-const canYuGroupBuying = baseUrl + "rabbit/index/canYuGroupBuying"
+const canYuGroupBuying = baseUrl + "rabbit/lobby/canYuGroupBuying"
+// 计算器
+const faBuJiSuan = baseUrl + "rabbit/lobby/faBuJiSuan"
 
  module.exports = {
   groupByingList:groupByingList,
@@ -44,5 +46,6 @@ const canYuGroupBuying = baseUrl + "rabbit/index/canYuGroupBuying"
   commonMoHou:commonMoHou,
   faBuPinGou:faBuPinGou,
   faBuQiuGou:faBuQiuGou,
-  canYuGroupBuying:canYuGroupBuying
+  canYuGroupBuying:canYuGroupBuying,
+  faBuJiSuan:faBuJiSuan
  } 
