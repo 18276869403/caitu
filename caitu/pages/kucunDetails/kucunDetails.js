@@ -165,7 +165,7 @@ Page({
     }
     qingqiu.get("selectInventById",data,function(res){
       if(res.success == true){
-        var data = res.result.records[0]
+        var data = res.result[0]
         if(data.upUrl.indexOf(',') !=  -1){
           data.upUrl = data.upUrl.split(',')
           for(let obj of data.upUrl){
@@ -176,8 +176,11 @@ Page({
           bindimg.push(api.viewUrl + data.upUrl)
           imglist.push(data.upUrl)
         }
+        console.log(data)
+        console.log(that.data.multiArray1)
+        console.log(data.areaOneId_dictText)
         // 获取省
-        var multiIndex1_1 = utils.getArrIndex(that.data.multiArray1[0],data.areaOneId_dictText)
+        var multiIndex1_1 = utils.getArrIndex(that.data.multiArray1[0],data.areaOneName)
         if(multiIndex1_1 != -1){
           var multiIndex1 = "multiIndex1[0]"
           that.setData({
@@ -187,7 +190,7 @@ Page({
         var pid = that.data.cityList[multiIndex1_1-1].itemValue
         // 市
         that.getshiindex(pid,data.areaTwoId_dictText)
-        var multiIndex_1 = utils.getArrIndex(that.data.multiArray[0],data.areaOneId_dictText)
+        var multiIndex_1 = utils.getArrIndex(that.data.multiArray[0],data.areaTwoName)
         if(multiIndex_1 != -1){
           var multiIndex = "multiIndex[0]"
           that.setData({
@@ -203,7 +206,7 @@ Page({
           })
         }
         // 品名
-        that.getpmindex(data.steelName,data.theNameId_dictText)
+        that.getpmindex(data.steelName,data.theNameValue)
         that.setData({
           itemobj:data,
           bindimg:bindimg,
