@@ -274,10 +274,6 @@ Page({
         that.data.youqi=['选择油漆']
         that.data.xinceng=['选择锌层']
         that.data.yanse=['选择颜色']
-        // var qiangdu = that.data.qiangdu
-        // var youqi = that.data.youqi
-        // var xinceng = that.data.xinceng
-        // var yanse = that.data.yanse
        that.data.pricingPrice=res.result.steel==null?'':res.result.steel.pricingPrice
         for(let obj of res.result.densityList){
           that.data.qiangdu.push(obj.context)
