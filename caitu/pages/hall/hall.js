@@ -354,6 +354,7 @@ Page({
       }
     })
   },
+  
   // 获取拼购
   selectpingou(){
     var that = this
