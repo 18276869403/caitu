@@ -11,6 +11,7 @@ Page({
   data: {
     zheng: [],
     mohou: [],
+    flag:true,
     bei: [],
     qiangduarray: [],
     youqiarray: [],
@@ -34,7 +35,8 @@ Page({
     setwidth: [],
     front:'',
     gangchanglist:[],
-    gangchangname:'宝山钢铁'
+    gangchangname:'宝山钢铁',
+    itemobj:[]
   },
 
   /**
@@ -44,13 +46,57 @@ Page({
     console.log(options.obj)
     if(options.obj != "null"){
       var data = JSON.parse(options.obj)
-      this.getstell(data.steelName)
+      this.setData({
+        itemobj:data
+      })
+      this.bindchushihua(data.steelName,data.theNameId_dictText)
+      this.getWidth({steelName:data.steelName,theNameId:data.theNameId})
     }else{
       this.getstell(this.data.gangchangname)
     }
   },
   // 绑定初始值
-
+  bindchushihua(steetName,theNameId_dictText){
+    var that = this
+    qingqiu.get("stell",null,function(res){
+      var list = res.result;
+      var names = [];
+      var pnames = [];
+      for (let obj of list) {
+        if (names.length == 0) {
+          names.push("选择钢厂")
+        }
+        if (pnames.length == 0) {
+          pnames.push("选择品名")
+        }
+        names.push(obj.name);
+      }
+      var multiArray = [names, []];
+      var multiIndex0 = "multiIndex[0]"
+      var mulIndex1 = utils.getArrIndex(names,steetName)
+      that.setData({
+        multiArray: multiArray,
+        [multiIndex0]:mulIndex1
+      })
+      qingqiu.get("theName", {
+        name: steetName
+      }, function (res) {
+        if (res.success == true) {
+          for (let obj of res.result.records) {
+            pnames.push(obj.theNameId_dictText)
+          }
+          var multiArray = "multiArray[1]"
+          var multiIndex1 = "multiIndex[1]"
+          var muIndex1 = utils.getArrIndex(pnames,theNameId_dictText)
+          that.setData({
+            [multiArray]: pnames,
+            multilist: res.result.records,
+            [multiIndex1]:muIndex1
+          })
+        }
+      })
+    })
+  },
   // 钢厂
   getstell() {
     var that = this
@@ -107,37 +153,84 @@ Page({
     qingqiu.get("common", data, function (res) {
       console.log(res)
       if (res.success == true) {
-        var qiangdu = that.data.qiangdu
-        var youqi = that.data.youqi
-        var xinceng = that.data.xinceng
-        var yanse = that.data.yanse
-        for (let obj of res.result.densityList) {
+        var qiangduindex = 0
+        var xincengindex = 0
+        var yanseindex = 0
+        var youqiindex = 0
+        var itemdata = that.data.itemobj
+        var qiangdu = ["选择强度"]
+        var youqi = ["选择油漆"]
+        var xinceng = ["选择锌层"]
+        var yanse = ["选择颜色"]
+        for(let obj of res.result.densityList){
           qiangdu.push(obj.context)
         }
-        for (let obj of res.result.printList) {
+        for(let obj of res.result.printList){
           youqi.push(obj.context)
         }
-        for (let obj of res.result.zinclayerList) {
+        for(let obj of res.result.zinclayerList){
           xinceng.push(obj.context)
         }
-        for (let obj of res.result.colorList) {
+        for(let obj of res.result.colorList){
           yanse.push(obj.context)
         }
+        if(that.data.flag != true){
+          that.setData({
+            kuandu:'',
+            houdu:'',
+            zhengvalue:'',
+            beivalue:'',
+            tuceng:'',
+            dunwei:''
+          })
+        }else{
+          qiangduindex = utils.getArrIndex(qiangdu,itemdata.density)
+          xincengindex = utils.getArrIndex(xinceng,itemdata.zincLayer)
+          yanseindex = utils.getArrIndex(yanse,itemdata.color)
+          youqiindex = utils.getArrIndex(youqi,itemdata.paint)
+          that.getyouqi(res.result.printList[youqiindex].subentryId,itemdata.paint)
+        }
         that.setData({
-          setwidth: res.result.width,
-          sethoudu: res.result.thickness,
-          qiangdu: qiangdu,
-          youqi: youqi,
-          xinceng: xinceng,
-          yanse: yanse,
-          qiangduarray: res.result.densityList,
-          youqiarray: res.result.printList,
-          xincengarray: res.result.zinclayerList,
-          yansearray: res.result.colorList
+          setwidth:res.result.width,
+          sethoudu:res.result.thickness,
+          qiangdu:qiangdu,
+          qiangduindex:qiangduindex==-1?0:qiangduindex,
+          youqi:youqi,
+          youqiindex:youqiindex==-1?0:youqiindex,
+          xinceng:xinceng,
+          xincengindex:xincengindex==-1?0:xincengindex,
+          yanse:yanse,
+          yanseindex:yanseindex==-1?0:xincengindex,
+          qiangduarray:res.result.densityList,
+          youqiarray:res.result.printList,
+          xincengarray:res.result.zinclayerList,
+          yansearray:res.result.colorList,
+          flag:false
         })
       }
     })
   },
+
+  // 获取油漆信息
+  getyouqi(name,value){
+    var that = this
+    var data = {
+      subentryId:name,
+      text:value
+    }
+    qingqiu.get("commonPrint",data,function(res){
+      if(res.success == true){
+        var mohou = [res.result.zhengId]
+        mohou.push(res.result.beiId)
+        that.setData({
+          mohou:mohou,
+          zheng:res.result.zheng,
+          bei:res.result.bei
+        })
+      }
+    })
+  },
+  
   // 选择钢厂
   bindMultiPickerColumnChange: function (e) {
     var that = this
