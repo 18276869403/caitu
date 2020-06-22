@@ -263,13 +263,19 @@ Page({
   // 获取求购
   selectqiugou(){
     var that = this
+    if(that.data.colorid==''){
+      that.data.colorid=0
+    }
+    if(that.data.hdid==''){
+      that.data.hdid=0
+    }
     var data = {
       pageNo:that.data.pageNo,
       pageSize:10,
       steelName:that.data.steelName=='钢厂'?'':that.data.steelName,
       theNameId:that.data.theNameId=='0'?'':that.data.theNameId,
-      color:that.data.colorlist[that.data.colorid]==undefined?'':that.data.colorlist[that.data.colorid],
-      thickness:that.data.houdu[that.data.hdid]==undefined?'':that.data.houdu[that.data.hdid]
+      color:that.data.colorlist[that.data.colorid]=='颜色'?'':that.data.colorlist[that.data.colorid],
+      thickness:that.data.houdu[that.data.hdid]=='厚度'?'':that.data.houdu[that.data.hdid]
     }
     if(that.data.googleVal != "") {data.text = that.data.googleVal}
     if(that.data.index != 0) {data.steelName = that.data.gangchang[that.data.index]}
@@ -311,13 +317,19 @@ Page({
   // 获取尾货
   selectweihuo(){
     var that = this
+    if(that.data.colorid==''){
+      that.data.colorid=0
+    }
+    if(that.data.hdid==''){
+      that.data.hdid=0
+    }
     var data = {
       pageNo:that.data.pageNo,
       pageSize:10,
       steelName:that.data.steelName=='钢厂'?'':that.data.steelName,
       theNameId:that.data.theNameId=='0'?'':that.data.theNameId,
-      color:that.data.colorlist[that.data.colorid]==undefined?'':that.data.colorlist[that.data.colorid],
-      thickness:that.data.houdu[that.data.hdid]==undefined?'':that.data.houdu[that.data.hdid]
+      color:that.data.colorlist[that.data.colorid]=='颜色'?'':that.data.colorlist[that.data.colorid],
+      thickness:that.data.houdu[that.data.hdid]=='厚度'?'':that.data.houdu[that.data.hdid]
     }
     if(that.data.googleVal != "") {data.text = that.data.googleVal}
     if(that.data.index != 0) {data.steelName = that.data.gangchang[that.data.index]}
@@ -358,13 +370,19 @@ Page({
   // 获取拼购
   selectpingou(){
     var that = this
+    if(that.data.colorid==''){
+      that.data.colorid=0
+    }
+    if(that.data.hdid==''){
+      that.data.hdid=0
+    }
     var data = {
       pageNo:that.data.pageNo,
       pageSize:10,
       steelName:that.data.steelName=='钢厂'?'':that.data.steelName,
       theNameId:that.data.theNameId=='0'?'':that.data.theNameId,
-      color:that.data.colorlist[that.data.colorid]==undefined?'':that.data.colorlist[that.data.colorid],
-      thickness:that.data.houdu[that.data.hdid]==undefined?'':that.data.houdu[that.data.hdid]
+      color:that.data.colorlist[that.data.colorid]=='颜色'?'':that.data.colorlist[that.data.colorid],
+      thickness:that.data.houdu[that.data.hdid]=='厚度'?'':that.data.houdu[that.data.hdid]
     }
     if(that.data.googleVal != "") {data.text = that.data.googleVal}
     if(that.data.index != 0) {data.steelName = that.data.gangchang[that.data.index]}
