@@ -30,7 +30,7 @@
       </view>
       <!-- 品名 -->
       <view class="nav_lie">
-        <picker bindchange="bindPickerpm" value="{{colour}}" range="{{pinming}}" class="pic">
+        <picker bindchange="bindPickerpm" value="{{pmindex}}" range="{{pinming}}" class="pic">
           <view class="hengxiang lie">
             <view class="lie_name yincang"><text decode="{{true}}" space="{{true}}">{{pinming[pmindex]}}</text></view>
             <view class="lie_img">
@@ -39,8 +39,19 @@
           </view>
         </picker>
       </view>
+      <!-- 颜色 -->
+      <view class="nav_lie ">
+        <picker bindchange="bindPickerColor" value="{{color}}" range="{{colorlist}}" class="pic">
+          <view class="hengxiang lie2">
+            <view class="lie_name2 yincang">{{colorlist[color]}}</view>
+            <view class="lie_img2">
+              <image src="../image/xiajiantou.png" class="lie-image"></image>
+            </view>
+          </view>
+        </picker>
+      </view>
       <!-- 厚度 -->
-      <!-- <view class="nav_lie ">
+      <view class="nav_lie ">
         <picker bindchange="bindPickerThickness" value="{{thickness}}" range="{{houdu}}" class="pic">
           <view class="hengxiang lie">
             <view class="lie_name yincang">{{houdu[thickness]}}</view>
@@ -49,18 +60,7 @@
             </view>
           </view>
         </picker>
-      </view> -->
-      <!-- 宽度 -->
-      <!-- <view class="nav_lie ">
-        <picker bindchange="bindPickerWidth" value="{{width}}" range="{{kuandu}}" class="pic">
-          <view class="hengxiang lie2">
-            <view class="lie_name2 yincang">{{kuandu[width]}}</view>
-            <view class="lie_img2">
-              <image src="../image/xiajiantou.png" class="lie-image"></image>
-            </view>
-          </view>
-        </picker>
-      </view> -->
+      </view>
     </view>
   </view>
 

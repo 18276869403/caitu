@@ -101,7 +101,7 @@ page {
 }
 
 .nav_lie {
-  width: 40%;
+  width: 25%;
   text-align: center;
 }
 
