@@ -184,7 +184,11 @@ Page({
           that.data.subentryId.push(obj.subentryId)
         }
         for(let obj of res.result.zinclayerList){
-          that.data.xinceng.push(obj.context)
+          if(obj.scopeBelow == obj.scopeUp){
+            xinceng.push(obj.scopeBelow)
+            continue
+          }
+          xinceng.push(obj.scopeBelow+"~"+obj.scopeUp)
         }
         for(let obj of res.result.colorList){
           that.data.yanse.push(obj.context)

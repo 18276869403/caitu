@@ -278,7 +278,11 @@ Page({
           youqi.push(obj.context)
         }
         for(let obj of res.result.zinclayerList){
-          xinceng.push(obj.context)
+          if(obj.scopeBelow == obj.scopeUp){
+            xinceng.push(obj.scopeBelow)
+            continue
+          }
+          xinceng.push(obj.scopeBelow+"~"+obj.scopeUp)
         }
         for(let obj of res.result.colorList){
           yanse.push(obj.context)
