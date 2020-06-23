@@ -1,0 +1,14 @@
+<!--pages/platform/platform.wxml-->
+<view class="container">
+  <view class="hengxian"></view>
+  <view class="biank">
+    <view class="biaoti">哇彩兔</view>
+    <view class="yz">专注服务彩涂行业</view>
+    <view class="yz">致力于打造成为彩涂行业第一互联网服务平台</view>
+    <view class="zw">1、帮您自主计算彩涂钢价格，随时随地只要输入或选择您想要的彩涂钢规格参数，即可瞬间计算出彩涂的钢厂出厂价格</view>
+    <view class="zw">2、支持发布您的求购需求和拼购需求，并智能匹配推荐平台中的库存尾货，平台客服跟进撮合交易</view>
+    <view class="zw">3、彩涂库存管理，就像一款免费的ERP库存管理小工具，帮助您了解自己的彩涂库存，一清二楚，清晰明了，甚至支持库存中尾货上架交易，匹配求购和拼购需求。</view>
+  
+  </view>
+
+</view>
