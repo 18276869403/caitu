@@ -341,15 +341,15 @@ Page({
   },
   // 跳转到咨询详情页面
   newsDetails:function(e){
-    var obj =e.currentTarget.dataset.news;
-    var zxzx = JSON.stringify(obj);
+    var id=e.currentTarget.dataset.id;
     wx.navigateTo({ 
-      url: '../newsDetails/newsDetails?obj='+zxzx,
+      url: '../newsDetails/newsDetails?obj='+id,
     })
   },
-  goNewDetail:function(){
+  goNewDetail:function(e){
+    var id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '../newsDetails/newsDetails',
+      url: '../newsDetails/newsDetails?obj='+id,
     })
   },
   // 弹窗显示

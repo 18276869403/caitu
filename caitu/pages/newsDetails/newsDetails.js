@@ -1,11 +1,14 @@
 // pages/newsDetails/newsDetails.js
 // var wxParse = require('../../wxParse/wxParse.js')
+const qingqiu = require('../../utils/request.js')
+const api = require('../../utils/config.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    viewUrl:api.viewUrl,
     news:[]
   },
 
@@ -13,16 +16,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var that = this
-    that.data.news = JSON.parse(options.obj)
-    that.setData({
-      news:that.data.news
-    })
-    var shuju = '<img src ="'+'{{that.data.news.upUrl}}'+'"></img><div>'+'{{context}}'+'</div>';
-    // wxParse.wxParse('news_Content', 'html', shuju, that, 10);
-    console.log(this.data.news)
+    if(options.obj != undefined){
+      var id = JSON.parse(options.obj)
+      this.getNewsInfo(id)
+    }    
   },
 
+  // 查询资讯详情
+  getNewsInfo(id){
+    var that = this
+    qingqiu.get("initInformation",{informationId:id},function(res){
+      console.log(res)
+      if(res.success == true){
+        for(let obj of res.result.records){
+          obj.upUrl = api.viewUrl + obj.upUrl
+        }
+        that.setData({
+          news:res.result.records[0]
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

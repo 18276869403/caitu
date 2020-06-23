@@ -28,6 +28,24 @@ Page({
   onShow: function () {
 
   },
+  // 关于平台
+  platform:function(){
+    wx.navigateTo({
+      url: '../platform/platform',
+    })
+  },
+  // 关于协议
+  agreement: function () {
+    wx.navigateTo({
+      url: '../agreement/agreement',
+    })
+  },
+  //拨打电话
+  goPhone:function(){
+    wx.makePhoneCall({
+      phoneNumber: '13004192210'
+    })
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
