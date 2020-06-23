@@ -134,7 +134,7 @@
   </view>
    <!-- 选择匹配 -->
   <view class="ck" wx:if="{{pgxx.startoks_dictText=='匹配中'&&pgxx.wxUserId==wxid}}">
-    <image src="../image/xuanzepipei.png" class="ck_img" bindtap="submitSuccess"></image>
+    <image src="../image/xuanzepipei.png" class="ck_img" bindtap="submitSuccess" data-id="{{pgxx.id}}"></image>
   </view>
   <!-- entertype==0,为从首页进入 -->
   <!-- 我要参与 -->

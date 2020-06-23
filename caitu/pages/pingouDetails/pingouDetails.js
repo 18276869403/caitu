@@ -86,10 +86,27 @@ Page({
     })
   },
   // 跳转到成功页面
-  submitSuccess:function(){
-    app.globalData.haibaitype = 0
-    wx.navigateTo({
-      url: '../submitSuccess/submitSuccess',
+  submitSuccess:function(e){
+    var that = this
+    var data = {
+      matchingId:e.currentTarget.dataset.id
+    }
+    qingqiu.get("findPiPei",data,function(res){
+      console.log(res)
+      if(res.success == true){
+        var item = res.result.records
+        var obj = JSON.stringify(item)
+        app.globalData.haibaitype = 0
+        wx.navigateTo({
+          url: '../submitSuccess/submitSuccess?obj=' + obj,
+        })
+      }else{
+        wx.showToast({
+          title: res.message,
+          icon:'none',
+          duration:2000
+        })
+      }
     })
   }
 })

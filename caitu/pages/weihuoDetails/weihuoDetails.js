@@ -22,6 +22,7 @@ Page({
    */
   onLoad: function(options) {
     var whxx=JSON.parse(options.obj)
+    console.log(options.obj)
     this.data.whtulist=whxx.upUrl
     this.setData({
       whxx:whxx,
