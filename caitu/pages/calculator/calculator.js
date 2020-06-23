@@ -175,7 +175,11 @@ Page({
           youqi.push(obj.context)
         }
         for(let obj of res.result.zinclayerList){
-          xinceng.push(obj.context)
+          if(obj.scopeBelow == obj.scopeUp){
+            xinceng.push(obj.scopeBelow)
+            continue
+          }
+          xinceng.push(obj.scopeBelow+"~"+obj.scopeUp)
         }
         for(let obj of res.result.colorList){
           yanse.push(obj.context)
@@ -194,7 +198,9 @@ Page({
           xincengindex = utils.getArrIndex(xinceng,itemdata.zincLayer)
           yanseindex = utils.getArrIndex(yanse,itemdata.color)
           youqiindex = utils.getArrIndex(youqi,itemdata.paint)
-          that.getyouqi(res.result.printList[youqiindex].subentryId,itemdata.paint)
+          if(youqiindex != -1){
+            that.getyouqi(res.result.printList[youqiindex].subentryId,itemdata.paint)
+          }
         }
         that.setData({
           setwidth:res.result.width,
@@ -210,6 +216,7 @@ Page({
           qiangduarray:res.result.densityList,
           youqiarray:res.result.printList,
           xincengarray:res.result.zinclayerList,
+          zincLayerobj:res.result.zinclayerList,
           yansearray:res.result.colorList,
           flag:false
         })
@@ -472,12 +479,12 @@ Page({
     if (value >= minvalue && value <= maxvalue) {
       var index = 0
       var data = {
-        zheng: value,
+        zheng: value == '' ?0 : value,
         zhengId: that.data.mohou[index],
         bei: that.data.beivalue == '' ? 0 : that.data.zhengvalue
       }
       qingqiu.get("commonMoHou", data, function (res) {
-        console.log(res)
+        console.log('正面膜厚',res)
         if (res.success == true) {
           that.setData({
             zhengvalue: value,
@@ -621,11 +628,12 @@ Page({
       front:that.data.zhengvalue,
       rear:that.data.beivalue,
       coat:that.data.tuceng,
-      zincLayer:that.data.xinceng[that.data.xincengindex],
+      zincLayer:that.data.zincLayerobj[that.data.xincengindex-1].price,
       color:that.data.yanse[that.data.yanseindex],
       density:that.data.qiangdu[that.data.qiangduindex],
       tonnage:that.data.dunwei,
     }
+    console.log(data)
     var s = utils.yanzheng(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.thickness + ',请输入厚度|'+data.width+',请输入宽度|'+data.paint+',请选择油漆|'+data.front+',请输入正面膜厚|'+data.rear+',请输入背面膜厚|' + data.coat+',请输入涂层|' + data.zincLayer + ',请选择锌层|' + data.color +',请选择颜色|' + data.density + ',请选择强度|' +data.tonnage+',请选择吨数')
     if(s!=0){
       wx.showToast({
@@ -645,11 +653,13 @@ Page({
       return
     }
     var objval = data
+    console.log(data)
     qingqiu.get("faBuJiSuan",data,function(res){
       console.log(res)
       if(res.success == true){
         var obj = JSON.stringify(res.result)
         objval.theNameId_dictText = that.data.multiArray[1][that.data.multiIndex[1]],
+        objval.zincLayer = that.data.xinceng[that.data.xincengindex]
         objval = JSON.stringify(objval) 
         wx.navigateTo({
           url: '../calculatorResult/calculatorResult?obj=' + obj + '&objval='+ objval,
