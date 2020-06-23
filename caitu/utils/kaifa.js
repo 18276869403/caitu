@@ -31,6 +31,8 @@ const faBuQiuGou = baseUrl + "rabbit/lobby/faBuQiuGou"
 const canYuGroupBuying = baseUrl + "rabbit/lobby/canYuGroupBuying"
 // 计算器
 const faBuJiSuan = baseUrl + "rabbit/lobby/faBuJiSuan"
+// 发起匹配-拼购
+const PinfaQiPiPei = baseUrl + "rabbit/lobby/PinfaQiPiPei"
  
  module.exports = {
   groupByingList:groupByingList,
@@ -47,5 +49,6 @@ const faBuJiSuan = baseUrl + "rabbit/lobby/faBuJiSuan"
   faBuPinGou:faBuPinGou,
   faBuQiuGou:faBuQiuGou,
   canYuGroupBuying:canYuGroupBuying,
-  faBuJiSuan:faBuJiSuan
+  faBuJiSuan:faBuJiSuan,
+  PinfaQiPiPei:PinfaQiPiPei
  } 
