@@ -1,0 +1,57 @@
+/* pages/agreement/agreement.wxss */
+page{
+  padding-bottom: 100rpx;
+}
+.hengxian{
+  border-bottom: 17rpx solid rgba(245,247,251,1);
+}
+.biank{
+  width: 94%;
+  height: 100%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+.biaoti{
+  width: 100%;
+  height: 95rpx;
+  line-height: 95rpx;
+  text-align: center;
+  font-size:34rpx;
+  font-weight:bold;
+  color:rgba(51,51,51,1);
+}
+.fontblur{
+  width: 100%;
+  height: 55rpx;
+  line-height: 55rpx;
+  color: #1B8CDA;
+  font-size: 26rpx;
+  font-weight:bold;
+}
+.sm_text{
+  width: 100%;
+  line-height: 44rpx;
+  font-size: 24rpx;
+  color: #333333;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+.zhengjie{
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 26rpx;
+  text-align: center;
+  font-weight: bold;
+}
+.zw{
+  width: 100%;
+  line-height: 44rpx;
+  font-size: 24rpx;
+  color: #333333;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+.zw text{
+  font-weight: bold;
+}
