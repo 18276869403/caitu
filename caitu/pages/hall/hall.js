@@ -154,6 +154,9 @@ Page({
       color:0,
       thickness:0
     })
+    this.data.theNameId=''
+    this.data.colorlist[this.data.colorid]=''
+    this.data.houdu[this.data.hdid]=''
     if(e.detail.value != 0){
       this.getpinming(this.data.gangchang[e.detail.value])
     }else{
@@ -186,6 +189,8 @@ Page({
       color:0,
       thickness:0
     })
+    this.data.colorlist[this.data.colorid]=''
+    this.data.houdu[this.data.hdid]=''
     this.getColor()
     this.getHou()
     if(this.data.navid == 1){
@@ -219,6 +224,7 @@ Page({
     this.setData({
       color: e.detail.value,
     })
+    this.data.houdu[this.data.hdid]=''
     if(this.data.navid == 1){
       this.selectqiugou()      
     }else if(this.data.navid == 2){
