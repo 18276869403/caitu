@@ -63,13 +63,17 @@ Page({
     zhou:'',
     bhou:'',
     jsqglist:[],
-    flag:true
+    flag:true,
+    type:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    if(options.objindex!=''&&options.objindex!=undefined){
+      this.data.type=options.objindex
+    }
     if(options.obj!=''&&options.obj!=undefined){
     this.data.jsqglist=JSON.parse(options.obj)
     console.log(this.data.jsqglist)
@@ -148,6 +152,7 @@ Page({
       subentryId:name,
       text:value
     }
+    debugger
     qingqiu.get("commonPrint",data,function(res){
       if(res.success == true){
         var mohou = [res.result.zhengId]
@@ -284,14 +289,15 @@ Page({
         }
         for(let obj of res.result.zinclayerList){
           if(obj.scopeBelow == obj.scopeUp){
-            xinceng.push(obj.scopeBelow)
+            that.data.xinceng.push(obj.scopeBelow)
             continue
           }
-          xinceng.push(obj.scopeBelow+"~"+obj.scopeUp)
+          that.data.xinceng.push(obj.scopeBelow+"~"+obj.scopeUp)
         }
         for(let obj of res.result.colorList){
           that.data.yanse.push(obj.context)
         }
+        if(that.data.type == ''){
         if(that.data.flag != true){
           that.setData({
             kuandu:'',
@@ -310,6 +316,7 @@ Page({
           youqiindex = utils.getArrIndex(that.data.youqi,itemdata.paint)
           that.getyouqi(that.data.youqi[youqiindex].subentryId,itemdata.paint)
         }
+      }
         that.setData({
           getWidth:res.result.width,
           setwidth:res.result.width,
