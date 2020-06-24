@@ -60,7 +60,7 @@
       <view class="list-sort-jiajia">{{objValue.tonnagePrice}}</view>
     </view>
     <view class="list-sort-tips">
-      注：该钢厂基价￥1000/吨
+      注：该钢厂基价￥{{objValue.steelPrice}}/吨
     </view>
     <view class="list-sort-price">
       ￥{{objValue.zongPrice}}/吨
