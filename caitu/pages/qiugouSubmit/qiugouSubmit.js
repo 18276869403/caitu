@@ -64,7 +64,8 @@ Page({
     bhou:'',
     jsqglist:[],
     flag:true,
-    type:''
+    type:'',
+    qipiliang:''
   },
 
   /**
@@ -152,7 +153,6 @@ Page({
       subentryId:name,
       text:value
     }
-    debugger
     qingqiu.get("commonPrint",data,function(res){
       if(res.success == true){
         var mohou = [res.result.zhengId]
@@ -360,8 +360,8 @@ Page({
         console.log(that.data.zhou)
         console.log(that.data.bhou)
         var data = {
-          zheng:that.data.zhengmianindex,
-          bei:that.data.beimianindex,
+          zheng:that.data.zhengmianindex=='0'?'':that.data.zhengmianindex,
+          bei:that.data.beimianindex=='0'?'':that.data.beimianindex,
           zhengId:that.data.zid,
           beiId:that.data.bid
         }
@@ -489,6 +489,15 @@ Page({
       color:that.data.yanse[that.data.yanseindex],
       density:that.data.qiangdu[that.data.qiangduindex],
       tonnage:that.data.dunwei,
+    }
+    if(Number(that.data.dunwei)<Number(that.data.pricingPrice))
+    {
+      wx.showToast({
+        title: '需求吨数不能小于最低起批量',
+        icon:'none',
+        duration:2000
+      })
+      return
     }
     var s = utils.yanzheng(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|' + data.steelName + ',请选择钢厂|' + data.theNameId + ',请选择品名|' + data.thickness + ',请输入厚度|' + data.width + ',请输入宽度|' + data.paint + ',请选择油漆|' + data.front + ',请输入正面膜厚|' + data.rear + ',请输入背面膜厚|' + data.coat + ',没有涂层参数|' + data.zincLayer + ',请选择锌层|' + data.color + ',请选择颜色|' + data.density + ',请选择强度|' + data.deadline + ',请选择截止时间|' + data.tonnage + ',请选择吨数')
     if(s != 0){
