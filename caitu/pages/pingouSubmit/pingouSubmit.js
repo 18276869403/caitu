@@ -185,10 +185,10 @@ Page({
         }
         for(let obj of res.result.zinclayerList){
           if(obj.scopeBelow == obj.scopeUp){
-            xinceng.push(obj.scopeBelow)
+            that.data.xinceng.push(obj.scopeBelow)
             continue
           }
-          xinceng.push(obj.scopeBelow+"~"+obj.scopeUp)
+          that.data.xinceng.push(obj.scopeBelow+"~"+obj.scopeUp)
         }
         for(let obj of res.result.colorList){
           that.data.yanse.push(obj.context)
@@ -229,6 +229,7 @@ Page({
   //   console.log(data)
   //   that.gethuodu(data)
   // },
+  
 // 正背面厚度
   gethuodu(){
     var that = this
