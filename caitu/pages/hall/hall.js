@@ -62,6 +62,15 @@ Page({
     // debugger
     var navid = e.currentTarget.dataset.id
     this.data.navid=navid
+    if(navid==1){
+      this.selectqiugou()
+    }
+    if(navid==2){
+      this.selectweihuo()
+    }
+    if(navid==3){
+      this.selectpingou()
+    }
     this.setData({
       navid1: this.data.navid
     })
@@ -434,9 +443,11 @@ Page({
   },
   onShow(){
     console.log(app.globalData.dtid)
-    this.setData({
+    if(app.globalData.dtid!=undefined){
+      this.setData({
       navid1: app.globalData.dtid
     })
+    }
   },
   // 跳转到求购详情
   qiugouDetails: function(e) {
