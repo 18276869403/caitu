@@ -642,7 +642,7 @@ Page({
       front:that.data.zhengvalue,
       rear:that.data.beivalue,
       coat:that.data.tuceng,
-      zincLayer:that.data.zincLayerobj[that.data.xincengindex-1].price,
+      zincLayer:that.data.xinceng[that.data.xincengindex]+'-'+that.data.zincLayerobj[that.data.xincengindex-1].price,
       color:that.data.yanse[that.data.yanseindex],
       density:that.data.qiangdu[that.data.qiangduindex],
       tonnage:that.data.dunwei,
