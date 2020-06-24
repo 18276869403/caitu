@@ -95,6 +95,7 @@ Page({
     var objval = data
     qingqiu.get("faBuJiSuan",data,function(res){
       if(res.success == true){
+        console.log(res)
         var res = JSON.stringify(res.result) // 获取参数价格
         objval.theNameId_dictText = obj.theNameId_dictText,
         objval = JSON.stringify(objval) // 参数值
