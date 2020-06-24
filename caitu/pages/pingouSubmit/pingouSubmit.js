@@ -4,7 +4,6 @@ const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
 const utils = require('../../utils/util.js')
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -245,8 +244,8 @@ Page({
         console.log(that.data.zhou)
         console.log(that.data.bhou)
         var data = {
-          zheng:that.data.zhengmianindex,
-          bei:that.data.beimianindex,
+          zheng:that.data.zhengmianindex=='0'?'':that.data.zhengmianindex,
+          bei:that.data.beimianindex=='0'?'':that.data.beimianindex,
           zhengId:that.data.zid,
           beiId:that.data.bid
         }
