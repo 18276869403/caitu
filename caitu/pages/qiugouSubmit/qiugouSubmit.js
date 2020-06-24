@@ -152,7 +152,6 @@ Page({
       subentryId:name,
       text:value
     }
-    debugger
     qingqiu.get("commonPrint",data,function(res){
       if(res.success == true){
         var mohou = [res.result.zhengId]
