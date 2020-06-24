@@ -591,7 +591,7 @@ Page({
   // 背面
   beimianChange: function(e) {
     this.setData({
-      beivalue: e.detail.value
+      beivalue: e.detail.value 
     })
   },
   // 背面失去焦点
