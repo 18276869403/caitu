@@ -36,7 +36,8 @@ Page({
     front:'',
     gangchanglist:[],
     gangchangname:'',
-    itemobj:[]
+    itemobj:[],
+    steel:{}
   },
 
   /**
@@ -206,6 +207,7 @@ Page({
           }
         }
         that.setData({
+          steel:res.result.steel,
           setwidth:res.result.width,
           sethoudu:res.result.thickness,
           qiangdu:qiangdu,
@@ -674,6 +676,7 @@ Page({
         var obj = JSON.stringify(res.result)
         objval.theNameId_dictText = that.data.multiArray[1][that.data.multiIndex[1]],
         objval.zincLayer = that.data.xinceng[that.data.xincengindex]
+        objval.pricingPrice = that.data.steel.pricingPrice
         objval = JSON.stringify(objval) 
         wx.navigateTo({
           url: '../calculatorResult/calculatorResult?obj=' + obj + '&objval='+ objval,

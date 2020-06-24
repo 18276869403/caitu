@@ -6,7 +6,8 @@ Page({
    */
   data: {
     jisuanDetails:{},
-    objValue:{}
+    objValue:{},
+    pricingPrice:''
   },
 
   /**
@@ -29,6 +30,13 @@ Page({
   },
   // 跳转到发起求购页面
   qiugouSubmit: function() {
+    var obj = JSON.stringify(this.data.jisuanDetails)
+    wx.navigateTo({
+      url: '../qiugouSubmit/qiugouSubmit?obj=' + obj,
+    })
+  },
+  // 跳转到发起求购页面
+  pingouSubmit:function(){
     var obj = JSON.stringify(this.data.jisuanDetails)
     wx.navigateTo({
       url: '../qiugouSubmit/qiugouSubmit?obj=' + obj,

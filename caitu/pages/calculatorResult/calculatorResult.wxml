@@ -70,10 +70,12 @@
     <!-- 发起求购 -->
     <view class="button">
       <image src="../image/faqiqiugou.png" class="qiugou-img" bindtap="qiugouSubmit"></image>
+      <!-- wx:if="{{objValue.zongPrice>objValue.pricingPrice}}" -->
+      <!-- <image src="../image/faqiqiugou.png" class="qiugou-img" bindtap="pingouSubmit" wx:if="{{objValue.zongPrice<objValue.pricingPrice}}"></image> -->
     </view>
     <!-- 重新计算 -->
     <view class="button"> 
-      <image src="../image/chongxinjisuan.png" class="jisuan-img" bindtap="calculator"></image>
+      <image src="../image/chongxinjisuan.png" class="jisuan-img" bindtap="retrunIndex"></image>
     </view>
   </view>
 </view>
