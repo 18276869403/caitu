@@ -18,7 +18,7 @@ Page({
   onLoad: function(options) {
     if(options.obj != undefined){
       var id = JSON.parse(options.obj)
-      this.getNewsInfo(id)
+      this.getNewsInfo(id.id)
     }    
   },
 

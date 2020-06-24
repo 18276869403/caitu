@@ -16,7 +16,7 @@
   <view class="content">
     <view class='wxParse'>
       <!-- <template is="wxParse" data="{{wxParseData:news_Content.nodes}}" /> -->
-      <image src='{{news.upUrl}}'></image>
+      <image src='{{news.upUrl}}' style="width:100% !important"></image>
       <rich-text nodes="{{news.context}}"></rich-text>
     </view>
   </view>
