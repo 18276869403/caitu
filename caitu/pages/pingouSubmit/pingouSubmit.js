@@ -457,7 +457,7 @@ Page({
       })
       return
     }
-    if(e.detail.value>minhoudu&&e.detail.value<maxhoudu||e.detail.value<minhoudu&&e.detail.value>maxhoudu){
+    if(e.detail.value>=minhoudu&&e.detail.value<=maxhoudu||e.detail.value<=minhoudu&&e.detail.value>=maxhoudu){
       this.setData({
         houdu:e.detail.value
       })
@@ -506,7 +506,7 @@ Page({
       })
       return
     }
-    if(width > minwidth && width < maxwidth||width < minwidth && width > maxwidth){
+    if(width >= minwidth && width <= maxwidth||width <= minwidth && width >= maxwidth){
       this.setData({
         kuandu: e.detail.value
       })
@@ -613,7 +613,7 @@ Page({
       })
       return
     }
-    if(value>minvalue&&value<maxvalue||value<minvalue&&value>maxvalue){
+    if(value>=minvalue&&value<=maxvalue||value<=minvalue&&value>=maxvalue){
       that.setData({
         zhengmianChange: e.detail.value
       })
@@ -688,7 +688,7 @@ Page({
       })
       return
     }
-    if(value>minvalue&&value<maxvalue||value<minvalue&&value>maxvalue){
+    if(value>=minvalue&&value<=maxvalue||value<=minvalue&&value>=maxvalue){
       that.setData({
         beimianChange:e.detail.value
       })
