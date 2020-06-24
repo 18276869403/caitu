@@ -18,6 +18,7 @@ Page({
   onLoad: function(options) {
     if(options.obj != undefined){
       var id = JSON.parse(options.obj)
+      console.log(id)
       this.getNewsInfo(id)
     }    
   },

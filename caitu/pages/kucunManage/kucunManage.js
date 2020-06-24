@@ -539,11 +539,11 @@ Page({
       return
     }
     if(value>=minvalue&&value<=maxvalue){
-      var index = 0
       var data = {
         zheng:value,
-        zhengId:that.data.mohou[index],
-        bei:that.data.beivalue==''?0:that.data.zhengvalue
+        zhengId:that.data.mohou[0],
+        bei:that.data.beivalue,
+        beiId:that.data.mohou[1],
       }
       qingqiu.get("commonMoHou",data,function(res){
         if(res.success == true){
@@ -591,7 +591,7 @@ Page({
   // 背面
   beimianChange: function(e) {
     this.setData({
-      beivalue: e.detail.value
+      beivalue: e.detail.value 
     })
   },
   // 背面失去焦点
@@ -612,10 +612,10 @@ Page({
       return
     }
     if(value>=minvalue&&value<=maxvalue){
-      var index = 1
       var data = {
-        zheng:that.data.zhengvalue==''?0:that.data.zhengvalue,
-        beiId:that.data.mohou[index],
+        beiId:that.data.mohou[0],
+        zheng:that.data.zhengvalue,
+        beiId:that.data.mohou[1],
         bei:value
       }
       qingqiu.get("commonMoHou",data,function(res){

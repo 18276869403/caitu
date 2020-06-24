@@ -201,8 +201,6 @@ Page({
           xincengindex = utils.getArrIndex(xinceng,itemdata.zincLayer)
           yanseindex = utils.getArrIndex(yanse,itemdata.color)
           youqiindex = utils.getArrIndex(youqi,itemdata.paint)
-          console.log(youqi)
-          console.log(youqiindex)
           if(youqiindex != -1){
             that.getyouqi(res.result.printList[youqiindex-1].subentryId,itemdata.paint)
           }
@@ -482,12 +480,13 @@ Page({
       return
     }
     if (value >= minvalue && value <= maxvalue) {
-      var index = 0
       var data = {
-        zheng: value == '' ?0 : value,
-        zhengId: that.data.mohou[index],
-        bei: that.data.beivalue == '' ? 0 : that.data.zhengvalue
+        zheng: value,
+        zhengId: that.data.mohou[0],
+        bei: that.data.beivalue,
+        beiId:that.data.mohou[1]
       }
+      console.log(data)
       qingqiu.get("commonMoHou", data, function (res) {
         console.log('正面膜厚',res)
         if (res.success == true) {
@@ -557,12 +556,13 @@ Page({
       return
     }
     if(value>=minvalue&&value<=maxvalue){
-      var index = 1
       var data = {
-        zheng:that.data.zhengvalue==''?0:that.data.zhengvalue,
-        beiId:that.data.mohou[index],
-        bei:value
+        zheng:that.data.zhengvalue,
+        beiId:that.data.mohou[1],
+        bei:value,
+        zhengId: that.data.mohou[0],
       }
+      console.log(data)
       qingqiu.get("commonMoHou",data,function(res){
         if(res.success == true){
           that.setData({
