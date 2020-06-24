@@ -582,6 +582,7 @@ Page({
   // 正面
   zhengmianChange: function(e) {
     var that=this
+    that.data.zhengmianindex=''
     console.log('picker发送选择改变，携带值为', e.detail.value)
     that.setData({
       zhengmianindex: e.detail.value
@@ -658,6 +659,7 @@ Page({
   // 背面
   beimianChange: function(e) {
     var that=this
+    that.data.beimianindex=''
     console.log('picker发送选择改变，携带值为', e.detail.value)
     that.setData({
       beimianindex: e.detail.value
