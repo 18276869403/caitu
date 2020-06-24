@@ -425,7 +425,6 @@ Page({
       multiIndex1: e.detail.value
     })
   },
-
   // 选择钢厂
   // bindMultiPickerChange: function(e) {
   //   console.log('picker发送选择改变，携带值为', e.detail.value)
