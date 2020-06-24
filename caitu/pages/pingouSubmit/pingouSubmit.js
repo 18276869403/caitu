@@ -229,6 +229,7 @@ Page({
   //   console.log(data)
   //   that.gethuodu(data)
   // },
+  
 // 正背面厚度
   gethuodu(){
     var that = this
