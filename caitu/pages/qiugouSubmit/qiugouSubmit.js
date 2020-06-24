@@ -678,7 +678,6 @@ minReg:function(e){
   zhengmianChange: function(e) {
     var that=this
     that.data.zhengmianindex=''
-    that.data.beimianindex=''
     console.log('picker发送选择改变，携带值为', e.detail.value)
     that.setData({
       zhengmianindex: e.detail.value
@@ -754,7 +753,6 @@ minReg:function(e){
   // 背面
   beimianChange: function(e) {
     var that=this
-    that.data.zhengmianindex=''
     that.data.beimianindex=''
     console.log('picker发送选择改变，携带值为', e.detail.value)
     that.setData({
