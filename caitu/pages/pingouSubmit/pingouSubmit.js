@@ -10,7 +10,7 @@ Page({
    */
   data: {
     date: '请选择日期',
-    multiIndex: [0, 0, 0],
+    multiIndex: [0, 0],
     jiaohuoindex: 0,
     region: ['省', '市', '区'],
     youqiindex: 0,
@@ -35,7 +35,6 @@ Page({
     setwidth:[],
     sethoudu:[],
     mohou:'',
-
     qiangdu:['选择强度'],
     youqi:['选择油漆'],
     xinceng:['选择锌层'],
@@ -203,13 +202,7 @@ Page({
           yanse:that.data.yanse,
           pricingPrice:that.data.pricingPrice
         })
-        console.log(res.result.width)
-        console.log(that.data.qiangdu)
-        console.log(that.data.youqi)
-        console.log(that.data.xinceng)
-        console.log(that.data.yanse)
       }
-
     })
   },
   // 油漆点击获取
@@ -348,14 +341,17 @@ Page({
       return
     }
     console.log(data)
+    var dataobj = data
     qingqiu.get("faBuPinGou",data,function(res){
       if(res.success == true){
         console.log(res)
         that.data.pipeilist=res.result.records
         var ppsj = JSON.stringify(that.data.pipeilist)
         app.globalData.haibaitype = 1
+        dataobj.theName = that.data.multiArray[1][that.data.multiIndex[1]]
+        dataobj = JSON.stringify(dataobj)
         wx.navigateTo({
-          url: '../submitSuccess/submitSuccess?obj='+ppsj,
+          url: '../submitSuccess/submitSuccess?obj='+ppsj+"&dataobj="+dataobj,
         })
       }else{
         wx.showToast({

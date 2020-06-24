@@ -130,11 +130,11 @@
    <!-- entertype==1,为从我的页面进入 -->
    <!-- 生成海报 -->
   <view class="ck" wx:if="{{pgxx.startoks_dictText=='已完成'}}">
-    <image src="../image/haibao.png" class="ck_img" bindtap="post"></image>
+    <image src="../image/haibao.png" class="ck_img" bindtap="post" data-item="{{pgxx}}"></image>
   </view>
    <!-- 选择匹配 -->
   <view class="ck" wx:if="{{pgxx.startoks_dictText=='匹配中'&&pgxx.wxUserId==wxid}}">
-    <image src="../image/xuanzepipei.png" class="ck_img" bindtap="submitSuccess" data-id="{{pgxx.id}}"></image>
+    <image src="../image/xuanzepipei.png" class="ck_img" bindtap="submitSuccess" data-item="{{pgxx}}"></image>
   </view>
   <!-- entertype==0,为从首页进入 -->
   <!-- 我要参与 -->

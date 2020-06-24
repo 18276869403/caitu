@@ -5,12 +5,12 @@
     <image src="../image/haibaobeijing.png" class="haibao-img"></image>
     <image src="../image/erweima.png" class="code-img"></image>
     <view class="content-text">
-      <view class="content-text-title">镀锌板彩涂卷</view>
-      <view class="content-text-text-item">厚度：0.5</view>
-      <view class="content-text-text-item">宽度：1000</view>
-      <view class="content-text-text-item">颜色：非标</view>
-      <view class="content-text-text-item">尾货吨数：300</view>
-      <view class="content-text-text-item">厂库:浙江嘉兴</view>
+      <view class="content-text-title">{{item.theName}}</view>
+      <view class="content-text-text-item">厚度：{{item.thickness}}</view>
+      <view class="content-text-text-item">宽度：{{item.width}}</view>
+      <view class="content-text-text-item">颜色：{{item.color}}</view>
+      <view class="content-text-text-item">吨数：{{item.tonnage}}</view>
+      <view class="content-text-text-item">厂库: {{item.steelName}}</view>
     </view>
   </view>
   <view class="bottom hengxiang">

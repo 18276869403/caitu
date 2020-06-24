@@ -17,13 +17,19 @@ Page({
     weihuoList: [],
     pipeilist:[],
     haibaotype:'',
+    dataobj:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options.obj)
+    if(options.dataobj != undefined){
+      var dataobj = JSON.parse(options.dataobj)
+      this.setData({
+        dataobj:dataobj
+      })
+    }
     if(options.obj != undefined){
       var pipeilist = JSON.parse(options.obj)
       console.log(pipeilist)
@@ -55,8 +61,9 @@ Page({
   },
   // 海报页面
   post: function() {
+    var dataobj = JSON.stringify(this.data.dataobj)
     wx.navigateTo({
-      url: '../post/post',
+      url: '../post/post?obj='+dataobj,
     })
   },
   // 发起匹配

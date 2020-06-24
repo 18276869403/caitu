@@ -80,25 +80,64 @@ Page({
     })
   },
   // 跳转海报页面
-  post: function() {
+  post: function(e) {
+    var pingou = e.currentTarget.dataset.item
+    var dataobj={
+      wxUserId:app.globalData.wxid,
+      areaOneId:pingou.areaOneId,
+      areaTwoId:pingou.areaTwoId,
+      steelName:pingou.steelname,
+      thickness:pingou.thickness,
+      width:pingou.width,
+      paint:pingou.paint,
+      front:pingou.front,
+      rear:pingou.rear,
+      coat:pingou.coat,
+      zincLayer:pingou.zinclayer,
+      color:pingou.color,
+      density:pingou.density,
+      tonnage:pingou.tonnage,
+    }
+    dataobj.theName = pingou.itemvalue_dictText
+    dataobj = JSON.stringify(dataobj)
     wx.navigateTo({
-      url: '../post/post',
+      url: '../post/post?obj='+dataobj,
     })
   },
   // 跳转到成功页面
   submitSuccess:function(e){
     var that = this
+    var item = e.currentTarget.dataset.item
     var data = {
-      matchingId:e.currentTarget.dataset.id
+      matchingId:dataobj.id
     }
     qingqiu.get("findPiPei",data,function(res){
       console.log(res)
       if(res.success == true){
         var item = res.result.records
         var obj = JSON.stringify(item)
+        console.log(dataobj)
+        var dataobj={
+          wxUserId:app.globalData.wxid,
+          areaOneId:item.areaOneId,
+          areaTwoId:item.areaTwoId,
+          steelName:item.steelname,
+          thickness:item.thickness,
+          width:item.width,
+          paint:item.paint,
+          front:item.front,
+          rear:item.rear,
+          coat:item.coat,
+          zincLayer:item.zinclayer,
+          color:item.color,
+          density:item.density,
+          tonnage:item.tonnage,
+        }
+        dataobj.theName = item.itemvalue_dictText
+        dataobj = JSON.stringify(dataobj)
         app.globalData.haibaitype = 0
         wx.navigateTo({
-          url: '../submitSuccess/submitSuccess?obj=' + obj,
+          url: '../submitSuccess/submitSuccess?obj=' + obj+"&dataobj="+dataobj,
         })
       }else{
         wx.showToast({

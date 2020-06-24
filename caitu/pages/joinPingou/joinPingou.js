@@ -13,7 +13,7 @@ Page({
     city:[],
     dunwei:'',
     pgid:'',
-    shuju:[],
+    shuju:{},
     shuju1:[],
     areaOneId:'',
     areaTwoId:''
@@ -23,10 +23,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.data.shuju=JSON.parse(options.shuju)
-    if(this.data.shuju != undefined){
+    if(options.shuju != undefined){
+      var shuju=JSON.parse(options.shuju)
       this.setData({
-        pgid: this.data.shuju.id
+        pgid:shuju.id,
+        shuju:shuju
       })
     }
     this.getAddress()
@@ -127,6 +128,7 @@ Page({
       wxUserId:app.globalData.wxid,
       sumsn:that.data.dunwei
     }
+    console.log(data)
     qingqiu.get("canYuGroupBuying",data,function(res){
       console.log(res)
       if(res.success == true){
@@ -135,11 +137,30 @@ Page({
           icon:'none',
           duration:2000
         })
-        that.data.shuju1=JSON.stringify(res.result.records)
+        var shuju1=JSON.stringify(res.result.records)
+        var item = that.data.shuju
+        var dataobj = {
+          wxUserId:app.globalData.wxid,
+          areaOneId:item.areaOneId,
+          areaTwoId:item.areaTwoId,
+          steelName:item.steelname,
+          thickness:item.thickness,
+          width:item.width,
+          paint:item.paint,
+          front:item.front,
+          rear:item.rear,
+          coat:item.coat,
+          zincLayer:item.zinclayer,
+          color:item.color,
+          density:item.density,
+          tonnage:item.tonnage,
+        }
+        dataobj.theName = item.itemvalue_dictText
+        dataobj = JSON.stringify(dataobj)
         setTimeout(function(){
           app.globalData.haibaitype = 1
           wx.navigateTo({
-            url: '../submitSuccess/submitSuccess?obj='+that.data.shuju1,
+            url: '../submitSuccess/submitSuccess?obj='+shuju1+"&dataobj="+dataobj,
           })
         },1000)
       }else{

@@ -152,6 +152,7 @@ Page({
       subentryId:name,
       text:value
     }
+    debugger
     qingqiu.get("commonPrint",data,function(res){
       if(res.success == true){
         var mohou = [res.result.zhengId]
@@ -507,14 +508,16 @@ Page({
       })
       return
     }
+    var dataobj = data
     qingqiu.get("faBuQiuGou",data,function(res){
       if(res.success == true){
-        console.log(res)
         app.globalData.haibaitype = 1
         that.data.pipeilist=res.result.records
         var ppsj = JSON.stringify(that.data.pipeilist)
+        dataobj.theName = that.data.multiArray[1][that.data.multiIndex1[1]]
+        dataobj = JSON.stringify(dataobj)
         wx.navigateTo({
-          url: '../submitSuccess/submitSuccess?obj='+ppsj,
+          url: '../submitSuccess/submitSuccess?obj='+ppsj+'&dataobj=' + dataobj,
         })
       }else{
         wx.showToast({
