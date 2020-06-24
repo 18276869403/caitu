@@ -281,7 +281,7 @@ Page({
       })
     }else{
       wx.navigateTo({
-        url: '../qiugouSubmit/qiugouSubmit',
+        url: '../qiugouSubmit/qiugouSubmit?objindex='+'qg',
       })
     }
   },
