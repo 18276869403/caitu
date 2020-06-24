@@ -570,7 +570,7 @@ Page({
       })
       return
     }
-    if(e.detail.value>minhoudu&&e.detail.value<maxhoudu||e.detail.value<minhoudu&&e.detail.value>maxhoudu){
+    if(e.detail.value>=minhoudu&&e.detail.value<=maxhoudu||e.detail.value<=minhoudu&&e.detail.value>=maxhoudu){
       this.setData({
         houdu:e.detail.value
       })
@@ -619,7 +619,7 @@ minReg:function(e){
     })
     return
   }
-  if(width > minwidth && width < maxwidth||width < minwidth && width > maxwidth){
+  if(width >= minwidth && width <= maxwidth||width <= minwidth && width >= maxwidth){
     this.setData({
       kuandu: e.detail.value
     })
@@ -678,6 +678,8 @@ minReg:function(e){
   // 正面
   zhengmianChange: function(e) {
     var that=this
+    that.data.zhengmianindex=''
+    that.data.beimianindex=''
     console.log('picker发送选择改变，携带值为', e.detail.value)
     that.setData({
       zhengmianindex: e.detail.value
@@ -709,7 +711,7 @@ minReg:function(e){
       })
       return
     }
-    if(value>minvalue&&value<maxvalue||value<minvalue&&value>maxvalue){
+    if(value>=minvalue&&value<=maxvalue||value<=minvalue&&value>=maxvalue){
       that.setData({
         zhengmianChange:e.detail.value
       })
@@ -753,6 +755,8 @@ minReg:function(e){
   // 背面
   beimianChange: function(e) {
     var that=this
+    that.data.zhengmianindex=''
+    that.data.beimianindex=''
     console.log('picker发送选择改变，携带值为', e.detail.value)
     that.setData({
       beimianindex: e.detail.value
@@ -783,7 +787,7 @@ minReg:function(e){
       })
       return
     }
-    if(value>minvalue&&value<maxvalue||value<minvalue&&value>maxvalue){
+    if(value>=minvalue&&value<=maxvalue||value<=minvalue&&value>=maxvalue){
       that.setData({
         beimianChange:e.detail.value
       })
