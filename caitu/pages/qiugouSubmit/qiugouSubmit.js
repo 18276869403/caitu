@@ -329,7 +329,7 @@ Page({
           qiangduindex:qiangduindex==-1?0:qiangduindex,
           youqiindex:youqiindex==-1?0:youqiindex,
           xincengindex:xincengindex==-1?0:xincengindex,
-          yanseindex:yanseindex==-1?0:xincengindex,
+          yanseindex:yanseindex==-1?0:yanseindex,
           flag:false
         })
         console.log(that.data.qiangdu)
