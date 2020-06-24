@@ -826,5 +826,5 @@ minReg:function(e){
     this.setData({
       dunwei: e.detail.value
     })
-  },
+  }
 })
