@@ -35,7 +35,7 @@ Page({
     setwidth: [],
     front:'',
     gangchanglist:[],
-    gangchangname:'宝山钢铁',
+    gangchangname:'',
     itemobj:[]
   },
 
@@ -46,6 +46,7 @@ Page({
     console.log(options.obj)
     if(options.obj != "null"){
       var data = JSON.parse(options.obj)
+      console.log(data)
       this.setData({
         itemobj:data,
         houdu:data.thickness,
@@ -53,12 +54,14 @@ Page({
         zhengvalue:data.front,
         beivalue:data.rear,
         tuceng:data.coat,
-        dunwei:data.tonnage
+        dunwei:data.tonnage,
+        pinmingid:data.theNameId,
+        gangchangname:data.steelName
       })
       this.bindchushihua(data.steelName,data.theNameId_dictText)
       this.getWidth({steelName:data.steelName,theNameId:data.theNameId})
     }else{
-      this.getstell(this.data.gangchangname)
+      this.getstell()
     }
   },
   // 绑定初始值
@@ -198,8 +201,10 @@ Page({
           xincengindex = utils.getArrIndex(xinceng,itemdata.zincLayer)
           yanseindex = utils.getArrIndex(yanse,itemdata.color)
           youqiindex = utils.getArrIndex(youqi,itemdata.paint)
+          console.log(youqi)
+          console.log(youqiindex)
           if(youqiindex != -1){
-            that.getyouqi(res.result.printList[youqiindex].subentryId,itemdata.paint)
+            that.getyouqi(res.result.printList[youqiindex-1].subentryId,itemdata.paint)
           }
         }
         that.setData({
@@ -212,7 +217,7 @@ Page({
           xinceng:xinceng,
           xincengindex:xincengindex==-1?0:xincengindex,
           yanse:yanse,
-          yanseindex:yanseindex==-1?0:xincengindex,
+          yanseindex:yanseindex==-1?0:yanseindex,
           qiangduarray:res.result.densityList,
           youqiarray:res.result.printList,
           xincengarray:res.result.zinclayerList,
