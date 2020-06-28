@@ -293,7 +293,7 @@ Page({
       })
     }else{
       wx.navigateTo({
-        url: '../pingouSubmit/pingouSubmit',
+        url: '../pingouSubmit/pingouSubmit?objindex='+'qg',
       })
     }
   },
