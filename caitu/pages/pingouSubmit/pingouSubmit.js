@@ -62,6 +62,8 @@ Page({
     shid:'',
     zhou:'',
     qipiliang:'',
+    flag:true,
+    type:'',
     bhou:''
   },
 
@@ -69,8 +71,98 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    if(options.objindex!=''&&options.objindex!=undefined){
+      this.data.type=options.objindex
+    }
+    if(options.obj!=''&&options.obj!=undefined&&options.obj!='undefined'){
+    this.data.jsqglist=JSON.parse(options.obj)
+    console.log(this.data.jsqglist)
+    var houdu=this.data.jsqglist.thickness.split('|')[0]
+    var kuandu=this.data.jsqglist.width.split('|')[0]
+    var zhengmianChange=this.data.jsqglist.front.split('|')[0]
+    var beimianChange=this.data.jsqglist.rear.split('|')[0]
+    var tuceng=this.data.jsqglist.coat.split('|')[0]
+    var dunwei=this.data.jsqglist.tonnage.split('|')[0]
+    this.setData({
+      jsqglist:this.data.jsqglist,
+      houdu:houdu,
+      kuandu:kuandu,
+      zhengmianChange:zhengmianChange,
+      beimianChange:beimianChange,
+      tuceng:tuceng,
+      dunwei:dunwei
+    })
+    this.bindchushihua(this.data.jsqglist.steelName,this.data.jsqglist.theNameId_dictText)
+    this.getWidth({steelName:this.data.jsqglist.steelName,theNameId:this.data.jsqglist.theNameId})
+    }else{
     this.getstell()
+    }
     this.getAddress()
+  },
+  // 绑定初始值
+  bindchushihua(steetName,theNameId_dictText){
+    var that=this
+    qingqiu.get("stell",null,function(res){
+      var list = res.result;
+      var names = [];
+      var pnames = [];
+      for (let obj of list) {
+        if (names.length == 0) {
+          names.push("选择钢厂")
+        }
+        if (pnames.length == 0) {
+          pnames.push("选择品名")
+        }
+        names.push(obj.name);
+      }
+      var multiArray = [names, []];
+      var multiIndex0 = "multiIndex[0]"
+      var mulIndex1 = utils.getArrIndex(names,steetName)
+      that.data.multiName=multiArray[0][mulIndex1]
+      that.setData({
+        multiArray: multiArray,
+        [multiIndex0]:mulIndex1
+      })
+      qingqiu.get("theName", {
+        name: steetName
+      }, function (res) {
+        if (res.success == true) {
+          var pnamesid=[]
+          for (let obj of res.result.records) {
+            pnames.push(obj.theNameId_dictText)
+            pnamesid.push(obj.theNameId)
+          }
+          var multiArray = "multiArray[1]"
+          var multiIndex1 = "multiIndex[1]"
+          var muIndex1 = utils.getArrIndex(pnames,theNameId_dictText)
+          that.data.thenameid=pnamesid[muIndex1-1]
+          that.setData({
+            [multiArray]: pnames,
+            multilist: res.result.records,
+            [multiIndex1]:muIndex1
+          })
+        }
+      })
+    })
+  },
+  // 获取油漆信息
+  getyouqi(name,value){
+    var that = this
+    var data = {
+      subentryId:name,
+      text:value
+    }
+    qingqiu.get("commonPrint",data,function(res){
+      if(res.success == true){
+        var mohou = [res.result.zhengId]
+        mohou.push(res.result.beiId)
+        that.setData({
+          mohou:mohou,
+          zheng:res.result.zheng,
+          bei:res.result.bei
+        })
+      }
+    })
   },
   // 获取省
   getAddress(){
@@ -170,6 +262,11 @@ Page({
     qingqiu.get("common",data,function(res){
       console.log(res)
       if(res.success == true){
+        var qiangduindex = 0
+        var xincengindex = 0
+        var yanseindex = 0
+        var youqiindex = 0
+        var itemdata = that.data.jsqglist
         that.data.qiangdu=['选择强度']
         that.data.youqi=['选择油漆']
         that.data.xinceng=['选择锌层']
@@ -192,6 +289,26 @@ Page({
         for(let obj of res.result.colorList){
           that.data.yanse.push(obj.context)
         }
+        if(that.data.type == ''){
+          if(that.data.flag != true){
+            that.setData({
+              kuandu:'',
+              houdu:'',
+              zhengvalue:'',
+              beivalue:'',
+              tuceng:'',
+              dunwei:''
+            })
+          }else{
+            that.data.zhengmianindex=itemdata.front.split('|')[0]
+            that.data.beimianindex=itemdata.rear.split('|')[0]
+            qiangduindex = utils.getArrIndex(that.data.qiangdu,itemdata.density.split('|')[0])
+            xincengindex = utils.getArrIndex(that.data.xinceng,itemdata.zincLayer.split('|')[0])
+            yanseindex = utils.getArrIndex(that.data.yanse,itemdata.color.split('|')[0])
+            youqiindex = utils.getArrIndex(that.data.youqi,itemdata.paint.split('|')[0])
+            that.getyouqi(that.data.youqi[youqiindex].subentryId,itemdata.paint.split('|')[0])
+          }
+        }
         that.setData({
           getWidth:res.result.width,
           setwidth:res.result.width,
@@ -200,7 +317,12 @@ Page({
           youqi:that.data.youqi,
           xinceng:that.data.xinceng,
           yanse:that.data.yanse,
-          pricingPrice:that.data.pricingPrice
+          pricingPrice:that.data.pricingPrice,
+          qiangduindex:qiangduindex==-1?0:qiangduindex,
+          youqiindex:youqiindex==-1?0:youqiindex, 
+          xincengindex:xincengindex==-1?0:xincengindex,
+          yanseindex:yanseindex==-1?0:yanseindex,
+          flag:false
         })
       }
     })
