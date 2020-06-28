@@ -25,7 +25,9 @@
     "pages/kucunManage/kucunManage",
     "pages/myqiugou/myqiugou",
     "pages/mine/mine",
-    "pages/newsDetails/newsDetails"
+    "pages/newsDetails/newsDetails",
+    "pages/agreement/agreement",
+    "pages/platform/platform"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
