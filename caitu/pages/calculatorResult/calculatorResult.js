@@ -99,7 +99,7 @@ Page({
       url: '../qiugouSubmit/qiugouSubmit?obj=' + obj,
     })
   },
-  // 跳转到发起求购页面
+  // 跳转到发起拼购页面
   pingouSubmit:function(){
     var obj = JSON.stringify(this.data.jisuanDetails)
     wx.navigateTo({
