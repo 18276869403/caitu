@@ -1,6 +1,6 @@
  // const api = require('../utils/config.js')
- const baseUrl = "http://111.231.51.198:9045/jeecg-boot/" 
-//  const baseUrl = "http://192.168.1.233:8080/jeecg-boot/" 
+//  const baseUrl = "http://111.231.51.198:9045/jeecg-boot/" 
+ const baseUrl = "http://192.168.1.248:8080/jeecg-boot/" 
 
  // 我的页面-个人信息查询
  const my = baseUrl + "rabbit/mine/my" 
@@ -50,6 +50,8 @@ const PinfaQiPiPei = baseUrl + "rabbit/lobby/PinfaQiPiPei"
 const findPiPei = baseUrl + "rabbit/lobby/findPiPei"
 // 获取计算历史
 const getCalculateList = baseUrl + "rabbit/lobby/getCalculateList"
+// 获取锌层
+const getXC = baseUrl + "rabbit/lobby/getXC"
 
  module.exports = {
    baseUrl:baseUrl,
@@ -76,5 +78,6 @@ const getCalculateList = baseUrl + "rabbit/lobby/getCalculateList"
    updateInventById:updateInventById,
    PinfaQiPiPei:PinfaQiPiPei,
    findPiPei:findPiPei,
-   getCalculateList:getCalculateList
+   getCalculateList:getCalculateList,
+   getXC:getXC
  } 
