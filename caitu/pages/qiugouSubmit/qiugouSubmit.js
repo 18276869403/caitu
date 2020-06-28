@@ -519,7 +519,6 @@ Page({
       return
     }
     var dataobj = data
-    debugger
     qingqiu.get("faBuQiuGou",data,function(res){
       console.log(res)
       if(res.success == true){
