@@ -79,5 +79,5 @@ const getXC = baseUrl + "rabbit/lobby/getXC"
    PinfaQiPiPei:PinfaQiPiPei,
    findPiPei:findPiPei,
    getCalculateList:getCalculateList,
-   getXC:getXC 
+   getXC:getXC
  } 
