@@ -64,3 +64,6 @@ page {
   width: 292rpx;
   height: 78rpx;
 }
+.sharebutton{
+  padding: 0 0;
+}
