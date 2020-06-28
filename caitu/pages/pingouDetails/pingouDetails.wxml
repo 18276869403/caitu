@@ -136,7 +136,7 @@
   <view class="ck" wx:if="{{pgxx.startoks_dictText=='匹配中'&&pgxx.wxUserId==wxid}}">
     <image src="../image/xuanzepipei.png" class="ck_img" bindtap="submitSuccess" data-item="{{pgxx}}"></image>
   </view>
-  <!-- entertype==0,为从首页进入 -->
+  <!-- 为从首页进入 -->
   <!-- 我要参与 -->
   <view class="ck"  wx:if="{{pgxx.wxUserId!=wxid&&pgxx.startoks_dictText!='已完成'}}">
     <image src="../image/woyaocanyu.png" class="ck_img" bindtap="joinPingou" data-shuju="{{pgxx}}"></image>
