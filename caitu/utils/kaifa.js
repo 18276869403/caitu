@@ -1,6 +1,6 @@
 // const api = require('../utils/config.js')
-// const baseUrl = "http://111.231.51.198:9045/jeecg-boot/" 
-const baseUrl = "http://192.168.1.241:8080/jeecg-boot/" 
+const baseUrl = "http://111.231.51.198:9045/jeecg-boot/" 
+// const baseUrl = "http://192.168.1.233:8080/jeecg-boot/" 
  // 我的页面-我的拼购
  const groupByingList = baseUrl + "rabbit/mine/groupByingList"
  // 我的页面-我的计算历史
@@ -12,7 +12,7 @@ const initInformation = baseUrl + "rabbit/index/initInformation"
 // 首页面-尾货
 const initInventory = baseUrl + "rabbit/index/initInventory"
 // 首页面-拼购参与者 
-const groupBuyingCanYuZhu = baseUrl + "rabbit/lobby/groupBuyingCanYuZhu"
+const groupBuyingCanYuZhu = baseUrl + "rabbit/index/groupBuyingCanYuZhu"
 // 大厅-拼购
 const groupByingLists = baseUrl + "rabbit/lobby/groupByingList"
 // 大厅-求购
