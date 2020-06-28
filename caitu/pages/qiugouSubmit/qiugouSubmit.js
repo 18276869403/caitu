@@ -520,7 +520,7 @@ Page({
     qingqiu.get("faBuQiuGou",data,function(res){
       console.log(res)
       if(res.success == true){
-        if(res.success.records.length == 0){
+        if(res.result.records.length == 0){
           dataobj.theName = that.data.multiArray[1][that.data.multiIndex1[1]]
           dataobj = JSON.stringify(dataobj)
           wx.navigateTo({
