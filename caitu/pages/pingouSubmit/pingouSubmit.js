@@ -684,7 +684,7 @@ Page({
       youqi:that.data.youqi, 
       youqiindex:e.detail.value
     })
-    that.gethuodu()
+    // that.gethuodu()
   },
   // 正面焦点
   zhengfocus:function(){
@@ -724,7 +724,8 @@ Page({
       beiId:that.data.bid
     }
     console.log(data)
-    that.getmohou(data)
+    that.gethuodu()
+    // that.getmohou(data)
   },
   // 正面失去焦点
   zhengmian:function(e){
@@ -801,7 +802,8 @@ Page({
       beiId:that.data.bid
     }
     console.log(data)
-    that.getmohou(data)
+    that.gethuodu()
+    // that.getmohou(data)
   },
   // 背面失去焦点
   beimian:function(e){
