@@ -51,7 +51,7 @@ Page({
     key.push(list.theNameId_dictText)
     key.push(list.steelName)
     key.push(list.monovalent)
-    key.push(list.backup1)
+    key.push(list.backup1.split("|")[0])
     value.push(list.thickness.split('|')[1])
     value.push(list.width.split('|')[1])
     value.push(list.paint.split('|')[1])
@@ -62,6 +62,9 @@ Page({
     value.push(list.color.split('|')[1])
     value.push(list.density.split('|')[1])
     value.push(list.tonnage.split('|')[1])
+    value.push(list.backup1.split("|")[1])
+    console.log(key)
+    console.log(value)
     this.setData({
       key:key,
       value:value
@@ -87,7 +90,6 @@ Page({
     data.monovalent = key[12]
     data.backup1 = key[13]
     var obj = JSON.stringify(this.data.jisuanDetails)
-    console.log(obj)
     wx.redirectTo({
       url: '../calculator/calculator?obj=' + obj,
     })
