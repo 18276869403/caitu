@@ -548,6 +548,20 @@ Page({
       }
     },'post')
   },
+   // 厚度焦点
+   houdufocus: function () {
+    if (!this.data.sethoudu.length > 0) {
+      wx.showToast({
+        title: '请选择钢厂',
+        icon: 'none',
+        duration: 2000
+      })
+      this.setData({
+        houdu: ''
+      })
+      return
+    }
+  },
   // 厚度
   houdu: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -593,6 +607,20 @@ Page({
       this.setData({
         houdu:''
       })
+    }
+  },
+   // 宽度焦点
+   widthfocus: function () {
+    if (!this.data.setwidth.length > 0) {
+      wx.showToast({
+        title: '请选择钢厂',
+        icon: 'none',
+        duration: 2000
+      })
+      this.setData({
+        kuandu: ''
+      })
+      return
     }
   },
   // 宽度
