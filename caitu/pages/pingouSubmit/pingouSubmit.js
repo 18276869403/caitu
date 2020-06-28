@@ -77,12 +77,12 @@ Page({
     if(options.obj!=''&&options.obj!=undefined&&options.obj!='undefined'){
     this.data.jsqglist=JSON.parse(options.obj)
     console.log(this.data.jsqglist)
-    var houdu=this.data.jsqglist.thickness.split('|')[0]
-    var kuandu=this.data.jsqglist.width.split('|')[0]
-    var zhengmianChange=this.data.jsqglist.front.split('|')[0]
-    var beimianChange=this.data.jsqglist.rear.split('|')[0]
-    var tuceng=this.data.jsqglist.coat.split('|')[0]
-    var dunwei=this.data.jsqglist.tonnage.split('|')[0]
+    var houdu=this.data.jsqglist.thickness
+    var kuandu=this.data.jsqglist.width
+    var zhengmianChange=this.data.jsqglist.front
+    var beimianChange=this.data.jsqglist.rear
+    var tuceng=this.data.jsqglist.coat
+    var dunwei=this.data.jsqglist.tonnage
     this.setData({
       jsqglist:this.data.jsqglist,
       houdu:houdu,
@@ -300,13 +300,13 @@ Page({
               dunwei:''
             })
           }else{
-            that.data.zhengmianindex=itemdata.front.split('|')[0]
-            that.data.beimianindex=itemdata.rear.split('|')[0]
-            qiangduindex = utils.getArrIndex(that.data.qiangdu,itemdata.density.split('|')[0])
-            xincengindex = utils.getArrIndex(that.data.xinceng,itemdata.zincLayer.split('|')[0])
-            yanseindex = utils.getArrIndex(that.data.yanse,itemdata.color.split('|')[0])
-            youqiindex = utils.getArrIndex(that.data.youqi,itemdata.paint.split('|')[0])
-            that.getyouqi(that.data.youqi[youqiindex].subentryId,itemdata.paint.split('|')[0])
+            that.data.zhengmianindex=itemdata.front
+            that.data.beimianindex=itemdata.rear
+            qiangduindex = utils.getArrIndex(that.data.qiangdu,itemdata.density)
+            xincengindex = utils.getArrIndex(that.data.xinceng,itemdata.zincLayer)
+            yanseindex = utils.getArrIndex(that.data.yanse,itemdata.color)
+            youqiindex = utils.getArrIndex(that.data.youqi,itemdata.paint)
+            that.getyouqi(that.data.youqi[youqiindex].subentryId,itemdata.paint)
           }
         }
         that.setData({
@@ -661,7 +661,7 @@ Page({
     // })
     that.data.yqid=e.detail.value
     that.data.youqiname = that.data.youqi[e.detail.value]
-    that.data.youqiid =that.data.subentryId[e.detail.value]
+    that.data.youqiid =that.data.subentryId[e.detail.value-1]
     var data = {
       subentryId:that.data.youqiid,
       text:that.data.youqi[e.detail.value]
@@ -684,7 +684,7 @@ Page({
       youqi:that.data.youqi, 
       youqiindex:e.detail.value
     })
-    that.gethuodu()
+    // that.gethuodu()
   },
   // 正面焦点
   zhengfocus:function(){
@@ -724,7 +724,8 @@ Page({
       beiId:that.data.bid
     }
     console.log(data)
-    that.getmohou(data)
+    that.gethuodu()
+    // that.getmohou(data)
   },
   // 正面失去焦点
   zhengmian:function(e){
@@ -801,7 +802,8 @@ Page({
       beiId:that.data.bid
     }
     console.log(data)
-    that.getmohou(data)
+    that.gethuodu()
+    // that.getmohou(data)
   },
   // 背面失去焦点
   beimian:function(e){
