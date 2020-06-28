@@ -76,7 +76,9 @@ Page({
   // 获取市索引
   getshiindex(pid,areaTwoId_dictText){
     var that = this
+    console.log(pid,areaTwoId_dictText)
     qingqiu.get("shi",{pid:pid},function(res){
+      console.log(res)
       if(res.success == true){
         var cityname = []
         for(let obj of res.result){
@@ -165,6 +167,7 @@ Page({
       invenId:id
     }
     qingqiu.get("selectInventById",data,function(res){
+      console.log('库存详情',res.result[0])
       if(res.success == true){
         var data = res.result[0]
         if(data.upUrl.indexOf(',') !=  -1){
@@ -177,9 +180,6 @@ Page({
           bindimg.push(api.viewUrl + data.upUrl)
           imglist.push(data.upUrl)
         }
-        console.log(data)
-        console.log(that.data.multiArray1)
-        console.log(data.areaOneId_dictText)
         // 获取省
         var multiIndex1_1 = utils.getArrIndex(that.data.multiArray1[0],data.areaOneText)
         if(multiIndex1_1 != -1){
@@ -192,7 +192,7 @@ Page({
         console.log(multiIndex1_1)
         var pid = that.data.cityList[multiIndex1_1-1].itemValue
         // 市
-        that.getshiindex(pid,data.areaTwoId_dictText)
+        that.getshiindex(pid,data.areaTwoText)
         var multiIndex_1 = utils.getArrIndex(that.data.multiArray[0],data.areaTwoText)
         if(multiIndex_1 != -1){
           var multiIndex = "multiIndex[0]"
@@ -210,6 +210,7 @@ Page({
         }
         // 品名
         that.getpmindex(data.steelName,data.theNameText)
+        that.getXC({steelName:data.steelName,theNameId:data.theNameId,text:data.paint})
         that.setData({
           itemobj:data,
           bindimg:bindimg,
@@ -438,6 +439,34 @@ Page({
     })
     this.getWidth(data)
   },
+
+  // 获取锌层
+  getXC:function(data){
+    var that = this
+    var itemdata = that.data.itemobj
+    var xincengindex = 0
+    qingqiu.get("getXC",data,function(res){
+      if(res.success == true){
+        var xinceng = ['选择锌层']
+        for(let obj of res.result){
+          xinceng.push(obj.scope)
+        }
+        if(itemdata != null && itemdata!=undefined && itemdata.length != 0){
+          xincengindex = utils.getArrIndex(xinceng,itemdata.zincLayer)
+          that.setData({
+            xincengindex:xincengindex==-1?0:xincengindex,
+          })
+        }else{
+          that.setData({ xincengindex:xincengindex })
+        }
+        that.setData({
+          xinceng:xinceng,
+          zincLayerobj:res.result
+        })
+      }
+    })
+  },
+
   // 宽度
   getWidth(data){
     var that = this

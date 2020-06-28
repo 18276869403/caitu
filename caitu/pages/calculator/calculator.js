@@ -144,8 +144,23 @@ Page({
       })
     })
   },
+  // 钢厂选择事件
   bindMultiPickerChange: function (e) {
     console.log("携带参数", e.detail.value)
+    if(e.detail.value == 0 && e.detail.column == 0){
+      wx.showToast({
+        title: '请选择钢厂',
+        icon:'none'
+      })
+      return
+    }
+    if(e.detail.value == 0 && e.detail.column == 1){
+      wx.showToast({
+        title: '请选择品名',
+        icon:'none'
+      })
+      return
+    }
     var that = this
     var multiName = that.data.multiArray[[0]]
     var data = {
@@ -188,7 +203,8 @@ Page({
             zhengvalue:'',
             beivalue:'',
             tuceng:'',
-            dunwei:''
+            dunwei:'',
+            xincengindex:0
           })
         }else{
           qiangduindex = utils.getArrIndex(qiangdu,itemdata.density)
@@ -219,6 +235,7 @@ Page({
     })
   },
 
+  // 获取锌层
   getXC:function(data){
     var that = this
     var itemdata = that.data.itemobj
@@ -239,9 +256,9 @@ Page({
         }else{
           that.setData({ xincengindex:xincengindex })
         }
-        
         that.setData({
           xinceng:xinceng,
+          zincLayerobj:res.result
         })
       }
     })
@@ -279,6 +296,20 @@ Page({
     var that = this
     var column = e.detail.column
     var indexs = e.detail.value;
+    if(column == 0 && indexs == 0){
+      wx.showToast({
+        title: '请选择钢厂',
+        icon:'none'
+      })
+      return
+    }
+    if(column == 1 && indexs == 0){
+      wx.showToast({
+        title: '请选择品名',
+        icon:'none'
+      })
+      return
+    }
     if (column == 0) {
       var data = {
         name: that.data.multiArray[0][indexs]

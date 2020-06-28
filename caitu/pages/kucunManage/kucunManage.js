@@ -10,6 +10,7 @@ Page({
    */
   data: {
     viewUrl:api.viewUrl,
+    zincLayerobj:[],
     qiangduarray:[],
     youqiarray:[],
     xincengarray:[],
@@ -46,6 +47,7 @@ Page({
     tuceng:'',
     imglist:[],
     bindimg:[],
+    flag:true
   },
 
   /**
@@ -261,6 +263,23 @@ Page({
     })
     that.getWidth(data)
   },
+  // 获取锌层
+  getXC(data){
+    var that = this
+    console.log(data)
+    qingqiu.get("getXC",data,function(res){
+      console.log(res)
+      if(res.success == true){
+        var xinceng = ["选择锌层"]
+        for(let obj of res.result){
+          xinceng.push(obj.scope)
+        }
+        that.setData({
+          xinceng:xinceng
+        })
+      }
+    })
+  },
   // 宽度
   getWidth(data){
     var that = this
@@ -269,20 +288,13 @@ Page({
       if(res.success == true){
         var qiangdu = ["选择强度"]
         var youqi = ["选择油漆"]
-        var xinceng = ["选择锌层"]
+        // var xinceng = ["选择锌层"]
         var yanse = ["选择颜色"]
         for(let obj of res.result.densityList){
           qiangdu.push(obj.context)
         }
         for(let obj of res.result.printList){
           youqi.push(obj.context)
-        }
-        for(let obj of res.result.zinclayerList){
-          if(obj.scopeBelow == obj.scopeUp){
-            xinceng.push(obj.scopeBelow)
-            continue
-          }
-          xinceng.push(obj.scopeBelow+"~"+obj.scopeUp)
         }
         for(let obj of res.result.colorList){
           yanse.push(obj.context)
@@ -292,25 +304,32 @@ Page({
           sethoudu:res.result.thickness,
           qiangdu:qiangdu,
           youqi:youqi,
-          xinceng:xinceng,
           yanse:yanse,
           qiangduarray:res.result.densityList,
           youqiarray:res.result.printList,
-          xincengarray:res.result.zinclayerList,
-          yansearray:res.result.colorList
+          yansearray:res.result.colorList,
+          kuandu:'',
+          houdu:'',
+          youqiindex:0,
+          zhengvalue:'',
+          beivalue:'',
+          tuceng:'',
+          xincengindex:0,
+          yanseindex:0,
+          qiangduindex:0
         })
       }
     })
   },
+
+  
   // 选择钢厂
   bindMultiPickerColumnChange: function(e) {
     var that = this
-    console.log('picker发送选择改变，携带值为', e.detail)
     var column = e.detail.column
     var indexs = e.detail.value;
     //picker发送选择改变，携带值为 (2) [1, 0]
     if(column == 0){
-      console.log(that.data.multiArray[0][indexs])
       var data = {
         name:that.data.multiArray[0][indexs]
       }
@@ -338,7 +357,6 @@ Page({
       this.setData({
         [multiIndex]: indexs,
       })
-      console.log(that.data.multiIndex)
     }
   },
   // 厚度焦点
@@ -481,7 +499,11 @@ Page({
           mohou:mohou,
           zheng:res.result.zheng,
           bei:res.result.bei,
-          youqiindex: e.detail.value
+          youqiindex: e.detail.value,
+          xincengindex:0,
+          zhengvalue:'',
+          beivalue:'',
+          tuceng:''
         })
       }else{
         that.setData({
@@ -489,7 +511,7 @@ Page({
         })
       }
     })
-    
+    that.getXC({steelName:that.data.gangchangname,theNameId:that.data.pinmingid,text:that.data.youqi[e.detail.value]})
   },
   // 正面焦点
   zhengfocus:function(){
