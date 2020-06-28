@@ -2,7 +2,7 @@
 <view class="container">
   <view class="hengxian"></view>
   <view class="history">
-    <view class="xq" wx:for="{{jisuans}}" wx:key="{{index}}" bindtap="calculatorResult" data-gd="{{item}}">
+    <view class="xq" wx:for="{{jisuans}}" wx:key="{{index}}" bindtap="calculatorResult" data-id="{{item.id}}">
       <view class="xqxinxi hengxiang">
         <view class="xq_name yincang">
           <text class="xq_erji">{{item.theNameId_dictText}}</text>
@@ -44,4 +44,8 @@
       </view>
     </view>
   </view>
+</view>
+<view class="shuju" wx:if="{{jisuans.length==0}}">
+  <image src="../image/noshuju.png" class="shuju_img"></image>
+  <view>暂无数据</view>
 </view>

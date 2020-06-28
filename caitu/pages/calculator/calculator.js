@@ -468,6 +468,9 @@ Page({
   zhengmian: function (e) {
     var that = this
     var value = e.detail.value
+    if(value == ''){
+      return
+    }
     var minvalue = that.data.zheng[0]
     var maxvalue = that.data.zheng[1]
     if (minvalue > maxvalue) {
@@ -544,6 +547,9 @@ Page({
   beimian:function(e){
     var that = this
     var value = e.detail.value
+    if(value == ''){
+      return
+    }
     var minvalue = that.data.bei[0]
     var maxvalue = that.data.bei[1]
     if(minvalue > maxvalue){
@@ -644,10 +650,11 @@ Page({
       front:that.data.zhengvalue,
       rear:that.data.beivalue,
       coat:that.data.tuceng,
-      zincLayer:that.data.xinceng[that.data.xincengindex]+'-'+that.data.zincLayerobj[that.data.xincengindex-1].price,
+      zincLayer:that.data.xinceng[that.data.xincengindex]+'|'+that.data.zincLayerobj[that.data.xincengindex-1].price,
       color:that.data.yanse[that.data.yanseindex],
       density:that.data.qiangdu[that.data.qiangduindex],
       tonnage:that.data.dunwei,
+      backup1:that.data.steel.pricingPrice
     }
     console.log(data)
     var s = utils.yanzheng(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.thickness + ',请输入厚度|'+data.width+',请输入宽度|'+data.paint+',请选择油漆|'+data.front+',请输入正面膜厚|'+data.rear+',请输入背面膜厚|' + data.coat+',请输入涂层|' +  data.color +',请选择颜色|' + data.density + ',请选择强度|' +data.tonnage+',请选择吨数')
@@ -668,18 +675,13 @@ Page({
       })
       return
     }
-    var objval = data
     console.log(data)
     qingqiu.get("faBuJiSuan",data,function(res){
       console.log(res)
       if(res.success == true){
-        var obj = JSON.stringify(res.result)
-        objval.theNameId_dictText = that.data.multiArray[1][that.data.multiIndex[1]],
-        objval.zincLayer = that.data.xinceng[that.data.xincengindex]
-        objval.pricingPrice = that.data.steel.pricingPrice
-        objval = JSON.stringify(objval) 
+        var objval = res.result.calculateVoId
         wx.navigateTo({
-          url: '../calculatorResult/calculatorResult?obj=' + obj + '&objval='+ objval,
+          url: '../calculatorResult/calculatorResult?obj=' + objval,
         })
       }else{
         wx.showToast({

@@ -178,3 +178,8 @@
     下架成功
   </view>
 </view>
+
+<view class="shuju" wx:if="{{kucun.length==0}}">
+  <image src="../image/noshuju.png" class="shuju_img"></image>
+  <view>暂无数据</view>
+</view>

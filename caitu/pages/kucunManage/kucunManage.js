@@ -525,6 +525,9 @@ Page({
   zhengmian:function(e){
     var that = this
     var value = e.detail.value
+    if(value == ''){
+      return
+    }
     var minvalue = that.data.zheng[0]
     var maxvalue = that.data.zheng[1]
     if(minvalue > maxvalue){
@@ -598,6 +601,9 @@ Page({
   beimian:function(e){
     var that = this
     var value = e.detail.value
+    if(value == ''){
+      return
+    }
     var minvalue = that.data.bei[0]
     var maxvalue = that.data.bei[1]
     if(minvalue > maxvalue){
