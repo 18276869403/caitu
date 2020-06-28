@@ -63,7 +63,7 @@ const getXC = baseUrl + "rabbit/lobby/getXC"
    inventoryList:inventoryList,
    initAskToBuy:initAskToBuy,
    initBanners:initBanners,
-   shengFen:shengFen,
+   shengFen:shengFen, 
    shi:shi,
    stell:stell,
    theName:theName,
