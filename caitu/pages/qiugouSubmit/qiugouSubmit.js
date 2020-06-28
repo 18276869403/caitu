@@ -652,7 +652,7 @@ minReg:function(e){
     // })
     that.data.yqid=e.detail.value
     that.data.youqiname = that.data.youqi[e.detail.value]
-    that.data.youqiid =that.data.subentryId[e.detail.value]
+    that.data.youqiid =that.data.subentryId[e.detail.value-1]
     that.setData({
       youqi:that.data.youqi,
       youqiindex:e.detail.value
