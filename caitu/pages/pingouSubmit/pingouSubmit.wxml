@@ -150,7 +150,7 @@
       </view> -->
     </view>
   </view>
-  <view class="tips">所选钢厂最高起批量：{{pricingPrice}}吨</view>
+  <view class="tips">所选钢厂最低起批量：{{pricingPrice}}吨</view>
   <!-- 提交 -->
   <view class="bottom">
     <image src="../image/fabu.png" class="fabu-img" bindtap="submitSuccess"></image>
