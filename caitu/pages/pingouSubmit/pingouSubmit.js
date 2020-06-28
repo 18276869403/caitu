@@ -297,7 +297,7 @@ Page({
               houdu:'',
               zhengvalue:'',
               beivalue:'',
-              // tuceng:'',
+              tuceng:'',
               dunwei:''
             })
           }else{
@@ -475,7 +475,6 @@ Page({
     }
     console.log(data)
     var dataobj = data
-    debugger
     qingqiu.get("faBuPinGou",data,function(res){
       if(res.success == true){
         console.log(res)
@@ -558,6 +557,20 @@ Page({
       console.log(that.data.multiIndex)
     }
   },
+  // 厚度焦点
+  houdufocus: function () {
+    if (!this.data.sethoudu.length > 0) {
+      wx.showToast({
+        title: '请选择钢厂',
+        icon: 'none',
+        duration: 2000
+      })
+      this.setData({
+        houdu: ''
+      })
+      return
+    }
+  },
   // 厚度
   houdu: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -596,13 +609,27 @@ Page({
       })
     }else{
       wx.showToast({
-        title: '数值范围在'+minhoudu+'~'+maxhoudu,
+        title: '厚度范围在'+minhoudu+'~'+maxhoudu,
         icon:'none',
         duration:2000
       })
       this.setData({
         houdu:''
       })
+    }
+  },
+   // 宽度焦点
+   widthfocus: function () {
+    if (!this.data.setwidth.length > 0) {
+      wx.showToast({
+        title: '请选择钢厂',
+        icon: 'none',
+        duration: 2000
+      })
+      this.setData({
+        kuandu: ''
+      })
+      return
     }
   },
   // 宽度
@@ -648,7 +675,7 @@ Page({
         kuandu: ''
       })
       wx.showToast({
-        title: '宽度在'+minwidth + "~" + maxwidth+'之间',
+        title: '宽度范围在'+minwidth + "~" + maxwidth,
         icon:'none',
         duration:2000
       })
