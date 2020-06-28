@@ -198,12 +198,9 @@ Page({
         }
         if(that.data.flag != true){
           that.setData({
-            kuandu:'',
-            houdu:'',
             zhengvalue:'',
             beivalue:'',
             tuceng:'',
-            dunwei:'',
             xincengindex:0
           })
         }else{
