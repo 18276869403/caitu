@@ -71,6 +71,45 @@ Page({
     })
   },
   
+  tonnage:function(e){
+    console.log(e.detail.value)
+    var tonnage = "items.tonnage"
+    this.setData({
+      [tonnage]:e.detail.value
+    })
+  },
+
+  saveInfo:function(){
+    var that = this
+    var data = {
+      id:that.data.items.id,
+      tonnage:that.data.items.tonnage
+    }
+    console.log(data)
+    qingqiu.get("updateInventById",data,function(res){
+      console.log(res)
+      if(res.success == true){
+        wx.showToast({
+          title: '保存成功',
+          icon:'success',
+          duration:2000
+        })
+        setTimeout(function(){
+          wx.redirectTo({
+            url: '../mykucunpandian/mykucunpandian',
+          })
+        },1000)
+      }else{
+        wx.showToast({
+          title: res.message,
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
+    },'put')
+  },
+
   // 跳转到海报页面
   post:function(){
     var weihuo = that.data.items

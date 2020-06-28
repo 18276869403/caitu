@@ -221,7 +221,6 @@ Page({
   // 已上架状态 跳转到尾货详情页面
   weihuoDetailsDun: function(e) {
     var id = e.currentTarget.dataset.id
-    console.log(id)
     wx.navigateTo({
       url: '../weihuoDetailsDun/weihuoDetailsDun?obj=' + id,
     })

@@ -142,3 +142,7 @@ page {
   font-size: 32rpx;
   color: rgba(140, 140, 140, 1);
 }
+.centerbutton{
+  width: 100%;
+  text-align: center;
+}
