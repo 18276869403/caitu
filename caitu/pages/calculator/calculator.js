@@ -61,6 +61,7 @@ Page({
       })
       this.bindchushihua(data.steelName,data.theNameId_dictText)
       this.getWidth({steelName:data.steelName,theNameId:data.theNameId})
+      this.getXC({steelName:data.steelName,theNameId:data.theNameId,text:data.paint})
     }else{
       this.getstell()
     }
@@ -160,30 +161,22 @@ Page({
   // 宽度
   getWidth(data) {
     var that = this
+    console.log(data)
     qingqiu.get("common", data, function (res) {
       console.log(res)
       if (res.success == true) {
         var qiangduindex = 0
-        var xincengindex = 0
         var yanseindex = 0
         var youqiindex = 0
         var itemdata = that.data.itemobj
         var qiangdu = ["选择强度"]
         var youqi = ["选择油漆"]
-        var xinceng = ["选择锌层"]
         var yanse = ["选择颜色"]
         for(let obj of res.result.densityList){
           qiangdu.push(obj.context)
         }
         for(let obj of res.result.printList){
           youqi.push(obj.context)
-        }
-        for(let obj of res.result.zinclayerList){
-          if(obj.scopeBelow == obj.scopeUp){
-            xinceng.push(obj.scopeBelow)
-            continue
-          }
-          xinceng.push(obj.scopeBelow+"~"+obj.scopeUp)
         }
         for(let obj of res.result.colorList){
           yanse.push(obj.context)
@@ -199,7 +192,6 @@ Page({
           })
         }else{
           qiangduindex = utils.getArrIndex(qiangdu,itemdata.density)
-          xincengindex = utils.getArrIndex(xinceng,itemdata.zincLayer)
           yanseindex = utils.getArrIndex(yanse,itemdata.color)
           youqiindex = utils.getArrIndex(youqi,itemdata.paint)
           if(youqiindex != -1){
@@ -214,8 +206,6 @@ Page({
           qiangduindex:qiangduindex==-1?0:qiangduindex,
           youqi:youqi,
           youqiindex:youqiindex==-1?0:youqiindex,
-          xinceng:xinceng,
-          xincengindex:xincengindex==-1?0:xincengindex,
           yanse:yanse,
           yanseindex:yanseindex==-1?0:yanseindex,
           qiangduarray:res.result.densityList,
@@ -229,6 +219,29 @@ Page({
     })
   },
 
+  getXC:function(data){
+    var that = this
+    var itemdata = that.data.itemobj
+    var xincengindex = 0
+    qingqiu.get("getXC",data,function(res){
+      console.log(res)
+      if(res.success == true){
+        var xinceng = ['选择锌层']
+        for(let obj of res.result){
+          xinceng.push(obj.scope)
+        }
+        if(itemdata != null && itemdata!=undefined && itemdata.length != 0){
+          xincengindex = utils.getArrIndex(xinceng,itemdata.zincLayer)
+          that.setData({
+            xincengindex:xincengindex==-1?0:xincengindex,
+          })
+        }
+        that.setData({
+          xinceng:xinceng,
+        })
+      }
+    })
+  },
   // 获取油漆信息
   getyouqi(name,value){
     var that = this
@@ -238,6 +251,14 @@ Page({
     }
     qingqiu.get("commonPrint",data,function(res){
       if(res.success == true){
+        if(res.result.zhengId == 0 || res.result.bei == 0){
+          wx.showToast({
+            title: '该油漆没有正/背面膜厚',
+            icon:'none',
+            duration:2000
+          })
+          return
+        }
         var mohou = [res.result.zhengId]
         mohou.push(res.result.beiId)
         that.setData({
@@ -248,7 +269,6 @@ Page({
       }
     })
   },
-  
   // 选择钢厂
   bindMultiPickerColumnChange: function (e) {
     var that = this
@@ -411,12 +431,12 @@ Page({
       subentryId: that.data.youqiarray[e.detail.value - 1].subentryId,
       text: that.data.youqi[e.detail.value]
     }
+    console.log(data)
     qingqiu.get("commonPrint", data, function (res) {
       console.log(res)
       if (res.success == true) {
         var mohou = [res.result.zhengId]
         mohou.push(res.result.beiId)
-        console.log(mohou)
         that.setData({
           mohou: mohou,
           zheng: res.result.zheng,
@@ -433,6 +453,7 @@ Page({
         })
       }
     })
+    that.getXC({steelName:that.data.gangchangname,theNameId:that.data.pinmingid,text:that.data.youqi[e.detail.value]})
   },
   // 正面焦点
   zhengfocus: function () {
