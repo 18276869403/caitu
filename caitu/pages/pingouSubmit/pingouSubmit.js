@@ -491,7 +491,7 @@ Page({
           dataobj.theName = that.data.multiArray[1][that.data.multiIndex[1]]
           dataobj = JSON.stringify(dataobj)
           wx.navigateTo({
-            url: '../submitSuccess/submitSuccess?obj='+ppsj+"&dataobj="+dataobj,
+            url: '../submitSuccess/submitSuccess?obj='+ppsj+"&dataobj="+dataobj+'&objtype=' + '1',
           })
         }
       }else{
@@ -533,6 +533,9 @@ Page({
         console.log(res)
         if(res.success == true){
           var names = []
+          if(res.result.records==''){
+            names.push('选择品名')
+          }
           for(let obj of res.result.records){
             if(names.length == 0){
               names.push('选择品名')

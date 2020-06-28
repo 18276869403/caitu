@@ -109,7 +109,7 @@ Page({
     var that = this
     var item = e.currentTarget.dataset.item
     var data = {
-      matchingId:dataobj.id
+      matchingId:item.id
     }
     qingqiu.get("findPiPei",data,function(res){
       console.log(res)
@@ -137,7 +137,7 @@ Page({
         dataobj = JSON.stringify(dataobj)
         app.globalData.haibaitype = 0
         wx.navigateTo({
-          url: '../submitSuccess/submitSuccess?obj=' + obj+"&dataobj="+dataobj,
+          url: '../submitSuccess/submitSuccess?obj=' + obj+"&dataobj="+dataobj+"&objtype="+'1',
         })
       }else{
         wx.showToast({

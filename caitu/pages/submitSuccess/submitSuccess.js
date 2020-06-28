@@ -30,6 +30,13 @@ Page({
         dataobj:dataobj
       })
     }
+    if(options.objtype != undefined){
+      var type = JSON.parse(options.objtype)
+      this.data.type==type
+      this.setData({
+        type:type
+      })
+    }
     if(options.obj != undefined){
       var pipeilist = JSON.parse(options.obj)
       console.log(pipeilist)
@@ -74,6 +81,17 @@ Page({
       inventId:weihuoid,
       wxId:app.globalData.wxid
     }
+    if(that.data.type=='0'){
+      qingqiu.get('QiufaQiPiPei',data,function(res){
+        console.log(res)
+        if(res.success == true){
+          that.showModel()
+        }else
+        {
+          return
+        }
+      },'post') 
+    }else{
     qingqiu.get('PinfaQiPiPei',data,function(res){
       console.log(res)
       if(res.success == true){
@@ -83,10 +101,10 @@ Page({
         return
       }
     },'post') 
+  }
   },
   // 服务规则页面显示
   showModel(){
-    debugger
     this.setData({
       hasMask: true
     })

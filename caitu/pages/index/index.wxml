@@ -165,8 +165,8 @@
               </view>
             </view>
             <view class="pingou-item-right">
-              <image src="../image/pingouing.png" class="pingou-img"></image>
-              <!-- <image src="../image/pingouing.png" class="pingou-img"></image> -->
+              <image src="../image/pingouing.png" class="pingou-img" wx:if="{{item.startoks_dictText=='进行中'}}"></image>
+              <image src="../image/pipeizhong2.png" class="pingou-img" wx:if="{{item.startoks_dictText=='匹配中'}}"></image>
             </view>
           </view>
         </view>
