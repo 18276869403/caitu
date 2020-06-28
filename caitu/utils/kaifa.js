@@ -1,6 +1,6 @@
 // const api = require('../utils/config.js')
-const baseUrl = "http://111.231.51.198:9045/jeecg-boot/" 
-// const baseUrl = "http://192.168.1.233:8080/jeecg-boot/" 
+// const baseUrl = "http://111.231.51.198:9045/jeecg-boot/" 
+const baseUrl = "http://192.168.1.237:8080/jeecg-boot/" 
  // 我的页面-我的拼购
  const groupByingList = baseUrl + "rabbit/mine/groupByingList"
  // 我的页面-我的计算历史
@@ -31,8 +31,8 @@ const faBuQiuGou = baseUrl + "rabbit/lobby/faBuQiuGou"
 const canYuGroupBuying = baseUrl + "rabbit/lobby/canYuGroupBuying"
 // 计算器
 const faBuJiSuan = baseUrl + "rabbit/lobby/faBuJiSuan"
-// 发起匹配-拼购
-const PinfaQiPiPei = baseUrl + "rabbit/lobby/PinfaQiPiPei"
+// 发起匹配-求购
+const QiufaQiPiPei = baseUrl + "rabbit/lobby/QiufaQiPiPei"
  
  module.exports = {
   groupByingList:groupByingList,
@@ -50,5 +50,5 @@ const PinfaQiPiPei = baseUrl + "rabbit/lobby/PinfaQiPiPei"
   faBuQiuGou:faBuQiuGou,
   canYuGroupBuying:canYuGroupBuying,
   faBuJiSuan:faBuJiSuan,
-  PinfaQiPiPei:PinfaQiPiPei
+  QiufaQiPiPei:QiufaQiPiPei
  } 
