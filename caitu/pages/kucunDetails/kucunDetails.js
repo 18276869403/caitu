@@ -66,6 +66,7 @@ Page({
   onLoad: function (options) {
     this.getAddress()
     this.getstell()
+    console.log(options.obj)
     this.getkuncun(options.obj)
     this.setData({
       kcid:options.obj
@@ -180,17 +181,19 @@ Page({
         console.log(that.data.multiArray1)
         console.log(data.areaOneId_dictText)
         // 获取省
-        var multiIndex1_1 = utils.getArrIndex(that.data.multiArray1[0],data.areaOneName)
+        var multiIndex1_1 = utils.getArrIndex(that.data.multiArray1[0],data.areaOneText)
         if(multiIndex1_1 != -1){
           var multiIndex1 = "multiIndex1[0]"
           that.setData({
             [multiIndex1]:multiIndex1_1
           })
         }
+        console.log(that.data.cityList)
+        console.log(multiIndex1_1)
         var pid = that.data.cityList[multiIndex1_1-1].itemValue
         // 市
         that.getshiindex(pid,data.areaTwoId_dictText)
-        var multiIndex_1 = utils.getArrIndex(that.data.multiArray[0],data.areaTwoName)
+        var multiIndex_1 = utils.getArrIndex(that.data.multiArray[0],data.areaTwoText)
         if(multiIndex_1 != -1){
           var multiIndex = "multiIndex[0]"
           that.setData({
@@ -206,7 +209,7 @@ Page({
           })
         }
         // 品名
-        that.getpmindex(data.steelName,data.theNameValue)
+        that.getpmindex(data.steelName,data.theNameText)
         that.setData({
           itemobj:data,
           bindimg:bindimg,
@@ -725,6 +728,9 @@ Page({
   zhengmian:function(e){
     var that = this
     var value = e.detail.value
+    if(value == ''){
+      return
+    }
     var minvalue = that.data.zheng[0]
     var maxvalue = that.data.zheng[1]
     if(minvalue > maxvalue){
@@ -800,6 +806,9 @@ Page({
   beimian:function(e){
     var that = this
     var value = e.detail.value
+    if(value == ''){
+      return
+    }
     var minvalue = that.data.bei[0]
     var maxvalue = that.data.bei[1]
     if(minvalue > maxvalue){
