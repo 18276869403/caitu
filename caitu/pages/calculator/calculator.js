@@ -701,7 +701,7 @@ Page({
       console.log(res)
       if(res.success == true){
         var objval = res.result.calculateVoId
-        wx.navigateTo({
+        wx.redirectTo({
           url: '../calculatorResult/calculatorResult?obj=' + objval,
         })
       }else{
