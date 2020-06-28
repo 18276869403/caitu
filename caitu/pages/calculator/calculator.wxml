@@ -90,7 +90,7 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">锌层</view>
       <view class="content-item-content">
-        <picker bindchange="xincengChange" value="{{xincengindex}}" range="{{xinceng}}">
+        <picker bindcancel="xincengCancel" bindchange="xincengChange" value="{{xincengindex}}" range="{{xinceng}}">
           <view class="picker">
             {{xinceng[xincengindex]}}
           </view>

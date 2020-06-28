@@ -230,12 +230,16 @@ Page({
         for(let obj of res.result){
           xinceng.push(obj.scope)
         }
+        console.log('长度',itemdata.length)
         if(itemdata != null && itemdata!=undefined && itemdata.length != 0){
           xincengindex = utils.getArrIndex(xinceng,itemdata.zincLayer)
           that.setData({
             xincengindex:xincengindex==-1?0:xincengindex,
           })
+        }else{
+          that.setData({ xincengindex:xincengindex })
         }
+        
         that.setData({
           xinceng:xinceng,
         })
@@ -250,6 +254,7 @@ Page({
       text:value
     }
     qingqiu.get("commonPrint",data,function(res){
+      console.log(res)
       if(res.success == true){
         if(res.result.zhengId == 0 || res.result.bei == 0){
           wx.showToast({
@@ -264,7 +269,7 @@ Page({
         that.setData({
           mohou:mohou,
           zheng:res.result.zheng,
-          bei:res.result.bei
+          bei:res.result.bei,
         })
       }
     })
@@ -440,7 +445,10 @@ Page({
         that.setData({
           mohou: mohou,
           zheng: res.result.zheng,
-          bei: res.result.bei
+          bei: res.result.bei,
+          zhengvalue:'',
+          beivalue:'',
+          tuceng:''
         })
         that.setData({
           youqiindex: e.detail.value
@@ -621,7 +629,26 @@ Page({
     })
   },
   // 锌层
+  xincengCancel:function(){
+    if(this.data.youqiindex == 0){
+      wx.showToast({
+        title: '请选择油漆',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+  },
+  // 锌层
   xincengChange: function (e) {
+    if(this.data.youqiindex == 0){
+      wx.showToast({
+        title: '请选择油漆',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       xincengindex: e.detail.value
