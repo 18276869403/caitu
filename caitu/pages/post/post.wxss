@@ -10,7 +10,7 @@ page {
   margin-right: 4%;
   margin-top: 48rpx;
   height: 892rpx;
-  position: relative;
+  position: relative; 
 }
 
 .haibao-img {

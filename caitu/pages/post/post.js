@@ -175,7 +175,7 @@ Page({
         console.log('字体加粗')
         ctx.fillText(obj.text, obj.x, obj.y - 0.5);
         ctx.fillText(obj.text, obj.x - 0.5, obj.y);
-    }
+    } 
     ctx.fillText(obj.text, obj.x, obj.y);
     // if (obj.bold) {
     //     ctx.fillText(obj.text, obj.x, obj.y + 0.5);
