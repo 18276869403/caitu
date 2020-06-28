@@ -69,12 +69,12 @@
   <view class="content-button hengxiang">
     <!-- 发起求购 -->
     <view class="button">
-      <image src="../image/faqiqiugou.png" class="qiugou-img" wx:if="{{value[9] > key[13]}}" bindtap="qiugouSubmit"></image>
-      <image src="../image/faqipingou.png" class="qiugou-img" bindtap="pingouSubmit" wx:if="{{value[9] < key[13]}}"></image>
+      <image src="../image/faqiqiugou.png" class="qiugou-img" wx:if="{{key[9] > key[13]}}" bindtap="qiugouSubmit"></image>
+      <image src="../image/faqipingou.png" class="qiugou-img" bindtap="pingouSubmit" wx:if="{{key[9] < key[13]}}"></image>
     </view>
     <!-- 重新计算 -->
     <view class="button"> 
-      <image src="../image/chongxinjisuan.png" class="jisuan-img" bindtap="calculator"></image>
+      <image src="../image/chongxinjisuan.png" class="jisuan-img" bindtap="retrunIndex"></image>
     </view>
   </view>
 </view>

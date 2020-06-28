@@ -94,6 +94,22 @@ Page({
   },
   // 跳转到发起求购页面
   qiugouSubmit: function() {
+    var key = this.data.key
+    var data = this.data.jisuanDetails
+    data.thickness = key[0]
+    data.width = key[1]
+    data.paint = key[2]
+    data.front = key[3]
+    data.rear = key[4]
+    data.coat = key[5]
+    data.zincLayer = key[6]
+    data.color = key[7]
+    data.density = key[8]
+    data.tonnage = key[9]
+    data.theNameId_dictText = key[10]
+    data.steelName = key[11]
+    data.monovalent = key[12]
+    data.backup1 = key[13]
     var obj = JSON.stringify(this.data.jisuanDetails)
     wx.navigateTo({
       url: '../qiugouSubmit/qiugouSubmit?obj=' + obj,
@@ -101,6 +117,22 @@ Page({
   },
   // 跳转到发起拼购页面
   pingouSubmit:function(){
+    var key = this.data.key
+    var data = this.data.jisuanDetails
+    data.thickness = key[0]
+    data.width = key[1]
+    data.paint = key[2]
+    data.front = key[3]
+    data.rear = key[4]
+    data.coat = key[5]
+    data.zincLayer = key[6]
+    data.color = key[7]
+    data.density = key[8]
+    data.tonnage = key[9]
+    data.theNameId_dictText = key[10]
+    data.steelName = key[11]
+    data.monovalent = key[12]
+    data.backup1 = key[13]
     var obj = JSON.stringify(this.data.jisuanDetails)
     wx.navigateTo({
       url: '../pingouSubmit/pingouSubmit?obj=' + obj,
