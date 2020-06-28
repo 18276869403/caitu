@@ -64,7 +64,8 @@ Page({
     qipiliang:'',
     flag:true,
     type:'',
-    bhou:''
+    bhou:'',
+    jsqglist:[]
   },
 
   /**
@@ -263,12 +264,12 @@ Page({
       console.log(res)
       if(res.success == true){
         var qiangduindex = 0
-        var xincengindex = 0
+        // var xincengindex = 0
         var yanseindex = 0
         var youqiindex = 0
         var itemdata = that.data.jsqglist
         that.data.qiangdu=['选择强度']
-        that.data.youqi=['选择油漆']
+        // that.data.youqi=['选择油漆']
         that.data.xinceng=['选择锌层']
         that.data.yanse=['选择颜色']
         that.data.pricingPrice=res.result.steel==null?'':res.result.steel.pricingPrice
@@ -279,13 +280,13 @@ Page({
           that.data.youqi.push(obj.context)
           that.data.subentryId.push(obj.subentryId)
         }
-        for(let obj of res.result.zinclayerList){
-          if(obj.scopeBelow == obj.scopeUp){
-            that.data.xinceng.push(obj.scopeBelow)
-            continue
-          }
-          that.data.xinceng.push(obj.scopeBelow+"~"+obj.scopeUp)
-        }
+        // for(let obj of res.result.zinclayerList){
+        //   if(obj.scopeBelow == obj.scopeUp){
+        //     that.data.xinceng.push(obj.scopeBelow)
+        //     continue
+        //   }
+        //   that.data.xinceng.push(obj.scopeBelow+"~"+obj.scopeUp)
+        // }
         for(let obj of res.result.colorList){
           that.data.yanse.push(obj.context)
         }
@@ -296,17 +297,18 @@ Page({
               houdu:'',
               zhengvalue:'',
               beivalue:'',
-              tuceng:'',
+              // tuceng:'',
               dunwei:''
             })
           }else{
             that.data.zhengmianindex=itemdata.front
             that.data.beimianindex=itemdata.rear
             qiangduindex = utils.getArrIndex(that.data.qiangdu,itemdata.density)
-            xincengindex = utils.getArrIndex(that.data.xinceng,itemdata.zincLayer)
+            // xincengindex = utils.getArrIndex(that.data.xinceng,itemdata.zincLayer)
             yanseindex = utils.getArrIndex(that.data.yanse,itemdata.color)
             youqiindex = utils.getArrIndex(that.data.youqi,itemdata.paint)
             that.getyouqi(that.data.youqi[youqiindex].subentryId,itemdata.paint)
+            that.getXC({text:itemdata.paint,steelName:that.data.jsqglist.steelName,theNameId:that.data.jsqglist.theNameId})
           }
         }
         that.setData({
@@ -315,12 +317,12 @@ Page({
           sethoudu:res.result.thickness,
           qiangdu:that.data.qiangdu,
           youqi:that.data.youqi,
-          xinceng:that.data.xinceng,
+          // xinceng:that.data.xinceng,
           yanse:that.data.yanse,
           pricingPrice:that.data.pricingPrice,
           qiangduindex:qiangduindex==-1?0:qiangduindex,
           youqiindex:youqiindex==-1?0:youqiindex, 
-          xincengindex:xincengindex==-1?0:xincengindex,
+          // xincengindex:xincengindex==-1?0:xincengindex,
           yanseindex:yanseindex==-1?0:yanseindex,
           flag:false
         })
@@ -473,6 +475,7 @@ Page({
     }
     console.log(data)
     var dataobj = data
+    debugger
     qingqiu.get("faBuPinGou",data,function(res){
       if(res.success == true){
         console.log(res)
@@ -684,7 +687,31 @@ Page({
       youqi:that.data.youqi, 
       youqiindex:e.detail.value
     })
+    var data={
+      text:that.data.youqiname,
+      theNameId:that.data.thenameid,
+      steelName:that.data.multiName
+    }
     // that.gethuodu()
+    that.getXC(data)
+  },
+  // 获取锌层
+  getXC(data){
+    var that=this
+    qingqiu.get("getXC",data,function(res){
+      console.log(res)
+      if(res.success == true){
+        that.data.xinceng=['选择锌层']
+        for(let obj of res.result){
+          that.data.xinceng.push(obj.scope)
+        }
+        var xincengindex=utils.getArrIndex(that.data.xinceng,that.data.jsqglist.zincLayer)
+        that.setData({
+          xinceng: that.data.xinceng,
+          xincengindex:xincengindex==-1?0:xincengindex,
+        })
+      }
+    })
   },
   // 正面焦点
   zhengfocus:function(){
