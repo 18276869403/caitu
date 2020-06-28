@@ -475,7 +475,6 @@ Page({
     }
     console.log(data)
     var dataobj = data
-    debugger
     qingqiu.get("faBuPinGou",data,function(res){
       if(res.success == true){
         console.log(res)
