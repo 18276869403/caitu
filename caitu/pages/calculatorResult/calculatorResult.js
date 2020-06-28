@@ -9,7 +9,8 @@ Page({
   data: {
     key:[],
     value:[],
-    pricingPrice:''
+    pricingPrice:'',
+    jisuanDetails:{}
   },
 
   /**
@@ -27,12 +28,14 @@ Page({
       console.log(res)
       if(res.success == true){
         that.datafenge(res.result.records[0])
+        that.setData({
+          jisuanDetails:res.result.records[0]
+        })
       }
     })
   },
 
   datafenge(list){
-    console.log(list)
     var key = []
     var value = []
     key.push(list.thickness.split('|')[0])
@@ -45,7 +48,7 @@ Page({
     key.push(list.color.split('|')[0])
     key.push(list.density.split('|')[0])
     key.push(list.tonnage.split('|')[0])
-    key.push(list.theNameText)
+    key.push(list.theNameId_dictText)
     key.push(list.steelName)
     key.push(list.monovalent)
     key.push(list.backup1)
@@ -67,8 +70,25 @@ Page({
 
   // 跳转到计算器页面
   calculator: function() {
+    var key = this.data.key
+    var data = this.data.jisuanDetails
+    data.thickness = key[0]
+    data.width = key[1]
+    data.paint = key[2]
+    data.front = key[3]
+    data.rear = key[4]
+    data.coat = key[5]
+    data.zincLayer = key[6]
+    data.color = key[7]
+    data.density = key[8]
+    data.tonnage = key[9]
+    data.theNameId_dictText = key[10]
+    data.steelName = key[11]
+    data.monovalent = key[12]
+    data.backup1 = key[13]
     var obj = JSON.stringify(this.data.jisuanDetails)
-    wx.redirectTo({ 
+    console.log(obj)
+    wx.redirectTo({
       url: '../calculator/calculator?obj=' + obj,
     })
   },
@@ -83,7 +103,7 @@ Page({
   pingouSubmit:function(){
     var obj = JSON.stringify(this.data.jisuanDetails)
     wx.navigateTo({
-      url: '../qiugouSubmit/qiugouSubmit?obj=' + obj,
+      url: '../pingouSubmit/pingouSubmit?obj=' + obj,
     })
   }
 })

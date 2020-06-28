@@ -74,7 +74,7 @@
     </view>
     <!-- 重新计算 -->
     <view class="button"> 
-      <image src="../image/chongxinjisuan.png" class="jisuan-img" bindtap="retrunIndex"></image>
+      <image src="../image/chongxinjisuan.png" class="jisuan-img" bindtap="calculator"></image>
     </view>
   </view>
 </view>
