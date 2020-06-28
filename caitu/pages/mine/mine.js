@@ -13,10 +13,10 @@ Page({
     wxUser:{},
     showModalStatus:false
   },
-  onLoad: function() {
+  onShow:function(){
     this.getMyInfo()
-    
   },
+  
   // 跳转到我的求购页面
   myqiugou: function() {
     if(app.globalData.wxState == 0){
