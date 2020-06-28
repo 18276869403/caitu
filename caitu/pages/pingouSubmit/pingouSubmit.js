@@ -297,7 +297,7 @@ Page({
               houdu:'',
               zhengvalue:'',
               beivalue:'',
-              // tuceng:'',
+              tuceng:'',
               dunwei:''
             })
           }else{
@@ -609,7 +609,7 @@ Page({
       })
     }else{
       wx.showToast({
-        title: '数值范围在'+minhoudu+'~'+maxhoudu,
+        title: '厚度范围在'+minhoudu+'~'+maxhoudu,
         icon:'none',
         duration:2000
       })
@@ -675,7 +675,7 @@ Page({
         kuandu: ''
       })
       wx.showToast({
-        title: '宽度在'+minwidth + "~" + maxwidth+'之间',
+        title: '宽度范围在'+minwidth + "~" + maxwidth,
         icon:'none',
         duration:2000
       })
