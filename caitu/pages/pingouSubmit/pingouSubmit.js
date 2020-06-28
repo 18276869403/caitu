@@ -661,7 +661,7 @@ Page({
     // })
     that.data.yqid=e.detail.value
     that.data.youqiname = that.data.youqi[e.detail.value]
-    that.data.youqiid =that.data.subentryId[e.detail.value]
+    that.data.youqiid =that.data.subentryId[e.detail.value-1]
     var data = {
       subentryId:that.data.youqiid,
       text:that.data.youqi[e.detail.value]
