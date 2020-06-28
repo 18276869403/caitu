@@ -354,14 +354,22 @@ Page({
     qingqiu.get("faBuPinGou",data,function(res){
       if(res.success == true){
         console.log(res)
-        that.data.pipeilist=res.result.records
-        var ppsj = JSON.stringify(that.data.pipeilist)
-        app.globalData.haibaitype = 1
-        dataobj.theName = that.data.multiArray[1][that.data.multiIndex[1]]
-        dataobj = JSON.stringify(dataobj)
-        wx.navigateTo({
-          url: '../submitSuccess/submitSuccess?obj='+ppsj+"&dataobj="+dataobj,
-        })
+        if(res.result.records.length == 0){
+          dataobj.theName = that.data.multiArray[1][that.data.multiIndex[1]]
+          dataobj = JSON.stringify(dataobj)
+          wx.navigateTo({
+            url: '../post/post?obj=' + dataobj,
+          })
+        }else{ 
+          var pipeilist=res.result.records
+          var ppsj = JSON.stringify(pipeilist)
+          app.globalData.haibaitype = 1
+          dataobj.theName = that.data.multiArray[1][that.data.multiIndex[1]]
+          dataobj = JSON.stringify(dataobj)
+          wx.navigateTo({
+            url: '../submitSuccess/submitSuccess?obj='+ppsj+"&dataobj="+dataobj,
+          })
+        }
       }else{
         wx.showToast({
           title: res.message,

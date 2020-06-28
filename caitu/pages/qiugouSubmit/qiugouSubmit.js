@@ -518,15 +518,24 @@ Page({
     }
     var dataobj = data
     qingqiu.get("faBuQiuGou",data,function(res){
+      console.log(res)
       if(res.success == true){
-        app.globalData.haibaitype = 1
-        that.data.pipeilist=res.result.records
-        var ppsj = JSON.stringify(that.data.pipeilist)
-        dataobj.theName = that.data.multiArray[1][that.data.multiIndex1[1]]
-        dataobj = JSON.stringify(dataobj)
-        wx.navigateTo({
-          url: '../submitSuccess/submitSuccess?obj='+ppsj+'&dataobj=' + dataobj,
-        })
+        if(res.success.records.length == 0){
+          dataobj.theName = that.data.multiArray[1][that.data.multiIndex1[1]]
+          dataobj = JSON.stringify(dataobj)
+          wx.navigateTo({
+            url: '../post/post?obj=' + dataobj,
+          })
+        }else{
+          app.globalData.haibaitype = 1
+          that.data.pipeilist=res.result.records
+          var ppsj = JSON.stringify(that.data.pipeilist)
+          dataobj.theName = that.data.multiArray[1][that.data.multiIndex1[1]]
+          dataobj = JSON.stringify(dataobj)
+          wx.navigateTo({
+            url: '../submitSuccess/submitSuccess?obj='+ppsj+'&dataobj=' + dataobj,
+          })
+        }
       }else{
         wx.showToast({
           title: res.message,
