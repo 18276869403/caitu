@@ -66,14 +66,17 @@ Page({
     this.data.navid=navid
     if(navid==1){
       this.data.pageNo=1
+      this.data.qiugou=[]
       this.selectqiugou()
     }
     if(navid==2){
       this.data.pageNo=1
+      this.data.kucun=[]
       this.selectweihuo()
     }
     if(navid==3){
       this.data.pageNo=1
+      this.data.pingou=[]
       this.selectpingou()
     }
     this.setData({
@@ -275,6 +278,7 @@ Page({
   // 下拉刷新
   onPullDownRefresh: function () {
     app.globalData.dtid=this.data.navid
+    this.data.pageNo=1
     this.data.qiugou=[]
     this.data.kucun=[]
     this.data.pingou=[]

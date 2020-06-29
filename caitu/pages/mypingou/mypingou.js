@@ -52,6 +52,7 @@ Page({
   // 下拉刷新
   onPullDownRefresh: function () {
     this.data.isLastPage=false
+    this.data.pageNo=1
     this.data.piugou=[]
     this.onLoad()
     setTimeout(() => {
