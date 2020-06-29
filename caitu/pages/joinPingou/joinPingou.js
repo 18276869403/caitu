@@ -137,7 +137,7 @@ Page({
           icon:'none',
           duration:2000
         })
-        var shuju1=JSON.stringify(res.result.records)
+        
         var item = that.data.shuju
         var dataobj = {
           wxUserId:app.globalData.wxid,
@@ -157,12 +157,19 @@ Page({
         }
         dataobj.theName = item.itemvalue_dictText
         dataobj = JSON.stringify(dataobj)
-        setTimeout(function(){
-          app.globalData.haibaitype = 1
-          wx.navigateTo({
-            url: '../submitSuccess/submitSuccess?obj='+shuju1+"&dataobj="+dataobj,
+        if(res.result.records.length == 0){
+          wx.redirectTo({
+            url: '../post/post?obj='+dataobj,
           })
-        },1000)
+        }else{
+          var shuju1=JSON.stringify(res.result.records)
+          setTimeout(function(){
+            app.globalData.haibaitype = 1
+            wx.redirectTo({
+              url: '../submitSuccess/submitSuccess?obj='+shuju1+"&dataobj="+dataobj,
+            })
+          },1000)
+        }
       }else{
         wx.showToast({
           title: res.message,

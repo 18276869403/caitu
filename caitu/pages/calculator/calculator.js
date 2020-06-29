@@ -223,8 +223,6 @@ Page({
           yanseindex:yanseindex==-1?0:yanseindex,
           qiangduarray:res.result.densityList,
           youqiarray:res.result.printList,
-          xincengarray:res.result.zinclayerList,
-          zincLayerobj:res.result.zinclayerList,
           yansearray:res.result.colorList,
           flag:false
         })

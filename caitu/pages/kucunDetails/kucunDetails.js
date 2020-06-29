@@ -47,7 +47,8 @@ Page({
     tuceng:'',
     imglist:[],
     bindimg:[],
-    kcid:''
+    kcid:'',
+    itemobj:{}
     // multiArray: [
     //   ['选择钢厂', '广州宝钢', '上海宝钢', '浙江宝钢'],
     //   ['选择彩涂品', '镀铝锌卷', '镀铝锌彩涂卷', '镀铝锌']
@@ -66,7 +67,6 @@ Page({
   onLoad: function (options) {
     this.getAddress()
     this.getstell()
-    console.log(options.obj)
     this.getkuncun(options.obj)
     this.setData({
       kcid:options.obj
@@ -210,7 +210,6 @@ Page({
         }
         // 品名
         that.getpmindex(data.steelName,data.theNameText)
-        that.getXC({steelName:data.steelName,theNameId:data.theNameId,text:data.paint})
         that.setData({
           itemobj:data,
           bindimg:bindimg,
@@ -222,6 +221,7 @@ Page({
           tuceng:data.coat,
           dunwei:data.tonnage
         })
+        that.getXC({steelName:data.steelName,theNameId:data.theNameId,text:data.paint})
       }else{
         wx.showToast({
           title: res.message,
@@ -444,15 +444,21 @@ Page({
   getXC:function(data){
     var that = this
     var itemdata = that.data.itemobj
+    console.log('数据',itemdata)
     var xincengindex = 0
     qingqiu.get("getXC",data,function(res){
+      console.log('锌层',res)
       if(res.success == true){
         var xinceng = ['选择锌层']
         for(let obj of res.result){
           xinceng.push(obj.scope)
         }
-        if(itemdata != null && itemdata!=undefined && itemdata.length != 0){
+        console.log(itemdata)
+        if(itemdata != null && itemdata != undefined){
+          console.log(itemdata.zincLayer)
+          console.log(xinceng)
           xincengindex = utils.getArrIndex(xinceng,itemdata.zincLayer)
+          console.log(xincengindex)
           that.setData({
             xincengindex:xincengindex==-1?0:xincengindex,
           })
@@ -474,13 +480,14 @@ Page({
       console.log(res)
       if(res.success == true){
         var qiangduindex = 0
-        var xincengindex = 0
+        // var xincengindex = 0
         var yanseindex = 0
         var youqiindex = 0
         var itemdata = that.data.itemobj
+        console.log(itemdata)
         var qiangdu = ["选择强度"]
         var youqi = ["选择油漆"]
-        var xinceng = ["选择锌层"]
+        // var xinceng = ["选择锌层"]
         var yanse = ["选择颜色"]
         for(let obj of res.result.densityList){
           qiangdu.push(obj.context)
@@ -488,13 +495,13 @@ Page({
         for(let obj of res.result.printList){
           youqi.push(obj.context)
         }
-        for(let obj of res.result.zinclayerList){
-          if(obj.scopeBelow == obj.scopeUp){
-            xinceng.push(obj.scopeBelow)
-            continue
-          }
-          xinceng.push(obj.scopeBelow+"~"+obj.scopeUp)
-        }
+        // for(let obj of res.result.zinclayerList){
+        //   if(obj.scopeBelow == obj.scopeUp){
+        //     xinceng.push(obj.scopeBelow)
+        //     continue
+        //   }
+        //   xinceng.push(obj.scopeBelow+"~"+obj.scopeUp)
+        // }
         for(let obj of res.result.colorList){
           yanse.push(obj.context)
         }
@@ -509,10 +516,14 @@ Page({
           })
         }else{
           qiangduindex = utils.getArrIndex(qiangdu,itemdata.density)
-          xincengindex = utils.getArrIndex(xinceng,itemdata.zincLayer)
+          // xincengindex = utils.getArrIndex(xinceng,itemdata.zincLayer)
           yanseindex = utils.getArrIndex(yanse,itemdata.color)
           youqiindex = utils.getArrIndex(youqi,itemdata.paint)
-          that.getyouqi(res.result.printList[youqiindex].subentryId,itemdata.paint)
+          console.log(youqiindex)
+          if(youqiindex != -1){
+            console.log(res.result.printList)
+            that.getyouqi(res.result.printList[youqiindex-1].subentryId,itemdata.paint)
+          }
         }
         that.setData({
           setwidth:res.result.width,
@@ -521,15 +532,15 @@ Page({
           qiangduindex:qiangduindex==-1?0:qiangduindex,
           youqi:youqi,
           youqiindex:youqiindex==-1?0:youqiindex,
-          xinceng:xinceng,
-          xincengindex:xincengindex==-1?0:xincengindex,
+          // xinceng:xinceng,
+          // xincengindex:xincengindex==-1?0:xincengindex,
           yanse:yanse,
-          yanseindex:yanseindex==-1?0:xincengindex,
+          yanseindex:yanseindex==-1?0:yanseindex,
           qiangduarray:res.result.densityList,
           youqiarray:res.result.printList,
           xincengarray:res.result.zinclayerList,
           yansearray:res.result.colorList,
-          flag:false
+          flag:false,
         })
       }
     })

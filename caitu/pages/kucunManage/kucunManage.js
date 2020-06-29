@@ -226,7 +226,7 @@ Page({
           duration:2000
         })
         setTimeout(function(){
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../kucunSubmitSuccess/kucunSubmitSuccess',
           })
         },1000)
@@ -661,7 +661,7 @@ Page({
         duration:2000
       })
       that.setData({
-        zhengvalue:''
+        beivalue:''
       })
       return
     }

@@ -481,7 +481,7 @@ Page({
         if(res.result.records.length == 0){
           dataobj.theName = that.data.multiArray[1][that.data.multiIndex[1]]
           dataobj = JSON.stringify(dataobj)
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../post/post?obj=' + dataobj,
           })
         }else{ 
@@ -490,7 +490,7 @@ Page({
           app.globalData.haibaitype = 1
           dataobj.theName = that.data.multiArray[1][that.data.multiIndex[1]]
           dataobj = JSON.stringify(dataobj)
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../submitSuccess/submitSuccess?obj='+ppsj+"&dataobj="+dataobj+'&objtype=' + '1',
           })
         }

@@ -213,7 +213,6 @@ Page({
 
   // 待审核 跳到尾货详情页面
   weihuoDetails: function() {
-    debugger
     wx.navigateTo({
       url: '../weihuoDetails/weihuoDetails',
     })

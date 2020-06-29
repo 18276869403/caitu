@@ -79,10 +79,4 @@
       <image src="../image/save.png" class="jisuan-img"></image>
     </view>
   </view>
-  <view class="content-button hengxiang" wx:if="{{items.putaway==0&&items.strState==0}}" >
-    <!-- 查看海报 -->
-    <view class="centerbutton" bindtap="post">
-      <image src="../image/chakanhaibao.png" class="qiugou-img"></image>
-    </view>
-  </view>
 </view>

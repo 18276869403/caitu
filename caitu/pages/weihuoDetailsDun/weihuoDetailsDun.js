@@ -112,7 +112,7 @@ Page({
 
   // 跳转到海报页面
   post:function(){
-    var weihuo = that.data.items
+    var weihuo = this.data.items
     var dataobj={
       wxUserId:app.globalData.wxid,
       areaOneId:weihuo.areaOneId,

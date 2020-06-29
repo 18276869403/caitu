@@ -18,7 +18,7 @@ Page({
   // 去上架
   gokuncun:function(e){
     var type = e.currentTarget.dataset.type
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../mykucunpandian/mykucunpandian?type='+type,
     })
   },

@@ -528,7 +528,7 @@ Page({
         if(res.result.records.length == 0){
           dataobj.theName = that.data.multiArray[1][that.data.multiIndex1[1]]
           dataobj = JSON.stringify(dataobj)
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../post/post?obj=' + dataobj,
           })
         }else{
@@ -537,7 +537,7 @@ Page({
           var ppsj = JSON.stringify(that.data.pipeilist)
           dataobj.theName = that.data.multiArray[1][that.data.multiIndex1[1]]
           dataobj = JSON.stringify(dataobj)
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../submitSuccess/submitSuccess?obj='+ppsj+'&dataobj=' + dataobj+'&objtype=' + '0',
           })
         }
