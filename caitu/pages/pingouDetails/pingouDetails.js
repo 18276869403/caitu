@@ -26,6 +26,7 @@ Page({
    */
   onLoad: function(options) {
     var pgxx=JSON.parse(options.obj)
+    console.log(pgxx)
     this.data.pgid=pgxx.id
     this.setData({
       pgxx:pgxx,
