@@ -34,7 +34,9 @@ Page({
         time: '2020.05.02'
       }
     ],
-    jisuans:[]
+    jisuans:[],
+    pageNo:1,
+    isLastPage:false
   },
 
   /**
@@ -43,22 +45,49 @@ Page({
   onLoad: function(options) {
     this.getjisuanLS()
   },
+  // 下拉刷新
+  onPullDownRefresh: function () {
+    this.data.isLastPage=false
+    this.data.jisuans=[]
+    this.onLoad()
+    setTimeout(() => {
+      wx.stopPullDownRefresh()
+    }, 1000);
+  },
+  //上拉功能
+  onReachBottom(){
+    if(this.data.isLastPage){
+      wx.showToast({
+        title: '没有更多了！',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    this.setData({pageNo:this.data.pageNo+1})
+    this.getjisuanLS()
+  },
   //获取计算历史
   getjisuanLS(){
     var that = this
     var data = {
       id:app.globalData.wxid,
-      pageNo:1,
+      pageNo:that.data.pageNo,
       pageSize:10
     }
     qingqiu.get('calculateList',data,function(res){
-      console.log(res)
       if(res.success == true){
         if (res.result != null) {
-          that.data.jisuans=res.result.records
-          for(var i=0;i<res.result.records.length;i++){
-            that.data.jisuans[i].createTime=that.data.jisuans[i].createTime.split(' ')[0]
+          if(res.result.records=='')
+          {
+            that.data.isLastPage=true
           }
+          // that.data.jisuans=res.result.records
+          for(var i=0;i<res.result.records.length;i++){
+            res.result.records[i].createTime=res.result.records[i].createTime.split(' ')[0]
+            that.data.jisuans.push(res.result.records[i])
+          }
+          console.log(that.data.jisuans)
           that.setData({
             jisuans:that.data.jisuans
           })

@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText": "计算历史",
+  "enablePullDownRefresh": true,
   "usingComponents": {}
 }

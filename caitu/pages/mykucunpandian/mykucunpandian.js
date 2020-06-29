@@ -27,6 +27,8 @@ Page({
       }
     ],
     kucun: [],
+    pageNo:1,
+    isLastPage:false
   },
 
   /**
@@ -56,7 +58,19 @@ Page({
       this.mykucun(nav[0].type)
     }
   },
-
+//上拉功能
+// onReachBottom(){
+//   if(this.data.isLastPage){
+//     wx.showToast({
+//       title: '没有更多了！',
+//       icon:'none',
+//       duration:2000
+//     })
+//     return
+//   }
+//   this.setData({pageNo:this.data.pageNo+1})
+//   this.getjisuanLS()
+// },
   // 我的库存判断
   mykucun(type){
     var that = this

@@ -56,8 +56,8 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">需求吨数</view>
       <view class="content-item-content1">
-        <input type="text" placeholder="请输入需求吨数" class="shurukuang" placeholder-class="placeholder" wx:if="{{items.putaway==0&&items.strState==0}}" disabled value="{{items.tonnage}}"></input>
-        <input type="text" placeholder="请输入需求吨数" class="shurukuang" bindinput="tonnage" placeholder-class="placeholder" wx:if="{{items.putaway==0&&items.strState==1}}" value="{{items.tonnage}}"></input>
+        <input type="digit" placeholder="请输入需求吨数" class="shurukuang" placeholder-class="placeholder" wx:if="{{items.putaway==0&&items.strState==0}}" disabled value="{{items.tonnage}}"></input>
+        <input type="digit" placeholder="请输入需求吨数" class="shurukuang" bindinput="tonnage" placeholder-class="placeholder" wx:if="{{items.putaway==0&&items.strState==1}}" value="{{items.tonnage}}"></input>
       </view>
     </view>
     <view class="content-item-title">

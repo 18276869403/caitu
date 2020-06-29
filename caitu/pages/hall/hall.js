@@ -43,7 +43,9 @@ Page({
     pingou:[],
     qiugou:[],
     theNameId:'',
-    steelName:''
+    steelName:'',
+    isLastPage:false,
+    pageNo:1
   },
   getgangchang(){
     var that = this
@@ -63,12 +65,15 @@ Page({
     var navid = e.currentTarget.dataset.id
     this.data.navid=navid
     if(navid==1){
+      this.data.pageNo=1
       this.selectqiugou()
     }
     if(navid==2){
+      this.data.pageNo=1
       this.selectweihuo()
     }
     if(navid==3){
+      this.data.pageNo=1
       this.selectpingou()
     }
     this.setData({
@@ -270,10 +275,33 @@ Page({
   // 下拉刷新
   onPullDownRefresh: function () {
     app.globalData.dtid=this.data.navid
+    this.data.qiugou=[]
+    this.data.kucun=[]
+    this.data.pingou=[]
+    this.data.isLastPage=false
     this.onLoad()
     setTimeout(() => {
       wx.stopPullDownRefresh()
     }, 1000);
+  },
+  //上拉功能
+  onReachBottom(){
+    if(this.data.isLastPage){
+      wx.showToast({
+        title: '没有更多了！',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    this.setData({pageNo:this.data.pageNo+1})
+    if(this.data.navid == 1){
+      this.selectqiugou()      
+    }else if(this.data.navid == 2){
+      this.selectweihuo()
+    }else{
+      this.selectpingou()
+    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -309,21 +337,25 @@ Page({
     qingqiu.get('askToBuyLists',data,function(res){
       if(res.success == true){
         if (res.result != null) {
-          that.data.qiugou=res.result.records
+          if(res.result.records==''){
+            that.data.isLastPage=true
+          }
+          // that.data.qiugou=res.result.records
           for(let obj of res.result.records){
             var str = obj.id.toString()
             if(str.length < 10){
               var str1 = ''
-              for(let i=0;i<10-str.length;i++){
+              for(let j=0;j<10-str.length;j++){
                 str1 += 0
               }
               obj.backup1 = str1 + str
             }
           }
           for(var i=0;i<res.result.records.length;i++){
-            if(that.data.qiugou[i].createtime!=''&&that.data.qiugou[i].createtime!=null ){
-              that.data.qiugou[i].createtime=that.data.qiugou[i].createtime.split(' ')[0]
+            if(res.result.records[i].createtime!=''&&res.result.records[i].createtime!=null ){
+              res.result.records[i].createtime=res.result.records[i].createtime.split(' ')[0]
             }
+            that.data.qiugou.push(res.result.records[i])
           }
           console.log(that.data.qiugou)
           that.setData({
@@ -363,19 +395,23 @@ Page({
     qingqiu.get('inventoryLists',data,function(res){
       if(res.success == true){
         if (res.result != null) {
-          that.data.kucun=res.result.records
+          if(res.result.records==''){
+            that.data.isLastPage=true
+          }
+          // that.data.kucun=res.result.records
           for(let obj of res.result.records){
             var str = obj.id.toString()
             if(str.length < 10){
               var str1 = ''
-              for(let i=0;i<10-str.length;i++){
+              for(let j=0;j<10-str.length;j++){
                 str1 += 0
               }
               obj.backup1 = str1 + str
             }
           }
           for(var i=0;i<res.result.records.length;i++){
-            that.data.kucun[i].upUrl=that.data.kucun[i].upUrl.split(',')
+            res.result.records[i].upUrl=res.result.records[i].upUrl.split(',')
+            that.data.kucun.push(res.result.records[i])
           }
           console.log(that.data.kucun)
           that.setData({
@@ -415,27 +451,31 @@ Page({
     qingqiu.get('groupByingLists',data,function(res){
       if(res.success == true){
         if (res.result != null) {
-          that.data.pingou=res.result.records
+          if(res.result.records==''){
+            that.data.isLastPage=true
+          }
+          // that.data.pingou=res.result.records
           for(let obj of res.result.records){
             var str = obj.id.toString()
             if(str.length < 10){
               var str1 = ''
-              for(let i=0;i<10-str.length;i++){
+              for(let j=0;j<10-str.length;j++){
                 str1 += 0
               }
               obj.backup1 = str1 + str
             }
           }
           for(var i=0;i<res.result.records.length;i++){
-            if(that.data.pingou[i].createtime!=''&& that.data.pingou[i].createtime!=null ){
-              that.data.pingou[i].createtime=that.data.pingou[i].createtime.split(' ')[0]
+            if(res.result.records[i].createtime!=''&& res.result.records[i].createtime!=null ){
+              res.result.records[i].createtime=res.result.records[i].createtime.split(' ')[0]
             }
-            if(that.data.pingou[i].deadline!=''&& that.data.pingou[i].deadline!=null ){
-              that.data.pingou[i].deadline=that.data.pingou[i].deadline.split(' ')[0]
+            if(res.result.records[i].deadline!=''&& res.result.records[i].deadline!=null ){
+              res.result.records[i].deadline=res.result.records[i].deadline.split(' ')[0]
             }
-            if(that.data.pingou[i].upUrl!=''&& that.data.pingou[i].upUrl!=null ){
-              that.data.pingou[i].upUrl=that.data.pingou[i].upUrl.split(',')
+            if(res.result.records[i].upUrl!=''&& res.result.records[i].upUrl!=null ){
+              res.result.records[i].upUrl=res.result.records[i].upUrl.split(',')
             }
+            that.data.pingou.push(res.result.records[i])
           }
           console.log(that.data.pingou)
           that.setData({
