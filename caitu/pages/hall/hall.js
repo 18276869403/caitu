@@ -277,7 +277,6 @@ Page({
   },
   // 下拉刷新
   onPullDownRefresh: function () {
-    app.globalData.dtid=this.data.navid
     this.data.pageNo=1
     this.data.qiugou=[]
     this.data.kucun=[]
