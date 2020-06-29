@@ -55,7 +55,7 @@
               <view class="content-right-list-img">
                 <image src="../image/xinceng.png" class="bianhao-img"></image>
               </view>
-              <view class="content-right-list-text">锌层：{{item.xinceng}}</view>
+              <view class="content-right-list-text">锌层：{{item.zincLayer}}</view>
             </view>
             <view class="hengxiang content-right-list">
               <view class="content-right-list-img">
