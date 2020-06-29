@@ -166,11 +166,19 @@ Page({
     this.data.theNameId=''
     this.data.colorlist[this.data.colorid]=''
     this.data.houdu[this.data.hdid]=''
+    this.data.pinming=['品名']
+    this.data.colorlist=['颜色']
+    this.data.houdu=['厚度']
+    this.data.colorid=0
+    this.data.hdid=0
     if(e.detail.value != 0){
       this.getpinming(this.data.gangchang[e.detail.value])
     }else{
       this.setData({
-        pinming:this.data.pinminglist
+        // pinming:this.data.pinminglist,
+        pinming:this.data.pinming,
+        colorlist:this.data.colorlist,
+        houdu:this.data.houdu
       })
     }
     if(this.data.navid == 1){
@@ -198,6 +206,8 @@ Page({
       color:0,
       thickness:0
     })
+    this.data.colorid=''
+    this.data.hdid=''
     this.data.colorlist[this.data.colorid]=''
     this.data.houdu[this.data.hdid]=''
     this.getColor()
