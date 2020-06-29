@@ -44,7 +44,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.obj)
     if(options.obj != "null"){
       var data = JSON.parse(options.obj)
       console.log(data)
@@ -57,7 +56,8 @@ Page({
         tuceng:data.coat,
         dunwei:data.tonnage,
         pinmingid:data.theNameId,
-        gangchangname:data.steelName
+        gangchangname:data.steelName,
+        xincengPrice:data.xinceng
       })
       this.bindchushihua(data.steelName,data.theNameId_dictText)
       this.getWidth({steelName:data.steelName,theNameId:data.theNameId})
@@ -238,7 +238,7 @@ Page({
     var itemdata = that.data.itemobj
     var xincengindex = 0
     qingqiu.get("getXC",data,function(res){
-      console.log(res)
+      console.log('锌层',res)
       if(res.success == true){
         var xinceng = ['选择锌层']
         for(let obj of res.result){

@@ -47,11 +47,11 @@ Page({
     key.push(list.zincLayer.split('|')[0])
     key.push(list.color.split('|')[0])
     key.push(list.density.split('|')[0])
-    key.push(list.tonnage.split('|')[0])
+    key.push(Number(list.tonnage.split('|')[0]))
     key.push(list.theNameId_dictText)
     key.push(list.steelName)
     key.push(list.monovalent)
-    key.push(list.backup1.split("|")[0])
+    key.push(Number(list.backup1.split("|")[0]))
     value.push(list.thickness.split('|')[1])
     value.push(list.width.split('|')[1])
     value.push(list.paint.split('|')[1])
@@ -74,6 +74,7 @@ Page({
   // 跳转到计算器页面
   calculator: function() {
     var key = this.data.key
+    var value = this.data.value
     var data = this.data.jisuanDetails
     data.thickness = key[0]
     data.width = key[1]
@@ -89,6 +90,7 @@ Page({
     data.steelName = key[11]
     data.monovalent = key[12]
     data.backup1 = key[13]
+    data.xinceng = value[6]
     var obj = JSON.stringify(this.data.jisuanDetails)
     wx.redirectTo({
       url: '../calculator/calculator?obj=' + obj,

@@ -39,6 +39,9 @@ Page({
       if(res.success == true){
         if(res.result.records[0]!=null){
           var wxUser = res.result.records[0]
+          if(wxUser.curl == "" || wxUser.curl == null || wxUser.curl == "null"){
+            wxUser.curl = null
+          }
           console.log(res)
           that.setData({
             username:wxUser.name,
