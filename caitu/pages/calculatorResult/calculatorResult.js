@@ -115,7 +115,7 @@ Page({
     data.monovalent = key[12]
     data.backup1 = key[13]
     var obj = JSON.stringify(this.data.jisuanDetails)
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../qiugouSubmit/qiugouSubmit?obj=' + obj,
     })
   },
@@ -138,7 +138,7 @@ Page({
     data.monovalent = key[12]
     data.backup1 = key[13]
     var obj = JSON.stringify(this.data.jisuanDetails)
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../pingouSubmit/pingouSubmit?obj=' + obj,
     })
   }
