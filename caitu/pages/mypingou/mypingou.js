@@ -38,7 +38,9 @@ Page({
     //     type: 3
     //   }
     // ],
-    piugou:[]
+    piugou:[],
+    pageNo:1,
+    isLastPage:false
   },
 
   /**
@@ -47,19 +49,45 @@ Page({
   onLoad: function (options) {
     this.getpingou()
   },
+  // 下拉刷新
+  onPullDownRefresh: function () {
+    this.data.isLastPage=false
+    this.data.pageNo=1
+    this.data.piugou=[]
+    this.onLoad()
+    setTimeout(() => {
+      wx.stopPullDownRefresh()
+    }, 1000);
+  },
+  //上拉功能
+  onReachBottom(){
+    if(this.data.isLastPage){
+      wx.showToast({
+        title: '没有更多了！',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    this.setData({pageNo:this.data.pageNo+1})
+    this.getpingou()
+  },
   // 获取拼购信息
   getpingou(){
     var that = this
     var data = {
       id:app.globalData.wxid,
-      pageNo:1,
+      pageNo:that.data.pageNo,
       pageSize:10
     }
     qingqiu.get('groupByingList',data,function(res){
       console.log(res)
       if(res.success == true){
         if (res.result != null) {
-          that.data.piugou=res.result.records
+          if(res.result.records==''){
+            that.data.isLastPage=true
+          }
+          // that.data.piugou=res.result.records
           for(let obj of res.result.records){
             var str = obj.id.toString()
             if(str.length < 10){
@@ -71,12 +99,13 @@ Page({
             }
           }
           for(var i=0;i<res.result.records.length;i++){
-            if(that.data.piugou[i].createtime!=''&&that.data.piugou[i].createtime!=null){
-              that.data.piugou[i].createtime=that.data.piugou[i].createtime.split(' ')[0]
+            if(res.result.records[i].createtime!=''&&res.result.records[i].createtime!=null){
+              res.result.records[i].createtime=res.result.records[i].createtime.split(' ')[0]
             }
-            if(that.data.piugou[i].deadline!=''&&that.data.piugou[i].deadline!=null){
-              that.data.piugou[i].deadline=that.data.piugou[i].deadline.split(' ')[0]
+            if(res.result.records[i].deadline!=''&&res.result.records[i].deadline!=null){
+              res.result.records[i].deadline=res.result.records[i].deadline.split(' ')[0]
             }
+            that.data.piugou.push(res.result.records[i])
           }
           console.log(that.data.piugou)
           that.setData({
