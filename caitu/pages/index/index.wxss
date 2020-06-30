@@ -547,7 +547,7 @@ page {
   height: 164rpx;
 }
 
-.text-class{
+/* .text-class{
   display: -webkit-box;
 	font-size: 28rpx;
 	color: #999999;
@@ -557,7 +557,8 @@ page {
 	-webkit-line-clamp: 3;
 	overflow: hidden;
 	text-overflow: ellipsis;
-}
+} */
+
 .text-title-class{
 	overflow: hidden;
 	white-space: nowrap;

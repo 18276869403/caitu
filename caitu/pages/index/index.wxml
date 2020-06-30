@@ -195,7 +195,7 @@
             <view class="weihuo-item" wx:for="{{weihuolist}}" wx:for-index="index" bindtap="weihuoDetails" data-weihuo="{{item}}">
               <view class="zongxiang">
                 <view class="weihuoImg">
-                  <image src="{{viewUrl}}{{item.upUrl[0]}}" class="weihuo-img"></image>
+                  <image src="{{viewUrl}}{{item.upUrl[0]}}" class="weihuo-img" mode="aspectFill"></image>
                 </view>
                 <view class="weihuo-text">
                   <view class="pingou-left-title">

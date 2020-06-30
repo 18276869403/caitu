@@ -26,7 +26,8 @@ Page({
     pingouList:[],
     weihuolist:[],
     zixunList:[],
-    isAuto:0
+    isAuto:0,
+    addstr:' style="display: -webkit-box;font-size: 28rpx;color: #999999;line-height: 40rpx;word-break: break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;text-overflow: ellipsis;"'
   },
   // 下拉刷新
   onPullDownRefresh: function () {
@@ -179,6 +180,12 @@ Page({
           for(var i=0;i<res.result.records.length;i++){
             that.data.zixunList[i].createTime=that.data.zixunList[i].createTime.split(' ')[0]
             that.data.zixunList[i].upUrl= that.data.viewUrl +that.data.zixunList[i].upUrl
+            var str = ''
+            if(utils.arrayStrNum(that.data.zixunList[i].context,'</p>') > 0){
+              str = that.data.zixunList[i].context.split('<p>')[1]
+              that.data.zixunList[i].context = '<p>' + str
+            }
+            that.data.zixunList[i].context = '<div' + that.data.addstr +'>' + that.data.zixunList[i].context + '</div>'
           }
           console.log(that.data.zixunList)
           that.setData({
