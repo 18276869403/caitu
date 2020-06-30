@@ -7,10 +7,10 @@
       <view class="zixun zongxiang">
         <view class="zixun-item hengxiang" wx:for="{{zixunList}}" wx:for-index="index" bindtap="newsDetails" data-news="{{item.id}}">
           <view class="zixun-item-right">
-            <image src="{{item.upUrl}}" class="zixun-img"></image>
+            <image src="{{item.upUrl}}" class="zixun-img" mode="aspectFill"></image>
           </view>
           <view class="zixun-item-left zongxiang">
-            <view class="zixun-left-title">
+            <view class="zixun-left-title text-title-class">
               {{item.title}}
             </view>
             <view class="zixun-left-content">
