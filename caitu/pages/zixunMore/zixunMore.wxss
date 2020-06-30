@@ -95,3 +95,8 @@ page {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+.text-title-class{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}

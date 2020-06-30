@@ -86,3 +86,6 @@ page {
   width: 570rpx;
   height: 78rpx;
 }
+.y_img{
+  width: 100%;
+}

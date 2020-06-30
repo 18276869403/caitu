@@ -83,10 +83,15 @@ Page({
       console.log(res)
       if(res.success == true){
         wx.showToast({
-          title: '操作成功',
+          title: '认证成功,请耐心等待审核..',
           icon:'none',
           duration:2000
         })
+        setTimeout(function(){
+          wx.switchTab({
+            url: '../index/index',
+          })
+        },1000)
       }else{
         wx.showToast({
           title: res.message,
@@ -104,6 +109,7 @@ Page({
       id:app.globalData.wxid
     }
     qingqiu.get("my",data,function(res){
+      console.log(res)
       if(res.success == true){
         if(res.result.records[0]!=null){
           var wxUser = res.result.records[0]
