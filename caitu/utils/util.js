@@ -74,7 +74,7 @@ const IdentityNum = function(str){
     str1 += 0
   }
   return str1 + str
-}
+} 
 
 module.exports = {
   formatTime: formatTime,
