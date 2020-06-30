@@ -105,5 +105,4 @@
   <view class="ck" wx:if="{{qiugou.startoks_dictText=='进行中'&&objtype=='1'}}">
     <image src="../image/haibao.png" class="ck_img" bindtap="post"></image>
   </view>
-
 </view>

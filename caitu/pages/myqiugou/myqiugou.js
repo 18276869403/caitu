@@ -84,6 +84,7 @@ Page({
       }
     })
   },
+  
 // 跳转到求购详情页面
   qiugouDetails:function(e){
     var obj = JSON.stringify(e.currentTarget.dataset.item)
