@@ -103,8 +103,8 @@ Page({
     qingqiu.get('my',data,function(res){
       console.log('我的信息',res)
       if(res.success == true){
+        app.globalData.wxState = res.result.records[0].autoState
         if(app.globalData.wxState == 0){
-          app.globalData.wxState = res.result.records[0].autoState
           that.setData({ showModalStatus2:true })
         }else{
           that.setData({
