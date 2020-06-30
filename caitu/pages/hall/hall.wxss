@@ -133,7 +133,7 @@ page {
   width: 30%;
   color: rgba(51, 51, 51, 1);
   text-align: left;
-  margin-left: 20rpx;
+  /* margin-left: 20rpx; */
 }
 
 .lie_name2 {
@@ -145,7 +145,7 @@ page {
   width: 30%;
   color: rgba(51, 51, 51, 1);
   text-align: center;
-  margin-left: 20rpx;
+  /* margin-left: 20rpx; */
 }
 
 .lie_name {
@@ -157,7 +157,7 @@ page {
   width: 30%;
   color: rgba(51, 51, 51, 1);
   text-align: left;
-  margin-left: 20rpx;
+  /* margin-left: 20rpx; */
 }
 
 .lie-image {
