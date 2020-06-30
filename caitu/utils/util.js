@@ -48,10 +48,40 @@ const getArrIndex = function(arr,obj){
   }
   return -1;
 }
+// 在指定字符串指定位置中添加一段字符
+const arrayStrAdd = function(arr,index,str){
+  var str1 = arr.slice(0,index)
+  var str2 = arr.slice(index)
+  var temp = str1 + str + str2
+  return temp
+}
+
+// 获取指定字符在字符串中出现的次数
+const arrayStrNum = function(arr,str){
+  var index = arr.indexOf(str)
+  var num = 0
+  while(index !== -1){
+      num++;
+      index = arr.indexOf(str,index + 1)
+  }
+  return num
+}
+
+// 编号10位
+const IdentityNum = function(str){
+  var str1 = ''
+  for(let i=0;i<10-str.length;i++){
+    str1 += 0
+  }
+  return str1 + str
+}
 
 module.exports = {
   formatTime: formatTime,
   yanzheng:yanzheng,
   getArrIndex:getArrIndex,
-  yanzhengVal:yanzhengVal 
+  yanzhengVal:yanzhengVal,
+  arrayStrAdd:arrayStrAdd,
+  arrayStrNum:arrayStrNum,
+  IdentityNum:IdentityNum
 }
