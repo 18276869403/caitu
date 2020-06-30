@@ -66,16 +66,19 @@ Page({
     this.data.navid=navid
     if(navid==1){
       this.data.pageNo=1
+      this.data.isLastPage=false
       this.data.qiugou=[]
       this.selectqiugou()
     }
     if(navid==2){
       this.data.pageNo=1
+      this.data.isLastPage=false
       this.data.kucun=[]
       this.selectweihuo()
     }
     if(navid==3){
       this.data.pageNo=1
+      this.data.isLastPage=false
       this.data.pingou=[]
       this.selectpingou()
     }
@@ -183,17 +186,26 @@ Page({
       this.getpinming(this.data.gangchang[e.detail.value])
     }else{
       this.setData({
-        // pinming:this.data.pinminglist,
+        pinming:this.data.pinminglist,
         pinming:this.data.pinming,
         colorlist:this.data.colorlist,
         houdu:this.data.houdu
       })
     }
     if(this.data.navid == 1){
+      this.data.pageNo=1
+      this.data.isLastPage=false
+      this.data.qiugou=[]
       this.selectqiugou()      
     }else if(this.data.navid == 2){
+      this.data.pageNo=1
+      this.data.isLastPage=false
+      this.data.kucun=[]
       this.selectweihuo()
     }else{
+      this.data.pageNo=1
+      this.data.isLastPage=false
+      this.data.pingou=[]
       this.selectpingou()
     }
   },
@@ -221,10 +233,19 @@ Page({
     this.getColor()
     this.getHou()
     if(this.data.navid == 1){
+      this.data.pageNo=1
+      this.data.isLastPage=false
+      this.data.qiugou=[]
       this.selectqiugou()      
     }else if(this.data.navid == 2){
+      this.data.pageNo=1
+      this.data.isLastPage=false
+      this.data.kucun=[]
       this.selectweihuo()
     }else{
+      this.data.pageNo=1
+      this.data.isLastPage=false
+      this.data.pingou=[]
       this.selectpingou()
     }
   },
@@ -253,10 +274,19 @@ Page({
     })
     this.data.houdu[this.data.hdid]=''
     if(this.data.navid == 1){
+      this.data.pageNo=1
+      this.data.isLastPage=false
+      this.data.qiugou=[]
       this.selectqiugou()      
     }else if(this.data.navid == 2){
+      this.data.pageNo=1
+      this.data.isLastPage=false
+      this.data.kucun=[]
       this.selectweihuo()
     }else{
+      this.data.pageNo=1
+      this.data.isLastPage=false
+      this.data.pingou=[]
       this.selectpingou()
     }
   },
@@ -268,10 +298,19 @@ Page({
       thickness: e.detail.value,
     })
     if(this.data.navid == 1){
+      this.data.pageNo=1
+      this.data.isLastPage=false
+      this.data.qiugou=[]
       this.selectqiugou()      
     }else if(this.data.navid == 2){
+      this.data.pageNo=1
+      this.data.isLastPage=false
+      this.data.kucun=[]
       this.selectweihuo()
     }else{
+      this.data.pageNo=1
+      this.data.isLastPage=false
+      this.data.pingou=[]
       this.selectpingou()
     }
   },
