@@ -255,7 +255,7 @@
             </view>
           </view>
           <view class="zixun-item-right">
-            <image src="{{item.upUrl}}" class="zixun-img"></image>
+            <image src="{{item.upUrl}}" class="zixun-img" mode="aspectFill"></image>
           </view>
         </view>
       </view>
