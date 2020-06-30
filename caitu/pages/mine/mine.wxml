@@ -136,7 +136,7 @@
       <view class="tanchuang1-text">请先认证</view>
     </view>
     <view class="tanchuang1-bottom hengxiang">
-      <view class="tanchuang1-bottom-left" bindtap="hideModal1">取消</view>
+      <view class="tanchuang1-bottom-left" bindtap="hideModal2">取消</view>
       <view class="tanchuang1-bottom-right" bindtap="renzhengInfo">认证</view>
     </view>
   </view>

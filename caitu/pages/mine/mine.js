@@ -116,7 +116,7 @@ Page({
   },
 
   //弹窗关闭
-  hideModal1: function() {
+  hideModal2: function() {
     var animation = wx.createAnimation({
       duration: 200,
       timingFunction: "linear",
@@ -222,7 +222,16 @@ Page({
   phonecall: function() {
     this.hideModal1()
     wx.makePhoneCall({
-      phoneNumber: '17656453456' //仅为示例，并非真实的电话号码
+      phoneNumber: '17656453456',
+      success:function(res){
+        console.log(res)
+      },
+      fail:function(re){
+        console.log(re)
+      },
+      complete:function(e){
+        console.log(e)
+      }
     })
   }
 })
