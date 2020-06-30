@@ -11,7 +11,8 @@ Page({
    */
   data: {
     wxUser:{},
-    showModalStatus:false
+    showModalStatus1:false,
+    showModalStatus2:false
   },
   onShow:function(){
     this.getMyInfo()
@@ -102,10 +103,9 @@ Page({
     qingqiu.get('my',data,function(res){
       console.log('我的信息',res)
       if(res.success == true){
-        if(app.globalData.wxState == 0 && res.result.records[0].name == null){
-          wx.navigateTo({
-            url: '../renzhengInfo/renzhengInfo',
-          })
+        if(app.globalData.wxState == 0){
+          app.globalData.wxState = res.result.records[0].autoState
+          that.setData({ showModalStatus2:true })
         }else{
           that.setData({
             wxUser:res.result.records[0]
@@ -113,6 +113,31 @@ Page({
         }
       }
     })
+  },
+
+  //弹窗关闭
+  hideModal1: function() {
+    var animation = wx.createAnimation({
+      duration: 200,
+      timingFunction: "linear",
+      delay: 0
+    })
+    this.animation = animation
+    animation.translateY(300).step()
+    this.setData({
+      animationData: animation.export(),
+      hasMask: false
+    })
+    setTimeout(function() {
+      animation.translateY(0).step()
+      this.setData({
+        animationData: animation.export(),
+        showModalStatus1: false
+      })
+      wx.switchTab({
+        url: '../index/index',
+      })
+    }.bind(this), 200)
   },
 
   // 跳转到认证信息页面
