@@ -314,6 +314,7 @@ Page({
       this.selectpingou()
     }
   },
+  
   // 下拉刷新
   onPullDownRefresh: function () {
     this.data.pageNo=1
