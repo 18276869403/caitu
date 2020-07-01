@@ -20,6 +20,124 @@
   color: rgba(51, 51, 51, 1);
   border-bottom: 1rpx solid #f5f7fb;
 }
+/* 弹窗 */
+
+.commodity_screen1 {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.34;
+  overflow: hidden;
+  z-index: 1000;
+  color: #fff;
+  text-align: center;
+}
+
+.commodity_attr_box1 {
+  border-radius: 10px;
+  position: fixed;
+  z-index: 20000;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  justify-content: center;
+  top: 30%;
+}
+
+.tanchuang {
+  width: 536rpx;
+  height: 389rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 20rpx;
+  margin: auto;
+  position: relative;
+}
+
+::-webkit-scrollbar { 
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.tanchuang-item {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: -40rpx;
+}
+
+.tanchuang-img {
+  width: 308rpx;
+  height: 217rpx;
+}
+
+.tanchuang-text {
+  width: 100%;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+  margin-top: 10rpx;
+}
+
+.tanchuang-bottom {
+  position: absolute;
+  bottom: 0rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  width: 100%;
+  border-top: 1rpx solid #f1f1f1;
+}
+
+.tanchuang-bottom-left {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: rgba(171, 171, 171, 1);
+  width: 50%;
+  text-align: center;
+  border-right: 1rpx solid #f1f1f1;
+}
+
+.tanchuang-bottom-right {
+  width: 50%;
+  text-align: center;
+  font-size: 34rpx;
+  font-weight: bold;
+  color: rgba(254, 107, 43, 1);
+}
+
+.bottom {
+  position: fixed;
+  bottom: 0rpx;
+  right: -2rpx;
+}
+
+.xuanfu-img {
+  width: 164rpx;
+  height: 164rpx;
+}
+
+/* .text-class{
+  display: -webkit-box;
+	font-size: 28rpx;
+	color: #999999;
+	line-height: 40rpx;
+	word-break: break-all;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+	text-overflow: ellipsis;
+} */
+
+.text-title-class{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
 
 .list-gangchang {
   width: 100%;
