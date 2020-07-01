@@ -53,6 +53,8 @@ Page({
     bindimg:[],
     flag:true,
     select:1,
+    zhengmianid:[],
+    beimianid:[],
     xieyi:api.xieyi
   },
 
@@ -547,9 +549,11 @@ Page({
       if(res.success == true){
         for(let obj of res.result.zlist){
           that.data.zhengmian.push(obj.scope)
+          that.data.zhengmianid.push(obj.id)
         }
         for(let obj1 of res.result.blist){
           that.data.beimian.push(obj1.scope)
+          that.data.beimianid.push(obj1.id)
         }
         for(let obj2 of res.result.xclist){
           that.data.xinceng.push(obj2.scope)
@@ -557,7 +561,9 @@ Page({
         that.setData({
           zhengmian:that.data.zhengmian,
           beimian:that.data.beimian,
-          xinceng:that.data.xinceng
+          xinceng:that.data.xinceng,
+          zhengmianid:that.data.zhengmianid,
+          beimianid:that.data.beimianid
         })
         console.log(that.data.zhengmian)
         console.log(that.data.beimian)
@@ -574,7 +580,9 @@ Page({
     })
     var data={
       zheng:that.data.zhengmian[that.data.zhengmianindex]=='选择正面膜厚'?'':that.data.zhengmian[that.data.zhengmianindex],
-      bei:that.data.beimian[that.data.beimianindex]=='选择背面膜厚'?'':that.data.beimian[that.data.beimianindex]
+      bei:that.data.beimian[that.data.beimianindex]=='选择背面膜厚'?'':that.data.beimian[that.data.beimianindex],
+      zhengId:that.data.zhengmianid[that.data.zhengmianindex-1]==undefined?'':that.data.zhengmianid[that.data.zhengmianindex-1],
+      beiId:that.data.beimianid[that.data.beimianindex-1]==undefined?'':that.data.beimianid[that.data.beimianindex-1]
     }
     that.getmohou(data)
   },
@@ -587,7 +595,9 @@ Page({
     })
     var data={
       zheng:that.data.zhengmian[that.data.zhengmianindex]=='选择正面膜厚'?'':that.data.zhengmian[that.data.zhengmianindex],
-      bei:that.data.beimian[that.data.beimianindex]=='选择背面膜厚'?'':that.data.beimian[that.data.beimianindex]
+      bei:that.data.beimian[that.data.beimianindex]=='选择背面膜厚'?'':that.data.beimian[that.data.beimianindex],
+      zhengId:that.data.zhengmianid[that.data.zhengmianindex-1]==undefined?'':that.data.zhengmianid[that.data.zhengmianindex-1],
+      beiId:that.data.beimianid[that.data.beimianindex-1]==undefined?'':that.data.beimianid[that.data.beimianindex-1]
     }
     that.getmohou(data)
   },

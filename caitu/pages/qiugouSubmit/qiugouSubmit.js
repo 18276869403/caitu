@@ -73,6 +73,8 @@ Page({
     type:'',
     qipiliang:'',
     select:1,
+    zhengmianid:[],
+    beimianid:[],
     xieyi:api.xieyi
   },
 
@@ -316,14 +318,14 @@ Page({
             dunwei:''
           })
         }else{
-          that.data.zhengmianindex=itemdata.front
-          that.data.beimianindex=itemdata.rear
+          // that.data.zhengmianindex=itemdata.front
+          // that.data.beimianindex=itemdata.rear
           qiangduindex = utils.getArrIndex(that.data.qiangdu,itemdata.density)
-          // xincengindex = utils.getArrIndex(that.data.xinceng,itemdata.zincLayer)
+          // zhengmianindex = utils.getArrIndex(that.data.xinceng,that.data.jsqglist.front)
           yanseindex = utils.getArrIndex(that.data.yanse,itemdata.color)
           youqiindex = utils.getArrIndex(that.data.youqi,itemdata.paint)
           // that.getyouqi(that.data.subentryId[youqiindex-1],itemdata.paint)
-          that.getXC({text:itemdata.paint,steelName:that.data.jsqglist.steelName,theNameId:that.data.jsqglist.theNameId})
+          that.gethuodu({text:itemdata.paint,steelName:that.data.jsqglist.steelName,theNameId:that.data.jsqglist.theNameId})
           that.getyouqi(that.data.youqi[youqiindex].subentryId,itemdata.paint)
         }
       }
@@ -349,13 +351,13 @@ Page({
     })
   },
   // 正背面厚度-镀层量
-  gethuodu(){
+  gethuodu(data){
     var that = this
-    var data = {
-      steelName:that.data.multiName,
-      text:that.data.youqiname,
-      theNameId:that.data.thenameid
-    }
+    // var data = {
+    //   steelName:that.data.multiName,
+    //   text:that.data.youqiname,
+    //   theNameId:that.data.thenameid
+    // }
     that.data.zhengmian=['选择正面膜厚']
     that.data.beimian=['选择背面膜厚']
     that.data.xinceng=['选择镀层量']
@@ -364,17 +366,29 @@ Page({
       if(res.success == true){
         for(let obj of res.result.zlist){
           that.data.zhengmian.push(obj.scope)
+          that.data.zhengmianid.push(obj.id)
         }
         for(let obj1 of res.result.blist){
           that.data.beimian.push(obj1.scope)
+          that.data.beimianid.push(obj1.id)
         }
         for(let obj2 of res.result.xclist){
           that.data.xinceng.push(obj2.scope)
         }
+        if(that.data.jsqglist!=''){
+          that.data.zhengmianindex = utils.getArrIndex(that.data.zhengmian,that.data.jsqglist.front)
+          that.data.beimianindex = utils.getArrIndex(that.data.beimian,that.data.jsqglist.rear)
+          that.data.xincengindex = utils.getArrIndex(that.data.xinceng,that.data.jsqglist.zincLayer)
+        }
         that.setData({
+          zhengmianindex:that.data.zhengmianindex,
+          beimianindex:that.data.beimianindex,
+          xincengindex:that.data.xincengindex,
           zhengmian:that.data.zhengmian,
           beimian:that.data.beimian,
-          xinceng:that.data.xinceng
+          xinceng:that.data.xinceng,
+          zhengmianid:that.data.zhengmianid,
+          beimianid:that.data.beimianid
         })
         console.log(that.data.zhengmian)
         console.log(that.data.beimian)
@@ -712,7 +726,7 @@ minReg:function(e){
       theNameId:that.data.thenameid,
       steelName:that.data.multiName
     }
-    that.gethuodu()
+    that.gethuodu(data)
     // that.getXC(data)
   },
   
@@ -725,7 +739,9 @@ minReg:function(e){
     })
     var data={
       zheng:that.data.zhengmian[that.data.zhengmianindex]=='选择正面膜厚'?'':that.data.zhengmian[that.data.zhengmianindex],
-      bei:that.data.beimian[that.data.beimianindex]=='选择背面膜厚'?'':that.data.beimian[that.data.beimianindex]
+      bei:that.data.beimian[that.data.beimianindex]=='选择背面膜厚'?'':that.data.beimian[that.data.beimianindex],
+      zhengId:that.data.zhengmianid[that.data.zhengmianindex-1]==undefined?'':that.data.zhengmianid[that.data.zhengmianindex-1],
+      beiId:that.data.beimianid[that.data.beimianindex-1]==undefined?'':that.data.beimianid[that.data.beimianindex-1]
     }
     that.getmohou(data)
   },
@@ -738,7 +754,9 @@ minReg:function(e){
     })
     var data={
       zheng:that.data.zhengmian[that.data.zhengmianindex]=='选择正面膜厚'?'':that.data.zhengmian[that.data.zhengmianindex],
-      bei:that.data.beimian[that.data.beimianindex]=='选择背面膜厚'?'':that.data.beimian[that.data.beimianindex]
+      bei:that.data.beimian[that.data.beimianindex]=='选择背面膜厚'?'':that.data.beimian[that.data.beimianindex],
+      zhengId:that.data.zhengmianid[that.data.zhengmianindex-1]==undefined?'':that.data.zhengmianid[that.data.zhengmianindex-1],
+      beiId:that.data.beimianid[that.data.beimianindex-1]==undefined?'':that.data.beimianid[that.data.beimianindex-1]
     }
     that.getmohou(data)
   },
