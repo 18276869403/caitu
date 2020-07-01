@@ -55,7 +55,7 @@ Page({
     var that = this
     qingqiu.get("initAskToBuy",{askId:id},function(res){
       console.log(res)
-      if(res.success == true){
+      if(res.success == true){ 
         var data = res.result.records[0]
         data.id = utils.IdentityNum(data.id.toString())
         var type = ''
