@@ -199,7 +199,7 @@ Page({
           that.mykucun(that.data.nav[that.data.navid1 - 1].type)
         }, 1000)
       } else {
-        wx.showToast({
+        wx.showToast({ 
           title: res.message,
           icon: 'none',
           duration: 1000

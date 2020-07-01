@@ -133,7 +133,7 @@ Page({
     }
     dataobj.theName = weihuo.theNameText
     dataobj.haibaotype = 2
-    dataobj = JSON.stringify(dataobj)
+    dataobj = JSON.stringify(dataobj) 
     wx.navigateTo({
       url: '../post/post?obj='+dataobj,
     })
