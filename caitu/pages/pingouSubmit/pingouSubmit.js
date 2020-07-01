@@ -481,7 +481,8 @@ Page({
     var dataobj = data
     qingqiu.get("faBuPinGou",data,function(res){
       if(res.success == true){
-        console.log(res)
+        dataobj.id = res.result.askid
+        dataobj.haibaotype = 1
         if(res.result.records.length == 0){
           dataobj.theName = that.data.multiArray[1][that.data.multiIndex[1]]
           dataobj = JSON.stringify(dataobj)
@@ -491,7 +492,6 @@ Page({
         }else{ 
           var pipeilist=res.result.records
           var ppsj = JSON.stringify(pipeilist)
-          app.globalData.haibaitype = 1
           dataobj.theName = that.data.multiArray[1][that.data.multiIndex[1]]
           dataobj = JSON.stringify(dataobj)
           wx.redirectTo({
