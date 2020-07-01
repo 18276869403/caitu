@@ -11,25 +11,51 @@ Page({
   data: {
     viewUrl:api.viewUrl,
     // entertype为0，从首页进入，为1，从我的页面进入
-    entertype:1,
+    // entertype:1,
     type: 1, //进行中
     // type: 2, //匹配中
     // type: 3, //已完成
-    whtulist:[]
+    imglist:[],
+    items:{},
+    wxid:''
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var whxx=JSON.parse(options.obj)
-    console.log(options.obj)
-    this.data.whtulist=whxx.upUrl
+    if(options.id != undefined){
+      this.getDetails(options.id)
+    }
     this.setData({
-      whxx:whxx,
-      whtulist:this.data.whtulist
+      wxid:app.globalData.wxid
     })
   },
 
+  getDetails:function(id){
+    var that = this 
+    var imglist = []
+    qingqiu.get("selectInventById",{invenId:id},function(res){
+      console.log(res)
+      if(res.success == true){
+        if(res.result[0].upUrl.indexOf(',') != -1){
+          imglist = res.result[0].upUrl.split(',')
+        }else{
+          imglist.push(res.result[0].upUrl)
+        }
+        that.setData({
+          items:res.result[0],
+          imglist:imglist
+        })
+      }else{
+        wx.showToast({
+          title: res.message,
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
