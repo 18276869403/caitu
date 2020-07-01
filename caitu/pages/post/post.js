@@ -1,4 +1,6 @@
 // pages/post/post.js
+const qingqiu = require('../../utils/request.js')
+const api = require('../../utils/config.js')
 Page({
 
   /**
@@ -8,7 +10,8 @@ Page({
     item:{},
     shareImgSrc:'',
     shareImgPath:'',
-    screenWidth:''
+    screenWidth:'',
+    viewUrl:api.viewUrl
   },
 
   /**
@@ -30,15 +33,7 @@ Page({
         item:item
       })
     }
-    wx.getImageInfo({
-      src: '../image/haibaobeijing.png',
-      success: function (res) {
-        console.log(res)
-        that.setData({
-          shareImgSrc: '../../' + res.path
-        });
-      }
-    })
+    that.getCode()
     wx.getImageInfo({
       src: '../image/erweima.png',
       success: function (res) {
@@ -56,6 +51,33 @@ Page({
         })
         console.log('宽度',that.data.screenWidth)
       }
+    })
+  },
+
+  // 获取二维码
+  getCode:function(){
+    var that = this
+    var data = {
+      paraStr:that.data.item.id
+    }
+    if(that.data.item.haibaotype == 0){
+      data.pagePath = 'pages/qiugouDetails/qiugouDetails'
+    }else if(that.data.item.haibaotype == 1){
+      data.pagePath = 'pages/pingouDetails/pingouDetails'
+    }else{
+      data.pagePath = 'pages/weihuoDetailsDun/weihuoDetailsDun'
+    }
+    qingqiu.get("code",data,function(res){
+      console.log(res)
+      wx.getImageInfo({
+        src: '../image/haibaobeijing.png',
+        success: function (res) {
+          console.log(res)
+          that.setData({
+            shareImgSrc: '../../' + res.path
+          });
+        }
+      })
     })
   },
 
