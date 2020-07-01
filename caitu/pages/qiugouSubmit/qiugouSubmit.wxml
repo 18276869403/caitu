@@ -12,7 +12,7 @@
         </picker>
       </view>
       <view class="content-item-right">
-        <image src="../image/jinru.png" class="enter-img"></image>
+        <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
       </view>
     </view>
     <view class="content-item hengxiang">
@@ -25,7 +25,7 @@
         </picker>
       </view>
       <view class="content-item-right">
-        <image src="../image/jinru.png" class="enter-img"></image>
+        <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
       </view>
     </view>
     <view class="content-item hengxiang">
@@ -34,7 +34,7 @@
         <input type="digit" placeholder="请输入厚度" placeholder-class="placeholder" class="shurukuang" value="{{houdu}}" bindinput="houdu" bindblur="retReg" bindfocus="houdufocus"></input>
       </view>
       <!-- <view class="content-item-right">
-        <image src="../image/jinru.png" class="enter-img"></image>
+        <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
       </view> -->
     </view>
     <view class="content-item hengxiang">
@@ -43,7 +43,7 @@
         <input type="digit" placeholder="请输入宽度" placeholder-class="placeholder" class="shurukuang" value="{{kuandu}}" bindinput="kuandu" bindblur="minReg" bindfocus="widthfocus"></input>
       </view>
       <!-- <view class="content-item-right">
-        <image src="../image/jinru.png" class="enter-img"></image>
+        <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
       </view> -->
     </view>
     <view class="content-item hengxiang">
@@ -56,7 +56,7 @@
         </picker>
       </view>
       <view class="content-item-right">
-        <image src="../image/jinru.png" class="enter-img"></image>
+        <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
       </view>
     </view>
     <view class="content-item hengxiang">
@@ -70,7 +70,7 @@
         </picker>
       </view>
       <view class="content-item-right">
-        <image src="../image/jinru.png" class="fuhao-img"></image>
+        <image src="{{viewUrl}}temp/image/jinru.png" class="fuhao-img"></image>
       </view>
     </view>
     <view class="content-item hengxiang">
@@ -84,7 +84,7 @@
         <!-- <input type="digit" placeholder="请输入背面膜厚" placeholder-class="placeholder" class="shurukuang" value="{{beimianChange}}" bindinput="beimianChange" bindfocus="beifocus" bindblur="beimian"></input> -->
       </view>
       <view class="content-item-right">
-        <image src="../image/jinru.png" class="fuhao-img"></image>
+        <image src="{{viewUrl}}temp/image/jinru.png" class="fuhao-img"></image>
       </view>
     </view>
     <view class="content-item hengxiang">
@@ -93,7 +93,7 @@
      <input type="digit" placeholder="被动涂层" disabled placeholder-class="placeholder" class="shurukuang" value="{{tuceng}}" bindinput="tuceng"></input>
       </view>
       <!-- <view class="content-item-right">
-        <image src="../image/jinru.png" class="enter-img"></image>
+        <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
       </view> -->
     </view>
     <view class="content-item hengxiang">
@@ -106,7 +106,7 @@
         </picker>
       </view>
       <view class="content-item-right">
-        <image src="../image/jinru.png" class="enter-img"></image>
+        <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
       </view>
     </view>
     <view class="content-item hengxiang">
@@ -119,7 +119,7 @@
         </picker>
       </view>
       <view class="content-item-right">
-        <image src="../image/jinru.png" class="enter-img"></image>
+        <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
       </view>
     </view>
     <view class="content-item hengxiang">
@@ -132,7 +132,7 @@
         </picker>
       </view>
       <view class="content-item-right">
-        <image src="../image/jinru.png" class="enter-img"></image>
+        <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
       </view>
     </view>
     <view class="content-item hengxiang">
@@ -141,17 +141,17 @@
         <input type="digit" placeholder="请输入吨数" placeholder-class="placeholder" class="shurukuang" value="{{dunwei}}" bindinput="dunwei"></input>
       </view>
       <!-- <view class="content-item-right">
-        <image src="../image/jinru.png" class="enter-img"></image>
+        <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
       </view> -->
     </view>
   </view>
   <view class="tips">所选钢厂最低起批量：{{pricingPrice}}吨</view>
   <!-- 提交 -->
   <view class="bottom">
-    <image src="../image/fabu.png" class="fabu-img" bindtap="submitSuccess"></image>
+    <image src="{{viewUrl}}temp/image/fabu.png" class="fabu-img" bindtap="submitSuccess"></image>
     <view style="color:gray;font-size:24rpx">
-     <image src="../image/xuan1.png" class="anniu-img2" bindtap="change" data-xid="1" wx-if="{{select=='1'}}"></image>
-     <image src="../image/xuan2.png" class="anniu-img2" bindtap="change" data-xid="2" wx-if="{{select=='2'}}"></image>
+     <image src="{{viewUrl}}temp/image/xuan1.png" class="anniu-img2" bindtap="change" data-xid="1" wx-if="{{select=='1'}}"></image>
+     <image src="{{viewUrl}}temp/image/xuan2.png" class="anniu-img2" bindtap="change" data-xid="2" wx-if="{{select=='2'}}"></image>
     使用前请仔细阅读
       <a style="color:#e02323" bindtap="showModal1">《哇彩兔用户协议》</a>
     </view>

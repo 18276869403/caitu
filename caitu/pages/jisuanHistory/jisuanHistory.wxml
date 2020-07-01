@@ -10,14 +10,14 @@
         <view class="xq_sh hengxiang">
           <view class="shx">查看</view>
           <view class="shy">
-            <image class="sh_img" src="../image/enter.png"></image>
+            <image class="sh_img" src="{{viewUrl}}temp/image/enter.png"></image>
           </view>
         </view>
       </view>
       <view class="gangchang hengxiang">
         <view class="gc_sj hengxiang">
           <view>
-            <image src="../image/gangchang.png" class="gc_img"></image>
+            <image src="{{viewUrl}}temp/image/gangchang.png" class="gc_img"></image>
           </view>
           钢厂
         </view>
@@ -27,7 +27,7 @@
       <view class="gangchang hengxiang">
         <view class="gc_sj hengxiang">
           <view>
-            <image src="../image/jiage.png" class="gc_img"></image>
+            <image src="{{viewUrl}}temp/image/jiage.png" class="gc_img"></image>
           </view>
           价格
         </view>
@@ -36,7 +36,7 @@
       <view class="gangchang hengxiang cs_ys">
         <view class="gc_sj hengxiang">
           <view>
-            <image src="../image/biao.png" class="gc_img"></image>
+            <image src="{{viewUrl}}temp/image/biao.png" class="gc_img"></image>
           </view>
           时间
         </view>
@@ -46,6 +46,6 @@
   </view>
 </view>
 <view class="shuju" wx:if="{{jisuans.length==0}}">
-  <image src="../image/noshuju.png" class="shuju_img"></image>
+  <image src="{{viewUrl}}temp/image/noshuju.png" class="shuju_img"></image>
   <view>暂无数据</view>
 </view>

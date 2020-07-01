@@ -1,11 +1,12 @@
 // pages/aboutUs/aboutUs.js
+const api = require('../../utils/config.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    viewUrl:api.viewUrl
   },
 
   /**

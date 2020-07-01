@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    viewUrl:api.viewUrl,
     cangkuindex: 0,
     region: ['广东省', '广州市', '海珠区'],
     gangchangindex: 0,

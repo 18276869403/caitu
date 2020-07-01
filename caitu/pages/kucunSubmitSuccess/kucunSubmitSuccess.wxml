@@ -3,14 +3,14 @@
   <view class="hengxian"></view>
   <view class="content">
     <view class="top">
-      <image src="../image/kucunchenggong.png" class="kucun-success"></image>
+      <image src="{{viewUrl}}temp/image/kucunchenggong.png" class="kucun-success"></image>
     </view>
     <view class="success-text">
       等待上架
     </view>
     <!-- 去上架 -->
     <view class="success-button" bindtap="gokuncun" data-type="2"> 
-      <image src="../image/qushangjia.png" class="anniu-img"></image>
+      <image src="{{viewUrl}}temp/image/qushangjia.png" class="anniu-img"></image>
     </view>
   </view>
 </view>

@@ -1,12 +1,14 @@
 // pages/calculatorResult/calculatorResult.js
 const app = getApp()
 const qingqiu = require('../../utils/request')
+const api = require('../../utils/config.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    viewUrl:api.viewUrl,
     key:[],
     value:[],
     pricingPrice:'',

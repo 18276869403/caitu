@@ -42,13 +42,13 @@
           <image src="{{viewUrl}}temp/image/jisuanqi.png" class="sort-img"></image>
         </view>
         <view class="sortImg" bindtap="qiugouSubmit">
-          <image src="../image/qiugou.png" class="sort-img"></image>
+          <image src="{{viewUrl}}temp/image/qiugou.png" class="sort-img"></image>
         </view>
         <view class="sortImg" bindtap="pingouSubmit">
-          <image src="../image/pingou.png" class="sort-img"></image>
+          <image src="{{viewUrl}}temp/image/pingou.png" class="sort-img"></image>
         </view>
         <view class="sortImg" bindtap="kucunManage">
-          <image src="../image/wodekucun.png" class="sort-img"></image>
+          <image src="{{viewUrl}}temp/image/wodekucun.png" class="sort-img"></image>
         </view>
       </view>
       <view class="sort-bottom hengxiang">
@@ -75,7 +75,7 @@
       <view class="qiugou-title hengxiang">
         <view class="qiugou-left hengxiang">
           <view class="title-img">
-            <image src="../image/shuxian.png" class="shuxian-img"></image>
+            <image src="{{viewUrl}}temp/image/shuxian.png" class="shuxian-img"></image>
           </view>
           <view class="title-text">
             求购信息
@@ -83,7 +83,7 @@
         </view>
         <view class="qiugou-right hengxiang">
           <view>
-            <image src="../image/more.png" class="enter-img" bindtap="hall" data-id="1"></image>
+            <image src="{{viewUrl}}temp/image/more.png" class="enter-img" bindtap="hall" data-id="1"></image>
           </view>
         </view>
       </view>
@@ -91,7 +91,7 @@
         <view class="qiugou-list hengxiang" wx:for="{{qiugouList}}" wx:for-index="index" bindtap="qiugouDetails" data-item="{{item}}">
           <view class="list-left">
             <view class="list-left-banyuan">
-              <image src="../image/tuoyuan.png" class="tuoyuan-img"></image>
+              <image src="{{viewUrl}}temp/image/tuoyuan.png" class="tuoyuan-img"></image>
             </view>
             <view class="list-left-text">
               <text>{{item.tonnage}}</text>
@@ -99,27 +99,27 @@
             </view>
           </view>
           <view class="list-right">
-            <image src="../image/jinxingzhong.png" class="list-right-jinxingzhong" wx:if="{{item.startoks===0}}"></image>
-            <image src="../image/shouyepipeizhong.png" class="list-right-jinxingzhong" wx:if="{{item.startoks===1}}"></image>
+            <image src="{{viewUrl}}temp/image/jinxingzhong.png" class="list-right-jinxingzhong" wx:if="{{item.startoks===0}}"></image>
+            <image src="{{viewUrl}}temp/image/shouyepipeizhong.png" class="list-right-jinxingzhong" wx:if="{{item.startoks===1}}"></image>
             <view class="list-right-title">
               品名：{{item.itemvalue_dictText}}
             </view>
             <view class="list-right-item hengxiang">
               <view class="right-item-img">
-                <image src="../image/bianhao.png" class="bianhao-img"></image>
+                <image src="{{viewUrl}}temp/image/bianhao.png" class="bianhao-img"></image>
               </view>
               <view class="right-item-text">编号：{{item.backup1}}</view>
             </view>
             <view class="list-right-item hengxiang">
               <view class="right-item-img">
-                <image src="../image/guige.png" class="bianhao-img"></image>
+                <image src="{{viewUrl}}temp/image/guige.png" class="bianhao-img"></image>
               </view>
               <view class="right-item-text">规格：厚{{item.thickness}}/宽{{item.width}}
               </view>
             </view>
             <view class="list-right-item hengxiang">
               <view class="right-item-img">
-                <image src="../image/yanse.png" class="bianhao-img"></image>
+                <image src="{{viewUrl}}temp/image/yanse.png" class="bianhao-img"></image>
               </view>
               <view class="right-item-text">颜色：{{item.color}}</view>
             </view>
@@ -132,7 +132,7 @@
       <view class="qiugou-title hengxiang">
         <view class="qiugou-left hengxiang">
           <view class="title-img">
-            <image src="../image/shuxian.png" class="shuxian-img"></image>
+            <image src="{{viewUrl}}temp/image/shuxian.png" class="shuxian-img"></image>
           </view>
           <view class="title-text">
             拼购信息
@@ -140,7 +140,7 @@
         </view>
         <view class="qiugou-right hengxiang">
           <view>
-            <image src="../image/more.png" class="enter-img" bindtap="hall"  data-id="3"></image>
+            <image src="{{viewUrl}}temp/image/more.png" class="enter-img" bindtap="hall"  data-id="3"></image>
           </view>
         </view>
       </view>
@@ -165,8 +165,8 @@
               </view>
             </view>
             <view class="pingou-item-right">
-              <image src="../image/pingouing.png" class="pingou-img" wx:if="{{item.startoks_dictText=='进行中'}}"></image>
-              <image src="../image/pipeizhong2.png" class="pingou-img" wx:if="{{item.startoks_dictText=='匹配中'}}"></image>
+              <image src="{{viewUrl}}temp/image/pingouing.png" class="pingou-img" wx:if="{{item.startoks_dictText=='进行中'}}"></image>
+              <image src="{{viewUrl}}temp/image/pipeizhong2.png" class="pingou-img" wx:if="{{item.startoks_dictText=='匹配中'}}"></image>
             </view>
           </view>
         </view>
@@ -177,7 +177,7 @@
       <view class="qiugou-title hengxiang">
         <view class="qiugou-left hengxiang">
           <view class="title-img">
-            <image src="../image/shuxian.png" class="shuxian-img"></image>
+            <image src="{{viewUrl}}temp/image/shuxian.png" class="shuxian-img"></image>
           </view>
           <view class="title-text">
             尾货信息
@@ -185,7 +185,7 @@
         </view>
         <view class="qiugou-right hengxiang">
           <view>
-            <image src="../image/more.png" class="enter-img" bindtap="hall"  data-id="2"></image>
+            <image src="{{viewUrl}}temp/image/more.png" class="enter-img" bindtap="hall"  data-id="2"></image>
           </view>
         </view>
       </view>
@@ -225,7 +225,7 @@
       <view class="qiugou-title hengxiang">
         <view class="qiugou-left hengxiang">
           <view class="title-img">
-            <image src="../image/shuxian.png" class="shuxian-img"></image>
+            <image src="{{viewUrl}}temp/image/shuxian.png" class="shuxian-img"></image>
           </view>
           <view class="title-text">
             最新资讯
@@ -234,7 +234,7 @@
         <!-- 更多咨询 -->
         <view class="qiugou-right hengxiang">
           <view>
-            <image src="../image/more.png" class="enter-img" bindtap="zixunMore"></image>
+            <image src="{{viewUrl}}temp/image/more.png" class="enter-img" bindtap="zixunMore"></image>
           </view>
         </view>
       </view>
@@ -249,7 +249,7 @@
             </view>
             <view class="zixun-left-date hengxiang">
               <view class="left-date-img">
-                <image src="../image/shijian.png" class="shijian-img"></image>
+                <image src="{{viewUrl}}temp/image/shijian.png" class="shijian-img"></image>
               </view>
               <view class="left-date-text">{{item.createTime}}</view>
             </view>
@@ -262,8 +262,8 @@
     </view>
   </view>
   <view class="bottom zongxiang">
-    <view><image src="../image/xuanfuqiu.png" class="xuanfu-img" bindtap="calculator"></image></view>
-    <view><image src="../image/kefu.png" class="xuanfu-img" bindtap="phonecall"></image></view>
+    <view><image src="{{viewUrl}}temp/image/xuanfuqiu.png" class="xuanfu-img" bindtap="calculator"></image></view>
+    <view><image src="{{viewUrl}}temp/image/kefu.png" class="xuanfu-img" bindtap="phonecall"></image></view>
   </view>
 </view>
 <!-- 用户未认证弹窗 -->
@@ -272,7 +272,7 @@
   <view class='tanchuang zongxiang'>
     <view class="tanchuang-item zongxiang">
       <view>
-        <image src="../image/renzheng.png" class="tanchuang-img"></image>
+        <image src="{{viewUrl}}temp/image/renzheng.png" class="tanchuang-img"></image>
       </view>
       <view class="tanchuang-text">您还不是认证用户</view>
       <view class="tanchuang-text">请先认证</view>

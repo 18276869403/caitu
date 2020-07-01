@@ -1,11 +1,14 @@
 // pages/qgxiangqing/qgxiangqing.js
 const app = getApp()
+const api = require('../../utils/config.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    viewUrl:api.viewUrl,
     // entertype为0，从首页进入
     // entertype为1，从我的页面进入
     entertype: 0,

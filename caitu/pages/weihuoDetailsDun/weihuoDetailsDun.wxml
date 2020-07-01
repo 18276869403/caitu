@@ -72,11 +72,11 @@
   <view class="content-button hengxiang" wx:if="{{items.putaway==0&&items.strState==1}}" >
     <!-- 查看海报 -->
     <view class="button" bindtap="post">
-      <image src="../image/chakanhaibao.png" class="qiugou-img"></image>
+      <image src="{{viewUrl}}temp/image/chakanhaibao.png" class="qiugou-img"></image>
     </view>
     <!-- 保存 -->
     <view class="button"bindtap="saveInfo">
-      <image src="../image/save.png" class="jisuan-img"></image>
+      <image src="{{viewUrl}}temp/image/save.png" class="jisuan-img"></image>
     </view>
   </view>
 </view>

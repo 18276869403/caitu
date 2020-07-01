@@ -41,12 +41,12 @@
 		</view>
 		<!-- 上传 -->
 		<view class="bottom-upload" bindtap="tupian">
-			<image src="../image/upload.png" class="y_img" wx:if="{{bindimg==''||bindimg==null}}"></image>
+			<image src="{{viewUrl}}temp/image/upload.png" class="y_img" wx:if="{{bindimg==''||bindimg==null}}"></image>
 			<image src="{{bindimg}}" class="y_img" wx:if="{{bindimg!=''&&bindimg!=null}}">></image>
 		</view>
 		<!-- 提交 -->
 		<view class="bottom-submit" bindtap="saveInfo">
-			<image src="../image/submit.png" class="submit-img"></image>
+			<image src="{{viewUrl}}temp/image/submit.png" class="submit-img"></image>
 		</view>
 	</view>
 </view>

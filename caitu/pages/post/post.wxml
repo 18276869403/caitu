@@ -2,8 +2,8 @@
 <view class="container">
   <view class="hengxian"></view>
   <view class="content">
-    <image src="../image/haibaobeijing.png" class="haibao-img"></image>
-    <image src="../image/erweima.png" class="code-img"></image>
+    <image src="{{viewUrl}}temp/image/haibaobeijing.png" class="haibao-img"></image>
+    <image src="{{viewUrl}}temp/image/erweima.png" class="code-img"></image>
     <view class="content-text">
       <view class="content-text-title">{{item.theName}}</view>
       <view class="content-text-text-item">厚度：{{item.thickness}}</view>
@@ -15,10 +15,10 @@
   </view>
   <view class="bottom hengxiang">
     <view class="bottom-left" bindtap="saveImageToPhotosAlbum">
-      <image src="../image/baocun.png" class="bottom-img"></image>
+      <image src="{{viewUrl}}temp/image/baocun.png" class="bottom-img"></image>
     </view>
     <view class="bottom-right">
-      <button open-type="share" class="sharebutton"><image src="../image/fenxiang.png" class="bottom-img"></image></button>
+      <button open-type="share" class="sharebutton"><image src="{{viewUrl}}temp/image/fenxiang.png" class="bottom-img"></image></button>
     </view>
   </view>
 </view>

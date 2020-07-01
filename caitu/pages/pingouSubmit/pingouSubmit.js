@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    viewUrl:api.viewUrl,
     date: '请选择日期',
     multiIndex: [0, 0],
     jiaohuoindex: 0,

@@ -3,7 +3,7 @@
   <view class="hengxian"></view>
   <view class="top zongxiang">
     <view class="top-img">
-      <image src="../image/fabuchenggong.png" class="success-img"></image>
+      <image src="{{viewUrl}}temp/image/fabuchenggong.png" class="success-img"></image>
     </view>
     <view class="top-text" wx:if="{{type==0}}">
       恭喜你求购发布成功
@@ -20,7 +20,7 @@
     <view class="content-title">为您匹配以下尾货</view>
     <view class="content-list zongxiang">
       <view class="content-list-item zongxiang" wx:for="{{pipeilist}}" wx:for-index="index" wx:key="{{item.id}}">
-        <image src="../image/jiaobiao.png" class="jiaobiao-img"></image>
+        <image src="{{viewUrl}}temp/image/jiaobiao.png" class="jiaobiao-img"></image>
         <view class="list-item-top hengxiang">
           <view class="item-top-left">{{item.theNameId_dictText}}</view>
           <view class="item-top-right">
@@ -34,32 +34,32 @@
           <view class="item-content-right zongxiang">
             <view class="hengxiang content-right-list">
               <view class="content-right-list-img">
-                <image src="../image/bianhao.png" class="bianhao-img"></image>
+                <image src="{{viewUrl}}temp/image/bianhao.png" class="bianhao-img"></image>
               </view>
               <view class="content-right-list-text">编号：{{item.backup1}}</view>
             </view>
             <view class="hengxiang content-right-list">
               <view class="content-right-list-img">
-                <image src="../image/guige.png" class="bianhao-img"></image>
+                <image src="{{viewUrl}}temp/image/guige.png" class="bianhao-img"></image>
               </view>
               <view class="content-right-list-text">规格：厚{{item.thickness}}/宽{{item.width}}
               </view>
             </view>
             <view class="hengxiang content-right-list">
               <view class="content-right-list-img">
-                <image src="../image/yanse.png" class="bianhao-img"></image>
+                <image src="{{viewUrl}}temp/image/yanse.png" class="bianhao-img"></image>
               </view>
               <view class="content-right-list-text">颜色：{{item.color}}</view>
             </view>
             <view class="hengxiang content-right-list">
               <view class="content-right-list-img">
-                <image src="../image/xinceng.png" class="bianhao-img"></image>
+                <image src="{{viewUrl}}temp/image/xinceng.png" class="bianhao-img"></image>
               </view>
               <view class="content-right-list-text">锌层：{{item.zincLayer}}</view>
             </view>
             <view class="hengxiang content-right-list">
               <view class="content-right-list-img">
-                <image src="../image/cangku.png" class="bianhao-img"></image>
+                <image src="{{viewUrl}}temp/image/cangku.png" class="bianhao-img"></image>
               </view>
               <view class="content-right-list-text">仓库：{{item.areaOneId_dictText}}/{{item.areaTwoId_dictText}}</view>
             </view>
@@ -67,7 +67,7 @@
         </view>
         <!-- 发起匹配 -->
         <view class="list-item-bottom" bindtap="faqipipei" data-weihouid="{{item.id}}">
-          <image src="../image/faqipipei.png" class="pipei-img"></image>
+          <image src="{{viewUrl}}temp/image/faqipipei.png" class="pipei-img"></image>
         </view>
       </view>
     </view>

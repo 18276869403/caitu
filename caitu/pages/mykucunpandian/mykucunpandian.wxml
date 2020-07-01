@@ -15,7 +15,7 @@
       <view class="pm_name yincang">品名：{{item.theNameId_dictText}}</view>
       <view class="pm_sl">{{item.tonnage}}吨</view>
     </view>
-    <image src="../image/lengyuan.png" class="bk_img"></image>
+    <image src="{{viewUrl}}temp/image/lengyuan.png" class="bk_img"></image>
     <view class="kc_bkx hengxiang">
       <view class="bk_xy">
         <image src="{{item.upUrl}}" class="bkx_img"></image>
@@ -23,25 +23,25 @@
       <view class="kc_cs">
         <view class="zcs hengxiang">
           <view>
-            <image src="../image/guige.png" class="cs_img"></image>
+            <image src="{{viewUrl}}temp/image/guige.png" class="cs_img"></image>
           </view>
           <view class="yincang">规格：厚{{item.thickness}}/宽{{item.width}}</view>
         </view>
         <view class="zcs hengxiang">
           <view>
-            <image src="../image/yanse.png" class="cs_img"></image>
+            <image src="{{viewUrl}}temp/image/yanse.png" class="cs_img"></image>
           </view>
           <view class="yincang">颜色：{{item.color}}</view>
         </view>
         <view class="zcs hengxiang">
           <view>
-            <image src="../image/xinceng.png" class="cs_img"></image>
+            <image src="{{viewUrl}}temp/image/xinceng.png" class="cs_img"></image>
           </view>
           <view class="yincang">锌层：{{item.zincLayer}}</view>
         </view>
         <view class="zcs hengxiang">
           <view>
-            <image src="../image/cangku.png" class="cs_img"></image>
+            <image src="{{viewUrl}}temp/image/cangku.png" class="cs_img"></image>
           </view>
           <view class="yincang">仓库：{{item.areaOneId_dictText}}/{{item.areaTwoId_dictText}}</view>
         </view>
@@ -58,7 +58,7 @@
       <view class="pm_name yincang">品名：{{item.theNameId_dictText}}</view>
       <view class="pm_sl">{{item.tonnage}}吨</view>
     </view>
-    <image src="../image/lengyuan.png" class="bk_img"></image>
+    <image src="{{viewUrl}}temp/image/lengyuan.png" class="bk_img"></image>
     <view class="kc_bkx hengxiang">
       <view class="bk_xy">
         <image src="{{item.upUrl}}" class="bkx_img"></image>
@@ -66,36 +66,36 @@
       <view class="kc_cs">
         <view class="zcs hengxiang">
           <view>
-            <image src="../image/guige.png" class="cs_img"></image>
+            <image src="{{viewUrl}}temp/image/guige.png" class="cs_img"></image>
           </view>
           <view class="yincang">规格：厚{{item.thickness}}/宽{{item.width}}</view>
         </view>
         <view class="zcs hengxiang">
           <view>
-            <image src="../image/yanse.png" class="cs_img"></image>
+            <image src="{{viewUrl}}temp/image/yanse.png" class="cs_img"></image>
           </view>
           <view class="yincang">颜色：{{item.color}}</view>
         </view>
         <view class="zcs hengxiang">
           <view>
-            <image src="../image/xinceng.png" class="cs_img"></image>
+            <image src="{{viewUrl}}temp/image/xinceng.png" class="cs_img"></image>
           </view>
           <view class="yincang">锌层：{{item.zincLayer}}</view>
         </view>
         <view class="zcs hengxiang">
           <view>
-            <image src="../image/cangku.png" class="cs_img"></image>
+            <image src="{{viewUrl}}temp/image/cangku.png" class="cs_img"></image>
           </view>
           <view class="yincang">仓库：{{item.areaOneId_dictText}}/{{item.areaTwoId_dictText}}</view>
         </view>
         <view class="but hengxiang">
           <!-- 删除按钮 -->
           <view catchtap="bindshanchu" data-id="{{item.id}}">
-            <image src="../image/shanchu.png" class="but_del"></image>
+            <image src="{{viewUrl}}temp/image/shanchu.png" class="but_del"></image>
           </view>
           <!-- 下架按钮 -->
           <view catchtap="bindxiajia" data-id="{{item.id}}">
-            <image src="../image/xiajia.png" class="but_xiajia"></image>
+            <image src="{{viewUrl}}temp/image/xiajia.png" class="but_xiajia"></image>
           </view>
         </view>
       </view>
@@ -122,7 +122,7 @@
       <view class="pm_name yincang">品名：{{item.theNameId_dictText}}</view>
       <view class="pm_sl">{{item.tonnage}}吨</view>
     </view>
-    <image src="../image/lengyuan.png" class="bk_img"></image>
+    <image src="{{viewUrl}}temp/image/lengyuan.png" class="bk_img"></image>
     <view class="kc_bkx hengxiang">
       <view class="bk_xy">
         <image src="{{item.upUrl}}" class="bkx_img"></image>
@@ -130,36 +130,36 @@
       <view class="kc_cs">
         <view class="zcs hengxiang">
           <view>
-            <image src="../image/guige.png" class="cs_img"></image>
+            <image src="{{viewUrl}}temp/image/guige.png" class="cs_img"></image>
           </view>
           <view class="yincang">规格：厚{{item.thickness}}/宽{{item.width}}</view>
         </view>
         <view class="zcs hengxiang">
           <view>
-            <image src="../image/yanse.png" class="cs_img"></image>
+            <image src="{{viewUrl}}temp/image/yanse.png" class="cs_img"></image>
           </view>
           <view class="yincang">颜色：{{item.color}}</view>
         </view>
         <view class="zcs hengxiang">
           <view>
-            <image src="../image/xinceng.png" class="cs_img"></image>
+            <image src="{{viewUrl}}temp/image/xinceng.png" class="cs_img"></image>
           </view>
           <view class="yincang">锌层：{{item.zincLayer}}</view>
         </view>
         <view class="zcs hengxiang">
           <view>
-            <image src="../image/cangku.png" class="cs_img"></image>
+            <image src="{{viewUrl}}temp/image/cangku.png" class="cs_img"></image>
           </view>
           <view class="yincang">仓库：{{item.areaOneId_dictText}}/{{item.areaTwoId_dictText}}</view>
         </view>
         <view class="but hengxiang" wx:if="{{navid1!=1}}">
           <!-- 删除按钮 -->
           <view catchtap="bindshanchu" data-id="{{item.id}}">
-            <image src="../image/shanchu.png" class="but_del"></image>
+            <image src="{{viewUrl}}temp/image/shanchu.png" class="but_del"></image>
           </view>
           <!-- 上架按钮 -->
           <view catchtap="bindshangjia" data-id="{{item.id}}">
-            <image src="../image/shangjia.png" class="but_xiajia"></image>
+            <image src="{{viewUrl}}temp/image/shangjia.png" class="but_xiajia"></image>
           </view>
         </view>
       </view>
@@ -168,7 +168,7 @@
 </view>
 
 <view class="fabu">
-  <image src="../image/fabu.png" class="anniu-img" bindtap="kucunManage"></image>
+  <image src="{{viewUrl}}temp/image/fabu.png" class="anniu-img" bindtap="kucunManage"></image>
 </view>
 <view class="xiajiacg" hidden="{{shang}}">
   <view class="bj bj-text1" wx:if="{{navid1==3}}">
@@ -180,6 +180,6 @@
 </view>
 
 <view class="shuju" wx:if="{{kucun.length==0}}">
-  <image src="../image/noshuju.png" class="shuju_img"></image>
+  <image src="{{viewUrl}}temp/image/noshuju.png" class="shuju_img"></image>
   <view>暂无数据</view>
 </view>

@@ -8,14 +8,14 @@
     <view class="xqxinxi hengxiang">
       <view class="xq_name yincang">{{pgxx.itemvalue_dictText}}</view>
       <view class="xq_zt" wx:if="{{pgxx.startoks_dictText=='进行中'}}">
-        <image src="../image/daojishi.png" class="zt_jxz"></image>
+        <image src="{{viewUrl}}temp/image/daojishi.png" class="zt_jxz"></image>
         进行中
       </view>
       <view class="xq_sh" wx:if="{{pgxx.startoks_dictText=='匹配中'}}">
-        <image src="../image/pipeizhong.png" class="zt_sh"></image>
+        <image src="{{viewUrl}}temp/image/pipeizhong.png" class="zt_sh"></image>
       </view>
       <view class="xq_wc" wx:if="{{pgxx.startoks_dictText=='已完成'}}">
-        <image src="../image/wancheng.png" class="zt_wc"></image>
+        <image src="{{viewUrl}}temp/image/wancheng.png" class="zt_wc"></image>
         已完成
       </view>
     </view>
@@ -23,7 +23,7 @@
     <view class="gangchang hengxiang" wx:if="{{entertype==0}}">
       <view class="gc_sj hengxiang">
         <view>
-          <image src="../image/bianhao.png" class="gc_img"></image>
+          <image src="{{viewUrl}}temp/image/bianhao.png" class="gc_img"></image>
         </view>
         编号
       </view>
@@ -32,7 +32,7 @@
     <view class="gangchang hengxiang">
       <view class="gc_sj hengxiang">
         <view>
-          <image src="../image/gangchang.png" class="gc_img"></image>
+          <image src="{{viewUrl}}temp/image/gangchang.png" class="gc_img"></image>
         </view>
         钢厂
       </view>
@@ -42,7 +42,7 @@
     <view class="gangchang hengxiang">
       <view class="gc_sj hengxiang">
         <view>
-          <image src="../image/dunshu.png" class="gc_img"></image>
+          <image src="{{viewUrl}}temp/image/dunshu.png" class="gc_img"></image>
         </view>
         吨数
       </view>
@@ -51,7 +51,7 @@
     <view class="gangchang hengxiang">
       <view class="gc_sj hengxiang">
         <view>
-          <image src="../image/didian.png" class="gc_img"></image>
+          <image src="{{viewUrl}}temp/image/didian.png" class="gc_img"></image>
         </view>
 
         交货地
@@ -61,7 +61,7 @@
     <view class="gangchang hengxiang cs_ys">
       <view class="gc_sj hengxiang">
         <view>
-          <image src="../image/jiezhishijian.png" class="gc_img"></image>
+          <image src="{{viewUrl}}temp/image/jiezhishijian.png" class="gc_img"></image>
         </view>
         截止时间
       </view>
@@ -130,16 +130,16 @@
    <!-- entertype==1,为从我的页面进入 -->
    <!-- 生成海报 -->
   <view class="ck" wx:if="{{pgxx.startoks==0&&pgxx.wxUserId==wxid}}">
-    <image src="../image/haibao.png" class="ck_img" bindtap="post" data-item="{{pgxx}}"></image>
+    <image src="{{viewUrl}}temp/image/haibao.png" class="ck_img" bindtap="post" data-item="{{pgxx}}"></image>
   </view>
    <!-- 选择匹配 -->
   <view class="ck" wx:if="{{pgxx.startoks=='1'&&pgxx.wxUserId==wxid}}">
-    <image src="../image/xuanzepipei.png" class="ck_img" bindtap="submitSuccess" data-item="{{pgxx}}"></image>
+    <image src="{{viewUrl}}temp/image/xuanzepipei.png" class="ck_img" bindtap="submitSuccess" data-item="{{pgxx}}"></image>
   </view>
   <!-- 为从首页进入 -->
   <!-- 我要参与 -->
   <view class="ck" wx:if="{{pgxx.wxUserId!=wxid&&pgxx.startoks==0}}">
-    <image src="../image/woyaocanyu.png" class="ck_img" bindtap="joinPingou" data-shuju="{{pgxx}}"></image>
+    <image src="{{viewUrl}}temp/image/woyaocanyu.png" class="ck_img" bindtap="joinPingou" data-shuju="{{pgxx}}"></image>
   </view>
 </view>
 
@@ -149,7 +149,7 @@
   <view class='tanchuang zongxiang'>
     <view class="tanchuang-item zongxiang">
       <view>
-        <image src="../image/renzheng.png" class="tanchuang-img"></image>
+        <image src="{{viewUrl}}temp/image/renzheng.png" class="tanchuang-img"></image>
       </view>
       <view class="tanchuang-text">您还不是认证用户</view>
       <view class="tanchuang-text">请先认证</view>

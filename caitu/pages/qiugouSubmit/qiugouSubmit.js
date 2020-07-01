@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    viewUrl:api.viewUrl,
     multiIndex: [0, 0, 0],
     jiaohuoindex: 0,
     region: ['省', '市', '区'],

@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    viewUrl:api.viewUrl,
     wxUser:{},
     showModalStatus1:false,
     showModalStatus2:false

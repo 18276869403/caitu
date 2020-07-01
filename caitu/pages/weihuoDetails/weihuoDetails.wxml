@@ -9,14 +9,14 @@
       <view class="xqxinxi hengxiang">
         <view class="xq_name yincang">{{whxx.theNameId_dictText}}</view>
         <!-- <view class="xq_zt" wx:if="{{type==1}}">
-          <image src="../image/daojishi.png" class="zt_jxz"></image>
+          <image src="{{viewUrl}}temp/image/daojishi.png" class="zt_jxz"></image>
           进行中
         </view>
         <view class="xq_sh" wx:if="{{type==2}}">
-          <image src="../image/pipeizhong.png" class="zt_sh"></image>
+          <image src="{{viewUrl}}temp/image/pipeizhong.png" class="zt_sh"></image>
         </view>
         <view class="xq_wc" wx:if="{{type==3}}">
-          <image src="../image/wancheng.png" class="zt_wc"></image>
+          <image src="{{viewUrl}}temp/image/wancheng.png" class="zt_wc"></image>
           已完成
         </view> -->
       </view>
@@ -24,7 +24,7 @@
       <view class="gangchang hengxiang" wx:if="{{entertype==0}}">
         <view class="gc_sj hengxiang">
           <view>
-            <image src="../image/bianhao.png" class="gc_img"></image>
+            <image src="{{viewUrl}}temp/image/bianhao.png" class="gc_img"></image>
           </view>
           编号
         </view>
@@ -33,7 +33,7 @@
       <view class="gangchang hengxiang">
         <view class="gc_sj hengxiang">
           <view>
-            <image src="../image/gangchang.png" class="gc_img"></image>
+            <image src="{{viewUrl}}temp/image/gangchang.png" class="gc_img"></image>
           </view>
           钢厂
         </view>
@@ -43,7 +43,7 @@
       <view class="gangchang hengxiang">
         <view class="gc_sj hengxiang">
           <view>
-            <image src="../image/dunshu.png" class="gc_img"></image>
+            <image src="{{viewUrl}}temp/image/dunshu.png" class="gc_img"></image>
           </view>
           吨数
         </view>
@@ -53,7 +53,7 @@
       <view class="gangchang hengxiang">
         <view class="gc_sj hengxiang">
           <view>
-            <image src="../image/didian.png" class="gc_img"></image>
+            <image src="{{viewUrl}}temp/image/didian.png" class="gc_img"></image>
           </view>
 
           仓库
@@ -112,10 +112,10 @@
         <image src="{{viewUrl}}{{item}}" class="shanchuan-img"></image>
       </view>
       <!-- <view class="content-item-img-item">
-        <image src="../image/top.png" class="shanchuan-img"></image>
+        <image src="{{viewUrl}}temp/image/top.png" class="shanchuan-img"></image>
       </view>
       <view class="content-item-img-item">
-        <image src="../image/top.png" class="shanchuan-img"></image>
+        <image src="{{viewUrl}}temp/image/top.png" class="shanchuan-img"></image>
       </view> -->
     </view>
 

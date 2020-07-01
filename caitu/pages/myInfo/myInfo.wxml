@@ -26,13 +26,13 @@
     <text>营业执照</text>
   </view>
   <view bindtap="tupian"> 
-  <image src="../image/upload.png" class="y_img" wx:if="{{bindimg==''||bindimg==null}}"></image>
+  <image src="{{viewUrl}}temp/image/upload.png" class="y_img" wx:if="{{bindimg==''||bindimg==null}}"></image>
   <image src="{{bindimg}}" class="y_img" wx:if="{{bindimg!=''&&bindimg!=null}}"></image>
   </view>
   <!-- 保存按钮 -->
   <view class="bc" bindtap="saveInfo">
-    <image src="../image/baocunanniu.png" class="bc_img" wx:if="{{type===1}}"></image>
-    <image src="../image/submit.png" class="bc_img" wx:if="{{type===0}}"></image>
+    <image src="{{viewUrl}}temp/image/baocunanniu.png" class="bc_img" wx:if="{{type===1}}"></image>
+    <image src="{{viewUrl}}temp/image/submit.png" class="bc_img" wx:if="{{type===0}}"></image>
   </view>
   
 </view>

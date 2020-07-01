@@ -1,12 +1,12 @@
 <!--pages/newsDetails/newsDetails.wxml-->
-<!-- <import src="../../wxParse/wxParse.wxml" /> -->
+<!-- <import src="{{viewUrl}}temp/{{viewUrl}}temp/wxParse/wxParse.wxml" /> -->
 <view class="container">
   <view class="huixian"></view>
   <view class="top">
     <view class="top-name">{{news.title}}</view>
     <view class="top-date hengxiang">
       <view>
-        <image src="../image/dshijian.png" class="dshijian-img"></image>
+        <image src="{{viewUrl}}temp/image/dshijian.png" class="dshijian-img"></image>
       </view>
       <view>
         {{news.createTime}}

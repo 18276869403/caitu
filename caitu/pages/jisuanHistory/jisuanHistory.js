@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    viewUrl:api.viewUrl,
     jisuan: [{
         id: 1,
         user: '镀锌板彩涂卷',

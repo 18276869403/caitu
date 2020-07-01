@@ -14,7 +14,7 @@
         </picker>
       </view>
       <view class="enter">
-      <image src="../image/jiantou.png" class="enter-img"></image>
+      <image src="{{viewUrl}}temp/image/jiantou.png" class="enter-img"></image>
        </view>
     </view>
     <!-- <view class="content-list hengxiang">
@@ -37,6 +37,6 @@
   </view>
 <view class="juzhong guding">
 <!-- 提交 -->
-<image src="../image/submit.png" class="anniu-img" bindtap="submitSuccess"></image>
+<image src="{{viewUrl}}temp/image/submit.png" class="anniu-img" bindtap="submitSuccess"></image>
 </view>
 </view>

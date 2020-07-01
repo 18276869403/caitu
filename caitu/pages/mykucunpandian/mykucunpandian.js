@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    viewUrl:api.viewUrl,
     navid1: 1,
     shang: true,
     nav: [{
