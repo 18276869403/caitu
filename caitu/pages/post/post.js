@@ -8,10 +8,12 @@ Page({
    */
   data: {
     item:{},
+    backImg:'',
     shareImgSrc:'',
     shareImgPath:'',
     screenWidth:'',
-    viewUrl:api.viewUrl
+    viewUrl:api.viewUrl,
+    viewUpload:api.upload
   },
 
   /**
@@ -33,16 +35,9 @@ Page({
         item:item
       })
     }
-    that.getCode()
-    wx.getImageInfo({
-      src: '../image/erweima.png',
-      success: function (res) {
-        console.log(res)
-        that.setData({
-          shareImgPath: '../../' + res.path
-        });
-      }
-    })
+    that.getCode() // 获取二维码
+    that.getBackground() // 获取海报背景
+
      //获取用户设备信息，屏幕宽度
      wx.getSystemInfo({
       success: res => {
@@ -57,27 +52,47 @@ Page({
   // 获取二维码
   getCode:function(){
     var that = this
-    var data = {
-      paraStr:that.data.item.id
-    }
+    var data = {}
     if(that.data.item.haibaotype == 0){
-      data.pagePath = 'pages/qiugouDetails/qiugouDetails'
+      data.pagePath = 'pages/qiugouDetails/qiugouDetails?id='+that.data.item.id
     }else if(that.data.item.haibaotype == 1){
-      data.pagePath = 'pages/pingouDetails/pingouDetails'
+      data.pagePath = 'pages/pingouDetails/pingouDetails?id='+that.data.item.id
     }else{
-      data.pagePath = 'pages/weihuoDetailsDun/weihuoDetailsDun'
+      data.pagePath = 'pages/weihuoDetailsDun/weihuoDetailsDun?id='+that.data.item.id
     }
     qingqiu.get("code",data,function(res){
-      console.log(res)
+      var tempFilePath = that.data.viewUrl + res.twoCodeUrl
+      that.setData({
+        shareImgPath: tempFilePath
+      });
+      console.log(tempFilePath)
       wx.getImageInfo({
-        src: '../image/haibaobeijing.png',
-        success: function (res) {
-          console.log(res)
-          that.setData({
-            shareImgSrc: '../../' + res.path
-          });
+        src:  that.data.viewUrl + res.twoCodeUrl,
+        success:function(res){
+          console.log('二维码',res)
         }
       })
+      
+    })
+  },
+  // 获取背景图
+  getBackground(){
+    var that = this
+    qingqiu.get("initBanners",{type:0},function(res){
+      if(res.success == true){
+        that.setData({
+          backImg:that.data.viewUrl + res.result.records[0].upUrl
+        })
+        console.log(that.data.backImg)
+        wx.getImageInfo({
+          src: that.data.viewUrl + res.result.records[0].upUrl,
+          success:function(res){
+            that.setData({
+              shareImgSrc:res.path
+            })
+          }
+        })
+      }
     })
   },
 

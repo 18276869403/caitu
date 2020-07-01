@@ -2,8 +2,10 @@
 <view class="container">
   <view class="hengxian"></view>
   <view class="content">
-    <image src="{{viewUrl}}temp/image/haibaobeijing.png" class="haibao-img"></image>
-    <image src="{{viewUrl}}temp/image/erweima.png" class="code-img"></image>
+    <image src="{{backImg}}" class="haibao-img"></image>
+    <!-- <image src="{{viewUrl}}temp/image/haibaobeijing.png" class="haibao-img"></image> -->
+    <!-- <image src="{{{{viewUrl}}temp/image/erweima.png}}" class="code-img"></image> -->
+    <image src="{{shareImgPath}}" class="code-img"></image>
     <view class="content-text">
       <view class="content-text-title">{{item.theName}}</view>
       <view class="content-text-text-item">厚度：{{item.thickness}}</view>
