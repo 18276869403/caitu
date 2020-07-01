@@ -1,7 +1,7 @@
 <!--pages/submitSuccess/submitSuccess.wxml-->
 <view class="container">
   <view class="hengxian"></view>
-  <view class="top zongxiang" wx:if="{{haibaitype != 0}}">
+  <view class="top zongxiang">
     <view class="top-img">
       <image src="../image/fabuchenggong.png" class="success-img"></image>
     </view>
@@ -17,7 +17,7 @@
   </view>
   <!-- 中部内容 -->
   <view class="content">
-    <view class="content-title" wx:if="{{haibaitype != 0}}">为您匹配以下尾货</view>
+    <view class="content-title">为您匹配以下尾货</view>
     <view class="content-list zongxiang">
       <view class="content-list-item zongxiang" wx:for="{{pipeilist}}" wx:for-index="index" wx:key="{{item.id}}">
         <image src="../image/jiaobiao.png" class="jiaobiao-img"></image>

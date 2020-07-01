@@ -2,6 +2,7 @@
 const app = getApp()
 const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
+const utils = require('../../utils/util.js')
 Page({
 
   /**
@@ -32,37 +33,23 @@ Page({
     }
     if(options.objtype != undefined){
       var type = JSON.parse(options.objtype)
-      this.data.type==type
       this.setData({
         type:type
       })
     }
     if(options.obj != undefined){
       var pipeilist = JSON.parse(options.obj)
-      console.log(pipeilist)
-      this.data.weihuoList=pipeilist
-      this.data.weihouid=pipeilist.id
       for(let obj of pipeilist){
-        var str = obj.id.toString()
+        var str = obj.id
         if(str.length < 10){
-          var str1 = ''
-          for(let i=0;i<10-str.length;i++){
-            str1 += 0
-          }
-          obj.backup1 = str1 + str
+          obj.backup1 = utils.IdentityNum(str.toString())
         }
-      }
-      for(var i=0;i<pipeilist.length;i++){
-        pipeilist[i].upUrl=pipeilist[i].upUrl.split(',')[0]
+        if(obj.upUrl.indexOf(',') == -1){
+          obj.upUrl=obj.upUrl.split(',')[0]
+        }
       }
       this.setData({
         pipeilist:pipeilist,
-        haibaitype:app.globalData.haibaitype
-      })
-    }else{
-      console.log(app.globalData.haibaitype)
-      this.setData({
-        haibaitype:app.globalData.haibaitype
       })
     }
   },
