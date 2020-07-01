@@ -556,7 +556,7 @@ Page({
     var obj=e.currentTarget.dataset.item
     var pingou = JSON.stringify(obj);
     wx.navigateTo({
-      url: '../pingouDetails/pingouDetails?obj='+pingou,
+      url: '../pingouDetails/pingouDetails?obj='+pingou, 
     })
   },
   // 跳转到尾货详情页面
