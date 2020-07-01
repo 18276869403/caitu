@@ -49,7 +49,6 @@ Page({
     qingqiu.get("selectInventById",data,function(res){
       console.log(res)
       if(res.success == true){
-        debugger
           if(res.result[0].upUrl.indexOf(',') != -1){
             res.result[0].upUrl = res.result[0].upUrl.split(',')
             for(let obj of res.result[0].upUrl){
@@ -114,12 +113,13 @@ Page({
   // 跳转到海报页面
   post:function(){
     var weihuo = this.data.items
+    console.log(weihuo)
     var dataobj={
       id:weihuo.id,
       wxUserId:app.globalData.wxid,
       areaOneId:weihuo.areaOneId,
       areaTwoId:weihuo.areaTwoId,
-      steelName:weihuo.steelname,
+      steelName:weihuo.steelName,
       thickness:weihuo.thickness,
       width:weihuo.width,
       paint:weihuo.paint,
