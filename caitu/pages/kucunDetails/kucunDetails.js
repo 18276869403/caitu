@@ -67,10 +67,14 @@ Page({
   onLoad: function (options) {
     this.getAddress()
     this.getstell()
-    this.getkuncun(options.obj)
-    this.setData({
-      kcid:options.obj
-    })
+    if(options.obj != null){
+      this.getkuncun(options.obj)
+      this.setData({
+        kcid:options.obj
+      })
+    }else{
+      this.getkuncun(this.data.kcid)
+    }
   },
 
   // 获取市索引
@@ -367,9 +371,7 @@ Page({
           duration:2000
         })
         setTimeout(function(){
-          wx.navigateTo({
-            url: '../kucunSubmitSuccess/kucunSubmitSuccess',
-          })
+          that.onLoad()
         },1000)
       }else{
         wx.showToast({
