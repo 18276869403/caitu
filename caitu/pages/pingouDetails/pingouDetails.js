@@ -3,6 +3,7 @@
 const app = getApp()
 const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
+const utils = require('../../utils/util.js')
 Page({
 
   /**
@@ -26,15 +27,36 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var pgxx=JSON.parse(options.obj)
-    console.log(pgxx)
-    this.data.pgid=pgxx.id
-    this.setData({
-      pgxx:pgxx,
-      wxid:app.globalData.wxid
-    })
-    this.selectpingouxx()
+    if(1==1){
+      // if(options.id != undefined){
+      this.getDetails(options.id)
+    }else{
+      var pgxx=JSON.parse(options.obj)
+      console.log(pgxx)
+      this.data.pgid=pgxx.id
+      this.setData({
+        pgxx:pgxx
+      })
+      this.selectpingouxx()
+    }
+    this.setData({ wxid:app.globalData.wxid })
   },
+
+  // 获取详情
+  getDetails(id){
+    var that = this
+    qingqiu.get("initGroupBuying",{askId:id},function(res){
+      console.log(res)
+      if(res.success == true){
+        var data = res.result.records[0]
+        data.backup1 = utils.IdentityNum(data.id.toString())
+        that.setData({
+          pgxx:data
+        })
+      }
+    })
+  },
+
   // 获取参与拼购信息
   selectpingouxx(){
     var that = this

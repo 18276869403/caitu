@@ -58,7 +58,7 @@ Page({
     }else if(that.data.item.haibaotype == 1){
       data.pagePath = 'pages/pingouDetails/pingouDetails?id='+that.data.item.id
     }else{
-      data.pagePath = 'pages/weihuoDetailsDun/weihuoDetailsDun?id='+that.data.item.id
+      data.pagePath = 'pages/weihuoDetails/weihuoDetails?id='+that.data.item.id
     }
     qingqiu.get("code",data,function(res){
       var tempFilePath = that.data.viewUrl + res.twoCodeUrl

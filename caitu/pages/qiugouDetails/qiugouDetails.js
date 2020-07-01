@@ -26,7 +26,7 @@ Page({
   onLoad: function(options) {
     if(options.id != undefined){
       // 根据id查详情
-      this.getDetails()
+      this.getDetails(options.id)
     }else{
       if(options.obj != undefined){
         var qiugou = JSON.parse(options.obj)
