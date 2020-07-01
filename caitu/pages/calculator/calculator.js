@@ -46,7 +46,10 @@ Page({
     zincLayerobj:'',
     zhengmianobj:'',
     beimianobj:'',
+    zhengmianid:[],
+    beimianid:[],
     select:1,
+    tucengprice:'',
     xieyi:api.xieyi
   },
 
@@ -517,16 +520,20 @@ gethuodu(){
   that.data.zincLayerobj=[]
   that.data.zhengmianobj=[]
   that.data.beimianobj=[]
+  that.data.zhengmianid=[]
+  that.data.beimianid=[]
   console.log(data)
   qingqiu.get("getXC",data,function(res){
     if(res.success == true){
       for(let obj of res.result.zlist){
         that.data.zhengmian.push(obj.scope)
         that.data.zhengmianobj.push(obj.price)
+        that.data.zhengmianid.push(obj.id)
       }
       for(let obj1 of res.result.blist){
         that.data.beimian.push(obj1.scope)
         that.data.beimianobj.push(obj1.price)
+        that.data.beimianid.push(obj1.id)
       }
       for(let obj2 of res.result.xclist){
         that.data.xinceng.push(obj2.scope)
@@ -538,7 +545,9 @@ gethuodu(){
         xinceng:that.data.xinceng,
         zincLayerobj:that.data.zincLayerobj,
         zhengmianobj:that.data.zhengmianobj,
-        beimianobj:that.data.beimianobj
+        beimianobj:that.data.beimianobj,
+        zhengmianid:that.data.zhengmianid,
+        beimianid:that.data.beimianid
       })
       console.log(that.data.zhengmian)
       console.log(that.data.beimian)
@@ -553,7 +562,8 @@ gethuodu(){
       if(res.success == true){
         that.data.tuceng=res.message
         that.setData({
-          tuceng:that.data.tuceng
+          tuceng:that.data.tuceng,
+          tucengprice:that.data.tucengprice
         })
         console.log(that.data.tuceng)
       }
@@ -570,8 +580,8 @@ gethuodu(){
     var data = {
       zheng:that.data.zhengmian[that.data.zhengmianindex]=='选择正面膜厚'?'':that.data.zhengmian[that.data.zhengmianindex],
       bei:that.data.beimian[that.data.beimianindex]=='选择背面膜厚'?'':that.data.beimian[that.data.beimianindex],
-      // zhengId:that.data.zhengmianindex,
-      // beiId:that.data.beimianindex
+      zhengId:that.data.zhengmianid[that.data.zhengmianindex-1]==undefined?'':that.data.zhengmianid[that.data.zhengmianindex-1],
+      beiId:that.data.beimianid[that.data.beimianindex-1]==undefined?'':that.data.beimianid[that.data.beimianindex-1]
     }
     console.log(data)
     that.getmohou(data)
@@ -587,8 +597,8 @@ gethuodu(){
     var data = {
       zheng:that.data.zhengmian[that.data.zhengmianindex]=='选择正面膜厚'?'':that.data.zhengmian[that.data.zhengmianindex],
       bei:that.data.beimian[that.data.beimianindex]=='选择背面膜厚'?'':that.data.beimian[that.data.beimianindex],
-      // zhengId:that.data.zid,
-      // beiId:that.data.bid
+      zhengId:that.data.zhengmianid[that.data.zhengmianindex-1]==undefined?'':that.data.zhengmianid[that.data.zhengmianindex-1],
+      beiId:that.data.beimianid[that.data.beimianindex-1]==undefined?'':that.data.beimianid[that.data.beimianindex-1]
     }
     console.log(data)
     that.getmohou(data)
