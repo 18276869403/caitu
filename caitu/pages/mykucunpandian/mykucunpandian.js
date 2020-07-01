@@ -58,6 +58,13 @@ Page({
       this.mykucun(nav[0].type)
     }
   },
+  // 下拉刷新
+  onPullDownRefresh: function () {
+    this.onLoad()
+    setTimeout(() => {
+      wx.stopPullDownRefresh()
+    }, 1000);
+  },
 //上拉功能
 // onReachBottom(){
 //   if(this.data.isLastPage){

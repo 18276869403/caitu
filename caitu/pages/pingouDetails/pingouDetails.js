@@ -62,6 +62,12 @@ Page({
   },
   // 参与拼购
   joinPingou: function(e) {
+    if(app.globalData.wxState == 0){
+      this.setData({
+        showModalStatus1:true
+      })
+      return
+    }
     var shuju=e.currentTarget.dataset.shuju
     var shuju1 = JSON.stringify(shuju);
     var pgid = this.data.pgid
@@ -148,5 +154,34 @@ Page({
         })
       }
     })
-  }
+  },
+  // 跳转到认证信息页面
+  renzhengInfo: function() {
+    this.hideModal1()
+    wx.navigateTo({
+      url: '../renzhengInfo/renzhengInfo',
+    })
+  },
+  //弹窗关闭
+  hideModal1: function() {
+    var animation = wx.createAnimation({
+      duration: 200,
+      timingFunction: "linear",
+      delay: 0
+    })
+    // flag = 0;
+    this.animation = animation
+    animation.translateY(300).step()
+    this.setData({
+      animationData: animation.export(),
+      hasMask: false
+    })
+    setTimeout(function() {
+      animation.translateY(0).step()
+      this.setData({
+        animationData: animation.export(),
+        showModalStatus1: false
+      })
+    }.bind(this), 200)
+  },
 })

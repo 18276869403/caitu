@@ -35,10 +35,14 @@ Page({
     qiangduindex:0,
     youqi:['选择油漆'],
     youqiindex:0,
-    xinceng:['选择锌层'],
+    xinceng:['选择镀层量'],
     xincengindex:0,
     yanse:['选择颜色'],
     yanseindex:0,
+    zhengmian:['选择正面膜厚'],
+    zhengmianindex:0,
+    beimian:['选择背面膜厚'],
+    beimianindex:0,
     zheng:[],
     fan:[],
     mohou:[],
@@ -200,7 +204,7 @@ Page({
       upUrl:imgurl
     }
     console.log(data)
-    var s = utils.yanzheng(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.thickness + ',请输入厚度|'+data.width+',请输入宽度|'+data.paint+',请选择油漆|'+data.front+',请输入正面膜厚|'+data.rear+',请输入背面膜厚|' + data.coat+',没有匹配涂层|' + data.zincLayer + ',请选择锌层|' + data.color +',请选择颜色|' + data.density + ',请选择强度|' +data.tonnage+',请选择吨数|'+data.upUrl + ',请上传图片')
+    var s = utils.yanzheng(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.thickness + ',请输入厚度|'+data.width+',请输入宽度|'+data.paint+',请选择油漆|'+data.front+',请输入正面膜厚|'+data.rear+',请输入背面膜厚|' + data.coat+',没有匹配涂层|' + data.zincLayer + ',请选择镀层量|' + data.color +',请选择颜色|' + data.density + ',请选择强度|' +data.tonnage+',请选择吨数|'+data.upUrl + ',请上传图片')
     if(s!=0){
       wx.showToast({
         title:s,
@@ -209,7 +213,7 @@ Page({
       })
       return
     }
-    var v = utils.yanzhengVal(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.paint+',请选择油漆|' + data.zincLayer + ',请选择锌层|' + data.color +',请选择颜色|'+ data.density + ',请选择强度')
+    var v = utils.yanzhengVal(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.paint+',请选择油漆|' + data.zincLayer + ',请选择镀层量|' + data.color +',请选择颜色|'+ data.density + ',请选择强度')
     if(v != 0){
       wx.showToast({
         title: v,
@@ -225,11 +229,11 @@ Page({
           icon:'success',
           duration:2000
         })
-        setTimeout(function(){
-          wx.redirectTo({
-            url: '../kucunSubmitSuccess/kucunSubmitSuccess',
-          })
-        },1000)
+        // setTimeout(function(){
+        //   wx.redirectTo({
+        //     url: '../kucunSubmitSuccess/kucunSubmitSuccess',
+        //   })
+        // },1000)
       }else{
         wx.showToast({
           title: res.message,
@@ -263,14 +267,14 @@ Page({
     })
     that.getWidth(data)
   },
-  // 获取锌层
+  // 获取镀层量
   getXC(data){
     var that = this
     console.log(data)
     qingqiu.get("getXC",data,function(res){
       console.log(res)
       if(res.success == true){
-        var xinceng = ["选择锌层"]
+        var xinceng = ["选择镀层量"]
         for(let obj of res.result){
           xinceng.push(obj.scope)
         }
@@ -288,7 +292,7 @@ Page({
       if(res.success == true){
         var qiangdu = ["选择强度"]
         var youqi = ["选择油漆"]
-        // var xinceng = ["选择锌层"]
+        // var xinceng = ["选择镀层量"]
         var yanse = ["选择颜色"]
         for(let obj of res.result.densityList){
           qiangdu.push(obj.context)
@@ -672,7 +676,7 @@ Page({
       tuceng: e.detail.value
     })
   },
-  // 锌层
+  // 镀层量
   xincengChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({

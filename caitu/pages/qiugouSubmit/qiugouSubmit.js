@@ -19,7 +19,7 @@ Page({
     beimianindex: 0,
     beimianarray: ['选择背面膜厚', '选择膜厚', '选择膜厚1', '选择膜厚2', '选择膜厚3'],
     xincengindex: 0,
-    xincengarray: ['选择锌层', '100', '1001', '1002', '1003'],
+    xincengarray: ['选择镀层量', '100', '1001', '1002', '1003'],
     yanseindex: 0,
     yansearray: ['选择颜色', '标准', '标准1', '标准2', '标准3'],
     qiangduindex: 0,
@@ -33,10 +33,13 @@ Page({
     multiIndex1: [0, 0],   
     setwidth:[],
     sethoudu:[],
-    
+    zhengmian:['选择正面膜厚'],
+    zhengmianindex:0,
+    beimian:['选择背面膜厚'],
+    beimianindex:0,
     qiangdu:['选择强度'],
     youqi:['选择油漆'],
-    xinceng:['选择锌层'],
+    xinceng:['选择镀层量'],
     yanse:['选择颜色'],
     subentryId:[],
     pricingPrice:'',
@@ -62,6 +65,8 @@ Page({
     shid:'',
     zhou:'',
     bhou:'',
+    zhenghou:[],
+    beihou:[],
     jsqglist:[],
     flag:true,
     type:'',
@@ -351,10 +356,11 @@ Page({
     console.log(data)
     qingqiu.get("commonPrint",data,function(res){
       if(res.success == true){
-        that.data.zhou=res.result.zheng
-        that.data.bhou=res.result.bei
+        that.data.zhou=res.result.zheng[0]+'~'+res.result.zheng[1]
+        that.data.bhou=res.result.bei[0]+'~'+res.result.bei[1]
         that.data.zid=res.result.zhengId
         that.data.bid=res.result.beiId
+        debugger
         that.setData({
           zhou:that.data.zhou,
           bhou:that.data.bhou,
@@ -368,7 +374,7 @@ Page({
           beiId:that.data.bid
         }
         console.log(data)
-        that.getmohou(data)
+        that.getmomohou(data)
       }
     })
   },
@@ -503,7 +509,7 @@ Page({
       })
       return
     }
-    var s = utils.yanzheng(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|' + data.steelName + ',请选择钢厂|' + data.theNameId + ',请选择品名|' + data.thickness + ',请输入厚度|' + data.width + ',请输入宽度|' + data.paint + ',请选择油漆|' + data.front + ',请输入正面膜厚|' + data.rear + ',请输入背面膜厚|' + data.coat + ',没有涂层参数|' + data.zincLayer + ',请选择锌层|' + data.color + ',请选择颜色|' + data.density + ',请选择强度|' + data.deadline + ',请选择截止时间|' + data.tonnage + ',请选择吨数')
+    var s = utils.yanzheng(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|' + data.steelName + ',请选择钢厂|' + data.theNameId + ',请选择品名|' + data.thickness + ',请输入厚度|' + data.width + ',请输入宽度|' + data.paint + ',请选择油漆|' + data.front + ',请输入正面膜厚|' + data.rear + ',请输入背面膜厚|' + data.coat + ',没有涂层参数|' + data.zincLayer + ',请选择镀层量|' + data.color + ',请选择颜色|' + data.density + ',请选择强度|' + data.deadline + ',请选择截止时间|' + data.tonnage + ',请选择吨数')
     if(s != 0){
       wx.showToast({
         title: s,
@@ -512,7 +518,7 @@ Page({
       })
       return
     }
-    var v = utils.yanzhengVal(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.paint+',请选择油漆|' + data.zincLayer + ',请选择锌层|' + data.color +',请选择颜色|'+ data.density + ',请选择强度')
+    var v = utils.yanzhengVal(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.paint+',请选择油漆|' + data.zincLayer + ',请选择镀层量|' + data.color +',请选择颜色|'+ data.density + ',请选择强度')
     if(v != 0){
       wx.showToast({
         title: v,
@@ -692,16 +698,16 @@ minReg:function(e){
       theNameId:that.data.thenameid,
       steelName:that.data.multiName
     }
-    // that.gethuodu()
+    that.gethuodu()
     that.getXC(data)
   },
-  // 获取锌层
+  // 获取镀层量
   getXC(data){
     var that=this
     qingqiu.get("getXC",data,function(res){
       console.log(res)
       if(res.success == true){
-        that.data.xinceng=['选择锌层']
+        that.data.xinceng=['选择镀层量']
         for(let obj of res.result){
           that.data.xinceng.push(obj.scope)
         }
@@ -714,159 +720,173 @@ minReg:function(e){
     })
   },
   // 正面焦点
-  zhengfocus:function(){
-    var that = this
-    if(!that.data.setwidth.length>0){
-      wx.showToast({
-        title: '请选择钢厂',
-        icon:'none',
-        duration:2000
-      })
-      return
-    }
-    console.log(that.data.yqid)
-    if(!that.data.yqid > 0){
-      wx.showToast({
-        title: '请选择油漆',
-        icon:'none',
-        duration:2000
-      })
-      that.setData({
-        zhengvalue:''
-      })
-      return
-    }
-  },
-  // 正面
-  zhengmianChange: function(e) {
-    var that=this
-    that.data.zhengmianindex=''
+  // zhengfocus:function(){
+  //   var that = this
+  //   if(!that.data.setwidth.length>0){
+  //     wx.showToast({
+  //       title: '请选择钢厂',
+  //       icon:'none',
+  //       duration:2000
+  //     })
+  //     return
+  //   }
+  //   console.log(that.data.yqid)
+  //   if(!that.data.yqid > 0){
+  //     wx.showToast({
+  //       title: '请选择油漆',
+  //       icon:'none',
+  //       duration:2000
+  //     })
+  //     that.setData({
+  //       zhengvalue:''
+  //     })
+  //     return
+  //   }
+  // },
+  // 正面膜厚
+  zhengmianChange:function(e){
     console.log('picker发送选择改变，携带值为', e.detail.value)
-    that.setData({
+    this.setData({
       zhengmianindex: e.detail.value
     })
-    var data = {
-      zheng:that.data.zhengmianindex,
-      bei:that.data.beimianindex,
-      zhengId:that.data.zid,
-      beiId:that.data.bid
-    }
-    console.log(data)
-    that.gethuodu()
-    // that.getmohou(data)
   },
-  // 正面失去焦点
-  zhengmian:function(e){
-    var that = this
-    var value = e.detail.value
-    console.log(that.data.zhou)
-    var minvalue = that.data.zhou[0]
-    var maxvalue = that.data.zhou[1]
-    if(minvalue > maxvalue){
-      wx.showToast({
-        title: '该油漆下没有正面膜厚，请联系管理员',
-        icon:'none',
-        duration:2000
-      })
-      that.setData({
-        zhengvalue:''
-      })
-      return
-    }
-    if(value>=minvalue&&value<=maxvalue||value<=minvalue&&value>=maxvalue){
-      that.setData({
-        zhengmianChange:e.detail.value
-      })
-    }else{
-      that.setData({
-        zhengmianChange:''
-      })
-      if(minvalue!=undefined && maxvalue!=undefined){
-        wx.showToast({
-          title: '数值在'+minvalue+"~"+maxvalue,
-          icon:'none',
-          duration:2000
-        })
-      }
-      return
-    }
-  },
-  // 背面焦点
-  beifocus:function(){
-    var that = this
-    if(!that.data.setwidth.length>0){
-      wx.showToast({
-        title: '请选择钢厂',
-        icon:'none',
-        duration:2000
-      })
-      return
-    }
-    if(!that.data.yqid > 0){
-      wx.showToast({
-        title: '请选择油漆',
-        icon:'none',
-        duration:2000
-      })
-      that.setData({
-        beimianChange:''
-      })
-      return
-    }
-  },
-  // 背面
-  beimianChange: function(e) {
-    var that=this
-    that.data.beimianindex=''
+  // 背面膜厚
+  beimianChange:function(e){
     console.log('picker发送选择改变，携带值为', e.detail.value)
-    that.setData({
+    this.setData({
       beimianindex: e.detail.value
     })
-    var data = {
-      zheng:that.data.zhengmianindex,
-      bei:that.data.beimianindex,
-      zhengId:that.data.zid,
-      beiId:that.data.bid
-    }
-    console.log(data)
-    that.gethuodu()
-    // that.getmohou(data)
   },
-  // 背面失去焦点
-  beimian:function(e){
-    var that = this
-    var value = e.detail.value
-    var minvalue = that.data.bhou[0]
-    var maxvalue = that.data.bhou[1]
-    if(minvalue > maxvalue){
-      wx.showToast({
-        title: '该油漆下没有背面膜厚，请联系管理员',
-        icon:'none',
-        duration:2000
-      })
-      that.setData({
-        beimianChange:''
-      })
-      return
-    }
-    if(value>=minvalue&&value<=maxvalue||value<=minvalue&&value>=maxvalue){
-      that.setData({
-        beimianChange:e.detail.value
-      })
-    }else{
-      that.setData({
-        beimianChange:''
-      })
-      if(minvalue!=undefined&&maxvalue!=undefined){
-        wx.showToast({
-          title: '数值在'+minvalue+"~"+maxvalue,
-          icon:'none',
-          duration:2000
-        })
-      }
-      return
-    }
-  },
+  // 正面
+  // zhengmianChange1: function(e) {
+  //   var that=this
+  //   that.data.zhengmianindex=''
+  //   console.log('picker发送选择改变，携带值为', e.detail.value)
+  //   that.setData({
+  //     zhengmianindex: e.detail.value
+  //   })
+  //   var data = {
+  //     zheng:that.data.zhengmianindex,
+  //     bei:that.data.beimianindex,
+  //     zhengId:that.data.zid,
+  //     beiId:that.data.bid
+  //   }
+  //   console.log(data)
+  //   that.gethuodu()
+  //   // that.getmohou(data)
+  // },
+  // 正面失去焦点
+  // zhengmian:function(e){
+  //   var that = this
+  //   var value = e.detail.value
+  //   console.log(that.data.zhou)
+  //   var minvalue = that.data.zhou[0]
+  //   var maxvalue = that.data.zhou[1]
+  //   if(minvalue > maxvalue){
+  //     wx.showToast({
+  //       title: '该油漆下没有正面膜厚，请联系管理员',
+  //       icon:'none',
+  //       duration:2000
+  //     })
+  //     that.setData({
+  //       zhengvalue:''
+  //     })
+  //     return
+  //   }
+  //   if(value>=minvalue&&value<=maxvalue||value<=minvalue&&value>=maxvalue){
+  //     that.setData({
+  //       zhengmianChange:e.detail.value
+  //     })
+  //   }else{
+  //     that.setData({
+  //       zhengmianChange:''
+  //     })
+  //     if(minvalue!=undefined && maxvalue!=undefined){
+  //       wx.showToast({
+  //         title: '数值在'+minvalue+"~"+maxvalue,
+  //         icon:'none',
+  //         duration:2000
+  //       })
+  //     }
+  //     return
+  //   }
+  // },
+  // 背面焦点
+  // beifocus:function(){
+  //   var that = this
+  //   if(!that.data.setwidth.length>0){
+  //     wx.showToast({
+  //       title: '请选择钢厂',
+  //       icon:'none',
+  //       duration:2000
+  //     })
+  //     return
+  //   }
+  //   if(!that.data.yqid > 0){
+  //     wx.showToast({
+  //       title: '请选择油漆',
+  //       icon:'none',
+  //       duration:2000
+  //     })
+  //     that.setData({
+  //       beimianChange:''
+  //     })
+  //     return
+  //   }
+  // },
+  // 背面
+  // beimianChange1: function(e) {
+  //   var that=this
+  //   that.data.beimianindex=''
+  //   console.log('picker发送选择改变，携带值为', e.detail.value)
+  //   that.setData({
+  //     beimianindex: e.detail.value
+  //   })
+  //   var data = {
+  //     zheng:that.data.zhengmianindex,
+  //     bei:that.data.beimianindex,
+  //     zhengId:that.data.zid,
+  //     beiId:that.data.bid
+  //   }
+  //   console.log(data)
+  //   that.gethuodu()
+  //   // that.getmohou(data)
+  // },
+  // // 背面失去焦点
+  // beimian:function(e){
+  //   var that = this
+  //   var value = e.detail.value
+  //   var minvalue = that.data.bhou[0]
+  //   var maxvalue = that.data.bhou[1]
+  //   if(minvalue > maxvalue){
+  //     wx.showToast({
+  //       title: '该油漆下没有背面膜厚，请联系管理员',
+  //       icon:'none',
+  //       duration:2000
+  //     })
+  //     that.setData({
+  //       beimianChange:''
+  //     })
+  //     return
+  //   }
+  //   if(value>=minvalue&&value<=maxvalue||value<=minvalue&&value>=maxvalue){
+  //     that.setData({
+  //       beimianChange:e.detail.value
+  //     })
+  //   }else{
+  //     that.setData({
+  //       beimianChange:''
+  //     })
+  //     if(minvalue!=undefined&&maxvalue!=undefined){
+  //       wx.showToast({
+  //         title: '数值在'+minvalue+"~"+maxvalue,
+  //         icon:'none',
+  //         duration:2000
+  //       })
+  //     }
+  //     return
+  //   }
+  // },
   // 涂层
   tuceng: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -874,7 +894,7 @@ minReg:function(e){
       tuceng: e.detail.value
     })
   },
-  // 锌层
+  // 镀层量
   xincengChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({

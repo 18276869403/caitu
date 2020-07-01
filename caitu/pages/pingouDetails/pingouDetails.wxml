@@ -142,3 +142,21 @@
     <image src="../image/woyaocanyu.png" class="ck_img" bindtap="joinPingou" data-shuju="{{pgxx}}"></image>
   </view>
 </view>
+
+<!-- 用户未认证弹窗 -->
+<view class="commodity_screen1" wx:if="{{showModalStatus1}}"></view>
+<view animation="{{animationData1}}" class="commodity_attr_box1" wx:if="{{showModalStatus1}}">
+  <view class='tanchuang zongxiang'>
+    <view class="tanchuang-item zongxiang">
+      <view>
+        <image src="../image/renzheng.png" class="tanchuang-img"></image>
+      </view>
+      <view class="tanchuang-text">您还不是认证用户</view>
+      <view class="tanchuang-text">请先认证</view>
+    </view>
+    <view class="tanchuang-bottom hengxiang">
+      <view class="tanchuang-bottom-left" bindtap="hideModal1">取消</view>
+      <view class="tanchuang-bottom-right" bindtap="renzhengInfo">认证</view>
+    </view>
+  </view>
+</view>
