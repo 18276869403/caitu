@@ -49,6 +49,7 @@ Page({
     qingqiu.get("selectInventById",data,function(res){
       console.log(res)
       if(res.success == true){
+        debugger
           if(res.result[0].upUrl.indexOf(',') != -1){
             res.result[0].upUrl = res.result[0].upUrl.split(',')
             for(let obj of res.result[0].upUrl){
@@ -114,6 +115,7 @@ Page({
   post:function(){
     var weihuo = this.data.items
     var dataobj={
+      id:weihuo.id,
       wxUserId:app.globalData.wxid,
       areaOneId:weihuo.areaOneId,
       areaTwoId:weihuo.areaTwoId,
@@ -130,6 +132,7 @@ Page({
       tonnage:weihuo.tonnage,
     }
     dataobj.theName = weihuo.theNameText
+    dataobj.haibaotype = 2
     dataobj = JSON.stringify(dataobj)
     wx.navigateTo({
       url: '../post/post?obj='+dataobj,

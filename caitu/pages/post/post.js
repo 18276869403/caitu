@@ -18,12 +18,18 @@ Page({
     var that = this
     if(options.obj!=undefined){
       var item = JSON.parse(options.obj)
-      console.log(item)
+      // 海报类型: 0/求购,1/拼购,2/尾货
+      if(item.haibaotype == 0){
+        wx.setNavigationBarTitle({ title: '求购海报' })
+      }else if(item.haibaotype == 1){
+        wx.setNavigationBarTitle({ title: '拼购海报' })
+      }else{
+        wx.setNavigationBarTitle({ title: '尾货海报' })
+      }
       this.setData({
         item:item
       })
     }
-    console.log('初始化')
     wx.getImageInfo({
       src: '../image/haibaobeijing.png',
       success: function (res) {
@@ -48,15 +54,15 @@ Page({
         that.setData({
           screenWidth: res.screenWidth
         })
-        console.log(that.data.screenWidth)
+        console.log('宽度',that.data.screenWidth)
       }
     })
   },
 
   // 按钮分享
-  onShareAppMessage:function(){
+  onShareAppMessage:function(res){
     var that = this
-    var obj = JSON.parse(that.data.item)
+    var obj = JSON.stringify(that.data.item)
     return {
       title: '分享',
       path: '/pages/post/post?obj=' + obj,
@@ -247,13 +253,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   },
  

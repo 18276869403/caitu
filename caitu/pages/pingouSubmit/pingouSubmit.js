@@ -484,14 +484,14 @@ Page({
       if(res.success == true){
         dataobj.id = res.result.askid
         dataobj.haibaotype = 1
-        if(res.result.records.length == 0){
+        if(res.result.inventoryListVoList.length == 0){
           dataobj.theName = that.data.multiArray[1][that.data.multiIndex[1]]
           dataobj = JSON.stringify(dataobj)
           wx.redirectTo({
             url: '../post/post?obj=' + dataobj,
           })
         }else{ 
-          var pipeilist=res.result.records
+          var pipeilist=res.result.inventoryListVoList
           var ppsj = JSON.stringify(pipeilist)
           dataobj.theName = that.data.multiArray[1][that.data.multiIndex[1]]
           dataobj = JSON.stringify(dataobj)

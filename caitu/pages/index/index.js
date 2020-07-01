@@ -137,23 +137,18 @@ Page({
     qingqiu.get('initInventory',data,function(res){
       if(res.success == true){
         if (res.result != null) {
-          that.data.weihuolist=res.result.records
+          var weihuolist=res.result.records
           for(let obj of res.result.records){
-            var str = obj.id.toString()
+            var str = obj.id
             if(str.length < 10){
-              var str1 = ''
-              for(let i=0;i<10-str.length;i++){
-                str1 += 0
-              }
-              obj.backup1 = str1 + str
+              obj.id = utils.IdentityNum(str.toString())
+            }
+            if(obj.upUrl.indexOf(',')!=-1){
+              obj.upUrl=obj.upUrl.split(',')
             }
           }
-          for(var i=0;i<res.result.records.length;i++){
-            that.data.weihuolist[i].upUrl=that.data.weihuolist[i].upUrl.split(',')
-          }
-          console.log(that.data.weihuolist)
           that.setData({
-            weihuolist:that.data.weihuolist
+            weihuolist:weihuolist
           })
         }else {
           wx.showToast({
@@ -173,13 +168,13 @@ Page({
       pageSize:3
     }
     qingqiu.get('initInformation',data,function(res){
-      console.log('最新资讯信息',res)
       if(res.success == true){
         if (res.result != null) {
           that.data.zixunList=res.result.records
           for(var i=0;i<res.result.records.length;i++){
             that.data.zixunList[i].createTime=that.data.zixunList[i].createTime.split(' ')[0]
             that.data.zixunList[i].upUrl= that.data.viewUrl +that.data.zixunList[i].upUrl
+            // 拼接html字符
             var str = ''
             if(utils.arrayStrNum(that.data.zixunList[i].context,'</p>') > 0){
               str = that.data.zixunList[i].context.split('<p>')[1]
@@ -405,4 +400,9 @@ Page({
       })
     }.bind(this), 200)
   },
+  phonecall:function(e){
+    wx.makePhoneCall({
+      phoneNumber: '17656453456',
+    })
+  }
 })

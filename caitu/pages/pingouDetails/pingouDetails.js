@@ -90,6 +90,7 @@ Page({
   post: function(e) {
     var pingou = e.currentTarget.dataset.item
     var dataobj={
+      id:pingou.id,
       wxUserId:app.globalData.wxid,
       areaOneId:pingou.areaOneId,
       areaTwoId:pingou.areaTwoId,
@@ -106,6 +107,7 @@ Page({
       tonnage:pingou.tonnage,
     }
     dataobj.theName = pingou.itemvalue_dictText
+    dataobj.haibaotype = 1
     dataobj = JSON.stringify(dataobj)
     wx.navigateTo({
       url: '../post/post?obj='+dataobj,

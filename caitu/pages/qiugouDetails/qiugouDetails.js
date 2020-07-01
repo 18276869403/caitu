@@ -42,6 +42,7 @@ Page({
   post: function() {
     var qiugou = this.data.qiugou
     var dataobj={
+      id:qiugou.id,
       wxUserId:app.globalData.wxid,
       areaOneId:qiugou.areaOneId,
       areaTwoId:qiugou.areaTwoId,
@@ -58,6 +59,7 @@ Page({
       tonnage:qiugou.tonnage,
     }
     dataobj.theName = qiugou.itemvalue_dictText
+    dataobj.haibaotype = 0
     dataobj = JSON.stringify(dataobj)
     wx.navigateTo({
       url: '../post/post?obj='+dataobj,

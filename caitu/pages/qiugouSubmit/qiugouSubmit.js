@@ -541,6 +541,8 @@ Page({
     qingqiu.get("faBuQiuGou",data,function(res){
       console.log(res)
       if(res.success == true){
+        dataobj.id = res.result.askid
+        dataobj.haibaotype = 0
         if(res.result.inventoryListVoList == ''){
           dataobj.theName = that.data.multiArray[1][that.data.multiIndex1[1]]
           dataobj = JSON.stringify(dataobj)
@@ -549,8 +551,8 @@ Page({
           })
         }else{
           app.globalData.haibaitype = 1
-          that.data.pipeilist=res.result.inventoryListVoList
-          var ppsj = JSON.stringify(that.data.pipeilist)
+          var pipeilist=res.result.inventoryListVoList
+          var ppsj = JSON.stringify(pipeilist)
           dataobj.theName = that.data.multiArray[1][that.data.multiIndex1[1]]
           dataobj = JSON.stringify(dataobj)
           wx.redirectTo({

@@ -261,8 +261,9 @@
       </view>
     </view>
   </view>
-  <view class="bottom">
-    <image src="../image/xuanfuqiu.png" class="xuanfu-img" bindtap="calculator"></image>
+  <view class="bottom zongxiang">
+    <view><image src="../image/xuanfuqiu.png" class="xuanfu-img" bindtap="calculator"></image></view>
+    <view><image src="../image/kefu.png" class="xuanfu-img" bindtap="phonecall"></image></view>
   </view>
 </view>
 <!-- 用户未认证弹窗 -->
