@@ -92,7 +92,7 @@ Page({
   qiugouDetails:function(e){
     var obj = JSON.stringify(e.currentTarget.dataset.item)
     wx.navigateTo({
-      url: '../qiugouDetails/qiugouDetails?obj='+obj+"&objtype="+'1',
+      url: '../qiugouDetails/qiugouDetails?obj='+obj,
     })
   }
 })
