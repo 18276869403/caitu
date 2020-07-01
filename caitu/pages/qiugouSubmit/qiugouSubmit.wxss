@@ -161,7 +161,7 @@ white-space: nowrap;
   height: 80rpx;
   /* width: 280rpx; */
   width: 100%;
-  background: #0878e0;
+  background: #e02323;
   /* border-radius: 40rpx; */
   /* margin-left: 160rpx; */
   color: #fff;

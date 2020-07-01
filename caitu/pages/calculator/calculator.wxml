@@ -147,6 +147,12 @@
     </view>
   </view>
   <view class="bottom" bindtap="calculatorResult">开始计算</view>
+  <view class="bottomxieyi">
+     <image src="../image/xuan1.png" class="anniu-img2" bindtap="change" data-xid="1" wx-if="{{select=='1'}}"></image>
+     <image src="../image/xuan2.png" class="anniu-img2" bindtap="change" data-xid="2" wx-if="{{select=='2'}}"></image>
+    使用前请仔细阅读
+      <a style="color:#e02323" bindtap="showModal2">《哇彩兔用户协议》</a>
+    </view>
 </view>
 
 <!-- 开始计算 规格选择弹窗 -->
@@ -169,5 +175,17 @@
         加价：￥0
       </view>
     </view>
+  </view>
+</view>
+
+<!-- 注册协议 -->
+<view class="commodity_screen2" wx:if="{{showModalStatus2}}"></view>
+<view animation="{{animationData1}}" class="commodity_attr_box2" wx:if="{{showModalStatus2}}">
+  <view class='tanchuang2 zongxiang'>
+    <view class='tankuang-top'>《哇彩兔用户协议》</view>
+    <scroll-view scroll-y class='tankuang-content'>
+      <view>{{xieyi}}</view>
+    </scroll-view>
+    <view class='close-button' bindtap='hideModal2'>关闭</view>
   </view>
 </view>
