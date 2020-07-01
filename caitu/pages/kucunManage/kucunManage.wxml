@@ -169,10 +169,16 @@
       <view class="content-item-img-item" bindtap="imgUpload" wx:if="{{bindimg.length<3}}">
         <image src="../image/shangchuan.png" class="shanchuan-img"></image>
       </view>
-      <view>请您提供尾货实图/商品标签/质保书</view>
+      <view style="color:gray">请您提供尾货实图/商品标签/质保书</view>
     </view>
   </view>
   <view class="bottom juzhong">
     <image src="../image/fabu.png" class="anniu-img" bindtap="kucunSubmitSuccess"></image>
+    <view style="color:gray">
+     <image src="../image/xuan1.png" class="anniu-img2" bindtap="change" data-xid="1" wx-if="{{select=='1'}}"></image>
+     <image src="../image/xuan2.png" class="anniu-img2" bindtap="change" data-xid="2" wx-if="{{select=='2'}}"></image>
+    使用前请仔细阅读
+      <a style="color:#e02323">《哇彩图用户协议》</a>
+    </view>
   </view>
 </view>

@@ -70,7 +70,8 @@ Page({
     jsqglist:[],
     flag:true,
     type:'',
-    qipiliang:''
+    qipiliang:'',
+    select:1
   },
 
   /**
@@ -341,7 +342,6 @@ Page({
         })
         console.log(that.data.qiangdu)
         console.log(that.data.youqi)
-        console.log(that.data.xinceng)
         console.log(that.data.yanse)
       }
     })
@@ -356,6 +356,7 @@ Page({
     console.log(data)
     qingqiu.get("commonPrint",data,function(res){
       if(res.success == true){
+        debugger
         that.data.zhou=res.result.zheng[0]+'~'+res.result.zheng[1]
         that.data.bhou=res.result.bei[0]+'~'+res.result.bei[1]
         that.data.zid=res.result.zhengId
@@ -368,8 +369,8 @@ Page({
         console.log(that.data.zhou)
         console.log(that.data.bhou)
         var data = {
-          zheng:that.data.zhengmianindex=='0'?'':that.data.zhengmianindex,
-          bei:that.data.beimianindex=='0'?'':that.data.beimianindex,
+          zheng:that.data.zhou,
+          bei:that.data.bhou,
           zhengId:that.data.zid,
           beiId:that.data.bid
         }
@@ -921,5 +922,22 @@ minReg:function(e){
     this.setData({
       dunwei: e.detail.value
     })
-  }
+  },
+  //改变选框状态(免责协议)
+  change: function(e) {
+    var that = this
+    //得到选中状态
+    var select = e.currentTarget.dataset.xid
+    if (select == "1") {
+      var stype = "2"
+
+    } else {
+      var stype = "1"
+    }
+    //赋值
+    that.setData({
+      select: stype
+    })
+
+  },
 })

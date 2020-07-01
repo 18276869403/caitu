@@ -51,7 +51,8 @@ Page({
     tuceng:'',
     imglist:[],
     bindimg:[],
-    flag:true
+    flag:true,
+    select:1
   },
 
   /**
@@ -759,5 +760,22 @@ Page({
     this.setData({
       bindimg:imgs
     })
-  }
+  },
+  //改变选框状态(免责协议)
+  change: function(e) {
+    var that = this
+    //得到选中状态
+    var select = e.currentTarget.dataset.xid
+    if (select == "1") {
+      var stype = "2"
+
+    } else {
+      var stype = "1"
+    }
+    //赋值
+    that.setData({
+      select: stype
+    })
+
+  },
 })
