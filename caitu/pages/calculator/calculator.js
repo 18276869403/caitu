@@ -44,6 +44,8 @@ Page({
     itemobj:[],
     steel:{},
     zincLayerobj:'',
+    zhengmianobj:'',
+    beimianobj:'',
     select:1,
     xieyi:api.xieyi
   },
@@ -513,14 +515,18 @@ gethuodu(){
   that.data.beimian=['选择背面膜厚']
   that.data.xinceng=['选择镀层量']
   that.data.zincLayerobj=[]
+  that.data.zhengmianobj=[]
+  that.data.beimianobj=[]
   console.log(data)
   qingqiu.get("getXC",data,function(res){
     if(res.success == true){
       for(let obj of res.result.zlist){
         that.data.zhengmian.push(obj.scope)
+        that.data.zhengmianobj.push(obj.price)
       }
       for(let obj1 of res.result.blist){
         that.data.beimian.push(obj1.scope)
+        that.data.beimianobj.push(obj1.price)
       }
       for(let obj2 of res.result.xclist){
         that.data.xinceng.push(obj2.scope)
@@ -530,7 +536,9 @@ gethuodu(){
         zhengmian:that.data.zhengmian,
         beimian:that.data.beimian,
         xinceng:that.data.xinceng,
-        zincLayerobj:that.data.zincLayerobj
+        zincLayerobj:that.data.zincLayerobj,
+        zhengmianobj:that.data.zhengmianobj,
+        beimianobj:that.data.beimianobj
       })
       console.log(that.data.zhengmian)
       console.log(that.data.beimian)
@@ -560,10 +568,10 @@ gethuodu(){
       zhengmianindex: e.detail.value
     })
     var data = {
-      zheng:that.data.zhengmianindex,
-      bei:that.data.beimianindex,
-      zhengId:that.data.zid,
-      beiId:that.data.bid
+      zheng:that.data.zhengmian[that.data.zhengmianindex]=='选择正面膜厚'?'':that.data.zhengmian[that.data.zhengmianindex],
+      bei:that.data.beimian[that.data.beimianindex]=='选择背面膜厚'?'':that.data.beimian[that.data.beimianindex],
+      // zhengId:that.data.zhengmianindex,
+      // beiId:that.data.beimianindex
     }
     console.log(data)
     that.getmohou(data)
@@ -577,10 +585,10 @@ gethuodu(){
       beimianindex: e.detail.value
     })
     var data = {
-      zheng:that.data.zhengmianindex,
-      bei:that.data.beimianindex,
-      zhengId:that.data.zid,
-      beiId:that.data.bid
+      zheng:that.data.zhengmian[that.data.zhengmianindex]=='选择正面膜厚'?'':that.data.zhengmian[that.data.zhengmianindex],
+      bei:that.data.beimian[that.data.beimianindex]=='选择背面膜厚'?'':that.data.beimian[that.data.beimianindex],
+      // zhengId:that.data.zid,
+      // beiId:that.data.bid
     }
     console.log(data)
     that.getmohou(data)
@@ -668,8 +676,8 @@ gethuodu(){
       thickness:that.data.houdu,
       width:that.data.kuandu,
       paint:youqi,
-      front:that.data.zhengmian[that.data.zhengmianindex],
-      rear:that.data.beimian[that.data.beimianindex],
+      front:that.data.zhengmian[that.data.zhengmianindex]+'|'+that.data.zhengmianobj[that.data.zhengmianindex-1],
+      rear:that.data.beimian[that.data.beimianindex]+'|'+that.data.beimianobj[that.data.beimianindex-1],
       coat:that.data.tuceng,
       zincLayer:that.data.xinceng[that.data.xincengindex]+'|'+that.data.zincLayerobj[that.data.xincengindex-1],
       color:that.data.yanse[that.data.yanseindex],
@@ -678,7 +686,8 @@ gethuodu(){
       backup1:that.data.steel.pricingPrice
     }
     console.log(data)
-    var s = utils.yanzheng(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.thickness + ',请输入厚度|'+data.width+',请输入宽度|'+data.paint+',请选择油漆|'+data.front+',请输入正面膜厚|'+data.rear+',请输入背面膜厚|' + data.coat+',请输入涂层|' +  data.color +',请选择颜色|' + data.density + ',请选择强度|' +data.tonnage+',请选择吨数')
+    debugger
+    var s = utils.yanzheng(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.thickness + ',请输入厚度|'+data.width+',请输入宽度|'+data.paint+',请选择油漆|' + data.coat+',请输入涂层|' +  data.color +',请选择颜色|' + data.density + ',请选择强度|' +data.tonnage+',请选择吨数')
     if(s!=0){
       wx.showToast({
         title:s,
@@ -687,7 +696,7 @@ gethuodu(){
       })
       return
     }
-    var v = utils.yanzhengVal(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.paint+',请选择油漆|' + data.zincLayer + ',请选择镀层量|' + data.color +',请选择颜色|'+ data.density + ',请选择强度')
+    var v = utils.yanzhengVal(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.paint+',请选择油漆|' + data.zincLayer + ',请选择镀层量|' + data.color +',请选择颜色|'+ data.density + ',请选择强度'+data.front+',请输入正面膜厚|'+data.rear+',请输入背面膜厚|')
     if(v != 0){
       wx.showToast({
         title: v,
