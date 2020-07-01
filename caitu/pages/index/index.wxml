@@ -21,7 +21,7 @@
     <!-- 通知模块 -->
     <view class="tongzhi hengxiang">
       <view class="tongzhi-img">
-        <image src="../image/laba.png" class="laba-img"></image>
+        <image src="{{viewUrl}}temp/image/laba.png" class="laba-img"></image>
       </view>
       <view class="tongzhi-text">
         <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="2000">
@@ -39,7 +39,7 @@
     <view class="sort zongxiang">
       <view class="sort-top hengxiang">
         <view class="sortImg" bindtap="calculator">
-          <image src="../image/jisuanqi.png" class="sort-img"></image>
+          <image src="{{viewUrl}}temp/image/jisuanqi.png" class="sort-img"></image>
         </view>
         <view class="sortImg" bindtap="qiugouSubmit">
           <image src="../image/qiugou.png" class="sort-img"></image>

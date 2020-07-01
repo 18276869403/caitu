@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/post/post",
     "pages/joinPingou/joinPingou",
     "pages/weihuoDetails/weihuoDetails",
     "pages/qiugouSubmit/qiugouSubmit",
@@ -10,7 +11,6 @@
     "pages/renzhengInfo/renzhengInfo",
     "pages/calculatorResult/calculatorResult",
     "pages/myInfo/myInfo",
-    "pages/post/post",
     "pages/zixunMore/zixunMore",
     "pages/qiugouDetails/qiugouDetails",
     "pages/pingouDetails/pingouDetails",

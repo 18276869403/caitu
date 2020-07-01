@@ -52,7 +52,7 @@ Page({
   // 获取广告
   getbanner(){
     var that = this
-    qingqiu.get("initBanners",null,function(res){
+    qingqiu.get("initBanners",{type:1},function(res){
       if(res.success == true){
         for(let obj of res.result.records){
           obj.upUrl = that.data.viewUrl + obj.upUrl

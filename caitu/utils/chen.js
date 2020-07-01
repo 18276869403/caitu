@@ -1,6 +1,6 @@
  // const api = require('../utils/config.js')
 //  const baseUrl = "http://111.231.51.198:9045/jeecg-boot/" 
- const baseUrl = "http://192.168.1.248:8080/jeecg-boot/" 
+ const baseUrl = "http://192.168.1.237:8080/jeecg-boot/" 
 
  // 我的页面-个人信息查询
  const my = baseUrl + "rabbit/mine/my" 
@@ -52,6 +52,8 @@ const findPiPei = baseUrl + "rabbit/lobby/findPiPei"
 const getCalculateList = baseUrl + "rabbit/lobby/getCalculateList"
 // 获取锌层
 const getXC = baseUrl + "rabbit/lobby/getXC"
+// 生成二维码
+const code = baseUrl + "rabbit/code/code"
 
  module.exports = {
    baseUrl:baseUrl,
@@ -79,5 +81,6 @@ const getXC = baseUrl + "rabbit/lobby/getXC"
    PinfaQiPiPei:PinfaQiPiPei,
    findPiPei:findPiPei,
    getCalculateList:getCalculateList,
-   getXC:getXC
+   getXC:getXC,
+   code:code
  } 
