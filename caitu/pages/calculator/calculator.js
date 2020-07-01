@@ -563,7 +563,7 @@ gethuodu(){
         that.data.tuceng=res.message
         that.setData({
           tuceng:that.data.tuceng,
-          tucengprice:that.data.tucengprice
+          // tucengprice:that.data.tucengprice
         })
         console.log(that.data.tuceng)
       }
