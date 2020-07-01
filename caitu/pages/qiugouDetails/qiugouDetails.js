@@ -1,6 +1,8 @@
 // pages/qgxiangqing/qgxiangqing.js
 const app = getApp()
 const api = require('../../utils/config.js')
+const qingqiu =require('../../utils/request.js')
+const utils = require('../../utils/util.js')
 
 Page({
 
@@ -15,32 +17,61 @@ Page({
     type: 1, //进行中
     type: 2, //匹配中
     type: 3, //已完成
-    qiugou:{}
+    qiugou:{},
+    wxid:''
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if(options.objtype != undefined){
-      var objtype =JSON.parse(options.objtype)
-    }
-    if(options.obj != undefined){
-      var qiugou = JSON.parse(options.obj)
-      console.log(qiugou)
-      var type = ''
-      if(qiugou.startoks==1){
-        type = 0
-      }else if(qiugou.startoks==2){
-        type = 1
-      }else{
-        type = 2
+    if(options.id != undefined){
+      // 根据id查详情
+      this.getDetails()
+    }else{
+      if(options.obj != undefined){
+        var qiugou = JSON.parse(options.obj)
+        console.log(qiugou)
+        var type = ''
+        if(qiugou.startoks==1){
+          type = 0
+        }else if(qiugou.startoks==2){
+          type = 1
+        }else{
+          type = 2
+        }
+        this.setData({
+          qiugou:qiugou,
+          type:type
+        })
       }
-      this.setData({
-        objtype:objtype,
-        qiugou:qiugou,
-        type:type
-      })
     }
+    this.setData({
+      wxid:app.globalData.wxid
+    })
+  },
+
+  // 查询详情
+  getDetails:function(id){
+    var that = this
+    qingqiu.get("initAskToBuy",{askId:id},function(res){
+      console.log(res)
+      if(res.success == true){
+        var data = res.result.records[0]
+        data.id = utils.IdentityNum(data.id.toString())
+        var type = ''
+        if(data.startoks==1){
+          type = 0
+        }else if(data.startoks==2){
+          type = 1
+        }else{
+          type = 2
+        }
+        that.setData({
+          qiugou:data,
+          type:type
+        })
+      }
+    })
   },
   post: function() {
     var qiugou = this.data.qiugou
