@@ -149,5 +149,11 @@
   <!-- 提交 -->
   <view class="bottom">
     <image src="../image/fabu.png" class="fabu-img" bindtap="submitSuccess"></image>
+    <view style="color:gray;font-size:24rpx">
+     <image src="../image/xuan1.png" class="anniu-img2" bindtap="change" data-xid="1" wx-if="{{select=='1'}}"></image>
+     <image src="../image/xuan2.png" class="anniu-img2" bindtap="change" data-xid="2" wx-if="{{select=='2'}}"></image>
+    使用前请仔细阅读
+      <a style="color:#e02323">《哇彩图用户协议》</a>
+    </view>
   </view>
 </view>

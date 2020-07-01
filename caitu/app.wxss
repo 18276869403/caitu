@@ -37,6 +37,11 @@
   height: 78rpx;
 }
 
+.anniu-img2 {
+  width: 25rpx;
+  height: 25rpx;
+}
+
 .juzhong {
   width: 100%;
   text-align: center;

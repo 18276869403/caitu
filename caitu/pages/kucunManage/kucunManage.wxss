@@ -66,11 +66,11 @@ white-space: nowrap;
 
 .bottom {
   width: 570rpx;
-  height: 78rpx;
+  height: 58rpx;
   line-height: 78rpx;
   background: rgba(253, 100, 40, 1);
   border-radius: 39rpx;
-  font-size: 36rpx;
+  font-size: 24rpx;
   font-weight: bold;
   color: rgba(255, 255, 255, 1);
   margin: auto;
