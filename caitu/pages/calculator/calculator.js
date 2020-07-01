@@ -74,7 +74,7 @@ Page({
       })
       this.bindchushihua(data.steelName,data.theNameId_dictText)
       this.getWidth({steelName:data.steelName,theNameId:data.theNameId})
-      this.getXC({steelName:data.steelName,theNameId:data.theNameId,text:data.paint})
+      this.gethuodu({steelName:data.steelName,theNameId:data.theNameId,text:data.paint})
     }else{
       this.getstell()
     }
@@ -504,16 +504,21 @@ Page({
       }
     })
     // that.getXC({steelName:that.data.gangchangname,theNameId:that.data.pinmingid,text:that.data.youqi[e.detail.value]})
-    that.gethuodu()
+    var data = {
+      steelName:that.data.gangchangname,
+      text:that.data.youqi[that.data.youqiindex],
+      theNameId:that.data.pinmingid
+    }
+    that.gethuodu(data)
   },
   // 正背面厚度-镀层量
-gethuodu(){
+gethuodu(data){
   var that = this
-  var data = {
-    steelName:that.data.gangchangname,
-    text:that.data.youqi[that.data.youqiindex],
-    theNameId:that.data.pinmingid
-  }
+  // var data = {
+  //   steelName:that.data.gangchangname,
+  //   text:that.data.youqi[that.data.youqiindex],
+  //   theNameId:that.data.pinmingid
+  // }
   that.data.zhengmian=['选择正面膜厚']
   that.data.beimian=['选择背面膜厚']
   that.data.xinceng=['选择镀层量']
@@ -539,7 +544,15 @@ gethuodu(){
         that.data.xinceng.push(obj2.scope)
         that.data.zincLayerobj.push(obj2.price)
       }
+      if(that.data.itemobj!=''){
+        that.data.zhengmianindex = utils.getArrIndex(that.data.zhengmian,that.data.itemobj.front)
+        that.data.beimianindex = utils.getArrIndex(that.data.beimian,that.data.itemobj.rear)
+        that.data.xincengindex = utils.getArrIndex(that.data.xinceng,that.data.itemobj.zincLayer)
+      }
       that.setData({
+        zhengmianindex:that.data.zhengmianindex,
+        beimianindex:that.data.beimianindex,
+        xincengindex:that.data.xincengindex,
         zhengmian:that.data.zhengmian,
         beimian:that.data.beimian,
         xinceng:that.data.xinceng,
