@@ -10,7 +10,7 @@
 
 <!-- 待审核 -->
 <view class="container" wx:if="{{navid1==1}}">
-  <view class="kc_bk" wx:for="{{kucun}}" wx:key="index" bindtap="weihuoDetailsDun" data-id="{{item.id}}">
+  <view class="kc_bk" wx:for="{{kucun}}" wx:key="index" bindtap="weihuoDetails" data-id="{{item.id}}">
     <view class="kc_pm hengxiang">
       <view class="pm_name yincang">品名：{{item.theNameId_dictText}}</view>
       <view class="pm_sl">{{item.tonnage}}吨</view>

@@ -132,19 +132,23 @@ Page({
     var that = this
     var data = {
       pageNo:1,
-      pageSize:3
+      pageSize:5,
+      putaway:0,
+      strState:1
     }
-    qingqiu.get('initInventory',data,function(res){
+    qingqiu.get('inventoryList',data,function(res){
+      console.log('尾货',res)
       if(res.success == true){
         if (res.result != null) {
           var weihuolist=res.result.records
           for(let obj of res.result.records){
-            var str = obj.id
-            if(str.length < 10){
-              obj.id = utils.IdentityNum(str.toString())
-            }
+            var imglist = []
+            obj.backup1 = utils.IdentityNum(obj.id.toString())
             if(obj.upUrl.indexOf(',')!=-1){
               obj.upUrl=obj.upUrl.split(',')
+            }else{
+              imglist.push(obj.upUrl)
+              obj.upUrl = imglist
             }
           }
           that.setData({
@@ -329,10 +333,9 @@ Page({
   },
   //跳转到尾货信息页面
   weihuoDetails: function(e) {
-    var obj =e.currentTarget.dataset.weihuo;
-    var whxx = JSON.stringify(obj);
+    var id =e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '../weihuoDetails/weihuoDetails?obj='+whxx,
+      url: '../weihuoDetails/weihuoDetails?id='+id,
     })
   },
   // 跳转到更多咨询页面

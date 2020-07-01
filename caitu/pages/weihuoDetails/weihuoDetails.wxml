@@ -7,7 +7,7 @@
     </view>
     <view class="xq">
       <view class="xqxinxi hengxiang">
-        <view class="xq_name yincang">{{whxx.theNameId_dictText}}</view>
+        <view class="xq_name yincang">{{items.theNameText}}</view>
         <!-- <view class="xq_zt" wx:if="{{type==1}}">
           <image src="{{viewUrl}}temp/image/daojishi.png" class="zt_jxz"></image>
           进行中
@@ -37,7 +37,7 @@
           </view>
           钢厂
         </view>
-        <view class="gc_name yincang">{{whxx.steelName}}</view>
+        <view class="gc_name yincang">{{items.steelName}}</view>
       </view>
 
       <view class="gangchang hengxiang">
@@ -47,7 +47,7 @@
           </view>
           吨数
         </view>
-        <view class="gc_name yincang">{{whxx.tonnage}}</view>
+        <view class="gc_name yincang">{{items.tonnage}}</view>
       </view>
 
       <view class="gangchang hengxiang">
@@ -58,7 +58,7 @@
 
           仓库
         </view>
-        <view class="gc_name yincang">{{whxx.areaOneId_dictText}}/{{whxx.areaTwoId_dictText}}</view>
+        <view class="gc_name yincang">{{items.areaOneText}}/{{items.areaTwoText}}</view>
       </view>
 
     </view>
@@ -69,55 +69,48 @@
     <view class="cs">
       <view class="cs_sj hengxiang">
         <view class="sj_h">厚度</view>
-        <view class="sj_s">{{whxx.thickness}}</view>
+        <view class="sj_s">{{items.thickness}}</view>
       </view>
       <view class="cs_sj hengxiang">
         <view class="sj_h">宽度</view>
-        <view class="sj_s">{{whxx.width}}</view>
+        <view class="sj_s">{{items.width}}</view>
       </view>
       <view class="cs_sj hengxiang">
         <view class="sj_h">油漆</view>
-        <view class="sj_s">{{whxx.paint}}</view>
+        <view class="sj_s">{{items.paint}}</view>
       </view>
       <view class="cs_sj hengxiang">
         <view class="sj_h">正面膜厚</view>
-        <view class="sj_s">正面{{whxx.front}}μ</view>
+        <view class="sj_s">正面{{items.front}}μ</view>
       </view>
       <view class="cs_sj hengxiang">
         <view class="sj_h">背面膜厚</view>
-        <view class="sj_s">背面{{whxx.rear}}μ</view>
+        <view class="sj_s">背面{{items.rear}}μ</view>
       </view>
       <view class="cs_sj hengxiang">
         <view class="sj_h">涂层</view>
-        <view class="sj_s">{{whxx.coat}}</view>
+        <view class="sj_s">{{items.coat}}</view>
       </view>
       <view class="cs_sj hengxiang">
         <view class="sj_h">锌层</view>
-        <view class="sj_s">{{whxx.zincLayer}}</view>
+        <view class="sj_s">{{items.zincLayer}}</view>
       </view>
       <view class="cs_sj hengxiang">
         <view class="sj_h">强度</view>
-        <view class="sj_s">{{whxx.density}}</view>
+        <view class="sj_s">{{items.density}}</view>
       </view>
       <view class="cs_sj cs_ys hengxiang">
         <view class="sj_h">颜色</view>
-        <view class="sj_s">{{whxx.color}}</view>
+        <view class="sj_s">{{items.color}}</view>
       </view>
     </view>
     <view class="content-item-title">
       图片
     </view>
     <view class="content-item-img">
-      <view class="content-item-img-item" wx:for="{{whtulist}}">
+      <view class="content-item-img-item" wx:for="{{imglist}}">
         <image src="{{viewUrl}}{{item}}" class="shanchuan-img"></image>
       </view>
-      <!-- <view class="content-item-img-item">
-        <image src="{{viewUrl}}temp/image/top.png" class="shanchuan-img"></image>
-      </view>
-      <view class="content-item-img-item">
-        <image src="{{viewUrl}}temp/image/top.png" class="shanchuan-img"></image>
-      </view> -->
     </view>
-
   </view>
 </view>

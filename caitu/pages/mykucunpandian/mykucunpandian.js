@@ -236,17 +236,17 @@ Page({
   },
 
   // 待审核 跳到尾货详情页面
-  weihuoDetails: function () {
+  weihuoDetails: function (e) {
+    var id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '../weihuoDetails/weihuoDetails',
+      url: '../weihuoDetails/weihuoDetails?id=' + id,
     })
   },
   // 已上架状态 跳转到尾货详情页面
   weihuoDetailsDun: function (e) {
     var id = e.currentTarget.dataset.id
-    console.log(id)
     wx.navigateTo({
-      url: '../weihuoDetailsDun/weihuoDetailsDun?obj=' + id,
+      url: '../weihuoDetailsDun/weihuoDetailsDun?id=' + id +'&type=0', // type区分哪个页面跳转
     })
   },
   // 未上架，跳转到库存详情页面

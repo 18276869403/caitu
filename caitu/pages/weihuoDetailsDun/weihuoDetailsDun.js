@@ -28,15 +28,17 @@ Page({
     qiangduindex: 0,
     qiangduarray: ['TS250GD+AZ', 'TS250GD+AZ1', 'TS250GD+AZ11', 'TS250GD+AZ111'],
     items:{},
-    imglist:[]
+    imglist:[],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var id = options.obj
-    this.getweihuo(id)
+    if(options.id != undefined){
+      var id = options.id
+      this.getweihuo(id)
+    }
   },
 
   // 根据id获取库存详情
@@ -46,7 +48,6 @@ Page({
       invenId:id
     }
     var imglist = []
-    console.log(data)
     qingqiu.get("selectInventById",data,function(res){
       console.log(res)
       if(res.success == true){

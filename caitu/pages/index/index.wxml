@@ -192,7 +192,7 @@
       <view class="weihuo">
         <scroll-view class="gundong" scroll-x="true" style='width:100%'>
           <view class="hengxiang ">
-            <view class="weihuo-item" wx:for="{{weihuolist}}" wx:for-index="index" bindtap="weihuoDetails" data-weihuo="{{item}}">
+            <view class="weihuo-item" wx:for="{{weihuolist}}" wx:for-index="index" bindtap="weihuoDetails" data-id="{{item.id}}">
               <view class="zongxiang">
                 <view class="weihuoImg">
                   <image src="{{viewUrl}}{{item.upUrl[0]}}" class="weihuo-img" mode="aspectFill"></image>
