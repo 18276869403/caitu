@@ -753,11 +753,9 @@ gethuodu(){
     that.setData({
       zhengmianindex: e.detail.value
     })
-    var data = {
-      zheng:that.data.zhengmianindex,
-      bei:that.data.beimianindex,
-      zhengId:that.data.zid,
-      beiId:that.data.bid
+    var data = { 
+      zheng:that.data.zhengmian[that.data.zhengmianindex]=='选择正面膜厚'?'':that.data.zhengmian[that.data.zhengmianindex],
+      bei:that.data.beimian[that.data.beimianindex]=='选择背面膜厚'?'':that.data.beimian[that.data.beimianindex],
     }
     console.log(data)
     that.getmohou(data)
@@ -771,10 +769,8 @@ gethuodu(){
       beimianindex: e.detail.value
     })
     var data = {
-      zheng:that.data.zhengmianindex,
-      bei:that.data.beimianindex,
-      zhengId:that.data.zid,
-      beiId:that.data.bid
+      zheng:that.data.zhengmian[that.data.zhengmianindex]=='选择正面膜厚'?'':that.data.zhengmian[that.data.zhengmianindex],
+      bei:that.data.beimian[that.data.beimianindex]=='选择背面膜厚'?'':that.data.beimian[that.data.beimianindex],
     }
     console.log(data)
     that.getmohou(data)

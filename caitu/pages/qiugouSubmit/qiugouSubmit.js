@@ -724,10 +724,8 @@ minReg:function(e){
       zhengmianindex: e.detail.value
     })
     var data={
-      zheng:that.data.zhengmian,
-      bei:that.data.beimian,
-      zhengId:that.data.zhengmianindex,
-      beiId:that.data.beimianindex
+      zheng:that.data.zhengmian[that.data.zhengmianindex]=='选择正面膜厚'?'':that.data.zhengmian[that.data.zhengmianindex],
+      bei:that.data.beimian[that.data.beimianindex]=='选择背面膜厚'?'':that.data.beimian[that.data.beimianindex]
     }
     that.getmohou(data)
   },
@@ -739,10 +737,8 @@ minReg:function(e){
       beimianindex: e.detail.value
     })
     var data={
-      zheng:that.data.zhengmian,
-      bei:that.data.beimian,
-      zhengId:that.data.zhengmianindex,
-      beiId:that.data.beimianindex
+      zheng:that.data.zhengmian[that.data.zhengmianindex]=='选择正面膜厚'?'':that.data.zhengmian[that.data.zhengmianindex],
+      bei:that.data.beimian[that.data.beimianindex]=='选择背面膜厚'?'':that.data.beimian[that.data.beimianindex]
     }
     that.getmohou(data)
   },
