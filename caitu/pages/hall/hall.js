@@ -154,7 +154,6 @@ Page({
   },
   // 搜索
   getGoogle(){
-    debugger
     console.log(this.data.navid)
     if(this.data.navid == 1){
       this.selectqiugou()      
@@ -426,6 +425,8 @@ Page({
     var data = {
       pageNo:that.data.pageNo,
       pageSize:10,
+      putaway:0,
+      strState:1,
       steelName:that.data.steelName=='钢厂'?'':that.data.steelName,
       theNameId:that.data.theNameId=='0'?'':that.data.theNameId,
       color:that.data.colorlist[that.data.colorid]=='颜色'?'':that.data.colorlist[that.data.colorid],
@@ -560,10 +561,9 @@ Page({
   },
   // 跳转到尾货详情页面
   weihuoDetails: function (e) {
-    var obj=e.currentTarget.dataset.item
-    var weihuo = JSON.stringify(obj);
+    var id=e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '../weihuoDetails/weihuoDetails?obj='+weihuo,
+      url: '../weihuoDetails/weihuoDetails?id='+id,
     })
   }
 

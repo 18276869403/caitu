@@ -11,7 +11,7 @@
       <view class="sou_img">
         <image src="{{viewUrl}}temp/image/sousuo.png"></image>
       </view>
-      <input class="sou_input" bindinput="bindgoogle" value="{{googleVal}}" placeholder="输入搜索内容"></input>
+      <input class="sou_input" bindinput="bindgoogle" value="{{googleVal}}" placeholder="输入关键字搜索，如品名/规格/颜色"></input>
       <view class="sou_two">
         <image src="{{viewUrl}}temp/image/soubut.png" bindtap="getGoogle"></image>
       </view>
@@ -141,7 +141,7 @@
 
   <!-- 尾货 -->
   <view class="weihuo" wx:if="{{navid1==2}}">
-    <view class="kc_bk" wx:for="{{kucun}}" wx:key="index" bindtap="weihuoDetails" data-item="{{item}}">
+    <view class="kc_bk" wx:for="{{kucun}}" wx:key="index" bindtap="weihuoDetails" data-id="{{item.id}}">
       <view class="kc_pm hengxiang">
         <view class="pm_name yincang">品名：{{item.theNameId_dictText}}</view>
         <view class="pm_sl">{{item.tonnage}}吨</view>
