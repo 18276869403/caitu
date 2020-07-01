@@ -132,17 +132,23 @@ Page({
     var that = this
     var data = {
       pageNo:1,
-      pageSize:3
+      pageSize:5,
+      putaway:0,
+      strState:1
     }
-    qingqiu.get('initInventory',data,function(res){
+    qingqiu.get('inventoryList',data,function(res){
       console.log('尾货',res)
       if(res.success == true){
         if (res.result != null) {
           var weihuolist=res.result.records
           for(let obj of res.result.records){
+            var imglist = []
             obj.backup1 = utils.IdentityNum(obj.id.toString())
             if(obj.upUrl.indexOf(',')!=-1){
               obj.upUrl=obj.upUrl.split(',')
+            }else{
+              imglist.push(obj.upUrl)
+              obj.upUrl = imglist
             }
           }
           that.setData({
