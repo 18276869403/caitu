@@ -99,8 +99,8 @@
             </view>
           </view>
           <view class="list-right">
-            <image src="{{viewUrl}}temp/image/jinxingzhong.png" class="list-right-jinxingzhong" wx:if="{{item.startoks===0}}"></image>
-            <image src="{{viewUrl}}temp/image/shouyepipeizhong.png" class="list-right-jinxingzhong" wx:if="{{item.startoks===1}}"></image>
+            <image src="{{viewUrl}}temp/image/jinxingzhong.png" class="list-right-jinxingzhong" wx:if="{{item.startoks=='0'}}"></image>
+            <image src="{{viewUrl}}temp/image/shouyepipeizhong.png" class="list-right-jinxingzhong" wx:if="{{item.startoks=='1'}}"></image>
             <view class="list-right-title">
               品名：{{item.itemvalue_dictText}}
             </view>
@@ -165,8 +165,8 @@
               </view>
             </view>
             <view class="pingou-item-right">
-              <image src="{{viewUrl}}temp/image/pingouing.png" class="pingou-img" wx:if="{{item.startoks_dictText=='进行中'}}"></image>
-              <image src="{{viewUrl}}temp/image/pipeizhong2.png" class="pingou-img" wx:if="{{item.startoks_dictText=='匹配中'}}"></image>
+              <image src="{{viewUrl}}temp/image/pingouing.png" class="pingou-img" wx:if="{{item.startoks===0}}"></image>
+              <image src="{{viewUrl}}temp/image/pipeizhong2.png" class="pingou-img" wx:if="{{item.startoks===1}}"></image>
             </view>
           </view>
         </view>

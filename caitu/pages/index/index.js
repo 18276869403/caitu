@@ -72,7 +72,7 @@ Page({
   // 求购信息
   getqiugou() {
     var that = this
-    qingqiu.get("initAskToBuy", null, function (res) {
+    qingqiu.get("initAskToBuy", {orderOK:2}, function (res) {
       console.log('求购信息', res)
       if (res.success == true) {
         for (let obj of res.result.records) {
@@ -102,7 +102,8 @@ Page({
     var that = this
     var data = {
       pageNo: 1,
-      pageSize: 3
+      pageSize: 3,
+      orderOK:2
     }
     qingqiu.get('initGroupBuying', data, function (res) {
       console.log('获取拼购信息', res)
