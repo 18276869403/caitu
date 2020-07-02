@@ -44,7 +44,7 @@ Page({
         if(str.length < 10){
           obj.backup1 = utils.IdentityNum(str.toString())
         }
-        if(obj.upUrl.indexOf(',') == -1){
+        if(obj.upUrl.indexOf(',') != -1){
           obj.upUrl=obj.upUrl.split(',')[0]
         }
       }
