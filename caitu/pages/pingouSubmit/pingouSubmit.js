@@ -488,6 +488,14 @@ gethuodu(data){
       })
       return
     }
+    if(that.data.date=='请选择日期'){
+      wx.showToast({
+        title: '截止日期不能为空！',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     if(Number(that.data.dunwei)>Number(that.data.pricingPrice))
     {
       wx.showToast({
