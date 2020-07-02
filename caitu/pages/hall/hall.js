@@ -3,6 +3,7 @@
 const app = getApp()
 const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
+const utils = require('../../utils/util.js')
 Page({
 
   /**
@@ -16,8 +17,8 @@ Page({
     index: 0,
     pmindex: 0,
     color:0,
-    colorid:'',
-    hdid:'',
+    colorid:0,
+    hdid:0,
     thickness:0,
     gangchang: [],
     pinming: ['品名'],
@@ -45,7 +46,9 @@ Page({
     theNameId:'',
     steelName:'',
     isLastPage:false,
-    pageNo:1
+    pageNo:1,
+    thicknessList:[],
+    colorLists:[]
   },
   getgangchang(){
     var that = this
@@ -102,50 +105,33 @@ Page({
       }
     })
   },
-  // 颜色
+  // 颜色/厚度
   getColor(){
     var that = this
     var data={
       steelName:that.data.steelName,
       theNameId:that.data.theNameId
     }
-    that.data.colorlist = ['颜色']
+    var colorlist = ['颜色']
+    var houdu = ['厚度']
     qingqiu.get("common",data,function(res){
+      console.log('颜色/厚度',res)
       if(res.success == true){
         for(let obj of res.result.colorList){
-          that.data.colorlist.push(obj.context)
+          colorlist.push(obj.context)
+        }
+        for(let obj of res.result.thicknessList){
+          houdu.push(obj.scopeBelow+'~'+obj.scopeUp)
         }
         that.setData({
-          colorlist:that.data.colorlist
-          // multilist:res.result.records
+          colorlist:colorlist,
+          houdu:houdu,
         })
       }
     })
   },
   // 厚度
   getHou(value){
-    var that = this
-    var data={
-      steelName:that.data.steelName,
-      theNameId:that.data.theNameId
-    }
-    that.data.houdu = ['厚度']
-    var hd1=''
-    var hd2=''
-    qingqiu.get("common",data,function(res){
-      if(res.success == true){
-        // for(let obj of res.result.thickness){
-        //   houdu.push(obj)
-        // }
-        hd1=res.result.thickness[0]
-        hd2=res.result.thickness[1]
-        that.data.houdu.push(hd1+'~'+hd2)
-        that.setData({
-          houdu:that.data.houdu
-          // multilist:res.result.records
-        })
-      }
-    })
   },
   bindgoogle:function(e){
     this.setData({
@@ -173,22 +159,16 @@ Page({
       color:0,
       thickness:0
     })
-    this.data.theNameId=''
-    this.data.colorlist[this.data.colorid]=''
-    this.data.houdu[this.data.hdid]=''
-    this.data.pinming=['品名']
-    this.data.colorlist=['颜色']
-    this.data.houdu=['厚度']
-    this.data.colorid=0
-    this.data.hdid=0
     if(e.detail.value != 0){
       this.getpinming(this.data.gangchang[e.detail.value])
     }else{
       this.setData({
-        pinming:this.data.pinminglist,
-        pinming:this.data.pinming,
-        colorlist:this.data.colorlist,
-        houdu:this.data.houdu
+        pinming:['品名'],
+        colorlist:['颜色'],
+        houdu:['厚度'],
+        theNameId:'',
+        colorid:0,
+        hdid:0
       })
     }
     if(this.data.navid == 1){
@@ -230,7 +210,6 @@ Page({
     this.data.colorlist[this.data.colorid]=''
     this.data.houdu[this.data.hdid]=''
     this.getColor()
-    this.getHou()
     if(this.data.navid == 1){
       this.data.pageNo=1
       this.data.isLastPage=false
@@ -367,14 +346,12 @@ Page({
     var data = {
       pageNo:that.data.pageNo,
       pageSize:10,
-      steelName:that.data.steelName=='钢厂'?'':that.data.steelName,
-      theNameId:that.data.theNameId=='0'?'':that.data.theNameId,
-      color:that.data.colorlist[that.data.colorid]=='颜色'?'':that.data.colorlist[that.data.colorid],
-      thickness:that.data.houdu[that.data.hdid]=='厚度'?'':that.data.houdu[that.data.hdid]
     }
-    if(that.data.googleVal != "") {data.text = that.data.googleVal}
     if(that.data.index != 0) {data.steelName = that.data.gangchang[that.data.index]}
-    if(that.data.pmindex != 0) {data.theNameId = that.data.multilist[that.data.pmindex-1].theNameId}
+    if(that.data.pmindex != 0) {data.theNameId = that.data.pinming[that.data.pmindex]}
+    if(that.data.colorid != 0) {data.color = that.data.colorlist[that.data.colorid]}
+    if(that.data.hdid != 0) { data.thickness = that.data.houdu[that.data.hdid]}
+    if(that.data.googleVal != "") { data.searchText = that.data.googleVal }
     console.log(data)
     qingqiu.get('askToBuyLists',data,function(res){
       if(res.success == true){
@@ -382,26 +359,19 @@ Page({
           if(res.result.records==''){
             that.data.isLastPage=true
           }
-          // that.data.qiugou=res.result.records
+          var qiugou=that.data.qiugou
           for(let obj of res.result.records){
             var str = obj.id.toString()
             if(str.length < 10){
-              var str1 = ''
-              for(let j=0;j<10-str.length;j++){
-                str1 += 0
-              }
-              obj.backup1 = str1 + str
+              obj.backup1 = utils.IdentityNum(str)
             }
-          }
-          for(var i=0;i<res.result.records.length;i++){
-            if(res.result.records[i].createtime!=''&&res.result.records[i].createtime!=null ){
-              res.result.records[i].createtime=res.result.records[i].createtime.split(' ')[0]
+            if(obj.createtime!=''&& obj.createtime!=null ){
+              obj.createtime=obj.createtime.split(' ')[0]
             }
-            that.data.qiugou.push(res.result.records[i])
+            qiugou.push(obj)
           }
-          console.log(that.data.qiugou)
           that.setData({
-            qiugou:that.data.qiugou
+            qiugou:qiugou
           })
         }else {
           wx.showToast({
@@ -416,25 +386,17 @@ Page({
   // 获取尾货
   selectweihuo(){
     var that = this
-    if(that.data.colorid==''){
-      that.data.colorid=0
-    }
-    if(that.data.hdid==''){
-      that.data.hdid=0
-    }
     var data = {
       pageNo:that.data.pageNo,
       pageSize:10,
       putaway:0,
       strState:1,
-      steelName:that.data.steelName=='钢厂'?'':that.data.steelName,
-      theNameId:that.data.theNameId=='0'?'':that.data.theNameId,
-      color:that.data.colorlist[that.data.colorid]=='颜色'?'':that.data.colorlist[that.data.colorid],
-      thickness:that.data.houdu[that.data.hdid]=='厚度'?'':that.data.houdu[that.data.hdid]
     }
-    if(that.data.googleVal != "") {data.text = that.data.googleVal}
     if(that.data.index != 0) {data.steelName = that.data.gangchang[that.data.index]}
-    if(that.data.pmindex != 0) {data.theNameId = that.data.multilist[that.data.pmindex-1].theNameId}
+    if(that.data.pmindex != 0) {data.theNameId = that.data.pinming[that.data.pmindex]}
+    if(that.data.colorid != 0) {data.color = that.data.colorlist[that.data.colorid]}
+    if(that.data.hdid != 0) { data.thickness = that.data.houdu[that.data.hdid]}
+    if(that.data.googleVal != "") { data.searchText = that.data.googleVal }
     console.log(data)
     qingqiu.get('inventoryLists',data,function(res){
       if(res.success == true){
@@ -442,24 +404,18 @@ Page({
           if(res.result.records==''){
             that.data.isLastPage=true
           }
-          // that.data.kucun=res.result.records
+          var kucun=that.data.kucun
           for(let obj of res.result.records){
             var str = obj.id.toString()
             if(str.length < 10){
-              var str1 = ''
-              for(let j=0;j<10-str.length;j++){
-                str1 += 0
-              }
-              obj.backup1 = str1 + str
+              obj.backup1 = utils.IdentityNum(str)
             }
+            obj.upUrl=obj.upUrl.split(',')
+            kucun.push(obj)
           }
-          for(var i=0;i<res.result.records.length;i++){
-            res.result.records[i].upUrl=res.result.records[i].upUrl.split(',')
-            that.data.kucun.push(res.result.records[i])
-          }
-          console.log(that.data.kucun)
+          console.log(kucun)
           that.setData({
-            kucun:that.data.kucun
+            kucun:kucun
           })
         }else {
           wx.showToast({
@@ -475,55 +431,42 @@ Page({
   // 获取拼购
   selectpingou(){
     var that = this
-    if(that.data.colorid==''){
-      that.data.colorid=0
-    }
-    if(that.data.hdid==''){
-      that.data.hdid=0
-    }
     var data = {
       pageNo:that.data.pageNo,
       pageSize:10,
-      steelName:that.data.steelName=='钢厂'?'':that.data.steelName,
-      theNameId:that.data.theNameId=='0'?'':that.data.theNameId,
-      color:that.data.colorlist[that.data.colorid]=='颜色'?'':that.data.colorlist[that.data.colorid],
-      thickness:that.data.houdu[that.data.hdid]=='厚度'?'':that.data.houdu[that.data.hdid]
     }
-    if(that.data.googleVal != "") {data.text = that.data.googleVal}
     if(that.data.index != 0) {data.steelName = that.data.gangchang[that.data.index]}
-    if(that.data.pmindex != 0) {data.theNameId = that.data.multilist[that.data.pmindex-1].theNameId}
+    if(that.data.pmindex != 0) {data.theNameId = that.data.pinming[that.data.pmindex]}
+    if(that.data.colorid != 0) {data.color = that.data.colorlist[that.data.colorid]}
+    if(that.data.hdid != 0) { data.thickness = that.data.houdu[that.data.hdid]}
+    if(that.data.googleVal != "") { data.searchText = that.data.googleVal }
+    console.log(data)
     qingqiu.get('groupByingLists',data,function(res){
       if(res.success == true){
         if (res.result != null) {
           if(res.result.records==''){
             that.data.isLastPage=true
           }
-          // that.data.pingou=res.result.records
+          var pingou=that.data.pingou
           for(let obj of res.result.records){
+            if(obj.createtime!=''&& obj.createtime!=null ){
+              obj.createtime=obj.createtime.split(' ')[0]
+            }
+            if(obj.deadline!=''&& obj.deadline!=null ){
+              obj.deadline=obj.deadline.split(' ')[0]
+            }
+            if(obj.upUrl!=''&& obj.upUrl!=null ){
+              obj.upUrl=obj.upUrl.split(',')
+            }
             var str = obj.id.toString()
             if(str.length < 10){
-              var str1 = ''
-              for(let j=0;j<10-str.length;j++){
-                str1 += 0
-              }
-              obj.backup1 = str1 + str
+              obj.backup1 = utils.IdentityNum(str)
             }
+            pingou.push(obj)
           }
-          for(var i=0;i<res.result.records.length;i++){
-            if(res.result.records[i].createtime!=''&& res.result.records[i].createtime!=null ){
-              res.result.records[i].createtime=res.result.records[i].createtime.split(' ')[0]
-            }
-            if(res.result.records[i].deadline!=''&& res.result.records[i].deadline!=null ){
-              res.result.records[i].deadline=res.result.records[i].deadline.split(' ')[0]
-            }
-            if(res.result.records[i].upUrl!=''&& res.result.records[i].upUrl!=null ){
-              res.result.records[i].upUrl=res.result.records[i].upUrl.split(',')
-            }
-            that.data.pingou.push(res.result.records[i])
-          }
-          console.log(that.data.pingou)
+          console.log(pingou)
           that.setData({
-            pingou:that.data.pingou
+            pingou:pingou
           })
         }else {
           wx.showToast({

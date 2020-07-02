@@ -11,7 +11,7 @@
       <view class="sou_img">
         <image src="{{viewUrl}}temp/image/sousuo.png"></image>
       </view>
-      <input class="sou_input" bindinput="bindgoogle" value="{{googleVal}}" placeholder="输入关键字搜索，如品名/规格/颜色"></input>
+      <input class="sou_input" bindinput="bindgoogle" value="{{googleVal}}" placeholder="输入关键字搜索(品名/规格/颜色)"></input>
       <view class="sou_two"> 
         <image src="{{viewUrl}}temp/image/soubut.png" bindtap="getGoogle"></image>
       </view>

@@ -172,9 +172,9 @@
       <view style="color:gray">请您提供尾货实图/商品标签/质保书</view>
     </view>
   </view>
-  <view class="bottom juzhong">
+  <view class="bottom">
     <image src="{{viewUrl}}temp/image/fabu.png" class="anniu-img" bindtap="kucunSubmitSuccess"></image>
-    <view style="color:gray">
+    <view style="color:gray;font-size:24rpx;margin-top:30rpx;">
      <image src="{{viewUrl}}temp/image/xuan1.png" class="anniu-img2" bindtap="change" data-xid="1" wx-if="{{select=='1'}}"></image>
      <image src="{{viewUrl}}temp/image/xuan2.png" class="anniu-img2" bindtap="change" data-xid="2" wx-if="{{select=='2'}}"></image>
     使用前请仔细阅读

@@ -2,6 +2,7 @@
 
 page {
   background: #f5f7fb;
+  padding-bottom: 120rpx;
 }
 
 .content {
@@ -66,8 +67,8 @@ page {
 .bottom {
   width: 100%;
   text-align: center;
-  margin-top: 240rpx;
-  margin-bottom: 115rpx;
+  margin-top: 110rpx;
+  /* margin-bottom: 60rpx; */
 }
 
 .fabu-img {

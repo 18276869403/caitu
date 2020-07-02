@@ -1,186 +1,186 @@
 <!--pages/pingouSubmit/pingouSubmit.wxml-->
 <view class="container">
-  <view class="hengxian"></view>
-  <view class="content">
-    <view class="content-item hengxiang">
-      <view class="content-item-left">交货地</view>
-      <view class="content-item-content">
-       <picker mode="multiSelector" bindcolumnchange="bindMultiPickerColumnsChange"  value="{{multiIndex1}}" range="{{multiArray1}}">
-          <view class="picker">
-            {{multiArray1[0][multiIndex1[0]]}}-{{multiArray1[1][multiIndex1[1]]}}
-          </view>
-        </picker>
-      </view>
-      <view class="content-item-right">
-        <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
-      </view>
-    </view>
-    <view class="content-item hengxiang">
-      <view class="content-item-left">选择钢厂</view>
-      <view class="content-item-content">
-        <picker mode="multiSelector" bindchange="bindMultiPickerChangeone" bindcolumnchange="bindMultiPickerChanges" value="{{multiIndex}}" range="{{multiArray}}">
-          <view class="picker">
-            {{multiArray[0][multiIndex[0]]}}-{{multiArray[1][multiIndex[1]]}}
-          </view>
-        </picker>
-      </view>
-      <view class="content-item-right">
-        <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
-      </view>
-    </view>
-    <view class="content-item hengxiang">
-      <view class="content-item-left">厚度</view>
-      <view class="content-item-content1">
-        <input type="digit" placeholder="请输入厚度" placeholder-class="placeholder" class="shurukuang" value="{{houdu}}" bindinput="houdu" bindblur="retReg" bindfocus="houdufocus"></input>
-      </view>
-      <!-- <view class="content-item-right">
-        <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
-      </view> -->
-    </view>
-    <view class="content-item hengxiang">
-      <view class="content-item-left">宽度</view>
-      <view class="content-item-content1">
-        <input type="digit" placeholder="请输入宽度" placeholder-class="placeholder" class="shurukuang" value="{{kuandu}}" bindinput="kuandu" bindblur="minReg" bindfocus="widthfocus"></input>
-      </view>
-      <!-- <view class="content-item-right">
+	<view class="hengxian"></view>
+	<view class="content">
+		<view class="content-item hengxiang">
+			<view class="content-item-left">交货地</view>
+			<view class="content-item-content">
+				<picker mode="multiSelector" bindcolumnchange="bindMultiPickerColumnsChange" value="{{multiIndex1}}" range="{{multiArray1}}">
+					<view class="picker">
+						{{multiArray1[0][multiIndex1[0]]}}-{{multiArray1[1][multiIndex1[1]]}}
+					</view>
+				</picker>
+			</view>
+			<view class="content-item-right">
+				<image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
+			</view>
+		</view>
+		<view class="content-item hengxiang">
+			<view class="content-item-left">选择钢厂</view>
+			<view class="content-item-content">
+				<picker mode="multiSelector" bindchange="bindMultiPickerChangeone" bindcolumnchange="bindMultiPickerChanges" value="{{multiIndex}}" range="{{multiArray}}">
+					<view class="picker">
+						{{multiArray[0][multiIndex[0]]}}-{{multiArray[1][multiIndex[1]]}}
+					</view>
+				</picker>
+			</view>
+			<view class="content-item-right">
+				<image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
+			</view>
+		</view>
+		<view class="content-item hengxiang">
+			<view class="content-item-left">厚度</view>
+			<view class="content-item-content1">
+				<input type="digit" placeholder="请输入厚度" placeholder-class="placeholder" class="shurukuang" value="{{houdu}}" bindinput="houdu" bindblur="retReg" bindfocus="houdufocus"></input>
+			</view>
+			<!-- <view class="content-item-right">
         <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
       </view> -->
-    </view>
-    <view class="content-item hengxiang">
-      <view class="content-item-left">油漆</view>
-      <view class="content-item-content">
-        <!-- <picker bindchange="youqiChange" value="{{youqiindex}}" range="{{youqi}}" bindchange="bindMultiPickerChangetwo"> -->
-        <picker bindchange="youqiChange" value="{{youqiindex}}" range="{{youqi}}" >
-          <view class="picker">
-            {{youqi[youqiindex]}}
-          </view>
-        </picker>
-      </view>
-      <view class="content-item-right">
-        <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
-      </view>
-    </view>
-    <view class="content-item hengxiang">
-      <view class="content-item-left">正面膜厚</view>
-      <view class="content-item-content1">
-        <!-- <input type="digit" placeholder="请输入正面膜厚" placeholder-class="placeholder" class="shurukuang" value="{{zhengmianChange}}" bindinput="zhengmianChange" bindfocus="zhengfocus" bindblur="zhengmian"></input> -->
-        <picker bindchange="zhengmianChange" value="{{zhengmianindex}}" range="{{zhengmian}}">
-          <view class="picker">
-            {{zhengmian[zhengmianindex]}}
-          </view>
-        </picker>
-      </view>
-      <view class="content-item-right">
-        <image src="{{viewUrl}}temp/image/jinru.png" class="fuhao-img"></image>
-      </view>
-    </view>
-    <view class="content-item hengxiang">
-      <view class="content-item-left">背面膜厚
-      </view>
-      <view class="content-item-content">
-        <!-- <input type="digit" placeholder="请输入背面膜厚" placeholder-class="placeholder" class="shurukuang" value="{{beimianChange}}" bindinput="beimianChange" bindfocus="beifocus" bindblur="beimian"></input> -->
-        <picker bindchange="beimianChange" value="{{beimianindex}}" range="{{beimian}}">
-          <view class="picker">
-            {{beimian[beimianindex]}}
-          </view>
-        </picker>
-      </view>
-      <view class="content-item-right">
-        <image src="{{viewUrl}}temp/image/jinru.png" class="fuhao-img"></image>
-      </view>
-    </view>
-    <view class="content-item hengxiang">
-      <view class="content-item-left">涂层</view>
-    <view class="content-item-content1">
-     <input type="digit" placeholder="被动涂层" disabled placeholder-class="placeholder" class="shurukuang" value="{{tuceng}}" bindinput="tuceng"></input>
-      </view>
-      <!-- <view class="content-item-right">
+		</view>
+		<view class="content-item hengxiang">
+			<view class="content-item-left">宽度</view>
+			<view class="content-item-content1">
+				<input type="digit" placeholder="请输入宽度" placeholder-class="placeholder" class="shurukuang" value="{{kuandu}}" bindinput="kuandu" bindblur="minReg" bindfocus="widthfocus"></input>
+			</view>
+			<!-- <view class="content-item-right">
         <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
       </view> -->
-    </view>
-    <view class="content-item hengxiang">
-      <view class="content-item-left">镀层量</view>
-      <view class="content-item-content">
-        <picker bindchange="xincengChange" value="{{xincengindex}}" range="{{xinceng}}">
-          <view class="picker">
-            {{xinceng[xincengindex]}}
-          </view>
-        </picker>
-      </view>
-      <view class="content-item-right">
-        <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
-      </view>
-    </view>
-    <view class="content-item hengxiang">
-      <view class="content-item-left">颜色</view>
-      <view class="content-item-content">
-        <picker bindchange="yanseChange" value="{{yanseindex}}" range="{{yanse}}">
-          <view class="picker">
-            {{yanse[yanseindex]}}
-          </view>
-        </picker>
-      </view>
-      <view class="content-item-right">
-        <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
-      </view>
-    </view>
-    <view class="content-item hengxiang">
-      <view class="content-item-left">强度</view>
-      <view class="content-item-content">
-        <picker bindchange="qiangduChange" value="{{qiangduindex}}" range="{{qiangdu}}">
-          <view class="picker">
-            {{qiangdu[qiangduindex]}}
-          </view>
-        </picker>
-      </view>
-      <view class="content-item-right">
-        <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
-      </view>
-    </view>
-    <view class="content-item hengxiang">
-      <view class="content-item-left">截止日期</view>
-      <view class="content-item-content">
-        <picker mode="date" value="{{date}}"  bindchange="bindDateChange">
-          <view class="picker">
-            {{date}}
-          </view>
-        </picker>
-      </view>
-      <view class="content-item-right">
-        <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
-      </view>
-    </view>
-    <view class="content-item hengxiang">
-      <view class="content-item-left">需求吨数</view>
-      <view class="content-item-content1">
-        <input type="digit" placeholder="请输入吨数" placeholder-class="placeholder" class="shurukuang" value="{{dunwei}}" bindinput="dunwei"></input>
-      </view>
-      <!-- <view class="content-item-right">
+		</view>
+		<view class="content-item hengxiang">
+			<view class="content-item-left">油漆</view>
+			<view class="content-item-content">
+				<!-- <picker bindchange="youqiChange" value="{{youqiindex}}" range="{{youqi}}" bindchange="bindMultiPickerChangetwo"> -->
+				<picker bindchange="youqiChange" value="{{youqiindex}}" range="{{youqi}}">
+					<view class="picker">
+						{{youqi[youqiindex]}}
+					</view>
+				</picker>
+			</view>
+			<view class="content-item-right">
+				<image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
+			</view>
+		</view>
+		<view class="content-item hengxiang">
+			<view class="content-item-left">正面膜厚</view>
+			<view class="content-item-content1">
+				<!-- <input type="digit" placeholder="请输入正面膜厚" placeholder-class="placeholder" class="shurukuang" value="{{zhengmianChange}}" bindinput="zhengmianChange" bindfocus="zhengfocus" bindblur="zhengmian"></input> -->
+				<picker bindchange="zhengmianChange" value="{{zhengmianindex}}" range="{{zhengmian}}">
+					<view class="picker">
+						{{zhengmian[zhengmianindex]}}
+					</view>
+				</picker>
+			</view>
+			<view class="content-item-right">
+				<image src="{{viewUrl}}temp/image/jinru.png" class="fuhao-img"></image>
+			</view>
+		</view>
+		<view class="content-item hengxiang">
+			<view class="content-item-left">背面膜厚
+			</view>
+			<view class="content-item-content">
+				<!-- <input type="digit" placeholder="请输入背面膜厚" placeholder-class="placeholder" class="shurukuang" value="{{beimianChange}}" bindinput="beimianChange" bindfocus="beifocus" bindblur="beimian"></input> -->
+				<picker bindchange="beimianChange" value="{{beimianindex}}" range="{{beimian}}">
+					<view class="picker">
+						{{beimian[beimianindex]}}
+					</view>
+				</picker>
+			</view>
+			<view class="content-item-right">
+				<image src="{{viewUrl}}temp/image/jinru.png" class="fuhao-img"></image>
+			</view>
+		</view>
+		<view class="content-item hengxiang">
+			<view class="content-item-left">涂层</view>
+			<view class="content-item-content1">
+				<input type="digit" placeholder="被动涂层" disabled placeholder-class="placeholder" class="shurukuang" value="{{tuceng}}" bindinput="tuceng"></input>
+			</view>
+			<!-- <view class="content-item-right">
         <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
       </view> -->
-    </view>
-  </view>
-  <view class="tips">所选钢厂最高可订量：{{pricingPrice}}吨</view>
-  <!-- 提交 -->
-  <view class="bottom">
-    <image src="{{viewUrl}}temp/image/fabu.png" class="fabu-img" bindtap="submitSuccess"></image>
-    <view style="color:gray;font-size:24rpx">
-     <image src="{{viewUrl}}temp/image/xuan1.png" class="anniu-img2" bindtap="change" data-xid="1" wx-if="{{select=='1'}}"></image>
-     <image src="{{viewUrl}}temp/image/xuan2.png" class="anniu-img2" bindtap="change" data-xid="2" wx-if="{{select=='2'}}"></image>
-    使用前请仔细阅读
-      <a style="color:#e02323" bindtap="showModal1">《哇彩兔用户协议》</a>
-    </view>
-  </view>
+		</view>
+		<view class="content-item hengxiang">
+			<view class="content-item-left">镀层量</view>
+			<view class="content-item-content">
+				<picker bindchange="xincengChange" value="{{xincengindex}}" range="{{xinceng}}">
+					<view class="picker">
+						{{xinceng[xincengindex]}}
+					</view>
+				</picker>
+			</view>
+			<view class="content-item-right">
+				<image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
+			</view>
+		</view>
+		<view class="content-item hengxiang">
+			<view class="content-item-left">颜色</view>
+			<view class="content-item-content">
+				<picker bindchange="yanseChange" value="{{yanseindex}}" range="{{yanse}}">
+					<view class="picker">
+						{{yanse[yanseindex]}}
+					</view>
+				</picker>
+			</view>
+			<view class="content-item-right">
+				<image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
+			</view>
+		</view>
+		<view class="content-item hengxiang">
+			<view class="content-item-left">强度</view>
+			<view class="content-item-content">
+				<picker bindchange="qiangduChange" value="{{qiangduindex}}" range="{{qiangdu}}">
+					<view class="picker">
+						{{qiangdu[qiangduindex]}}
+					</view>
+				</picker>
+			</view>
+			<view class="content-item-right">
+				<image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
+			</view>
+		</view>
+		<view class="content-item hengxiang">
+			<view class="content-item-left">截止日期</view>
+			<view class="content-item-content">
+				<picker mode="date" value="{{date}}" bindchange="bindDateChange">
+					<view class="picker">
+						{{date}}
+					</view>
+				</picker>
+			</view>
+			<view class="content-item-right">
+				<image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
+			</view>
+		</view>
+		<view class="content-item hengxiang">
+			<view class="content-item-left">需求吨数</view>
+			<view class="content-item-content1">
+				<input type="digit" placeholder="请输入吨数" placeholder-class="placeholder" class="shurukuang" value="{{dunwei}}" bindinput="dunwei"></input>
+			</view>
+			<!-- <view class="content-item-right">
+        <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
+      </view> -->
+		</view>
+	</view>
+	<view class="tips">所选钢厂最高可订量：{{pricingPrice}}吨</view>
+	<!-- 提交 -->
+	<view class="bottom">
+		<image src="{{viewUrl}}temp/image/fabu.png" class="fabu-img" bindtap="submitSuccess"></image>
+		<view style="color:gray;font-size:24rpx;margin-top:30rpx;">
+			<image src="{{viewUrl}}temp/image/xuan1.png" class="anniu-img2" bindtap="change" data-xid="1" wx-if="{{select=='1'}}"></image>
+			<image src="{{viewUrl}}temp/image/xuan2.png" class="anniu-img2" bindtap="change" data-xid="2" wx-if="{{select=='2'}}"></image>
+			使用前请仔细阅读
+			<a style="color:#e02323" bindtap="showModal1">《哇彩兔用户协议》</a>
+		</view>
+	</view>
 </view>
 
 <!-- 注册协议 -->
 <view class="commodity_screen1" wx:if="{{showModalStatus1}}"></view>
 <view animation="{{animationData1}}" class="commodity_attr_box1" wx:if="{{showModalStatus1}}">
-  <view class='tanchuang zongxiang'>
-    <view class='tankuang-top'>《哇彩兔用户协议》</view>
-    <scroll-view scroll-y class='tankuang-content'>
-      <view>{{xieyi}}</view>
-    </scroll-view>
-    <view class='close-button' bindtap='hideModal1'>关闭</view>
-  </view>
+	<view class='tanchuang zongxiang'>
+		<view class='tankuang-top'>《哇彩兔用户协议》</view>
+		<scroll-view scroll-y class='tankuang-content'>
+			<view>{{xieyi}}</view>
+		</scroll-view>
+		<view class='close-button' bindtap='hideModal1'>关闭</view>
+	</view>
 </view>

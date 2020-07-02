@@ -2,7 +2,7 @@
 
 page {
   background: #f5f7fb;
-  padding-bottom: 120rpx;
+  padding-bottom: 200rpx;
 }
 
 .content {
@@ -67,7 +67,7 @@ white-space: nowrap;
 .bottom {
   width: 570rpx;
   height: 58rpx;
-  line-height: 78rpx;
+  /* line-height: 78rpx; */
   background: rgba(253, 100, 40, 1);
   border-radius: 39rpx;
   font-size: 24rpx;
@@ -75,8 +75,8 @@ white-space: nowrap;
   color: rgba(255, 255, 255, 1);
   margin: auto;
   text-align: center;
-  margin-top: 75rpx;
-  margin-bottom: 145rpx;
+  margin-top: 110rpx;
+  /* margin-bottom: 145rpx; */
 }
 
 .picker {

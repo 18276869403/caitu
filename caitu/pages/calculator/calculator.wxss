@@ -2,6 +2,7 @@
 
 page {
   background: #f5f7fb;
+  padding-bottom: 120rpx;
 }
 
 .content {
@@ -75,7 +76,7 @@ white-space: nowrap;
   color: rgba(255, 255, 255, 1);
   margin: auto;
   text-align: center;
-  margin-top: 120rpx;
+  margin-top: 110rpx;
   /* margin-bottom: 145rpx; */
 }
 
@@ -85,7 +86,7 @@ white-space: nowrap;
   margin: auto;
   text-align: center;
   margin-top: 20rpx;
-  margin-bottom: 110rpx;
+  /* margin-bottom: 110rpx; */
 }
 
 .shurukuang {
