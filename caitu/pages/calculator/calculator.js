@@ -221,7 +221,9 @@ Page({
             zhengvalue:'',
             beivalue:'',
             tuceng:'',
-            xincengindex:0
+            xincengindex:0,
+            zhengmianindex:0,
+            beimianid:0
           })
         }else{
           qiangduindex = utils.getArrIndex(qiangdu,itemdata.density)
@@ -244,9 +246,7 @@ Page({
           qiangduarray:res.result.densityList,
           youqiarray:res.result.printList,
           yansearray:res.result.colorList,
-          zhengmianindex:0,
-          beimianindex:0,
-          flag:false
+          flag:false,
         })
       }
     })
