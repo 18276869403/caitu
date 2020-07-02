@@ -97,6 +97,7 @@ Page({
     data.monovalent = key[12]
     data.backup1 = key[13]
     data.xinceng = value[6]
+    data.tuceng = value[5]
     var obj = JSON.stringify(this.data.jisuanDetails)
     wx.redirectTo({
       url: '../calculator/calculator?obj=' + obj,

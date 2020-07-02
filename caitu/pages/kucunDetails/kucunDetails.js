@@ -38,6 +38,10 @@ Page({
     xinceng:['选择锌层'],
     xincengindex: 0,
     yanse:['选择颜色'],
+    zhengmian:['选择正面膜厚'],
+    zhengmianindex:0,
+    beimian:['选择背面膜厚'],
+    beimianindex:0,
     yanseindex: 0,
     zheng:[],
     fan:[],
@@ -48,6 +52,10 @@ Page({
     imglist:[],
     bindimg:[],
     kcid:'',
+    zhengmianid:[],
+    beimianid:[],
+    select:1,
+    xieyi:api.xieyi,
     itemobj:{}
     // multiArray: [
     //   ['选择钢厂', '广州宝钢', '上海宝钢', '浙江宝钢'],
@@ -174,6 +182,7 @@ Page({
       console.log('库存详情',res.result[0])
       if(res.success == true){
         var data = res.result[0]
+        debugger
         if(data.upUrl.indexOf(',') !=  -1){
           data.upUrl = data.upUrl.split(',')
           for(let obj of data.upUrl){
@@ -197,7 +206,7 @@ Page({
         var pid = that.data.cityList[multiIndex1_1-1].itemValue
         // 市
         that.getshiindex(pid,data.areaTwoText)
-        var multiIndex_1 = utils.getArrIndex(that.data.multiArray[0],data.areaTwoText)
+        var multiIndex_1 = utils.getArrIndex(that.data.multiArray1[0],data.areaTwoText)
         if(multiIndex_1 != -1){
           var multiIndex = "multiIndex[0]"
           that.setData({
@@ -225,7 +234,7 @@ Page({
           tuceng:data.coat,
           dunwei:data.tonnage
         })
-        that.getXC({steelName:data.steelName,theNameId:data.theNameId,text:data.paint})
+        that.gethoudu({steelName:data.steelName,theNameId:data.theNameId,text:data.paint})
       }else{
         wx.showToast({
           title: res.message,
@@ -735,161 +744,104 @@ Page({
         })
       }
     })
-    
+    var data = {
+      steelName:that.data.gangchangname,
+      text:that.data.youqi[that.data.youqiindex],
+      theNameId:that.data.pinmingid
+    }
+    that.gethoudu(data)
   },
-  // 正面焦点
-  zhengfocus:function(){
+  // 正背面厚度-镀层量
+  gethoudu(data){
     var that = this
-    if(!that.data.youqi.length>0){
-      wx.showToast({
-        title: '请选择钢厂',
-        icon:'none',
-        duration:2000
-      })
-      return
-    }
-    if(!that.data.mohou.length > 0){
-      wx.showToast({
-        title: '请选择油漆',
-        icon:'none',
-        duration:2000
-      })
-      that.setData({
-        zhengvalue:''
-      })
-      return
-    }
-  },
-  // 正面
-  zhengmianChange: function (e) {
-    this.setData({
-      zhengvalue: e.detail.value
+    // var data = {
+    //   steelName:that.data.gangchangname,
+    //   text:that.data.youqi[that.data.youqiindex],
+    //   theNameId:that.data.pinmingid
+    // }
+    that.data.zhengmian=['选择正面膜厚']
+    that.data.beimian=['选择背面膜厚']
+    that.data.xinceng=['选择镀层量']
+    console.log(data)
+    qingqiu.get("getXC",data,function(res){
+      debugger
+      if(res.success == true){
+        for(let obj of res.result.zlist){
+          that.data.zhengmian.push(obj.scope)
+          that.data.zhengmianid.push(obj.id)
+        }
+        for(let obj1 of res.result.blist){
+          that.data.beimian.push(obj1.scope)
+          that.data.beimianid.push(obj1.id)
+        }
+        for(let obj2 of res.result.xclist){
+          that.data.xinceng.push(obj2.scope)
+        }
+        if(that.data.itemobj!=''){
+          that.data.zhengmianindex = utils.getArrIndex(that.data.zhengmian,that.data.itemobj.front)=='-1'?'0':utils.getArrIndex(that.data.zhengmian,that.data.itemobj.front)
+          that.data.beimianindex = utils.getArrIndex(that.data.beimian,that.data.itemobj.rear)=='-1'?'0':utils.getArrIndex(that.data.beimian,that.data.itemobj.rear)
+          that.data.xincengindex = utils.getArrIndex(that.data.xinceng,that.data.itemobj.zincLayer)=='-1'?'0':utils.getArrIndex(that.data.xinceng,that.data.itemobj.zincLayer)
+        }
+        that.setData({
+          zhengmianindex:that.data.zhengmianindex,
+          beimianindex:that.data.beimianindex,
+          xincengindex:that.data.xincengindex,
+          zhengmian:that.data.zhengmian,
+          beimian:that.data.beimian,
+          xinceng:that.data.xinceng,
+          zhengmianid:that.data.zhengmianid,
+          beimianid:that.data.beimianid
+        })
+        console.log(that.data.zhengmian)
+        console.log(that.data.beimian)
+        console.log(that.data.xinceng)
+      }
     })
   },
-  // 正面失去焦点
-  zhengmian:function(e){
-    var that = this
-    var value = e.detail.value
-    if(value == ''){
-      return
-    }
-    var minvalue = that.data.zheng[0]
-    var maxvalue = that.data.zheng[1]
-    if(minvalue > maxvalue){
-      wx.showToast({
-        title: '该油漆下没有正面膜厚，请联系管理员',
-        icon:'none',
-        duration:2000
-      })
+ // 膜厚
+ getmohou(data){
+  var that = this
+  qingqiu.get("commonMoHou",data,function(res){
+    if(res.success == true){
+      that.data.tuceng=res.result.context
       that.setData({
-        zhengvalue:''
+        tuceng:that.data.tuceng
       })
-      return
+      console.log(that.data.tuceng)
     }
-    if(value>=minvalue&&value<=maxvalue){
-      var index = 0
-      var data = {
-        zheng:value,
-        zhengId:that.data.mohou[index],
-        bei:that.data.beivalue==''?0:that.data.zhengvalue
-      }
-      qingqiu.get("commonMoHou",data,function(res){
-        if(res.success == true){
-          that.setData({
-            zhengvalue:value,
-            tuceng:res.message
-          })
-        }
-      })
-    }else{
-      wx.showToast({
-        title: '数值在'+minvalue+"~"+maxvalue,
-        icon:'none',
-        duration:2000
-      })
-      that.setData({
-        zhengvalue:''
-      })
-      return
+  })
+},
+  // 正面膜厚
+  zhengmianChange:function(e){
+    var that=this
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    that.setData({
+      zhengmianindex: e.detail.value
+    })
+    var data={
+      zheng:that.data.zhengmian[that.data.zhengmianindex]=='选择正面膜厚'?'':that.data.zhengmian[that.data.zhengmianindex],
+      bei:that.data.beimian[that.data.beimianindex]=='选择背面膜厚'?'':that.data.beimian[that.data.beimianindex],
+      zhengId:that.data.zhengmianid[that.data.zhengmianindex-1]==undefined?'':that.data.zhengmianid[that.data.zhengmianindex-1],
+      beiId:that.data.beimianid[that.data.beimianindex-1]==undefined?'':that.data.beimianid[that.data.beimianindex-1],
+      text:that.data.youqi[that.data.youqiindex]
     }
+    that.getmohou(data)
   },
-
-  // 背面
-  beimianChange: function (e) {
-    this.setData({
+  // 背面膜厚
+  beimianChange:function(e){
+    var that=this
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    that.setData({
       beimianindex: e.detail.value
     })
-  },
-  // 背面焦点
-  beifocus:function(){
-    var that = this
-    if(!that.data.youqi.length>0){
-      wx.showToast({
-        title: '请选择钢厂',
-        icon:'none',
-        duration:2000
-      })
-      return
+    var data={
+      zheng:that.data.zhengmian[that.data.zhengmianindex]=='选择正面膜厚'?'':that.data.zhengmian[that.data.zhengmianindex],
+      bei:that.data.beimian[that.data.beimianindex]=='选择背面膜厚'?'':that.data.beimian[that.data.beimianindex],
+      zhengId:that.data.zhengmianid[that.data.zhengmianindex-1]==undefined?'':that.data.zhengmianid[that.data.zhengmianindex-1],
+      beiId:that.data.beimianid[that.data.beimianindex-1]==undefined?'':that.data.beimianid[that.data.beimianindex-1],
+      text:that.data.youqi[that.data.youqiindex]
     }
-    if(!that.data.mohou.length > 0){
-      wx.showToast({
-        title: '请选择油漆',
-        icon:'none',
-        duration:2000
-      })
-      that.setData({
-        zhengvalue:''
-      })
-      return
-    }
-  },
-
-  // 背面失去焦点
-  beimian:function(e){
-    var that = this
-    var value = e.detail.value
-    if(value == ''){
-      return
-    }
-    var minvalue = that.data.bei[0]
-    var maxvalue = that.data.bei[1]
-    if(minvalue > maxvalue){
-      wx.showToast({
-        title: '该油漆下没有背面膜厚，请联系管理员',
-        icon:'none',
-        duration:2000
-      })
-      that.setData({
-        beivalue:''
-      })
-      return
-    }
-    if(value>=minvalue&&value<=maxvalue){
-      var index = 1
-      var data = {
-        zheng:that.data.zhengvalue==''?0:that.data.zhengvalue,
-        beiId:that.data.mohou[index],
-        bei:value
-      }
-      qingqiu.get("commonMoHou",data,function(res){
-        if(res.success == true){
-          that.setData({
-            beivalue:value,
-            tuceng:res.message
-          })
-        }
-      })
-    }else{
-      wx.showToast({
-        title: '数值在'+minvalue+"~"+maxvalue,
-        icon:'none',
-        duration:2000
-      })
-      that.setData({
-        beivalue:''
-      })
-      return
-    }
+    that.getmohou(data)
   },
 
   // 锌层
@@ -975,5 +927,68 @@ Page({
       bindimg:imgs,
       imglist:imgurl
     })
-  }
+  },
+  //改变选框状态(免责协议)
+  change: function(e) {
+    var that = this
+    //得到选中状态
+    var select = e.currentTarget.dataset.xid
+    if (select == "1") {
+      var stype = "2"
+
+    } else {
+      var stype = "1"
+    }
+    //赋值
+    that.setData({
+      select: stype
+    })
+
+  },
+  // 服务规则页面显示
+  showModal1: function() {
+    this.setData({
+      hasMask: true
+    })
+    var animation = wx.createAnimation({
+      duration: 300,
+      timingFunction: "linear",
+      delay: 0
+    })
+    this.animation = animation
+
+    animation.opacity(0).rotateX(-100).step();
+    this.setData({
+      animationData: animation.export(),
+      showModalStatus1: true
+    })
+    setTimeout(function() {
+      animation.opacity(1).rotateX(0).step();
+      this.setData({
+        animationData: animation.export()
+      })
+    }.bind(this), 200)
+  },
+  //服务规则页面关闭
+  hideModal1: function() {
+    var animation = wx.createAnimation({
+      duration: 200,
+      timingFunction: "linear",
+      delay: 0
+    })
+    // flag = 0;
+    this.animation = animation
+    animation.translateY(300).step()
+    this.setData({
+      animationData: animation.export(),
+      hasMask: false
+    })
+    setTimeout(function() {
+      animation.translateY(0).step()
+      this.setData({
+        animationData: animation.export(),
+        showModalStatus1: false
+      })
+    }.bind(this), 200)
+  },
 })

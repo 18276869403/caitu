@@ -75,21 +75,31 @@
     <view class="content-item hengxiang">
       <view class="content-item-left">正面膜厚</view>
       <view class="content-item-content1">
-        <input type="digit" placeholder="请输入正面膜厚" placeholder-class="placeholder" class="shurukuang" value="{{zhengvalue}}" bindinput="zhengmianChange" bindfocus="zhengfocus" bindblur="zhengmian"></input>
+        <!-- <input type="digit" placeholder="请输入正面膜厚" placeholder-class="placeholder" class="shurukuang" value="{{zhengvalue}}" bindinput="zhengmianChange" bindfocus="zhengfocus" bindblur="zhengmian"></input> -->
+        <picker bindchange="zhengmianChange" value="{{zhengmianindex}}" range="{{zhengmian}}">
+          <view class="picker">
+            {{zhengmian[zhengmianindex]}}
+          </view>
+        </picker>
       </view>
-      <!-- <view class="content-item-right">
+      <view class="content-item-right">
         <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
-      </view> -->
+      </view>
     </view>
     <view class="content-item hengxiang">
       <view class="content-item-left">背面膜厚
       </view>
       <view class="content-item-content1">
-         <input type="digit" placeholder="请输入背面膜厚" placeholder-class="placeholder" class="shurukuang" value="{{beivalue}}" bindinput="beimianChange" bindfocus="beifocus" bindblur="beimian"></input>
+         <!-- <input type="digit" placeholder="请输入背面膜厚" placeholder-class="placeholder" class="shurukuang" value="{{beivalue}}" bindinput="beimianChange" bindfocus="beifocus" bindblur="beimian"></input> -->
+         <picker bindchange="beimianChange" value="{{beimianindex}}" range="{{beimian}}">
+          <view class="picker">
+            {{beimian[beimianindex]}}
+          </view>
+        </picker>
       </view>
-      <!-- <view class="content-item-right">
+      <view class="content-item-right">
         <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
-      </view> -->
+      </view>
     </view>
     <view class="content-item hengxiang">
       <view class="content-item-left">涂层</view>
