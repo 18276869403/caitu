@@ -163,7 +163,7 @@
               <view class="pingou-left-item">
                 吨数：{{item.tonnage}}
               </view>
-            </view>
+            </view> 
             <view class="pingou-item-right">
               <image src="{{viewUrl}}temp/image/pingouing.png" class="pingou-img" wx:if="{{item.startoks===0}}"></image>
               <image src="{{viewUrl}}temp/image/pipeizhong2.png" class="pingou-img" wx:if="{{item.startoks===1}}"></image>

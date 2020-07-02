@@ -77,7 +77,7 @@ Page({
       if (res.success == true) {
         for (let obj of res.result.records) {
           var str = obj.id.toString()
-          if (str.length < 10) {
+          if (str.length < 10) { 
             var str1 = ''
             for (let i = 0; i < 10 - str.length; i++) {
               str1 += 0
