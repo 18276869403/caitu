@@ -263,8 +263,8 @@
   </view>
   <view class="bottom zongxiang"> 
     <view><image src="{{viewUrl}}temp/image/xuanfuqiu.png" class="xuanfu-img" bindtap="calculator"></image></view>
-    <view><image src="{{viewUrl}}temp/image/kefu.png" class="xuanfu-img" bindtap="phonecall" wx:if="{{wxState==0}}"></image></view>
-    <view><image src="{{viewUrl}}temp/image/kefu.png" class="xuanfu-img" bindtap="phonecall" wx:if="{{wxState!=0}}"></image></view>
+    <view><image src="{{viewUrl}}temp/image/kefu.png" class="xuanfu-img" bindtap="kefucall" wx:if="{{wxState==0}}"></image></view>
+    <view><image src="{{viewUrl}}temp/image/kefu.png" class="xuanfu-img" bindtap="guwencall" data-phone="{{wxUser.distrPhone}}" wx:if="{{wxState!=0}}"></image></view>
   </view>
 </view>
 <!-- 用户未认证弹窗 -->

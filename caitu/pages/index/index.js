@@ -28,6 +28,7 @@ Page({
     zixunList: [],
     userId: '',
     isAuto: 0,
+    wxUser:{},
     wxState: 0,
     addstr: ' style="display: -webkit-box;font-size: 28rpx;color: #999999;line-height: 40rpx;word-break: break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;text-overflow: ellipsis;"'
   },
@@ -240,22 +241,17 @@ Page({
                     app.globalData.gender = re.result.wxUser.sex
                     // 获取个人信息
                     var data = {
-                      id: app.globalData.wxid
+                      id: re.result.wxUser.id
                     }
-                    console.log(data)
                     qingqiu.get('my', data, function (res) {
                       console.log('我的信息', res)
                       if (res.success == true) {
                         app.globalData.wxState = res.result.records[0].autoState
-                        if (app.globalData.wxState == 0) {
-                          that.setData({
-                            showModalStatus2: true
-                          })
-                        } else {
+                        if (app.globalData.wxState != 0) {
                           that.setData({
                             wxUser: res.result.records[0]
                           })
-                        }
+                        } 
                       }
                     })
                     that.setData({
@@ -428,9 +424,15 @@ Page({
       })
     }.bind(this), 200)
   },
-  phonecall: function (e) {
+  kefucall: function (e) {
     wx.makePhoneCall({
       phoneNumber: '13004192210',
+    })
+  },
+  guwencall:function(e){
+    var phone = e.currentTarget.dataset.phone
+    wx.makePhoneCall({
+      phoneNumber: phone,
     })
   }
 })
