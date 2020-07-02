@@ -182,7 +182,6 @@ Page({
       console.log('库存详情',res.result[0])
       if(res.success == true){
         var data = res.result[0]
-        debugger
         if(data.upUrl.indexOf(',') !=  -1){
           data.upUrl = data.upUrl.split(',')
           for(let obj of data.upUrl){
@@ -366,6 +365,14 @@ Page({
     if(v != 0){
       wx.showToast({
         title: v,
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.select!=2){
+      wx.showToast({
+        title: '请勾选用户协议',
         icon:'none',
         duration:2000
       })

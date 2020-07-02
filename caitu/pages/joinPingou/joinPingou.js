@@ -29,7 +29,8 @@ Page({
       var shuju=JSON.parse(options.shuju)
       this.setData({
         pgid:shuju.id,
-        shuju:shuju
+        shuju:shuju,
+        pricingprice:shuju.pricingprice
       })
     }
     this.getAddress()
@@ -129,6 +130,14 @@ Page({
       groupId:that.data.pgid,
       wxUserId:app.globalData.wxid,
       sumsn:that.data.dunwei
+    }
+    if(Number(that.data.dunwei)>Number(that.data.pricingprice)){
+      wx.showToast({
+        title: '拼购吨数不能大于钢厂最高起订量',
+        icon:'none',
+        duration:2000
+      })
+      return
     }
     console.log(data)
     qingqiu.get("canYuGroupBuying",data,function(res){

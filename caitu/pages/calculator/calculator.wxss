@@ -82,7 +82,7 @@ white-space: nowrap;
 
 .bottomxieyi{
   color:gray;
-  font-size:24rpx;
+  font-size:30rpx;
   margin: auto;
   text-align: center;
   margin-top: 20rpx;

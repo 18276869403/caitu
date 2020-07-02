@@ -8,6 +8,17 @@
   margin-top: 33rpx;
 }
 
+.tips2 {
+  width: 94%;
+  margin-left: 5%;
+  margin-right: 3%;
+  text-align: left;
+  font-size: 30rpx;
+  color: gray;
+  font-weight: 500;
+  margin-top: 35rpx;
+}
+
 .content-list {
   width: 90%;
   margin-left: 3%;

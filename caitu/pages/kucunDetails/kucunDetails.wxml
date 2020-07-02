@@ -174,5 +174,22 @@
   <!-- 保存按钮 -->
   <view class="bottom juzhong">
     <image src="{{viewUrl}}temp/image/baocunanniu.png" class="anniu-img" bindtap="kucunSubmitSuccess"></image>
+    <view style="color:gray;font-size:30rpx;margin-top:30rpx;">
+     <image src="{{viewUrl}}temp/image/xuan1.png" class="anniu-img2" bindtap="change" data-xid="1" wx-if="{{select=='1'}}"></image>
+     <image src="{{viewUrl}}temp/image/xuan2.png" class="anniu-img2" bindtap="change" data-xid="2" wx-if="{{select=='2'}}"></image>
+    使用前请仔细阅读
+      <a style="color:#e02323" bindtap="showModal1">《哇彩兔用户协议》</a>
+    </view>
+  </view>
+</view>
+<!-- 注册协议 -->
+<view class="commodity_screen1" wx:if="{{showModalStatus1}}"></view>
+<view animation="{{animationData1}}" class="commodity_attr_box1" wx:if="{{showModalStatus1}}">
+  <view class='tanchuang zongxiang'>
+    <view class='tankuang-top'>《哇彩兔用户协议》</view>
+    <scroll-view scroll-y class='tankuang-content'>
+      <view>{{xieyi}}</view>
+    </scroll-view>
+    <view class='close-button' bindtap='hideModal1'>关闭</view>
   </view>
 </view>

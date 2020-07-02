@@ -77,13 +77,24 @@ page {
 
 .tips {
   width: 94%;
-  margin-left: 3%;
+  margin-left: 5%;
   margin-right: 3%;
   text-align: left;
-  font-size: 36rpx;
+  font-size: 30rpx;
   font-weight: 500;
   color: rgba(246, 74, 36, 1);
   margin-top: 35rpx;
+}
+
+.tips2 {
+  width: 94%;
+  margin-left: 5%;
+  margin-right: 3%;
+  text-align: left;
+  font-size: 30rpx;
+  color: gray;
+  font-weight: 500;
+  margin-top: 20rpx;
 }
 
 .shurukuang {

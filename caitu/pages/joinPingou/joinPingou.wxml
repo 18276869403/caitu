@@ -33,7 +33,7 @@
         <input type="digit" placeholder="输入需求吨数" class="shurukuang" value="{{dunwei}}"  bindinput="dunwei" placeholder-class="placeholder"></input>
       </view>
     </view>
-
+    <view class="tips2">所选钢厂最高起订量：{{pricingprice}}吨</view>
   </view>
 <view class="juzhong guding">
 <!-- 提交 -->
