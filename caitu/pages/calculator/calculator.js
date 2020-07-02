@@ -223,7 +223,7 @@ Page({
             tuceng:'',
             xincengindex:0,
             zhengmianindex:0,
-            beimianid:0
+            beimianindex:0
           })
         }else{
           qiangduindex = utils.getArrIndex(qiangdu,itemdata.density)
