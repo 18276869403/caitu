@@ -220,10 +220,11 @@ Page({
     })
   },
   // 拨打电话
-  phonecall: function() {
+  phonecall: function(e) {
     this.hideModal1()
+    var phone = e.currentTarget.dataset.phone
     wx.makePhoneCall({
-      phoneNumber: '17656453456',
+      phoneNumber: phone,
       success:function(res){
         console.log(res)
       },

@@ -114,7 +114,7 @@
       <view class="tanchuang-button" bindtap="phonecall">
         {{wxUser.distrPhone}}
       </view>
-      <view class="tanchuang-button" bindtap="phonecall" wx:if="{{wxUser.distrPhone == ''&&wxUsesr.distrPhone==null}}">
+      <view class="tanchuang-button" bindtap="phonecall" data-phone="{{wxUser.distrPhone}}" wx:if="{{wxUser.distrPhone == ''&&wxUsesr.distrPhone==null}}">
         {{wxUser.distrPhone}}
       </view>
     </view>

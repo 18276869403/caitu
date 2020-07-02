@@ -559,7 +559,7 @@ Page({
       if(res.success == true){
         dataobj.id = res.result.askid
         dataobj.haibaotype = 0
-        if(res.result.inventoryListVoList == ''){
+        if(res.result.inventoryListVoList.length == 0){
           dataobj.theName = that.data.multiArray[1][that.data.multiIndex1[1]]
           dataobj = JSON.stringify(dataobj)
           wx.redirectTo({

@@ -130,9 +130,6 @@ Page({
       }
     })
   },
-  // 厚度
-  getHou(value){
-  },
   bindgoogle:function(e){
     this.setData({
       googleVal:e.detail.value
@@ -142,10 +139,13 @@ Page({
   getGoogle(){
     console.log(this.data.navid)
     if(this.data.navid == 1){
+      this.setData({pageNo:1,qiugou:[]})
       this.selectqiugou()      
     }else if(this.data.navid == 2){
+      this.setData({pageNo:1,kucun:[]})
       this.selectweihuo()
     }else{
+      this.setData({pageNo:1,pingou:[]})
       this.selectpingou()
     }
   },
