@@ -103,7 +103,7 @@ Page({
     for(let obj of pgxxlist){
       if(obj.wxUserId == app.globalData.wxid){
         wx.showToast({
-          title: '你已参入改拼购，不能重复参与',
+          title: '你已参入该拼购，不能重复参与',
           icon:'none',
           duration:2000
         })

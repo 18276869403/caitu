@@ -142,6 +142,7 @@ Page({
         
         var item = that.data.shuju
         var dataobj = {
+          id:that.data.id,
           wxUserId:app.globalData.wxid,
           areaOneId:item.areaOneId,
           areaTwoId:item.areaTwoId,
@@ -157,6 +158,7 @@ Page({
           density:item.density,
           tonnage:item.tonnage,
         }
+        dataobj.haibaotype = 1
         dataobj.theName = item.itemvalue_dictText
         dataobj = JSON.stringify(dataobj)
         if(res.result.records.length == 0){
