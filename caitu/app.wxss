@@ -38,8 +38,8 @@
 }
 
 .anniu-img2 {
-  width: 25rpx;
-  height: 25rpx;
+  width: 30rpx;
+  height: 30rpx;
 }
 
 .juzhong {
