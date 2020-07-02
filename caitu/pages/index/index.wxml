@@ -266,7 +266,7 @@
     <view><image src="{{viewUrl}}temp/image/kefu.png" class="xuanfu-img" bindtap="kefucall" wx:if="{{wxState==0}}"></image></view>
     <view><image src="{{viewUrl}}temp/image/kefu.png" class="xuanfu-img" bindtap="guwencall" data-phone="{{wxUser.distrPhone}}" wx:if="{{wxState!=0}}"></image></view>
   </view>
-</view>
+</view> 
 <!-- 用户未认证弹窗 -->
 <view class="commodity_screen1" wx:if="{{showModalStatus1}}"></view>
 <view animation="{{animationData1}}" class="commodity_attr_box1" wx:if="{{showModalStatus1}}">

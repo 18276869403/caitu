@@ -34,7 +34,7 @@ Page({
   },
   // 下拉刷新
   onPullDownRefresh: function () {
-    this.onShow()
+    this.onShow() 
     setTimeout(() => {
       wx.stopPullDownRefresh()
     }, 1000);
