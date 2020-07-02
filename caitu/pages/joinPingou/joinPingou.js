@@ -179,7 +179,7 @@ Page({
           setTimeout(function(){
             app.globalData.haibaitype = 1
             wx.redirectTo({
-              url: '../submitSuccess/submitSuccess?obj='+shuju1+"&dataobj="+dataobj,
+              url: '../submitSuccess/submitSuccess?obj='+shuju1+"&dataobj="+dataobj+"&objtype="+1,
             })
           },1000)
         }

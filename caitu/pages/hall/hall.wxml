@@ -102,7 +102,7 @@
             <view>
               <image src="{{viewUrl}}temp/image/xinceng.png" class="xq_img"></image>
             </view>
-            <view class="xq_name yincang">锌层：{{item.zinclayer}}</view>
+            <view class="xq_name yincang">镀层量：{{item.zinclayer}}</view>
           </view>
           <view class="bianh hengxiang">
             <view>
@@ -174,7 +174,7 @@
             <view>
               <image src="{{viewUrl}}temp/image/xinceng.png" class="cs_img"></image>
             </view>
-            <view class="yincang">锌层：{{item.zincLayer}}</view>
+            <view class="yincang">镀层量：{{item.zincLayer}}</view>
           </view>
           <view class="zcs hengxiang">
             <view>
@@ -225,7 +225,7 @@
             <view>
               <image src="{{viewUrl}}temp/image/xinceng.png" class="xq_img"></image>
             </view>
-            <view class="xq_name yincang">锌层：{{item.zinclayer}}</view>
+            <view class="xq_name yincang">镀层量：{{item.zinclayer}}</view>
           </view>
           <view class="bianh hengxiang">
             <view>

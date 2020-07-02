@@ -37,7 +37,7 @@
           <view>
             <image src="{{viewUrl}}temp/image/xinceng.png" class="xq_img"></image>
           </view>
-          <view class="xq_name">锌层：{{item.zinclayer}}</view>
+          <view class="xq_name">镀层量：{{item.zinclayer}}</view>
         </view>
         <view class="bianh hengxiang">
           <image src="{{viewUrl}}temp/image/didian.png" class="xq_img"></image>

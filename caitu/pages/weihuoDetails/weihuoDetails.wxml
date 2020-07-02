@@ -92,7 +92,7 @@
         <view class="sj_s">{{items.coat}}</view>
       </view>
       <view class="cs_sj hengxiang">
-        <view class="sj_h">锌层</view>
+        <view class="sj_h">镀层量</view>
         <view class="sj_s">{{items.zincLayer}}</view>
       </view>
       <view class="cs_sj hengxiang">
