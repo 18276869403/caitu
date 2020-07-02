@@ -129,11 +129,11 @@
   </view>
    <!-- entertype==1,为从我的页面进入 -->
    <!-- 生成海报 -->
-  <view class="ck" wx:if="{{pgxx.startoks==0&&pgxx.wxUserId==wxid}}">
+  <view class="ck" wx:if="{{pgxx.startoks==0&&pgxx.wxUserId==wxid&&typeState==0}}">
     <image src="{{viewUrl}}temp/image/haibao.png" class="ck_img" bindtap="post" data-item="{{pgxx}}"></image>
   </view>
    <!-- 选择匹配 -->
-  <view class="ck" wx:if="{{pgxx.startoks=='1'&&pgxx.wxUserId==wxid}}">
+  <view class="ck" wx:if="{{pgxx.startoks=='1'&&pgxx.wxUserId==wxid&&typeState==0}}">
     <image src="{{viewUrl}}temp/image/xuanzepipei.png" class="ck_img" bindtap="submitSuccess" data-item="{{pgxx}}"></image>
   </view>
   <!-- 为从首页进入 -->

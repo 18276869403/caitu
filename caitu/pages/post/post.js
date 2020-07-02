@@ -184,6 +184,7 @@ Page({
              filePath: that.data.shareImgSrc,
              success(res) {
                console.log(res);
+               debugger
                wx.showModal({
                  title: '图片保存成功',
                  content: '图片成功保存到相册了，去发圈噻~',
@@ -210,12 +211,10 @@ Page({
    },
 
    drawTextCss:function(ctx,obj){
-    console.log('渲染文字')
     ctx.save();
     ctx.setFillStyle(obj.color);
     ctx.setFontSize(obj.size);
     if (obj.bold) {
-        console.log('字体加粗')
         ctx.fillText(obj.text, obj.x, obj.y - 0.5);
         ctx.fillText(obj.text, obj.x - 0.5, obj.y);
     } 

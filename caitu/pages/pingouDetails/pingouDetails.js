@@ -17,6 +17,7 @@ Page({
     type: 1, //进行中
     // type:2,//匹配中
     // type:3,//已完成
+    typeState:1, //是否是首页进入
     pgid:'',
     pgxxlist:[],
     pgxx:{},
@@ -27,8 +28,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if(1==1){
-      // if(options.id != undefined){
+    if(options.type != undefined){
+      this.setData({
+        typeState:options.type
+      })
+    }
+    if(options.id != undefined){
       this.getDetails(options.id)
     }else{
       var pgxx=JSON.parse(options.obj)
