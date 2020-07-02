@@ -62,8 +62,8 @@ white-space: nowrap;
 
 .bottom {
   text-align: center;
-  margin-top: 250rpx;
-  margin-bottom: 145rpx;
+  margin-top: 110rpx;
+  /* margin-bottom: 145rpx; */
 }
 
 .picker {
