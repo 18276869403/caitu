@@ -140,7 +140,7 @@
   <!-- 我要参与 -->
   <view class="ck" wx:if="{{pgxx.wxUserId!=wxid&&pgxx.startoks==0}}">
     <image src="{{viewUrl}}temp/image/woyaocanyu.png" class="ck_img" bindtap="joinPingou" data-shuju="{{pgxx}}"></image>
-  </view>
+  </view> 
 </view>
 
 <!-- 用户未认证弹窗 -->

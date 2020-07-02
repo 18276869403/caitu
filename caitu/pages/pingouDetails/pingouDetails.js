@@ -31,7 +31,7 @@ Page({
     if(options.type != undefined){
       this.setData({
         typeState:options.type
-      })
+      }) 
     }
     if(options.id != undefined){
       this.getDetails(options.id)

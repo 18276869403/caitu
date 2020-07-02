@@ -245,7 +245,7 @@ Page({
         ctx.fillText(str.substring(lastSubStrIndex, i + 1), leftWidth, initHeight);
       }
     }
-    // 标题border-bottom 线距顶部距离
+    // 标题border-bottom 线距顶部距离 
     titleHeight = titleHeight + 10;
     return titleHeight
   },

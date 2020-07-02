@@ -353,7 +353,7 @@ Page({
     var obj = e.currentTarget.dataset.pingou;
     var pgxx = JSON.stringify(obj);
     wx.navigateTo({
-      url: '../pingouDetails/pingouDetails?obj=' + pgxx +'&type=0',
+      url: '../pingouDetails/pingouDetails?obj=' + pgxx +'&type=0', 
     })
   },
   //跳转到尾货信息页面
