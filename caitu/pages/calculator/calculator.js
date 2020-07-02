@@ -551,9 +551,9 @@ gethuodu(data){
         that.data.xincengindex = utils.getArrIndex(that.data.xinceng,that.data.itemobj.zincLayer)=='-1'?'0':utils.getArrIndex(that.data.xinceng,that.data.itemobj.zincLayer)
       }
       that.setData({
-        zhengmianindex:that.data.zhengmianindex,
-        beimianindex:that.data.beimianindex,
-        xincengindex:that.data.xincengindex,
+        zhengmianindex:1,
+        beimianindex:1,
+        xincengindex:1,
         zhengmian:that.data.zhengmian,
         beimian:that.data.beimian,
         xinceng:that.data.xinceng,
@@ -563,9 +563,27 @@ gethuodu(data){
         zhengmianid:that.data.zhengmianid,
         beimianid:that.data.beimianid
       })
-      console.log(that.data.zhengmian)
-      console.log(that.data.beimian)
-      console.log(that.data.xinceng)
+      var dataobj = {}
+      if(that.data.zhengmian.length > 0){dataobj.zheng = that.data.zhengmian[1]}else{ 
+        wx.showToast({
+          title: '该油漆没有正面膜厚',
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
+      if(that.data.beimian.length > 0){ dataobj.bei = that.data.beimian[1]}else{
+        wx.showToast({
+          title: '该油漆没有背面膜厚',
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
+      if(that.data.zhengmianid.length > 0){dataobj.zhengId = that.data.zhengmianid[0]}
+      if(that.data.beimianid.length > 0){dataobj.beiId = that.data.beimianid[0]}
+      if(that.data.youqi.length > 0){dataobj.text = that.data.youqi[that.data.youqiindex]}
+      that.getmohou(dataobj)
     }
   })
 },

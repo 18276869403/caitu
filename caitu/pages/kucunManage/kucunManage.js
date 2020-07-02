@@ -236,16 +236,11 @@ Page({
     }
     qingqiu.get("faBuWeiHuo",data,function(res){
       if(res.success == true){
-        wx.showToast({
-          title: '发布成功',
-          icon:'success',
-          duration:2000
-        })
-        // setTimeout(function(){
-        //   wx.redirectTo({
-        //     url: '../kucunSubmitSuccess/kucunSubmitSuccess',
-        //   })
-        // },1000)
+        setTimeout(function(){
+          wx.redirectTo({
+            url: '../kucunSubmitSuccess/kucunSubmitSuccess',
+          })
+        },1000)
       }else{
         wx.showToast({
           title: res.message,
