@@ -764,7 +764,6 @@ Page({
     that.data.xinceng=['选择镀层量']
     console.log(data)
     qingqiu.get("getXC",data,function(res){
-      debugger
       if(res.success == true){
         for(let obj of res.result.zlist){
           that.data.zhengmian.push(obj.scope)
