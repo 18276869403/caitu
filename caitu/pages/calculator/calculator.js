@@ -10,6 +10,7 @@ Page({
    */
   data: {
     viewUrl:api.viewUrl,
+    mohouStatus:0,
     zheng: [],
     mohou: [],
     flag:true,
@@ -57,6 +58,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if(options.mohouStatus != undefined){
+      this.setData({
+        mohouStatus:options.mohouStatus
+      })
+    }
     if(options.obj != "null"){
       var data = JSON.parse(options.obj)
       console.log(data)
@@ -530,6 +536,7 @@ gethuodu(data){
   that.data.beimianid=[]
   console.log(data)
   qingqiu.get("getXC",data,function(res){
+    console.log(res)
     if(res.success == true){
       for(let obj of res.result.zlist){
         that.data.zhengmian.push(obj.scope)
@@ -563,33 +570,36 @@ gethuodu(data){
         zhengmianid:that.data.zhengmianid,
         beimianid:that.data.beimianid
       })
-      var dataobj = {}
-      if(that.data.zhengmian.length > 0){dataobj.zheng = that.data.zhengmian[1]}else{ 
-        wx.showToast({
-          title: '该油漆没有正面膜厚',
-          icon:'none',
-          duration:2000
-        })
-        return
+      if(that.data.mohouStatus == 0){
+        var dataobj = {}
+        if(that.data.zhengmian.length > 0){dataobj.zheng = that.data.zhengmian[1]}else{ 
+          wx.showToast({
+            title: '该油漆没有正面膜厚',
+            icon:'none',
+            duration:2000
+          })
+          return
+        }
+        if(that.data.beimian.length > 0){ dataobj.bei = that.data.beimian[1]}else{
+          wx.showToast({
+            title: '该油漆没有背面膜厚',
+            icon:'none',
+            duration:2000
+          })
+          return
+        }
+        if(that.data.zhengmianid.length > 0){dataobj.zhengId = that.data.zhengmianid[0]}
+        if(that.data.beimianid.length > 0){dataobj.beiId = that.data.beimianid[0]}
+        if(that.data.youqi.length > 0){dataobj.text = that.data.youqi[that.data.youqiindex]}
+        that.getmohou(dataobj)
       }
-      if(that.data.beimian.length > 0){ dataobj.bei = that.data.beimian[1]}else{
-        wx.showToast({
-          title: '该油漆没有背面膜厚',
-          icon:'none',
-          duration:2000
-        })
-        return
-      }
-      if(that.data.zhengmianid.length > 0){dataobj.zhengId = that.data.zhengmianid[0]}
-      if(that.data.beimianid.length > 0){dataobj.beiId = that.data.beimianid[0]}
-      if(that.data.youqi.length > 0){dataobj.text = that.data.youqi[that.data.youqiindex]}
-      that.getmohou(dataobj)
     }
   })
 },
   // 膜厚
   getmohou(data){
     var that = this
+    console.log(data)
     qingqiu.get("commonMoHou",data,function(res){
       if(res.success == true){
         that.data.tuceng=res.result.context

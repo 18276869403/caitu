@@ -100,7 +100,7 @@ Page({
     data.tuceng = value[5]
     var obj = JSON.stringify(this.data.jisuanDetails)
     wx.redirectTo({
-      url: '../calculator/calculator?obj=' + obj,
+      url: '../calculator/calculator?obj=' + obj + '&mohouStatus=1',
     })
 
   },
