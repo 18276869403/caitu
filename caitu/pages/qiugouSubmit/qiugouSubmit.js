@@ -376,9 +376,9 @@ Page({
           that.data.xinceng.push(obj2.scope)
         }
         if(that.data.jsqglist!=''){
-          that.data.zhengmianindex = utils.getArrIndex(that.data.zhengmian,that.data.jsqglist.front)
-          that.data.beimianindex = utils.getArrIndex(that.data.beimian,that.data.jsqglist.rear)
-          that.data.xincengindex = utils.getArrIndex(that.data.xinceng,that.data.jsqglist.zincLayer)
+          that.data.zhengmianindex = utils.getArrIndex(that.data.zhengmian,that.data.jsqglist.front)=='-1'?'0':utils.getArrIndex(that.data.zhengmian,that.data.jsqglist.front)
+          that.data.beimianindex = utils.getArrIndex(that.data.beimian,that.data.jsqglist.rear)=='-1'?'0':utils.getArrIndex(that.data.beimian,that.data.jsqglist.rear)
+          that.data.xincengindex = utils.getArrIndex(that.data.xinceng,that.data.jsqglist.zincLayer)=='-1'?'0':utils.getArrIndex(that.data.xinceng,that.data.jsqglist.zincLayer)
         }
         that.setData({
           zhengmianindex:that.data.zhengmianindex,
@@ -401,7 +401,7 @@ Page({
     var that = this
     qingqiu.get("commonMoHou",data,function(res){
       if(res.success == true){
-        that.data.tuceng=res.message
+        that.data.tuceng=res.result.context
         that.setData({
           tuceng:that.data.tuceng
         })

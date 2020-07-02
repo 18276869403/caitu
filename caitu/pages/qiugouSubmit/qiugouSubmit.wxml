@@ -146,6 +146,7 @@
     </view>
   </view>
   <view class="tips">所选钢厂最低起批量：{{pricingPrice}}吨</view>
+  <view class="tips2">如果不满足钢厂起批量请选择发布拼购信息</view>
   <!-- 提交 -->
   <view class="bottom">
     <image src="{{viewUrl}}temp/image/fabu.png" class="fabu-img" bindtap="submitSuccess"></image>

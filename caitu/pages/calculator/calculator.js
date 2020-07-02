@@ -545,9 +545,9 @@ gethuodu(data){
         that.data.zincLayerobj.push(obj2.price)
       }
       if(that.data.itemobj!=''){
-        that.data.zhengmianindex = utils.getArrIndex(that.data.zhengmian,that.data.itemobj.front)
-        that.data.beimianindex = utils.getArrIndex(that.data.beimian,that.data.itemobj.rear)
-        that.data.xincengindex = utils.getArrIndex(that.data.xinceng,that.data.itemobj.zincLayer)
+        that.data.zhengmianindex = utils.getArrIndex(that.data.zhengmian,that.data.itemobj.front)=='-1'?'0':utils.getArrIndex(that.data.zhengmian,that.data.itemobj.front)
+        that.data.beimianindex = utils.getArrIndex(that.data.beimian,that.data.itemobj.rear)=='-1'?'0':utils.getArrIndex(that.data.beimian,that.data.itemobj.rear)
+        that.data.xincengindex = utils.getArrIndex(that.data.xinceng,that.data.itemobj.zincLayer)=='-1'?'0':utils.getArrIndex(that.data.xinceng,that.data.itemobj.zincLayer)
       }
       that.setData({
         zhengmianindex:that.data.zhengmianindex,
@@ -573,10 +573,11 @@ gethuodu(data){
     var that = this
     qingqiu.get("commonMoHou",data,function(res){
       if(res.success == true){
-        that.data.tuceng=res.message
+        that.data.tuceng=res.result.context
+        that.data.tucengprice=res.result.price
         that.setData({
           tuceng:that.data.tuceng,
-          // tucengprice:that.data.tucengprice
+          tucengprice:that.data.tucengprice
         })
         console.log(that.data.tuceng)
       }
@@ -701,7 +702,7 @@ gethuodu(data){
       paint:youqi,
       front:that.data.zhengmian[that.data.zhengmianindex]+'|'+that.data.zhengmianobj[that.data.zhengmianindex-1],
       rear:that.data.beimian[that.data.beimianindex]+'|'+that.data.beimianobj[that.data.beimianindex-1],
-      coat:that.data.tuceng,
+      coat:that.data.tuceng+'|'+that.data.tucengprice,
       zincLayer:that.data.xinceng[that.data.xincengindex]+'|'+that.data.zincLayerobj[that.data.xincengindex-1],
       color:that.data.yanse[that.data.yanseindex],
       density:that.data.qiangdu[that.data.qiangduindex],
@@ -709,8 +710,7 @@ gethuodu(data){
       backup1:that.data.steel.pricingPrice
     }
     console.log(data)
-    debugger
-    var s = utils.yanzheng(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.thickness + ',请输入厚度|'+data.width+',请输入宽度|'+data.paint+',请选择油漆|' + data.coat+',请输入涂层|' +  data.color +',请选择颜色|' + data.density + ',请选择强度|' +data.tonnage+',请选择吨数')
+    var s = utils.yanzheng(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.thickness + ',请输入厚度|'+data.width+',请输入宽度|'+data.paint+',请选择油漆|' +  data.color +',请选择颜色|' + data.density + ',请选择强度|' +data.tonnage+',请选择吨数')
     if(s!=0){
       wx.showToast({
         title:s,
@@ -719,7 +719,7 @@ gethuodu(data){
       })
       return
     }
-    var v = utils.yanzhengVal(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.paint+',请选择油漆|' + data.zincLayer + ',请选择镀层量|' + data.color +',请选择颜色|'+ data.density + ',请选择强度'+data.front+',请输入正面膜厚|'+data.rear+',请输入背面膜厚|')
+    var v = utils.yanzhengVal(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|'+data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.paint+',请选择油漆|' + data.zincLayer + ',请选择镀层量|' + data.color +',请选择颜色|'+ data.density + ',请选择强度'+data.front+',请输入正面膜厚|'+data.rear+',请输入背面膜厚|' + data.coat+',请输入涂层|')
     if(v != 0){
       wx.showToast({
         title: v,

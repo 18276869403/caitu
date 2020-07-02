@@ -606,7 +606,7 @@ Page({
     var that = this
     qingqiu.get("commonMoHou",data,function(res){
       if(res.success == true){
-        that.data.tuceng=res.message
+        that.data.tuceng=res.result.context
         that.setData({
           tuceng:that.data.tuceng
         })
