@@ -75,7 +75,7 @@ Page({
         tuceng:data.coat,
         dunwei:data.tonnage,
         pinmingid:data.theNameId,
-        gangchangname:data.steelName,
+        gangchangname:data.steelName, 
         xincengPrice:data.xinceng,
         tucengprice:data.tuceng
       })
