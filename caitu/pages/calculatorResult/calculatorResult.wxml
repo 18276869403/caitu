@@ -40,7 +40,7 @@
       <view class="list-sort-jiajia">{{value[5]}}</view>
     </view>
     <view class="list-sort-name hengxiang">
-      <view class="list-sort-guige">锌层</view>
+      <view class="list-sort-guige">镀层量</view>
       <view class="list-sort-canshu">{{key[6]}}</view>
       <view class="list-sort-jiajia">{{value[6]}}</view>
     </view>
