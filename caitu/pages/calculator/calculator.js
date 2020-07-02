@@ -244,6 +244,8 @@ Page({
           qiangduarray:res.result.densityList,
           youqiarray:res.result.printList,
           yansearray:res.result.colorList,
+          zhengmianindex:0,
+          beimianindex:0,
           flag:false
         })
       }
