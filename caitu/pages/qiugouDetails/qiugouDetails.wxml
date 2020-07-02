@@ -1,4 +1,4 @@
-<!--pages/qgxiangqing/qgxiangqing.wxml-->
+<!--pages/qgxiangqing/qgxiangqing.wxml--> 
 <view class="hengxian"></view>
 <view class="qgxiangqing">
   <view class="xqbiaoti">
