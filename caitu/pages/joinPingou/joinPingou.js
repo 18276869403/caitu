@@ -18,7 +18,9 @@ Page({
     shuju:{},
     shuju1:[],
     areaOneId:'',
-    areaTwoId:''
+    areaTwoId:'',
+    select:1,
+    xieyi:api.xieyi
   },
 
   /**
@@ -139,6 +141,15 @@ Page({
       })
       return
     }
+    if(that.data.select=='1')
+    {
+      wx.showToast({
+        title: '请勾选用户协议！',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     console.log(data)
     qingqiu.get("canYuGroupBuying",data,function(res){
       console.log(res)
@@ -192,5 +203,68 @@ Page({
         return
       }
     },'post')
-  }
+  },
+  //改变选框状态(免责协议)
+  change: function(e) {
+    var that = this
+    //得到选中状态
+    var select = e.currentTarget.dataset.xid
+    if (select == "1") {
+      var stype = "2"
+
+    } else {
+      var stype = "1"
+    }
+    //赋值
+    that.setData({
+      select: stype
+    })
+
+  },
+  // 服务规则页面显示
+  showModal1: function() {
+    this.setData({
+      hasMask: true
+    })
+    var animation = wx.createAnimation({
+      duration: 300,
+      timingFunction: "linear",
+      delay: 0
+    })
+    this.animation = animation
+
+    animation.opacity(0).rotateX(-100).step();
+    this.setData({
+      animationData: animation.export(),
+      showModalStatus1: true
+    })
+    setTimeout(function() {
+      animation.opacity(1).rotateX(0).step();
+      this.setData({
+        animationData: animation.export()
+      })
+    }.bind(this), 200)
+  },
+  //服务规则页面关闭
+  hideModal1: function() {
+    var animation = wx.createAnimation({
+      duration: 200,
+      timingFunction: "linear",
+      delay: 0
+    })
+    // flag = 0;
+    this.animation = animation
+    animation.translateY(300).step()
+    this.setData({
+      animationData: animation.export(),
+      hasMask: false
+    })
+    setTimeout(function() {
+      animation.translateY(0).step()
+      this.setData({
+        animationData: animation.export(),
+        showModalStatus1: false
+      })
+    }.bind(this), 200)
+  },
 })

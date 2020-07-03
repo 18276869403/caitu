@@ -104,6 +104,14 @@ Page({
       })
       return
     }
+    if(that.data.imgurl!=''){
+      wx.showToast({
+        title: '请上传营业执照！',
+        icon:'none',
+        duration:1000
+      })
+      return
+    }
     var data = {
       id:app.globalData.wxid,
       name:that.data.username,

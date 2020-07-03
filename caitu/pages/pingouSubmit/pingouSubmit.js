@@ -278,8 +278,8 @@ Page({
         var youqiindex = 0
         var itemdata = that.data.jsqglist
         that.data.qiangdu=['选择强度']
-        // that.data.youqi=['选择油漆']
-        that.data.xinceng=['选择镀层量']
+        that.data.youqi=['选择油漆']
+        // that.data.xinceng=['选择镀层量']
         that.data.yanse=['选择颜色']
         that.data.pricingPrice=res.result.steel==null?'':res.result.steel.pricingPrice
         for(let obj of res.result.densityList){
@@ -367,6 +367,8 @@ gethuodu(data){
   that.data.zhengmian=['选择正面膜厚']
   that.data.beimian=['选择背面膜厚']
   that.data.xinceng=['选择镀层量']
+  that.data.zhengmianid=[]
+  that.data.beimianid=[]
   console.log(data)
   qingqiu.get("getXC",data,function(res){
     if(res.success == true){
@@ -788,7 +790,7 @@ gethuodu(data){
   // 背面
   beimianChange: function(e) {
     var that=this
-    that.data.beimianindex=''
+    that.data.beimianindex=0
     console.log('picker发送选择改变，携带值为', e.detail.value)
     that.setData({
       beimianindex: e.detail.value

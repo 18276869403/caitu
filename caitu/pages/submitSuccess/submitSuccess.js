@@ -41,7 +41,7 @@ Page({
       var pipeilist = JSON.parse(options.obj)
       for(let obj of pipeilist){
         var str = obj.id
-        if(str.length < 10){
+        if(str.toString().length < 10){
           obj.backup1 = utils.IdentityNum(str.toString())
         }
         if(obj.upUrl.indexOf(',') != -1){

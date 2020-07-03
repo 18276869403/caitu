@@ -539,6 +539,8 @@ Page({
     that.data.zhengmian=['选择正面膜厚']
     that.data.beimian=['选择背面膜厚']
     that.data.xinceng=['选择镀层量']
+    that.data.zhengmianid=[]
+    that.data.beimianid=[]
     console.log(data)
     qingqiu.get("getXC",data,function(res){
       if(res.success == true){
@@ -601,6 +603,7 @@ Page({
    // 膜厚
    getmohou(data){
     var that = this
+    debugger
     qingqiu.get("commonMoHou",data,function(res){
       if(res.success == true){
         that.data.tuceng=res.result.context

@@ -367,6 +367,8 @@ Page({
     that.data.zhengmian=['选择正面膜厚']
     that.data.beimian=['选择背面膜厚']
     that.data.xinceng=['选择镀层量']
+    that.data.zhengmianid=[]
+    that.data.beimianid=[]
     console.log(data)
     qingqiu.get("getXC",data,function(res){
       if(res.success == true){
@@ -385,6 +387,14 @@ Page({
           that.data.zhengmianindex = utils.getArrIndex(that.data.zhengmian,that.data.jsqglist.front)=='-1'?'0':utils.getArrIndex(that.data.zhengmian,that.data.jsqglist.front)
           that.data.beimianindex = utils.getArrIndex(that.data.beimian,that.data.jsqglist.rear)=='-1'?'0':utils.getArrIndex(that.data.beimian,that.data.jsqglist.rear)
           that.data.xincengindex = utils.getArrIndex(that.data.xinceng,that.data.jsqglist.zincLayer)=='-1'?'0':utils.getArrIndex(that.data.xinceng,that.data.jsqglist.zincLayer)
+          var data={
+            zheng:that.data.zhengmian[that.data.zhengmianindex]=='选择正面膜厚'?'':that.data.zhengmian[that.data.zhengmianindex],
+            bei:that.data.beimian[that.data.beimianindex]=='选择背面膜厚'?'':that.data.beimian[that.data.beimianindex],
+            zhengId:that.data.zhengmianid[that.data.zhengmianindex-1]==undefined?'':that.data.zhengmianid[that.data.zhengmianindex-1],
+            beiId:that.data.beimianid[that.data.beimianindex-1]==undefined?'':that.data.beimianid[that.data.beimianindex-1],
+            text:that.data.youqi[that.data.youqiindex]
+          }
+          that.getmohou(data)
         }
         that.setData({
           zhengmianindex:that.data.zhengmianindex,

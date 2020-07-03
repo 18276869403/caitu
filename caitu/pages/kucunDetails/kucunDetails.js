@@ -751,9 +751,12 @@ Page({
         })
       }
     })
+    that.setData({
+      tuceng: ''
+    })
     var data = {
       steelName:that.data.gangchangname,
-      text:that.data.youqi[that.data.youqiindex],
+      text:that.data.youqi[e.detail.value],
       theNameId:that.data.pinmingid
     }
     that.gethoudu(data)
@@ -769,6 +772,8 @@ Page({
     that.data.zhengmian=['选择正面膜厚']
     that.data.beimian=['选择背面膜厚']
     that.data.xinceng=['选择镀层量']
+    that.data.zhengmianid=[]
+    that.data.beimianid=[]
     console.log(data)
     qingqiu.get("getXC",data,function(res){
       if(res.success == true){

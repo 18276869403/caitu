@@ -127,7 +127,7 @@ Page({
     var obj =e.currentTarget.dataset.pgxx;
     var pgxx = JSON.stringify(obj);
     wx.navigateTo({
-      url: '../pingouDetails/pingouDetails?obj='+pgxx,
+      url: '../pingouDetails/pingouDetails?obj='+pgxx+'&type='+1,
     })
   }
 })

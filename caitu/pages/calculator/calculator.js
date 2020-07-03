@@ -593,8 +593,19 @@ gethuodu(data){
         if(that.data.zhengmianid.length > 0){dataobj.zhengId = that.data.zhengmianid[0]}
         if(that.data.beimianid.length > 0){dataobj.beiId = that.data.beimianid[0]}
         if(that.data.youqi.length > 0){dataobj.text = that.data.youqi[that.data.youqiindex]}
-        that.getmohou(dataobj)
       }
+        if(dataobj!=undefined){
+          that.getmohou(dataobj)
+        }else{
+          var data = {
+            zheng:that.data.zhengmian[that.data.zhengmianindex],
+            bei:that.data.beimian[that.data.beimianindex],
+            zhengId:that.data.zhengmianid[that.data.zhengmianindex],
+            beiId:that.data.beimianid[that.data.beimianindex],
+            text:that.data.youqi[that.data.youqiindex]
+          }
+          that.getmohou(data)
+        }
     }
   })
 },

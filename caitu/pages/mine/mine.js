@@ -109,7 +109,8 @@ Page({
           that.setData({ showModalStatus2:true })
         }else{
           that.setData({
-            wxUser:res.result.records[0]
+            wxUser:res.result.records[0],
+            showModalStatus2:false
           })
         }
       }

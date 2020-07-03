@@ -17,7 +17,7 @@ Page({
     type: 1, //进行中
     // type:2,//匹配中
     // type:3,//已完成
-    typeState:1, //是否是首页进入
+    typeState:0, //是否是首页进入
     pgid:'',
     pgxxlist:[],
     pgxx:{},
@@ -90,6 +90,7 @@ Page({
   },
   // 参与拼购
   joinPingou: function(e) {
+    this.selectpingouxx()
     if(app.globalData.wxState == 0){
       this.setData({
         showModalStatus1:true
