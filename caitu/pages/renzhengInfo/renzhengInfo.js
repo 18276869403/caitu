@@ -62,9 +62,33 @@ Page({
       })
       return
     }
-    if(that.data.phone.length != 11){
+    if(that.data.username==''||that.data.username==null){
       wx.showToast({
-        title: '请输入11位手机号',
+        title: '请输入姓名',
+        icon:'none',
+        duration:1000 
+      })
+      return
+    }
+    if(that.data.phone==''||that.data.phone==null){
+      wx.showToast({
+        title: '请输入手机号',
+        icon:'none',
+        duration:1000 
+      })
+      return
+    }
+    if(that.data.gongshi==''||that.data.gongshi==null){
+      wx.showToast({
+        title: '请输入公司名称',
+        icon:'none',
+        duration:1000 
+      })
+      return
+    }
+    if(that.data.imgurl==''||that.data.imgurl==null){
+      wx.showToast({
+        title: '请上传营业执照',
         icon:'none',
         duration:1000 
       })

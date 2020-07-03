@@ -522,14 +522,14 @@ gethuodu(data){
       if(res.success == true){
         dataobj.id = res.result.askid
         dataobj.haibaotype = 1
-        if(res.result.inventoryListVoList.length == 0){
+        if(res.result.inventoryListVoList.records.length == 0){
           dataobj.theName = that.data.multiArray[1][that.data.multiIndex[1]]
           dataobj = JSON.stringify(dataobj)
           wx.redirectTo({
             url: '../post/post?obj=' + dataobj,
           })
         }else{ 
-          var pipeilist=res.result.inventoryListVoList
+          var pipeilist=res.result.inventoryListVoList.records
           var ppsj = JSON.stringify(pipeilist)
           dataobj.theName = that.data.multiArray[1][that.data.multiIndex[1]]
           dataobj = JSON.stringify(dataobj)

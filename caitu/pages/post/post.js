@@ -24,6 +24,10 @@ Page({
     if (options.obj != undefined) {
       var item = JSON.parse(options.obj)
       console.log(item)
+      if(options.dunwei != undefined){
+        var dunwei=options.dunwei
+        item.tonnage=dunwei
+      }
       // 海报类型: 0/求购,1/拼购,2/尾货
       if (item.haibaotype == 0) {
         wx.setNavigationBarTitle({

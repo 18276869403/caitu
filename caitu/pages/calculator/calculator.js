@@ -51,7 +51,8 @@ Page({
     beimianid:[],
     select:1,
     tucengprice:'',
-    xieyi:api.xieyi
+    xieyi:api.xieyi,
+    zhuangtai:true
   },
 
   /**
@@ -568,7 +569,7 @@ gethuodu(data){
         zhengmianid:that.data.zhengmianid,
         beimianid:that.data.beimianid
       })
-      if(that.data.itemobj!=''){
+      if(that.data.itemobj!=''&& that.data.zhuangtai==true){
         that.data.zhengmianindex = utils.getArrIndex(that.data.zhengmian,that.data.itemobj.front)=='-1'?'0':utils.getArrIndex(that.data.zhengmian,that.data.itemobj.front)
         that.data.beimianindex = utils.getArrIndex(that.data.beimian,that.data.itemobj.rear)=='-1'?'0':utils.getArrIndex(that.data.beimian,that.data.itemobj.rear)
         that.data.xincengindex = utils.getArrIndex(that.data.xinceng,that.data.itemobj.zincLayer)=='-1'?'0':utils.getArrIndex(that.data.xinceng,that.data.itemobj.zincLayer)
@@ -608,7 +609,8 @@ gethuodu(data){
           that.setData({
             zhengmianindex:that.data.zhengmianindex,
             beimianindex:that.data.beimianindex,
-            xincengindex:that.data.xincengindex
+            xincengindex:that.data.xincengindex,
+            zhuangtai:false
           })
           that.getmohou(data)
         }

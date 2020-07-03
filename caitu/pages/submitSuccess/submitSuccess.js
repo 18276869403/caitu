@@ -18,25 +18,36 @@ Page({
     weihuoList: [],
     pipeilist:[],
     haibaotype:'',
-    dataobj:{}
+    dataobj:{},
+    dunwei:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    if(options.dunwei!=undefined){
+      var dataobj = JSON.parse(options.dunwei)
+      this.setData({
+        dunwei:dunwei
+      })
+    }
     if(options.dataobj != undefined){
       var dataobj = JSON.parse(options.dataobj)
       this.setData({
         dataobj:dataobj
       })
     }
-    debugger
     if(options.objtype != undefined){
       var type = JSON.parse(options.objtype)
       this.setData({
         type:type
       })
+      if(type=='3'){
+        wx.setNavigationBarTitle({
+          title: '选择匹配'
+        })
+      }
     }else{
       this.setData({
         type:0
@@ -62,6 +73,7 @@ Page({
   // 海报页面
   post: function() {
     var dataobj = JSON.stringify(this.data.dataobj)
+    var dataobj=that.data.dunwei==''?dataobj:that.data.dunwei
     wx.navigateTo({
       url: '../post/post?obj='+dataobj,
     })

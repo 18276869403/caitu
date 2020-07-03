@@ -183,14 +183,14 @@ Page({
         dataobj = JSON.stringify(dataobj)
         if(res.result.records.length == 0){
           wx.redirectTo({
-            url: '../post/post?obj='+dataobj,
+            url: '../post/post?obj='+dataobj+"&dunwei="+that.data.dunwei,
           })
         }else{
           var shuju1=JSON.stringify(res.result.records)
           setTimeout(function(){
             app.globalData.haibaitype = 1
             wx.redirectTo({
-              url: '../submitSuccess/submitSuccess?obj='+shuju1+"&dataobj="+dataobj+"&objtype="+1,
+              url: '../submitSuccess/submitSuccess?obj='+shuju1+"&dataobj="+dataobj+"&objtype="+1+"&dunwei="+that.data.dunwei,
             })
           },1000)
         }
