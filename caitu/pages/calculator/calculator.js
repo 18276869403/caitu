@@ -555,12 +555,6 @@ gethuodu(data){
         that.data.xinceng.push(obj2.scope)
         that.data.zincLayerobj.push(obj2.price)
       }
-      if(that.data.itemobj!=''){
-        that.data.zhengmianindex = utils.getArrIndex(that.data.zhengmian,that.data.itemobj.front)=='-1'?'0':utils.getArrIndex(that.data.zhengmian,that.data.itemobj.front)
-        that.data.beimianindex = utils.getArrIndex(that.data.beimian,that.data.itemobj.rear)=='-1'?'0':utils.getArrIndex(that.data.beimian,that.data.itemobj.rear)
-        that.data.xincengindex = utils.getArrIndex(that.data.xinceng,that.data.itemobj.zincLayer)=='-1'?'0':utils.getArrIndex(that.data.xinceng,that.data.itemobj.zincLayer)
-      }
-      debugger
       that.setData({
         zhengmianindex:1,
         beimianindex:1,
@@ -574,6 +568,11 @@ gethuodu(data){
         zhengmianid:that.data.zhengmianid,
         beimianid:that.data.beimianid
       })
+      if(that.data.itemobj!=''){
+        that.data.zhengmianindex = utils.getArrIndex(that.data.zhengmian,that.data.itemobj.front)=='-1'?'0':utils.getArrIndex(that.data.zhengmian,that.data.itemobj.front)
+        that.data.beimianindex = utils.getArrIndex(that.data.beimian,that.data.itemobj.rear)=='-1'?'0':utils.getArrIndex(that.data.beimian,that.data.itemobj.rear)
+        that.data.xincengindex = utils.getArrIndex(that.data.xinceng,that.data.itemobj.zincLayer)=='-1'?'0':utils.getArrIndex(that.data.xinceng,that.data.itemobj.zincLayer)
+      }
       if(that.data.mohouStatus == 0){
         var dataobj = {}
         if(that.data.zhengmian.length > 0){dataobj.zheng = that.data.zhengmian[1]}else{ 
@@ -602,10 +601,15 @@ gethuodu(data){
           var data = {
             zheng:that.data.zhengmian[that.data.zhengmianindex],
             bei:that.data.beimian[that.data.beimianindex],
-            zhengId:that.data.zhengmianid[that.data.zhengmianindex],
-            beiId:that.data.beimianid[that.data.beimianindex],
+            zhengId:that.data.zhengmianid[that.data.zhengmianindex-1],
+            beiId:that.data.beimianid[that.data.beimianindex-1],
             text:text
           }
+          that.setData({
+            zhengmianindex:that.data.zhengmianindex,
+            beimianindex:that.data.beimianindex,
+            xincengindex:that.data.xincengindex
+          })
           that.getmohou(data)
         }
     }
