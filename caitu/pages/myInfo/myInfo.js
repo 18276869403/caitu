@@ -120,6 +120,7 @@ Page({
       CName:that.data.gongshi,
       CUrl:that.data.imgurl
     }
+    debugger
     console.log(data)
     qingqiu.get("modifyMy",data,function(res){
       console.log(res)

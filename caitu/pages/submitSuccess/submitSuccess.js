@@ -31,10 +31,15 @@ Page({
         dataobj:dataobj
       })
     }
+    debugger
     if(options.objtype != undefined){
       var type = JSON.parse(options.objtype)
       this.setData({
         type:type
+      })
+    }else{
+      this.setData({
+        type:0
       })
     }
     if(options.obj != undefined){

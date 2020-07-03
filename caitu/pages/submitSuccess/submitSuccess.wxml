@@ -1,7 +1,7 @@
 <!--pages/submitSuccess/submitSuccess.wxml-->
 <view class="container">
   <view class="hengxian"></view>
-  <view class="top zongxiang" wx:if="">
+  <view class="top zongxiang" wx:if="{{type!='3'}}">
     <view class="top-img">
       <image src="{{viewUrl}}temp/image/fabuchenggong.png" class="success-img"></image>
     </view>

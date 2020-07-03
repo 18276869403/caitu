@@ -34,6 +34,7 @@ Page({
   },
   // 下拉刷新
   onPullDownRefresh: function () {
+    this.data.qiugouList=[]
     this.onShow() 
     setTimeout(() => {
       wx.stopPullDownRefresh()
@@ -51,6 +52,10 @@ Page({
     this.getpingou()
     this.getzixun()
     this.getweihuo()
+  },
+  // 截获竖向滑动
+  stopTouchMove:function(){
+    return false
   },
   // 获取广告
   getbanner() {
@@ -85,8 +90,10 @@ Page({
             obj.backup1 = str1 + str
           }
         }
+        that.data.qiugouList=res.result.records
+        console.log(that.data.qiugouList)
         that.setData({
-          qiugouList: res.result.records
+          qiugouList: that.data.qiugouList
         })
       } else {
         wx.showToast({

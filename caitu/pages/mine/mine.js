@@ -136,9 +136,9 @@ Page({
         animationData: animation.export(),
         showModalStatus1: false
       })
-      wx.switchTab({
-        url: '../index/index',
-      })
+      // wx.switchTab({
+      //   url: '../index/index',
+      // })
     }.bind(this), 200)
   },
 

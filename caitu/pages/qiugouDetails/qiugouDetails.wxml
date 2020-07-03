@@ -102,7 +102,7 @@
     </view>
   </view>
    <!-- 从我的页面进入时entertype==1，展示查看海报按钮 -->
-  <view class="ck" wx:if="{{qiugou.startoks_dictText=='进行中'&&qiugou.wxUserId==wxid&&typeState==1}}"> 
+  <view class="ck" wx:if="{{qiugou.startoks_dictText=='进行中'&&qiugou.wxUserId==wxid&&typeState=='1'}}"> 
     <image src="{{viewUrl}}temp/image/haibao.png" class="ck_img" bindtap="post"></image> 
   </view>
 </view>

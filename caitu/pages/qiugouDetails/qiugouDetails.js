@@ -29,6 +29,10 @@ Page({
       this.setData({
         typeState:options.type
       })
+    }else{
+      this.setData({
+        typeState:0
+      })
     }
     if(options.id != undefined){
       // 根据id查详情

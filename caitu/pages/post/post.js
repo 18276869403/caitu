@@ -207,7 +207,10 @@ Page({
                       filePath: that.data.shareImgSrc,
                       success(res) {
                         console.log(res);
-                        wx.showToast('保存成功,请到相册里面查看')
+                        wx.showToast({
+                          title: '保存成功',
+                          icon:'none'
+                        })
                       }
                     })
                   },
@@ -229,7 +232,10 @@ Page({
                   filePath: that.data.shareImgSrc,
                   success(res) {
                     console.log(res);
-                    wx.showToast('保存成功,请到相册里面查看')
+                   wx.showToast({
+                     title: '保存成功',
+                     icon:'none'
+                   })
                     // wx.showModal({
                     //   title: '图片保存成功',
                     //   content: '图片成功保存到相册了，去发圈噻~',

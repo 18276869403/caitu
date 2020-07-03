@@ -736,7 +736,6 @@ gethuodu(data){
       backup1:that.data.steel.pricingPrice
     }
     console.log(data)
-    debugger
     var s = utils.yanzheng(data.steelName + ',请选择钢厂|'+data.theNameId+',请选择品名|'+data.thickness + ',请输入厚度|'+data.width+',请输入宽度|'+data.paint+',请选择油漆|' +  data.color +',请选择颜色|' + data.density + ',请选择强度|' +data.tonnage+',请选择吨数')
     if(s!=0){
       wx.showToast({

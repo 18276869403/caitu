@@ -27,6 +27,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  onShow(){
+      this.selectpingouxx()
+  },
   onLoad: function(options) {
     if(options.type != undefined){
       this.setData({
@@ -174,9 +177,15 @@ Page({
         dataobj.theName = item.itemvalue_dictText
         dataobj = JSON.stringify(dataobj)
         app.globalData.haibaitype = 0
-        wx.navigateTo({
-          url: '../submitSuccess/submitSuccess?obj=' + obj+"&dataobj="+dataobj+"&objtype="+'1',
-        })
+        if(that.data.typeState=='1'){
+          wx.navigateTo({
+            url: '../submitSuccess/submitSuccess?obj=' + obj+"&dataobj="+dataobj+"&objtype="+'3',
+          })
+        }else{
+          wx.navigateTo({
+            url: '../submitSuccess/submitSuccess?obj=' + obj+"&dataobj="+dataobj+"&objtype="+'1',
+          })
+        }
       }else{
         wx.showToast({
           title: res.message,

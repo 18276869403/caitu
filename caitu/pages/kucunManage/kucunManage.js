@@ -182,14 +182,6 @@ Page({
     var city = that.data.city
     var youqi = that.data.youqi[that.data.youqiindex]
     var imgurl = ''
-    if(that.data.select=='1'){
-      wx.showToast({
-        title: '请勾选用户协议！',
-        icon:'none',
-        duration:2000
-      })
-      return
-    }
     for (let obj of that.data.imglist){
       if(imgurl == ''){
         imgurl = obj
@@ -229,6 +221,14 @@ Page({
     if(v != 0){
       wx.showToast({
         title: v,
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.select=='1'){
+      wx.showToast({
+        title: '请勾选用户协议！',
         icon:'none',
         duration:2000
       })
@@ -603,7 +603,6 @@ Page({
    // 膜厚
    getmohou(data){
     var that = this
-    debugger
     qingqiu.get("commonMoHou",data,function(res){
       if(res.success == true){
         that.data.tuceng=res.result.context
