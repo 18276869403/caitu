@@ -80,21 +80,20 @@ Page({
     qingqiu.get("initAskToBuy", {orderOK:2}, function (res) {
       console.log('求购信息', res)
       if (res.success == true) {
+        var qiugouList = []
         for (let obj of res.result.records) {
           var str = obj.id.toString()
           if (str.length < 10) { 
-            var str1 = ''
-            for (let i = 0; i < 10 - str.length; i++) {
-              str1 += 0
-            }
-            obj.backup1 = str1 + str
+            obj.backup1 = utils.IdentityNum(str)
           }
+          obj.tonnage = obj.tonnage
         }
-        that.data.qiugouList=res.result.records
-        console.log(that.data.qiugouList)
+        qiugouList=res.result.records
+        console.log(qiugouList)
         that.setData({
-          qiugouList: that.data.qiugouList
+          qiugouList: qiugouList
         })
+        console.log(that.data.qiugouList)
       } else {
         wx.showToast({
           title: res.message,

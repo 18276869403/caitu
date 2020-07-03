@@ -64,6 +64,7 @@ Page({
   getDetails:function(id){
     var that = this
     qingqiu.get("initAskToBuy",{askId:id},function(res){
+      debugger
       console.log(res)
       if(res.success == true){ 
         var data = res.result.records[0]

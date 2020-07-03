@@ -44,6 +44,7 @@ Page({
     }
     if(options.obj != undefined){
       var pipeilist = JSON.parse(options.obj)
+      console.log(pipeilist)
       for(let obj of pipeilist){
         var str = obj.id
         if(str.toString().length < 10){

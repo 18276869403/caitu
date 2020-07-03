@@ -88,40 +88,40 @@
         </view>
       </view>
       <view class="qiugou-content zongxiang">
-        <view class="qiugou-list hengxiang" wx:for="{{qiugouList}}" wx:for-index="index" bindtap="qiugouDetails" data-item="{{item}}">
+        <view class="qiugou-list hengxiang" wx:for="{{qiugouList}}" wx:for-index="index" bindtap="qiugouDetails" wx:for-item="itemaa" data-item="{{itemaa}}">
           <view class="list-left">
             <view class="list-left-banyuan">
               <image src="{{viewUrl}}temp/image/tuoyuan.png" class="tuoyuan-img"></image>
             </view>
             <view class="list-left-text">
-              <text>{{item.tonnage}}</text>
+              {{itemaa.tonnage}}
               <text class="tips">吨</text>
             </view>
           </view>
           <view class="list-right">
-            <image src="{{viewUrl}}temp/image/jinxingzhong.png" class="list-right-jinxingzhong" wx:if="{{item.startoks=='0'}}"></image>
-            <image src="{{viewUrl}}temp/image/shouyepipeizhong.png" class="list-right-jinxingzhong" wx:if="{{item.startoks=='1'}}"></image>
+            <image src="{{viewUrl}}temp/image/jinxingzhong.png" class="list-right-jinxingzhong" wx:if="{{itemaa.startoks=='0'}}"></image>
+            <image src="{{viewUrl}}temp/image/shouyepipeizhong.png" class="list-right-jinxingzhong" wx:if="{{itemaa.startoks=='1'}}"></image>
             <view class="list-right-title">
-              品名：{{item.itemvalue_dictText}}
+              品名：{{itemaa.itemvalue_dictText}}
             </view>
             <view class="list-right-item hengxiang">
               <view class="right-item-img">
                 <image src="{{viewUrl}}temp/image/bianhao.png" class="bianhao-img"></image>
               </view>
-              <view class="right-item-text">编号：{{item.backup1}}</view>
+              <view class="right-item-text">编号：{{itemaa.backup1}}</view>
             </view>
             <view class="list-right-item hengxiang">
               <view class="right-item-img">
                 <image src="{{viewUrl}}temp/image/guige.png" class="bianhao-img"></image>
               </view>
-              <view class="right-item-text">规格：厚{{item.thickness}}/宽{{item.width}}
+              <view class="right-item-text">规格：厚{{itemaa.thickness}}/宽{{itemaa.width}}
               </view>
             </view>
             <view class="list-right-item hengxiang">
               <view class="right-item-img">
                 <image src="{{viewUrl}}temp/image/yanse.png" class="bianhao-img"></image>
               </view>
-              <view class="right-item-text">颜色：{{item.color}}</view>
+              <view class="right-item-text">颜色：{{itemaa.color}}</view>
             </view>
           </view>
         </view>

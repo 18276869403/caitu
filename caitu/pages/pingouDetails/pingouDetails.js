@@ -21,6 +21,7 @@ Page({
     pgid:'',
     pgxxlist:[],
     pgxx:{},
+    tonnage:'',
     wxid:''
   },
 
@@ -75,9 +76,11 @@ Page({
     console.log(res)
     if(res.success == true){
       if (res.result != null) {
-        // for(var i=0;i<res.result.records.length;i++){
-        //   that.data.pgxxlist[i].createtime=that.data.pgxxlist[i].createtime.split(' ')[0]
-        // }
+        for(var i=0;i<res.result.records.length;i++){
+          if(res.result.records[i].wxUserId==app.globalData.wxid){
+            that.data.tonnage=res.result.records[i].sumsn
+          }
+        }
         that.setData({
           pgxxlist:res.result.records
         })
@@ -121,6 +124,11 @@ Page({
   // 跳转海报页面
   post: function(e) {
     var pingou = e.currentTarget.dataset.item
+    if(gbwId!=null){
+      var tonnage=pingou.tonnage
+    }else{
+      var tonnage=this.data.tonnage
+    }
     var dataobj={
       id:pingou.id,
       wxUserId:app.globalData.wxid,
@@ -136,7 +144,7 @@ Page({
       zincLayer:pingou.zinclayer,
       color:pingou.color,
       density:pingou.density,
-      tonnage:pingou.tonnage,
+      tonnage:tonnage,
     }
     dataobj.theName = pingou.itemvalue_dictText
     dataobj.haibaotype = 1

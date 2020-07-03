@@ -575,13 +575,7 @@ Page({
       if(res.success == true){
         dataobj.id = res.result.askid
         dataobj.haibaotype = 0
-        if(res.result.inventoryListVoList.length == 0){
-          dataobj.theName = that.data.multiArray[1][that.data.multiIndex[1]]
-          dataobj = JSON.stringify(dataobj)
-          wx.redirectTo({
-            url: '../post/post?obj=' + dataobj,
-          })
-        }else{
+        if(res.result.inventoryListVoList.length > 0){
           app.globalData.haibaitype = 1
           var pipeilist=res.result.inventoryListVoList
           var ppsj = JSON.stringify(pipeilist)
@@ -589,6 +583,12 @@ Page({
           dataobj = JSON.stringify(dataobj)
           wx.redirectTo({
             url: '../submitSuccess/submitSuccess?obj='+ppsj+'&dataobj=' + dataobj+'&objtype=' + '0',
+          })
+        }else{
+          dataobj.theName = that.data.multiArray[1][that.data.multiIndex[1]]
+          dataobj = JSON.stringify(dataobj)
+          wx.redirectTo({
+            url: '../post/post?obj=' + dataobj,
           })
         }
       }else{

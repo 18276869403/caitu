@@ -121,7 +121,7 @@
             <view>
               <image src="{{viewUrl}}temp/image/didian.png" class="xq_img"></image>
             </view>
-            <view class="xq_name yincang">地点：{{item.areaOneid_dictText}}/{{item.areaTwoId_dictText}}</view>
+            <view class="xq_name yincang">地点：{{item.areaOneId_dictText}}/{{item.areaTwoId_dictText}}</view>
           </view>
           <view class="bianh hengxiang">
             <view>
@@ -244,7 +244,7 @@
             <view>
               <image src="{{viewUrl}}temp/image/didian.png" class="xq_img"></image>
             </view>
-            <view class="xq_name yincang">地点：{{item.areaOneid_dictText}}/{{item.areaTwoId_dictText}}</view>
+            <view class="xq_name yincang">地点：{{item.areaOneId_dictText}}/{{item.areaTwoId_dictText}}</view>
           </view>
           <view class="bianh hengxiang">
             <view>

@@ -55,7 +55,7 @@
         <view>交货地</view>
       </view>
 
-      <view class="gc_name yincang">{{qiugou.areaOneid_dictText}}/{{qiugou.areaTwoId_dictText}}</view>
+      <view class="gc_name yincang">{{qiugou.areaOneId_dictText}}/{{qiugou.areaTwoId_dictText}}</view>
     </view>
 
   </view>

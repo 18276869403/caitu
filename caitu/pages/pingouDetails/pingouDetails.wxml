@@ -56,7 +56,7 @@
 
         交货地
       </view>
-      <view class="gc_name yincang">{{pgxx.areaOneid_dictText}}/{{pgxx.areaTwoId_dictText}}</view>
+      <view class="gc_name yincang">{{pgxx.areaOneId_dictText}}/{{pgxx.areaTwoId_dictText}}</view>
     </view>
     <view class="gangchang hengxiang cs_ys">
       <view class="gc_sj hengxiang">
@@ -124,7 +124,7 @@
     </view>
     <view class="cs_sj cs_ys hengxiang">
       <view class="sj_h">交货地</view>
-      <view class="sj_s">{{item.areaOneid_dictText}}/{{item.areaTwoId_dictText}}</view>
+      <view class="sj_s">{{item.areaOneId_dictText}}/{{item.areaTwoId_dictText}}</view>
     </view>
   </view>
    <!-- entertype==1,为从我的页面进入 -->
