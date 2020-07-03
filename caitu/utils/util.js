@@ -31,7 +31,7 @@ const yanzhengVal = function(str){
   var strlist = str.split('|')
 	for(let obj of strlist){
 		var list = obj.split(',')
-		if(list[0].indexOf('选择') != -1){
+		if(list[0].indexOf('选择') != -1 ||list[0] == undefined){
 			return list[1]
 		}
   }
