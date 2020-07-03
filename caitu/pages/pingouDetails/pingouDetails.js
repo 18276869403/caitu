@@ -128,9 +128,9 @@ Page({
   post: function(e) {
     var pingou = e.currentTarget.dataset.item
     if(this.data.gbwId!=null){
-      var tonnage=pingou.tonnage
-    }else{
       var tonnage=this.data.tonnage
+    }else{
+      var tonnage=pingou.tonnage
     }
     var dataobj={
       id:pingou.id,
