@@ -22,7 +22,8 @@ Page({
     pgxxlist:[],
     pgxx:{},
     tonnage:'',
-    wxid:''
+    wxid:'',
+    gbwId:''
   },
 
   /**
@@ -43,8 +44,10 @@ Page({
       var pgxx=JSON.parse(options.obj)
       console.log(pgxx)
       this.data.pgid=pgxx.id
+      this.data.gbwId=pgxx.gbwId
       this.setData({
-        pgxx:pgxx
+        pgxx:pgxx,
+        gbwId:this.data.gbwId
       })
       this.selectpingouxx()
     }
@@ -124,7 +127,7 @@ Page({
   // 跳转海报页面
   post: function(e) {
     var pingou = e.currentTarget.dataset.item
-    if(gbwId!=null){
+    if(this.data.gbwId!=null){
       var tonnage=pingou.tonnage
     }else{
       var tonnage=this.data.tonnage
