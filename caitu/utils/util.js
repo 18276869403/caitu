@@ -19,7 +19,7 @@ const yanzheng = function(str){
   var strlist = str.split('|')
 	for(let obj of strlist){
 		var list = obj.split(',')
-		if(list[0] == ""||list[0]==0||list[0]==undefined||list[0]==null){
+		if(list[0] == ""||list[0]==0||list[0]==undefined||list[0]==null||list[0]=='undefined'||list[0]=='选择颜色'||list[0]=='选择强度'||list[0]=='选择油漆'||list[0]=='选择正面膜厚'||list[0]=='选择背面膜厚'||list[0]=='选择镀层量'||list[0]=='请选择日期'){
 			return list[1]
 		}
   }
