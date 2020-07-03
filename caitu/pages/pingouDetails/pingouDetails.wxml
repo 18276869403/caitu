@@ -87,11 +87,11 @@
     </view>
     <view class="cs_sj hengxiang">
       <view class="sj_h">正面膜厚</view>
-      <view class="sj_s">正面{{pgxx.front}}μ</view>
+      <view class="sj_s">{{pgxx.front}}μ</view>
     </view>
     <view class="cs_sj hengxiang">
       <view class="sj_h">背面膜厚</view>
-      <view class="sj_s">背面{{pgxx.rear}}μ</view>
+      <view class="sj_s">{{pgxx.rear}}μ</view>
     </view>
     <view class="cs_sj hengxiang">
       <view class="sj_h">涂层</view>

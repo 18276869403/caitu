@@ -536,6 +536,7 @@ gethuodu(data){
   that.data.beimianobj=[]
   that.data.zhengmianid=[]
   that.data.beimianid=[]
+  var text=data.text
   console.log(data)
   qingqiu.get("getXC",data,function(res){
     console.log(res)
@@ -559,6 +560,7 @@ gethuodu(data){
         that.data.beimianindex = utils.getArrIndex(that.data.beimian,that.data.itemobj.rear)=='-1'?'0':utils.getArrIndex(that.data.beimian,that.data.itemobj.rear)
         that.data.xincengindex = utils.getArrIndex(that.data.xinceng,that.data.itemobj.zincLayer)=='-1'?'0':utils.getArrIndex(that.data.xinceng,that.data.itemobj.zincLayer)
       }
+      debugger
       that.setData({
         zhengmianindex:1,
         beimianindex:1,
@@ -602,7 +604,7 @@ gethuodu(data){
             bei:that.data.beimian[that.data.beimianindex],
             zhengId:that.data.zhengmianid[that.data.zhengmianindex],
             beiId:that.data.beimianid[that.data.beimianindex],
-            text:that.data.youqi[that.data.youqiindex]
+            text:text
           }
           that.getmohou(data)
         }
