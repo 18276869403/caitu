@@ -382,7 +382,7 @@ Page({
       console.log(res)
       if(res.success == true){
         wx.showToast({
-          title: '发布成功',
+          title: '保存成功',
           icon:'success',
           duration:2000
         })

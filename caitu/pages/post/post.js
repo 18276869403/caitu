@@ -23,6 +23,7 @@ Page({
     var that = this
     if (options.obj != undefined) {
       var item = JSON.parse(options.obj)
+      console.log(item)
       // 海报类型: 0/求购,1/拼购,2/尾货
       if (item.haibaotype == 0) {
         wx.setNavigationBarTitle({
@@ -37,7 +38,7 @@ Page({
           title: '尾货海报'
         })
       }
-      this.setData({
+      that.setData({
         item: item
       })
     }

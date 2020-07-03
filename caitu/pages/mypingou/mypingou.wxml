@@ -3,7 +3,7 @@
 <view class="myqg" wx:for="{{piugou}}" wx:if="{{piugou.length>0}}" >
   <view class="qiugou" bindtap="pingouDetails" data-pgxx="{{item}}">
     <view class="ming hengxiang">
-      <view class="qg_name yincang">{{item.steelname}}</view>
+      <view class="qg_name yincang">{{item.itemvalue_dictText}}</view>
       <view class="daojishi1" wx:if="{{item.startoks_dictText=='进行中'}}">
         <image src="{{viewUrl}}temp/image/daojishi.png" class="djs_img"></image>
         进行中
