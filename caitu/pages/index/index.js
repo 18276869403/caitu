@@ -35,7 +35,7 @@ Page({
   // 下拉刷新
   onPullDownRefresh: function () {
     this.data.qiugouList=[]
-    this.onShow() 
+    this.onLoad() 
     setTimeout(() => {
       wx.stopPullDownRefresh()
     }, 1000);
@@ -43,6 +43,8 @@ Page({
   onShow: function () {
     //获得dialog组件
     this.dialog = this.selectComponent("#dialog");
+  },
+  onLoad:function(){
     this.setData({
       userId: app.globalData.wxid
     })
