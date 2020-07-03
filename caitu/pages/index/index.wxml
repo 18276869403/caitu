@@ -95,7 +95,7 @@
             </view>
             <view class="list-left-text">
               {{itemaa.tonnage}}
-              <text class="tips">吨</text>
+              <!-- <text class="tips">吨</text> -->
             </view>
           </view>
           <view class="list-right">

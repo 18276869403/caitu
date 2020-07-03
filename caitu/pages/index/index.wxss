@@ -564,3 +564,9 @@ page {
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
+/* .tonnage-text{
+  width: 50%;
+  overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+} */
