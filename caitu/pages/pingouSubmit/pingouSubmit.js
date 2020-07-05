@@ -519,10 +519,11 @@ gethuodu(data){
     console.log(data)
     var dataobj = data
     qingqiu.get("faBuPinGou",data,function(res){
+      console.log(res)
       if(res.success == true){
         dataobj.haibaotype = 1
         if(res.result.records.length > 0){
-          var pipeilist=res.result.inventoryListVoList.records
+          var pipeilist=res.result.records
           var ppsj = JSON.stringify(pipeilist)
           dataobj.id = res.result.records[0].askid
           dataobj.theName = that.data.multiArray[1][that.data.multiIndex[1]]
