@@ -580,9 +580,9 @@ Page({
       if(res.success == true){
         dataobj.id = res.result.askid
         dataobj.haibaotype = 0
-        if(res.result.inventoryListVoList.records.length > 0){
+        if(res.result.records.length > 0){
           app.globalData.haibaitype = 1
-          var pipeilist=res.result.inventoryListVoList.records
+          var pipeilist=res.result.records
           var ppsj = JSON.stringify(pipeilist)
           dataobj.theName = that.data.multiArray[1][that.data.multiIndex[1]]
           dataobj = JSON.stringify(dataobj)
