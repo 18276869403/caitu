@@ -520,21 +520,22 @@ gethuodu(data){
     var dataobj = data
     qingqiu.get("faBuPinGou",data,function(res){
       if(res.success == true){
-        dataobj.id = res.result.askid
         dataobj.haibaotype = 1
-        if(res.result.inventoryListVoList.records.length == 0){
-          dataobj.theName = that.data.multiArray[1][that.data.multiIndex[1]]
-          dataobj = JSON.stringify(dataobj)
-          wx.redirectTo({
-            url: '../post/post?obj=' + dataobj,
-          })
-        }else{ 
+        if(res.result.records.length > 0){
           var pipeilist=res.result.inventoryListVoList.records
           var ppsj = JSON.stringify(pipeilist)
+          dataobj.id = res.result.records[0].askid
           dataobj.theName = that.data.multiArray[1][that.data.multiIndex[1]]
           dataobj = JSON.stringify(dataobj)
           wx.redirectTo({
             url: '../submitSuccess/submitSuccess?obj='+ppsj+"&dataobj="+dataobj+'&objtype=' + '1',
+          })
+        }else{ 
+          dataobj.id = res.result.askid
+          dataobj.theName = that.data.multiArray[1][that.data.multiIndex[1]]
+          dataobj = JSON.stringify(dataobj)
+          wx.redirectTo({
+            url: '../post/post?obj=' + dataobj,
           })
         }
       }else{
