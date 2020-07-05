@@ -139,6 +139,13 @@ Page({
     wx.navigateTo({
       url: '../post/post?obj='+dataobj,
     })
+  },
+  // 图片预览
+  imageTop:function(e){
+    var current = e.currentTarget.dataset.url
+    wx.previewImage({
+      current:current,
+      urls: [current],
+    })
   }
-  
 })

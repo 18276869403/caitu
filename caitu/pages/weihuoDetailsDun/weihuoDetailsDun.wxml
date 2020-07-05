@@ -65,7 +65,7 @@
     </view>
     <view class="content-item-img" wx:for="{{imglist}}">
       <view class="content-item-img-item">
-        <image src="{{item}}" class="shanchuan-img"></image>
+        <image src="{{item}}" class="shanchuan-img" bindtap="imageTop" data-url="{{item}}"></image>
       </view>
     </view>
   </view>
