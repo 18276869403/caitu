@@ -27,7 +27,7 @@ Page({
    */
   onLoad: function(options) {
     if(options.dunwei!=undefined){
-      var dataobj = JSON.parse(options.dunwei)
+      var dunwei = JSON.parse(options.dunwei)
       this.setData({
         dunwei:dunwei
       })
