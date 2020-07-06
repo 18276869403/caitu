@@ -24,7 +24,7 @@ Page({
     if (options.obj != undefined) {
       var item = JSON.parse(options.obj)
       console.log(item)
-      if(options.dunwei != undefined){
+      if(options.dunwei != undefined&&options.dunwei != ''){
         var dunwei=options.dunwei
         item.tonnage=dunwei
       }
