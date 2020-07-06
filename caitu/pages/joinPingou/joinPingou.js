@@ -183,7 +183,6 @@ Page({
       })
       return
     }
-    debugger
     console.log(data)
     qingqiu.get("canYuGroupBuying",data,function(res){
       console.log(res)
