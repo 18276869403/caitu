@@ -2,6 +2,7 @@
 const app = getApp()
 const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
+const utils = require('../../utils/util.js')
 Page({
 
   /**
@@ -37,8 +38,16 @@ Page({
     }
     this.getAddress()
   },
+  // 吨位
   dunwei:function(e){
     console.log('事件携带值:',e.detail.value)
+    this.setData({
+      dunwei:e.detail.value
+    })
+  },
+  // 吨位失去焦点
+  dunReg:function(e){
+    e.detail.value=utils.douleNum(e.detail.value)
     this.setData({
       dunwei:e.detail.value
     })
