@@ -89,6 +89,7 @@ var douleNum = function(obj){
   obj = obj.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')
   return obj
 }
+// 获取当前日期
 const newDate = function(){
   var timestamp = Date.parse(new Date());
   var date = new Date(timestamp);
@@ -98,7 +99,7 @@ const newDate = function(){
   var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
   //获取当日日期 
   var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate(); 
-  return Y + '-' + M + '-' + D
+  return Y + '-' + M + '-' + D 
 }
 
 module.exports = {
