@@ -82,6 +82,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    var nowdate=utils.newDate()
+    this.setData({
+      nowdate:nowdate
+    })
     if(options.objindex!=''&&options.objindex!=undefined){
       this.data.type=options.objindex
     }

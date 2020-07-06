@@ -140,7 +140,7 @@
 		<view class="content-item hengxiang">
 			<view class="content-item-left">截止日期</view>
 			<view class="content-item-content">
-				<picker mode="date" value="{{date}}" bindchange="bindDateChange">
+				<picker mode="date" value="{{date}}" bindchange="bindDateChange" start="{{nowdate}}">
 					<view class="picker">
 						{{date}}
 					</view>
