@@ -23,6 +23,7 @@ Page({
     pgxx:{},
     tonnage:'',
     wxid:'',
+    askid:'',
     gbwId:''
   },
 
@@ -163,6 +164,7 @@ Page({
     var data = {
       matchingId:item.id
     }
+    that.data.askid=item.id
     qingqiu.get("findPiPei",data,function(res){
       console.log(res)
       if(res.success == true){
@@ -190,11 +192,11 @@ Page({
         app.globalData.haibaitype = 0
         if(that.data.typeState=='1'){
           wx.navigateTo({
-            url: '../submitSuccess/submitSuccess?obj=' + obj+"&dataobj="+dataobj+"&objtype="+'3',
+            url: '../submitSuccess/submitSuccess?obj=' + obj+"&dataobj="+dataobj+"&objtype="+'3'+"&askId="+that.data.askid,
           })
         }else{
           wx.navigateTo({
-            url: '../submitSuccess/submitSuccess?obj=' + obj+"&dataobj="+dataobj+"&objtype="+'1',
+            url: '../submitSuccess/submitSuccess?obj=' + obj+"&dataobj="+dataobj+"&objtype="+'1'+"&askId="+that.data.askid,
           })
         }
       }else{
