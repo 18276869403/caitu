@@ -26,6 +26,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    if(options.askId!=undefined){
+      var askId1=JSON.parse(options.askId)
+      this.setData({
+        askId1:askId1
+      })
+    }
     if(options.dunwei!=undefined){
       var dunwei = JSON.parse(options.dunwei)
       this.setData({
@@ -84,6 +90,9 @@ Page({
   faqipipei(e){
     var that = this
     var weihuoid=e.currentTarget.dataset.weihouid
+    if(that.data.askId1!=''&&that.data.askId1!=null&&that.data.askId1!=undefined){
+      that.data.askId=that.data.askId1
+    }
     var data={
       askId:that.data.askId,
       inventId:weihuoid,
