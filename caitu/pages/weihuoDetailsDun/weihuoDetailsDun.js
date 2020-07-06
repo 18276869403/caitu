@@ -98,7 +98,7 @@ Page({
         })
         setTimeout(function(){
           wx.redirectTo({
-            url: '../mykucunpandian/mykucunpandian',
+            url: '../mykucunpandian/mykucunpandian?type='+2,
           })
         },1000)
       }else{
