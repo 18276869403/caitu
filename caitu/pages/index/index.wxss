@@ -212,6 +212,7 @@ page {
   /* background: linear-gradient(163deg, rgba(0, 225, 235, 1) 0%, rgba(249, 139, 89, 1) 0%, rgba(253, 102, 41, 1) 100%); */
   /* -webkit-background-clip: text; */
   /* -webkit-text-fill-color: transparent; */
+  overflow: hidden;
 }
 
 .tips {
