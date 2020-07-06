@@ -27,7 +27,7 @@
         </view>
         <view>编号</view>
       </view>
-      <view class="gc_name yincang">{{qiugou.id}}</view>
+      <view class="gc_name yincang">{{qiugou.backup1}}</view>
     </view>
     <view class="gangchang hengxiang">
       <view class="gc_sj hengxiang">
