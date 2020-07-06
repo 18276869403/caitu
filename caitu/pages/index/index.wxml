@@ -262,9 +262,12 @@
 		</view>
 		<view>
 			<image src="{{viewUrl}}temp/image/kefu.png" class="xuanfu-img" bindtap="kefucall" wx:if="{{wxState==0}}"></image>
+		</view> 
+		<view>
+			<image src="{{viewUrl}}temp/image/kefu.png" class="xuanfu-img" bindtap="guwencall" data-phone="{{wxUser.distrPhone}}" wx:if="{{wxState!=0}}" wx:if="{{wxUser.distrPhone!=null&&wxUser.distrPhone!=''}}"></image>
 		</view>
 		<view>
-			<image src="{{viewUrl}}temp/image/kefu.png" class="xuanfu-img" bindtap="guwencall" data-phone="{{wxUser.distrPhone}}" wx:if="{{wxState!=0}}"></image>
+			<image src="{{viewUrl}}temp/image/kefu.png" class="xuanfu-img" bindtap="kefucall" data-phone="{{wxUser.distrPhone}}" wx:if="{{wxState!=0}}" wx:if="{{wxUser.distrPhone==null||wxUser.distrPhone==''}}"></image>
 		</view>
 	</view>
 </view>
