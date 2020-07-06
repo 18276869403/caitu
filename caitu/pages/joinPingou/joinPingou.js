@@ -124,6 +124,22 @@ Page({
     var city = that.data.city
     console.log(citylist)
     console.log(city)
+    if(cityindex[0]=='0'){
+      wx.showToast({
+        title: '请选择省',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(cityindex[1]=='0'){
+      wx.showToast({
+        title: '请选择市',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     that.data.areaOneId=citylist[cityindex[0]-1].itemValue
     that.data.areaTwoId=city[cityindex[1]-1].itemValue
     var data = {
@@ -132,6 +148,14 @@ Page({
       groupId:that.data.pgid,
       wxUserId:app.globalData.wxid,
       sumsn:that.data.dunwei
+    }
+    if(that.data.dunwei==''){
+      wx.showToast({
+        title: '请输入需求吨数',
+        icon:'none',
+        duration:2000
+      })
+      return
     }
     if(Number(that.data.dunwei)>Number(that.data.pricingprice)){
       wx.showToast({
@@ -150,6 +174,7 @@ Page({
       })
       return
     }
+    debugger
     console.log(data)
     qingqiu.get("canYuGroupBuying",data,function(res){
       console.log(res)
