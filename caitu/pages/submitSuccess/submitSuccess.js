@@ -75,9 +75,9 @@ Page({
   // 海报页面
   post: function() {
     var dataobj = JSON.stringify(this.data.dataobj)
-    var dataobj=dataobj==''?this.data.dunwei:dataobj
+    // var dataobj=dataobj==''?this.data.dunwei:dataobj
     wx.navigateTo({
-      url: '../post/post?obj='+dataobj,
+      url: '../post/post?obj='+dataobj+'&dunwei='+this.data.dunwei,
     })
   },
   // 发起匹配
