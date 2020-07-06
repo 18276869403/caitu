@@ -507,6 +507,16 @@ gethuodu(data){
       })
       return
     }
+    var date=that.data.date.replace(/[^\d.]/g,"")
+    var nowdate=that.data.nowdate.replace(/[^\d.]/g,"")
+    if(Number(date)<Number(nowdate)){
+      wx.showToast({
+        title: '截止日期不能小于当前日期',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     if(Number(that.data.dunwei)>Number(that.data.pricingPrice))
     {
       wx.showToast({
