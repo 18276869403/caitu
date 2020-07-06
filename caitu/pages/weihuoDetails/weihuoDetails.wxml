@@ -109,7 +109,7 @@
     </view>
     <view class="content-item-img">
       <view class="content-item-img-item" wx:for="{{imglist}}">
-        <image src="{{viewUrl}}{{item}}" class="shanchuan-img"></image>
+        <image src="{{viewUrl}}{{item}}" class="shanchuan-img" bindtap="imageTop" data-url="{{viewUrl}}{{item}}"></image>
       </view>
     </view>
   </view>

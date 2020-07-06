@@ -38,6 +38,13 @@ Page({
       }
     })
   },
+  imageTop:function(e){
+    var current = e.currentTarget.dataset.url
+    wx.previewImage({
+      current:current,
+      urls: [current],
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

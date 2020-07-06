@@ -75,6 +75,20 @@ const IdentityNum = function(str){
   }
   return str1 + str
 } 
+// 限制输入两位小数点
+var douleNum = function(obj){
+  // 先把非数字的都替换掉，除了数字和
+  obj = obj.replace(/[^\d.]/g,"")
+  // 保证只有出现一个，而没有多个
+  obj = obj.replace(/\.{2,}/g,".")
+  // 必须保证第一个为数字而不是.
+  obj = obj.replace(/^\./g,"")
+  // 保证.只出现一次，而不能出现两次以上
+  obj = obj.replace(".","$#$").replace(/\./g,"").replace("$#$",".")
+  // 只能出现输入两位数小数点
+  obj = obj.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')
+  return obj
+}
 
 module.exports = {
   formatTime: formatTime,
@@ -83,5 +97,6 @@ module.exports = {
   yanzhengVal:yanzhengVal,
   arrayStrAdd:arrayStrAdd,
   arrayStrNum:arrayStrNum,
-  IdentityNum:IdentityNum
+  IdentityNum:IdentityNum,
+  douleNum:douleNum
 }

@@ -75,6 +75,7 @@ Page({
     select:1,
     zhengmianid:[],
     beimianid:[],
+    zhuangtai:true,
     xieyi:api.xieyi
   },
 
@@ -348,6 +349,9 @@ Page({
           youqiindex:youqiindex==-1?0:youqiindex, 
           // xincengindex:xincengindex==-1?0:xincengindex,
           yanseindex:yanseindex==-1?0:yanseindex,
+          zhengmianindex:0,
+          beimianindex:0,
+          xincengindex:0,
           flag:false
         })
         console.log(that.data.qiangdu)
@@ -383,7 +387,7 @@ Page({
         for(let obj2 of res.result.xclist){
           that.data.xinceng.push(obj2.scope)
         }
-        if(that.data.jsqglist!=''){
+        if(that.data.jsqglist!=''&&that.data.zhuangtai==true){
           that.data.zhengmianindex = utils.getArrIndex(that.data.zhengmian,that.data.jsqglist.front)=='-1'?'0':utils.getArrIndex(that.data.zhengmian,that.data.jsqglist.front)
           that.data.beimianindex = utils.getArrIndex(that.data.beimian,that.data.jsqglist.rear)=='-1'?'0':utils.getArrIndex(that.data.beimian,that.data.jsqglist.rear)
           that.data.xincengindex = utils.getArrIndex(that.data.xinceng,that.data.jsqglist.zincLayer)=='-1'?'0':utils.getArrIndex(that.data.xinceng,that.data.jsqglist.zincLayer)
@@ -394,6 +398,7 @@ Page({
             beiId:that.data.beimianid[that.data.beimianindex-1]==undefined?'':that.data.beimianid[that.data.beimianindex-1],
             text:that.data.youqi[that.data.youqiindex]
           }
+          that.data.zhuangtai=false
           that.getmohou(data)
         }
         that.setData({
@@ -575,9 +580,9 @@ Page({
       if(res.success == true){
         dataobj.id = res.result.askid
         dataobj.haibaotype = 0
-        if(res.result.inventoryListVoList.records.length > 0){
+        if(res.result.records.length > 0){
           app.globalData.haibaitype = 1
-          var pipeilist=res.result.inventoryListVoList.records
+          var pipeilist=res.result.records
           var ppsj = JSON.stringify(pipeilist)
           dataobj.theName = that.data.multiArray[1][that.data.multiIndex[1]]
           dataobj = JSON.stringify(dataobj)
@@ -623,6 +628,14 @@ Page({
     })
   },
   retReg:function(e){
+    e.detail.value=utils.douleNum(e.detail.value)
+    if(e.detail.value == ''){
+      wx.showToast({
+        title: '请输入正确格式',
+        icon:'none'
+      })
+      return
+    }
     if(!this.data.sethoudu.length>0){
       wx.showToast({
         title: '请选择钢厂',
@@ -685,6 +698,14 @@ Page({
   },
 // 宽度最小值限制
 minReg:function(e){
+  e.detail.value=utils.douleNum(e.detail.value)
+  if(e.detail.value == ''){
+    wx.showToast({
+      title: '请输入正确格式',
+      icon:'none'
+    })
+    return
+  }
   if(!this.data.setwidth.length>0){
     wx.showToast({
       title: '请选择钢厂',
@@ -813,6 +834,20 @@ minReg:function(e){
     this.setData({
       dunwei: e.detail.value
     })
+  },
+  //吨位失去焦点
+  dunReg:function(e){
+    e.detail.value=utils.douleNum(e.detail.value)
+    this.setData({
+      dunwei: e.detail.value
+    })
+    if(e.detail.value == ''){
+      wx.showToast({
+        title: '请输入正确格式',
+        icon:'none'
+      })
+      return
+    }
   },
   //改变选框状态(免责协议)
   change: function(e) {

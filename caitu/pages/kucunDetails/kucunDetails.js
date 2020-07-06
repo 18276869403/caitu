@@ -629,6 +629,14 @@ Page({
   },
 
   retReg:function(e){
+    e.detail.value=utils.douleNum(e.detail.value)
+    if(e.detail.value == ''){
+      wx.showToast({
+        title: '请输入正确格式',
+        icon:'none'
+      })
+      return
+    }
     var minhoudu = this.data.sethoudu[0]
     var maxhoudu = this.data.sethoudu[1]
     if(minhoudu > maxhoudu){
@@ -681,6 +689,14 @@ Page({
   },
   // 宽度最小值限制
   minReg:function(e){
+    e.detail.value=utils.douleNum(e.detail.value)
+    if(e.detail.value == ''){
+      wx.showToast({
+        title: '请输入正确格式',
+        icon:'none'
+      })
+      return
+    }
     var width = Number(e.detail.value) 
     var minwidth = Number(this.data.setwidth[0])
     var maxwidth = Number(this.data.setwidth[1])
@@ -878,6 +894,20 @@ Page({
     this.setData({
       dunwei: e.detail.value
     })
+  },
+  //吨位失去焦点
+  dunReg:function(e){
+    e.detail.value=utils.douleNum(e.detail.value)
+    this.setData({
+      dunwei: e.detail.value
+    })
+    if(e.detail.value == ''){
+      wx.showToast({
+        title: '请输入正确格式',
+        icon:'none'
+      })
+      return
+    }
   },
   // 图片上传
   imgUpload:function(){

@@ -2,6 +2,7 @@
 const app = getApp()
 const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
+const utils = require('../../utils/util.js')
 Page({
 
   /**
@@ -37,8 +38,16 @@ Page({
     }
     this.getAddress()
   },
+  // 吨位
   dunwei:function(e){
     console.log('事件携带值:',e.detail.value)
+    this.setData({
+      dunwei:e.detail.value
+    })
+  },
+  // 吨位失去焦点
+  dunReg:function(e){
+    e.detail.value=utils.douleNum(e.detail.value)
     this.setData({
       dunwei:e.detail.value
     })
@@ -124,6 +133,22 @@ Page({
     var city = that.data.city
     console.log(citylist)
     console.log(city)
+    if(cityindex[0]=='0'){
+      wx.showToast({
+        title: '请选择省',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(cityindex[1]=='0'){
+      wx.showToast({
+        title: '请选择市',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     that.data.areaOneId=citylist[cityindex[0]-1].itemValue
     that.data.areaTwoId=city[cityindex[1]-1].itemValue
     var data = {
@@ -132,6 +157,14 @@ Page({
       groupId:that.data.pgid,
       wxUserId:app.globalData.wxid,
       sumsn:that.data.dunwei
+    }
+    if(that.data.dunwei==''){
+      wx.showToast({
+        title: '请输入需求吨数',
+        icon:'none',
+        duration:2000
+      })
+      return
     }
     if(Number(that.data.dunwei)>Number(that.data.pricingprice)){
       wx.showToast({

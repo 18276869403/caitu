@@ -27,7 +27,7 @@ Page({
    */
   onLoad: function(options) {
     if(options.dunwei!=undefined){
-      var dataobj = JSON.parse(options.dunwei)
+      var dunwei = JSON.parse(options.dunwei)
       this.setData({
         dunwei:dunwei
       })
@@ -55,6 +55,7 @@ Page({
     }
     if(options.obj != undefined){
       var pipeilist = JSON.parse(options.obj)
+      var askId=pipeilist[0].askId
       console.log(pipeilist)
       for(let obj of pipeilist){
         var str = obj.id
@@ -67,15 +68,16 @@ Page({
       }
       this.setData({
         pipeilist:pipeilist,
+        askId:askId
       })
     }
   },
   // 海报页面
   post: function() {
     var dataobj = JSON.stringify(this.data.dataobj)
-    var dataobj=that.data.dunwei==''?dataobj:that.data.dunwei
+    // var dataobj=dataobj==''?this.data.dunwei:dataobj
     wx.navigateTo({
-      url: '../post/post?obj='+dataobj,
+      url: '../post/post?obj='+dataobj+'&dunwei='+this.data.dunwei,
     })
   },
   // 发起匹配
@@ -83,6 +85,7 @@ Page({
     var that = this
     var weihuoid=e.currentTarget.dataset.weihouid
     var data={
+      askId:that.data.askId,
       inventId:weihuoid,
       wxId:app.globalData.wxid
     }

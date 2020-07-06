@@ -153,7 +153,7 @@
 		<view class="content-item hengxiang">
 			<view class="content-item-left">需求吨数</view>
 			<view class="content-item-content1">
-				<input type="digit" placeholder="请输入吨数" placeholder-class="placeholder" class="shurukuang" value="{{dunwei}}" bindinput="dunwei"></input>
+				<input type="digit" placeholder="请输入吨数" placeholder-class="placeholder" class="shurukuang" value="{{dunwei}}" bindinput="dunwei" bindblur="dunReg"></input>
 			</view>
 			<!-- <view class="content-item-right">
         <image src="{{viewUrl}}temp/image/jinru.png" class="enter-img"></image>
