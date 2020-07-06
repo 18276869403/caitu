@@ -386,8 +386,13 @@ Page({
           icon:'success',
           duration:2000
         })
+        // setTimeout(function(){
+        //   that.onLoad()
+        // },1000)
         setTimeout(function(){
-          that.onLoad()
+          wx.redirectTo({
+            url: '../mykucunpandian/mykucunpandian?type='+3,
+          })
         },1000)
       }else{
         wx.showToast({
