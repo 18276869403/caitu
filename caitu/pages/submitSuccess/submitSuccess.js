@@ -89,6 +89,7 @@ Page({
   // 发起匹配
   faqipipei(e){
     var that = this
+    
     var weihuoid=e.currentTarget.dataset.weihouid
     if(that.data.askId1!=''&&that.data.askId1!=null&&that.data.askId1!=undefined){
       that.data.askId=that.data.askId1
