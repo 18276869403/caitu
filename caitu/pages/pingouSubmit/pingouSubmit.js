@@ -82,6 +82,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    var nowdate=utils.newDate()
+    this.setData({
+      nowdate:nowdate
+    })
     if(options.objindex!=''&&options.objindex!=undefined){
       this.data.type=options.objindex
     }
@@ -498,6 +502,16 @@ gethuodu(data){
     if(that.data.date=='请选择日期'){
       wx.showToast({
         title: '截止日期不能为空！',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    var date=that.data.date.replace(/[^\d.]/g,"")
+    var nowdate=that.data.nowdate.replace(/[^\d.]/g,"")
+    if(Number(date)<Number(nowdate)){
+      wx.showToast({
+        title: '截止日期不能小于当前日期',
         icon:'none',
         duration:2000
       })
