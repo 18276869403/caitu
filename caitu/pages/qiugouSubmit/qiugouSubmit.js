@@ -352,8 +352,8 @@ Page({
           zhengmianindex:0,
           beimianindex:0,
           xincengindex:0,
-          houdu:'',
-          kuandu:'',
+          // houdu:'',
+          // kuandu:'',
           flag:false
         })
         console.log(that.data.qiangdu)
