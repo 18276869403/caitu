@@ -9,7 +9,7 @@ Page({
    */
   data: {
     viewUrl:api.viewUrl,
-    navid1: 1,
+    navid1: 2,
     shang: true,
     nav: [{
         id: 1,

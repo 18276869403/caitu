@@ -104,7 +104,7 @@ Page({
       })
       return
     }
-    if(that.data.imgurl!=''){
+    if(that.data.imgurl==''){
       wx.showToast({
         title: '请上传营业执照！',
         icon:'none',
@@ -120,13 +120,12 @@ Page({
       CName:that.data.gongshi,
       CUrl:that.data.imgurl
     }
-    debugger
     console.log(data)
     qingqiu.get("modifyMy",data,function(res){
       console.log(res)
       if(res.success == true){
         wx.showToast({
-          title: '操作成功',
+          title: '保持成功',
           icon:'none',
           duration:2000
         })
