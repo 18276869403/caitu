@@ -61,8 +61,11 @@ Page({
     }
     if(options.obj != undefined){
       var pipeilist = JSON.parse(options.obj)
-      var askId=pipeilist[0].askId
+      if(pipeilist.length>0){
+        var askId=pipeilist[0].askId
+      }
       console.log(pipeilist)
+      console.log(askId)
       for(let obj of pipeilist){
         var str = obj.id
         if(str.toString().length < 10){
@@ -89,7 +92,6 @@ Page({
   // 发起匹配
   faqipipei(e){
     var that = this
-    
     var weihuoid=e.currentTarget.dataset.weihouid
     if(that.data.askId1!=''&&that.data.askId1!=null&&that.data.askId1!=undefined){
       that.data.askId=that.data.askId1
