@@ -194,7 +194,7 @@ Page({
     })
     that.getWidth(data)
   },
-  // 宽度
+  // 获取信息
   getWidth(data) {
     var that = this
     console.log(data)
@@ -249,6 +249,36 @@ Page({
           yansearray:res.result.colorList,
           flag:false,
         })
+        if(that.data.houdu!=''&&that.data.houdu!=undefined){
+          var houdus=Number(that.data.houdu)
+          var minhoudus = Number(that.data.sethoudu[0])
+          var maxhoudus = Number(that.data.sethoudu[1])
+          if(houdus>minhoudus&&houdus>maxhoudus){
+            that.setData({
+              houdu:''
+            })
+          }
+          if(houdus<minhoudus&&houdus<maxhoudus){
+            that.setData({
+              houdu:''
+            })
+          }
+        }
+        if(that.data.kuandu!=''&&that.data.kuandu!=undefined){
+          var kuandus=Number(that.data.kuandu)
+          var minkuandus = Number(that.data.setwidth[0])
+          var maxkuandus = Number(that.data.setwidth[1])
+          if(kuandus>minkuandus&&kuandus>maxkuandus){
+            that.setData({
+              kuandu:''
+            })
+          }
+          if(kuandus<minkuandus&&kuandus<maxkuandus){
+            that.setData({
+              kuandu:''
+            })
+          }
+        }
       }
     })
   },

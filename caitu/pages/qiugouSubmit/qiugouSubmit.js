@@ -352,6 +352,8 @@ Page({
           zhengmianindex:0,
           beimianindex:0,
           xincengindex:0,
+          houdu:'',
+          kuandu:'',
           flag:false
         })
         console.log(that.data.qiangdu)
@@ -373,6 +375,9 @@ Page({
     that.data.xinceng=['选择镀层量']
     that.data.zhengmianid=[]
     that.data.beimianid=[]
+    that.data.zhengmianindex=0
+    that.data.beimianindex=0
+    that.data.xincengindex=0
     console.log(data)
     qingqiu.get("getXC",data,function(res){
       if(res.success == true){
@@ -409,7 +414,8 @@ Page({
           beimian:that.data.beimian,
           xinceng:that.data.xinceng,
           zhengmianid:that.data.zhengmianid,
-          beimianid:that.data.beimianid
+          beimianid:that.data.beimianid,
+          tuceng:''
         })
         console.log(that.data.zhengmian)
         console.log(that.data.beimian)

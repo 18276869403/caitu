@@ -56,6 +56,7 @@ Page({
     beimianid:[],
     select:1,
     xieyi:api.xieyi,
+    zhuangtai:true,
     itemobj:{}
     // multiArray: [
     //   ['选择钢厂', '广州宝钢', '上海宝钢', '浙江宝钢'],
@@ -795,6 +796,9 @@ Page({
     that.data.xinceng=['选择镀层量']
     that.data.zhengmianid=[]
     that.data.beimianid=[]
+    that.data.zhengmianindex=0
+    that.data.beimianindex=0
+    that.data.xincengindex=0
     console.log(data)
     qingqiu.get("getXC",data,function(res){
       if(res.success == true){
@@ -809,7 +813,7 @@ Page({
         for(let obj2 of res.result.xclist){
           that.data.xinceng.push(obj2.scope)
         }
-        if(that.data.itemobj!=''){
+        if(that.data.itemobj!=''&&that.data.zhuangtai==true){
           that.data.zhengmianindex = utils.getArrIndex(that.data.zhengmian,that.data.itemobj.front)=='-1'?'0':utils.getArrIndex(that.data.zhengmian,that.data.itemobj.front)
           that.data.beimianindex = utils.getArrIndex(that.data.beimian,that.data.itemobj.rear)=='-1'?'0':utils.getArrIndex(that.data.beimian,that.data.itemobj.rear)
           that.data.xincengindex = utils.getArrIndex(that.data.xinceng,that.data.itemobj.zincLayer)=='-1'?'0':utils.getArrIndex(that.data.xinceng,that.data.itemobj.zincLayer)
@@ -822,7 +826,9 @@ Page({
           beimian:that.data.beimian,
           xinceng:that.data.xinceng,
           zhengmianid:that.data.zhengmianid,
-          beimianid:that.data.beimianid
+          beimianid:that.data.beimianid,
+          tuceng:'',
+          zhuangtai:false
         })
         console.log(that.data.zhengmian)
         console.log(that.data.beimian)
