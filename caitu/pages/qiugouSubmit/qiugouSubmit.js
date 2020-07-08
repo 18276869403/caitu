@@ -335,6 +335,10 @@ Page({
           that.gethuodu({text:itemdata.paint,steelName:that.data.jsqglist.steelName,theNameId:that.data.jsqglist.theNameId})
           that.getyouqi(that.data.youqi[youqiindex].subentryId,itemdata.paint)
         }
+      }else{
+        that.setData({
+          tuceng:''
+        })
       }
         that.setData({
           getWidth:res.result.width,
