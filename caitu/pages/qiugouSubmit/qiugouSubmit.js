@@ -776,6 +776,14 @@ minReg:function(e){
   // 正面膜厚
   zhengmianChange:function(e){
     var that=this
+    if(that.data.youqiindex=='0'){
+      wx.showToast({
+        title: '请选择油漆',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     console.log('picker发送选择改变，携带值为', e.detail.value)
     that.setData({
       zhengmianindex: e.detail.value
@@ -792,6 +800,14 @@ minReg:function(e){
   // 背面膜厚
   beimianChange:function(e){
     var that=this
+    if(that.data.youqiindex=='0'){
+      wx.showToast({
+        title: '请选择油漆',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     console.log('picker发送选择改变，携带值为', e.detail.value)
     that.setData({
       beimianindex: e.detail.value
@@ -816,6 +832,14 @@ minReg:function(e){
   // 镀层量
   xincengChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
+    if(this.data.youqiindex=='0'){
+      wx.showToast({
+        title: '请选择油漆',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     this.setData({
       xincengindex: e.detail.value
     })

@@ -324,6 +324,10 @@ Page({
             that.getyouqi(that.data.youqi[youqiindex].subentryId,itemdata.paint)
             that.gethuodu({text:itemdata.paint,steelName:that.data.jsqglist.steelName,theNameId:that.data.jsqglist.theNameId})
           }
+        }else{
+          that.setData({
+            tuceng:''
+          })
         }
         that.setData({
           getWidth:res.result.width,
@@ -817,6 +821,14 @@ gethuodu(data){
   // 正面
   zhengmianChange: function(e) {
     var that=this
+    if(that.data.youqiindex=='0'){
+      wx.showToast({
+        title: '请选择油漆',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     that.data.zhengmianindex=0
     console.log('picker发送选择改变，携带值为', e.detail.value)
     that.setData({
@@ -835,6 +847,14 @@ gethuodu(data){
   // 背面
   beimianChange: function(e) {
     var that=this
+    if(that.data.youqiindex=='0'){
+      wx.showToast({
+        title: '请选择油漆',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     that.data.beimianindex=0
     console.log('picker发送选择改变，携带值为', e.detail.value)
     that.setData({
@@ -861,6 +881,14 @@ gethuodu(data){
   // 镀层量
   xincengChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
+    if(this.data.youqiindex=='0'){
+      wx.showToast({
+        title: '请选择油漆',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     this.setData({
       xincengindex: e.detail.value
     })
