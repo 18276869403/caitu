@@ -177,6 +177,14 @@ Page({
   // 跳转到成功页面
   kucunSubmitSuccess: function() {
     var that = this
+    if(that.data.multiIndex1[1]=='0'){
+      wx.showToast({
+        title:'请选择市',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     var cityindex = that.data.multiIndex1
     var citylist = that.data.cityList
     var city = that.data.city

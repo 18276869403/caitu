@@ -229,6 +229,7 @@ Page({
         if(res.success == true){
             var cityname = []
             var cityid = []
+            cityid.push(0)
             for(let obj of res.result){
               if(cityname.length==0){
                 cityname.push("选择市")
@@ -241,6 +242,7 @@ Page({
             that.setData({
               [multiArray1]:cityname,
               city:res.result,
+              cityid:cityid,
               multiIndex1:multiIndex1
             })
             that.data.shiid=cityid[multiIndex1[1]]
@@ -251,6 +253,7 @@ Page({
       this.setData({
         [multiIndex1]: indexs,
       })
+      this.data.shiid=this.data.cityid[indexs]
     }
   },
   bindMultiPickersChangetwos(e){
@@ -337,7 +340,9 @@ Page({
         }
       }else{
         that.setData({
-          tuceng:''
+          tuceng:'',
+          houdu:'',
+          kuandu:''
         })
       }
         that.setData({
@@ -548,6 +553,14 @@ Page({
       color:that.data.yanse[that.data.yanseindex],
       density:that.data.qiangdu[that.data.qiangduindex],
       tonnage:that.data.dunwei,
+    }
+    if(that.data.shiid=='0'){
+      wx.showToast({
+        title: '请选择市',
+        icon:'none',
+        duration:2000
+      })
+      return
     }
     var s = utils.yanzheng(data.areaOneId + ',请选择省|' + data.areaTwoId + ',请选择市|' + data.steelName + ',请选择钢厂|' + data.theNameId + ',请选择品名|' + data.thickness + ',请输入厚度|' + data.width + ',请输入宽度|' + data.paint + ',请选择油漆|' + data.front + ',请输入正面膜厚|' + data.rear + ',请输入背面膜厚|' + data.coat + ',没有涂层参数|' + data.zincLayer + ',请选择镀层量|' + data.color + ',请选择颜色|' + data.density + ',请选择强度|' + data.tonnage + ',请选择吨数')
     if(s != 0){
