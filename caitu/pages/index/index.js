@@ -41,13 +41,13 @@ Page({
     }, 1000);
   },
   onShow: function () {
+    this.getqiugou()
+    this.getpingou()
+    this.getweihuo()
     //获得dialog组件
     this.dialog = this.selectComponent("#dialog");
   },
   onLoad:function(){
-    this.getqiugou()
-    this.getpingou()
-    this.getweihuo()
     this.setData({
       userId: app.globalData.wxid
     })
