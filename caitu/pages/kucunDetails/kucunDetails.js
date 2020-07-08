@@ -830,7 +830,7 @@ Page({
           xinceng:that.data.xinceng,
           zhengmianid:that.data.zhengmianid,
           beimianid:that.data.beimianid,
-          tuceng:'',
+          // tuceng:'',
           zhuangtai:false
         })
         console.log(that.data.zhengmian)
