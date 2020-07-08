@@ -110,7 +110,7 @@ page {
 .content-button {
   width: 100%;
   margin-top: 170rpx;
-  margin-bottom: 125rpx;
+  /* margin-bottom: 125rpx; */
 }
 
 .button {

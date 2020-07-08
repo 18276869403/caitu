@@ -7,7 +7,9 @@
     <!-- <image src="{{{{viewUrl}}temp/image/erweima.png}}" class="code-img"></image> -->
     <image src="{{shareImgPath}}" class="code-img"></image>
     <view class="content-text">
-      <view class="content-text-title">{{item.theName}}</view>
+      <view class="content-text-title" wx-if="{{item.haibaotype==0}}">求购：{{item.theName}}</view>
+      <view class="content-text-title" wx-if="{{item.haibaotype==1}}">拼购：{{item.theName}}</view>
+      <view class="content-text-title" wx-if="{{item.haibaotype!=0&&item.haibaotype!=1}}">尾货：{{item.theName}}</view>
       <view class="content-text-text-item">厚度：{{item.thickness}}</view>
       <view class="content-text-text-item">宽度：{{item.width}}</view>
       <view class="content-text-text-item">颜色：{{item.color}}</view>

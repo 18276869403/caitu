@@ -33,7 +33,7 @@ page {
 }
 
 .content-text-title {
-  font-size: 60rpx;
+  font-size: 21px;
   font-weight: bold;
   color: rgba(51, 51, 51, 1);
 }

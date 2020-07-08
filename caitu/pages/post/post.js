@@ -154,6 +154,15 @@ Page({
     var that = this;
     var item = that.data.item
     var unit = that.data.screenWidth / 375
+    if(item.haibaotype==0){
+      var Ttitle='求购：'
+    }
+    if(item.haibaotype==1){
+      var Ttitle='拼购：'
+    }
+    if(item.haibaotype!=0&&item.haibaotype!=1){
+      var Ttitle='尾货：'
+    }
     //2. canvas绘制文字和图片
     const ctx = wx.createCanvasContext('share');
     var bgImgPath = that.data.shareImgSrc;
@@ -164,8 +173,8 @@ Page({
       x: 50,
       y: 70,
       color: 'rgba(51, 51, 51, 1)',
-      size: 30,
-      text: item.theName,
+      size: 21,
+      text: Ttitle+item.theName,
       bold: true
     })
     //  ctx.fillText('' + item.theName, 50, 70)
