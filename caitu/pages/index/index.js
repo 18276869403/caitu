@@ -45,6 +45,9 @@ Page({
     this.dialog = this.selectComponent("#dialog");
   },
   onLoad:function(){
+    this.getqiugou()
+    this.getpingou()
+    this.getweihuo()
     this.setData({
       userId: app.globalData.wxid
     })
