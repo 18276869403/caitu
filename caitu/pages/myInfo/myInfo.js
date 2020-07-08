@@ -125,7 +125,7 @@ Page({
       console.log(res)
       if(res.success == true){
         wx.showToast({
-          title: '保持成功',
+          title: '保存成功',
           icon:'none',
           duration:2000
         })

@@ -377,6 +377,9 @@ gethuodu(data){
   that.data.xinceng=['选择镀层量']
   that.data.zhengmianid=[]
   that.data.beimianid=[]
+  that.data.zhengmianindex=0
+  that.data.beimianindex=0
+  that.data.xincengindex=0
   console.log(data)
   qingqiu.get("getXC",data,function(res){
     if(res.success == true){
@@ -396,6 +399,11 @@ gethuodu(data){
         that.data.beimianindex = utils.getArrIndex(that.data.beimian,that.data.jsqglist.rear)=='-1'?'0':utils.getArrIndex(that.data.beimian,that.data.jsqglist.rear)
         that.data.xincengindex = utils.getArrIndex(that.data.xinceng,that.data.jsqglist.zincLayer)=='-1'?'0':utils.getArrIndex(that.data.xinceng,that.data.jsqglist.zincLayer)
         that.data.zhuangtai=false
+      }else
+      {
+        that.setData({
+          tuceng:''
+        })
       }
       that.setData({
         zhengmianindex:that.data.zhengmianindex,

@@ -497,9 +497,6 @@ Page({
   // 油漆
   youqiChange: function(e) {
     var that = this
-    that.setData({
-      youqiindex: e.detail.value
-    })
     if(!that.data.youqi.length>0){
       wx.showToast({
         title: '请选择钢厂',
@@ -516,6 +513,9 @@ Page({
       })
       return
     }
+    that.setData({
+      youqiindex: e.detail.value
+    })
     var data = {
       subentryId:that.data.youqiarray[e.detail.value-1].subentryId,
       text:that.data.youqi[e.detail.value]
@@ -557,6 +557,9 @@ Page({
     that.data.xinceng=['选择镀层量']
     that.data.zhengmianid=[]
     that.data.beimianid=[]
+    that.data.zhengmianindex=0
+    that.data.beimianindex=0
+    that.data.xincengindex=0
     console.log(data)
     qingqiu.get("getXC",data,function(res){
       if(res.success == true){
@@ -572,11 +575,15 @@ Page({
           that.data.xinceng.push(obj2.scope)
         }
         that.setData({
+          zhengmianindex:that.data.zhengmianindex,
+          beimianindex:that.data.beimianindex,
+          xincengindex:that.data.xincengindex,
           zhengmian:that.data.zhengmian,
           beimian:that.data.beimian,
           xinceng:that.data.xinceng,
           zhengmianid:that.data.zhengmianid,
-          beimianid:that.data.beimianid
+          beimianid:that.data.beimianid,
+          tuceng:''
         })
         console.log(that.data.zhengmian)
         console.log(that.data.beimian)
