@@ -47,16 +47,25 @@ Page({
     //获得dialog组件
     this.dialog = this.selectComponent("#dialog");
   },
-  onLoad:function(){
-    this.setData({
-      userId: app.globalData.wxid
-    })
-    this.chushihuashouquan()
-    this.getqiugou()
-    this.getbanner()
-    this.getpingou()
-    this.getzixun()
-    this.getweihuo()
+  onLoad:function(options){
+    if(options.scene){
+      var url = decodeURIComponent(options.scene)
+      if(url != ""){
+        wx.navigateTo({
+          url: url,
+        })
+      }
+    }else{
+      this.setData({
+        userId: app.globalData.wxid
+      })
+      this.chushihuashouquan()
+      this.getqiugou()
+      this.getbanner()
+      this.getpingou()
+      this.getzixun()
+      this.getweihuo()
+    }
   },
   // 截获竖向滑动
   stopTouchMove:function(){
