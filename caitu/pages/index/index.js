@@ -58,7 +58,7 @@ Page({
     }else{
       this.setData({
         userId: app.globalData.wxid
-      })
+      }) 
       this.chushihuashouquan()
       this.getqiugou()
       this.getbanner()
