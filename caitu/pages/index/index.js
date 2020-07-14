@@ -28,14 +28,14 @@ Page({
     zixunList: [],
     userId: '',
     isAuto: 0,
-    wxUser:{},
+    wxUser: {},
     wxState: 0,
     addstr: ' style="display: -webkit-box;font-size: 28rpx;color: #999999;line-height: 40rpx;word-break: break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;text-overflow: ellipsis;"'
   },
   // 下拉刷新
   onPullDownRefresh: function () {
-    this.data.qiugouList=[]
-    this.onLoad() 
+    this.data.qiugouList = []
+    this.onLoad()
     setTimeout(() => {
       wx.stopPullDownRefresh()
     }, 1000);
@@ -47,29 +47,55 @@ Page({
     //获得dialog组件
     this.dialog = this.selectComponent("#dialog");
   },
-  onLoad:function(options){
-    if(options.scene){
-      var url = decodeURIComponent(options.scene)
-      if(url != ""){
-        wx.navigateTo({
-          url: url,
-        })
+  cancelEvent: function (e) {
+    var that = this
+    wx.showModal({
+      title: '提示',
+      content: '取消授权会影响到部分功能的使用，你确定取消吗？',
+      success(res) {
+        if (res.confirm) {
+          that.dialog.hideDialog();
+        }
       }
-    }else{
-      this.setData({
-        userId: app.globalData.wxid
-      }) 
-      this.chushihuashouquan()
-      this.getqiugou()
-      this.getbanner()
-      this.getpingou()
-      this.getzixun()
-      this.getweihuo()
+    })
+  },
+  onLoad: function (options) {
+
+    console.log(options)
+    if (options != undefined) {
+      if (options.scene != undefined) {
+        var url = decodeURIComponent(options.scene)
+        var list = url.split(",")
+        if (list.length > 0) {
+          if (list[0] == 0) {
+            wx.navigateTo({
+              url: "../qiugouDetails/qiugouDetails?id=" + list[1],
+            })
+          } else if (list[0] == 1) {
+            wx.navigateTo({
+              url: "../pingouDetails/pingouDetails?id=" + list[1],
+            })
+          } else {
+            wx.navigateTo({
+              url: "../weihuoDetails/weihuoDetails?id=" + list[1],
+            })
+          }
+        }
+      }
     }
+    this.chushihuashouquan()
+    this.setData({
+      userId: app.globalData.wxid
+    })
+    this.getqiugou()
+    this.getbanner()
+    this.getpingou()
+    this.getzixun()
+    this.getweihuo()
   },
   // 截获竖向滑动
-  stopTouchMove:function(){
-    return false
+  stopTouchMove: function () {
+    return false
   },
   // 获取广告
   getbanner() {
@@ -91,18 +117,20 @@ Page({
   // 求购信息
   getqiugou() {
     var that = this
-    qingqiu.get("initAskToBuy", {orderOK:2}, function (res) {
+    qingqiu.get("initAskToBuy", {
+      orderOK: 2
+    }, function (res) {
       console.log('求购信息', res)
       if (res.success == true) {
         var qiugouList = []
         for (let obj of res.result.records) {
           var str = obj.id.toString()
-          if (str.length < 10) { 
+          if (str.length < 10) {
             obj.backup1 = utils.IdentityNum(str)
           }
           obj.tonnage = obj.tonnage
         }
-        qiugouList=res.result.records
+        qiugouList = res.result.records
         console.log(qiugouList)
         that.setData({
           qiugouList: qiugouList
@@ -123,7 +151,7 @@ Page({
     var data = {
       pageNo: 1,
       pageSize: 3,
-      orderOK:2
+      orderOK: 2
     }
     qingqiu.get('initGroupBuying', data, function (res) {
       console.log('获取拼购信息', res)
@@ -272,7 +300,7 @@ Page({
                           that.setData({
                             wxUser: res.result.records[0]
                           })
-                        } 
+                        }
                       }
                     })
                     that.setData({
@@ -311,7 +339,7 @@ Page({
   // 跳转到计算器页面
   calculator: function () {
     wx.navigateTo({
-      url: '../calculator/calculator?obj=null'+'&mohouStatus=0',
+      url: '../calculator/calculator?obj=null' + '&mohouStatus=0',
     })
   },
   // 跳转到认证信息页面
@@ -370,7 +398,7 @@ Page({
     var obj = e.currentTarget.dataset.pingou;
     var pgxx = JSON.stringify(obj);
     wx.navigateTo({
-      url: '../pingouDetails/pingouDetails?obj=' + pgxx +'&type=0', 
+      url: '../pingouDetails/pingouDetails?obj=' + pgxx + '&type=0',
     })
   },
   //跳转到尾货信息页面
@@ -450,7 +478,7 @@ Page({
       phoneNumber: '13004192210',
     })
   },
-  guwencall:function(e){
+  guwencall: function (e) {
     var phone = e.currentTarget.dataset.phone
     wx.makePhoneCall({
       phoneNumber: phone,

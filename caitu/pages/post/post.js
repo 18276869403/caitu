@@ -65,22 +65,22 @@ Page({
     var that = this
     var data = {}
     if (that.data.item.haibaotype == 0) {
-      data.pagePath = 'pages/qiugouDetails/qiugouDetails?id=' + that.data.item.id
+      data.pagePath = that.data.item.haibaotype + ',' + that.data.item.id
     } else if (that.data.item.haibaotype == 1) {
-      data.pagePath = 'pages/pingouDetails/pingouDetails?id=' + that.data.item.id
+      data.pagePath = that.data.item.haibaotype + ',' + that.data.item.id
     } else {
-      data.pagePath = 'pages/weihuoDetails/weihuoDetails?id=' + that.data.item.id
+      data.pagePath = that.data.item.haibaotype + ',' + that.data.item.id
     }
     qingqiu.get("code", data, function (res) {
       var tempFilePath = that.data.viewUrl + res.twoCodeUrl
-      that.setData({
-        shareImgPath: tempFilePath
-      });
-      console.log(tempFilePath)
       wx.getImageInfo({
         src: that.data.viewUrl + res.twoCodeUrl,
         success: function (res) {
           console.log('二维码', res)
+          that.setData({
+            shareImgPath: res.path
+          });
+          console.log(tempFilePath)
         }
       })
 

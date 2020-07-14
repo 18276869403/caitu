@@ -28,7 +28,7 @@
           </view>
           编号
         </view>
-        <view class="gc_name yincang">uu11</view>
+        <view class="gc_name yincang">{{item.backup1}}</view>
       </view>
       <view class="gangchang hengxiang">
         <view class="gc_sj hengxiang">
